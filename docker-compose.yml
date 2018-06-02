@@ -3,13 +3,11 @@ version: '3'
 services:
 
    blog:
-     image: tomcat:9.0.8-jre8-alpine
+     build: .
      container_name: iteastyle-api
      restart: always
      expose:
            - "443"
-     volumes:
-       - /root/service/iteastyle-api/:/usr/local/tomcat/webapps
      environment:
        VIRTUAL_HOST: iteastyle-api.aimeow.com
        VIRTUAL_PORT: 8080
