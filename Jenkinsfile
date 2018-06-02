@@ -13,6 +13,7 @@ pipeline {
         echo 'Starting build the app.....'
         sh 'ls /root/.m2'
         sh 'mvn clean install -Dmaven.test.skip=true'
+        sh 'mvn package'
 
         sh 'apk add --update --no-cache openssh sshpass'
         withCredentials(bindings: [usernamePassword(credentialsId: 'server-118.178.131.105', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
