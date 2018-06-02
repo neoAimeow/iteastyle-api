@@ -11,7 +11,7 @@ pipeline {
       }
       steps {
         echo 'Starting build the app.....'
-        sh 'mkdir /root/.m2'
+        sh 'ls /root/.m2'
         sh 'mvn clean install -Dmaven.test.skip=true'
 
         sh 'apk add --update --no-cache openssh sshpass'
