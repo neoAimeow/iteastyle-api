@@ -1,2 +1,6 @@
 *.iml
 .idea
+.DS_Store
+iteastyle-api.ipr
+iteastyle-api.iws
+target/
