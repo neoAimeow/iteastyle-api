@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>iteastyle-dal</artifactId>
+    <artifactId>iteastyle-war</artifactId>
 
     <dependencies>
         <dependency>
@@ -30,11 +30,8 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <classifier>exec</classifier>
-                    <layout>NONE</layout>
-                </configuration>
             </plugin>
         </plugins>
     </build>
+
 </project>

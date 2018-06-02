@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>iteastyle-dal</artifactId>
+    <artifactId>iteastyle-client</artifactId>
 
     <dependencies>
         <dependency>

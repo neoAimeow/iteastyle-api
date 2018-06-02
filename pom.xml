@@ -6,10 +6,13 @@
 
     <groupId>com.aimeow.iteastyle</groupId>
     <artifactId>iteastyle-api</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
+        <module>iteastyle-war</module>
         <module>iteastyle-dal</module>
+        <module>iteastyle-client</module>
+        <module>iteastyle-service</module>
     </modules>
 
     <!-- Inherit defaults from Spring Boot -->
