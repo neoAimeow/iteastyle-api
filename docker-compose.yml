@@ -8,6 +8,8 @@ services:
      restart: always
      expose:
            - "443"
+     volumes:
+       - /root/service/iteastyle-api/:/usr/local/tomcat/webapps
      environment:
        VIRTUAL_HOST: iteastyle-api.aimeow.com
        VIRTUAL_PORT: 8080
