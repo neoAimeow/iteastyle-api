@@ -2,7 +2,7 @@ version: '1'
 
 services:
 
-   blog:
+   api:
      build: .
      container_name: iteastyle-api
      restart: always
