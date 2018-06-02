@@ -11,6 +11,20 @@ pipeline {
       }
       steps {
         echo 'Starting build the app.....'
+        sh 'mkdir /root/.m2'
+        sh 'echo "
+        <?xml version="1.0" encoding="utf-8"?>
+
+          <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+            <mirrors>
+                <mirror>
+                    <id>alimaven</id>
+                    <name>aliyun maven</name>
+                    <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+                    <mirrorOf>central</mirrorOf>
+                </mirror>
+            </mirrors>
+           </settings>" > settings.xml'
         sh 'mvn clean install -Dmaven.test.skip=true'
 
         sh 'apk add --update --no-cache openssh sshpass'
