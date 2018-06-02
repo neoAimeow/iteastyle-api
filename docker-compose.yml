@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+
+   blog:
+     image: tomcat:9.0.8-jre8-alpine
+     container_name: iteastyle-api
+     restart: always
+     expose:
+           - "443"
+     environment:
+       VIRTUAL_HOST: iteastyle-api.aimeow.com
+       VIRTUAL_PORT: 8080
+       LETSENCRYPT_HOST: iteastyle-api.aimeow.com
+       LETSENCRYPT_EMAIL: a18814888787@gmail.com
+
+networks:
+    default:
+       external:
+         name: nginx-proxy
