@@ -3,7 +3,7 @@ version: '2.3'
 services:
 
    api:
-     images: iteastyle-api
+     image: iteastyle-api
      build: .
      container_name: iteastyle-api
      restart: always
