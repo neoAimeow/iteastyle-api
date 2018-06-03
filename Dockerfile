@@ -1,5 +1,7 @@
 FROM openjdk:8-jdk-alpine
+MAINTAINER aimeow  a18814888787@gmail.com
+
 VOLUME /tmp
-ADD ./iteastyle-war-1.0-SNAPSHOT.jar app.jar
+ADD ./iteastyle-war/target/iteastyle-war-1.0-SNAPSHOT.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java" , "-jar","/app.jar" , "--server.port=8080"]
