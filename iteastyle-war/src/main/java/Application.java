@@ -9,8 +9,9 @@ public class Application {
 
     @RequestMapping("/")
     String home() {
-        TestObject testObject = new TestObject();
-        return testObject.hello();
+        return "Hello world";
+        //TestObject testObject = new TestObject();
+        //return testObject.hello();
     }
 
     public static void main(String[] args) throws Exception {
