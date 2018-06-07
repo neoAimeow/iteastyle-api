@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 public class CaseDO {
-    private String caseId;
+    private Long id;
     private String title;
     private List<String> imageArr;
     private Date gmt_create;

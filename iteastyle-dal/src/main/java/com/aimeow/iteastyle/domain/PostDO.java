@@ -6,8 +6,9 @@ import lombok.Data;
 
 @Data
 public class PostDO {
+    private Long id;
     private String title;
-    private Date gmt_create;
-    private Date gmt_modified;
+    private Date gmtCreate;
+    private Date gmtModified;
     private String content;
 }

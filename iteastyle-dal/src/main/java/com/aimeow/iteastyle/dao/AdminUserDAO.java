@@ -12,5 +12,5 @@ public interface AdminUserDAO {
 
     Boolean createAdminUser(AdminUserDO adminUserDO) throws Exception;
     Boolean updateAdminUser(AdminUserDO adminUserDO) throws Exception;
-    Boolean removeAdminUser(String adminUserId) throws Exception;
+    Boolean removeAdminUser(Long adminUserId) throws Exception;
 }
