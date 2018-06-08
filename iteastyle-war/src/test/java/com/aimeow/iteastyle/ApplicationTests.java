@@ -45,7 +45,7 @@ public class ApplicationTests {
     @Test
     public void testUpdate() throws Exception {
         AdminUserDO adminUserDO = new AdminUserDO();
-        adminUserDO.setId(1L);
+        adminUserDO.setId("1");
         adminUserDO.setFullName("Zhaoyi.w");
         adminUserDO.setIdentifier("admin");
         adminUserDO.setMail("a18814888787@gmail.com");
