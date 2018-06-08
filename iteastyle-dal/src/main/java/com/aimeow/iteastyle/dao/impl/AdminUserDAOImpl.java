@@ -5,12 +5,15 @@ import java.util.List;
 import com.aimeow.iteastyle.dao.AdminUserDAO;
 import com.aimeow.iteastyle.domain.AdminUserDO;
 import com.aimeow.iteastyle.domain.query.AdminUserQuery;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AdminUserDAOImpl implements AdminUserDAO {
 
     @Autowired
@@ -18,25 +21,25 @@ public class AdminUserDAOImpl implements AdminUserDAO {
 
 
     @Override
-    public AdminUserDO queryAdminUserById(AdminUserQuery queryCondition) throws Exception {
+    public AdminUserDO queryAdminUserById(@NonNull AdminUserQuery queryCondition) throws Exception {
         Query query=new Query(Criteria.where("id").is(queryCondition.getAdminUserId()));
         AdminUserDO user =  mongoTemplate.findOne(query , AdminUserDO.class);
         return user;
     }
 
     @Override
-    public List<AdminUserDO> queryAdminUsers(AdminUserQuery query) throws Exception {
+    public List<AdminUserDO> queryAdminUsers(@NonNull AdminUserQuery query) throws Exception {
         return null;
     }
 
     @Override
-    public Boolean createAdminUser(AdminUserDO adminUserDO) throws Exception {
+    public Boolean createAdminUser(@NonNull AdminUserDO adminUserDO) throws Exception {
         mongoTemplate.save(adminUserDO);
         return true;
     }
 
     @Override
-    public Boolean updateAdminUser(AdminUserDO adminUserDO) throws Exception {
+    public Boolean updateAdminUser(@NonNull AdminUserDO adminUserDO) throws Exception {
         Query query=new Query(Criteria.where("id").is(adminUserDO.getId()));
 
         Update update= new Update()
@@ -53,7 +56,7 @@ public class AdminUserDAOImpl implements AdminUserDAO {
     }
 
     @Override
-    public Boolean removeAdminUser(Long adminUserId) throws Exception {
+    public Boolean removeAdminUser(@NonNull Long adminUserId) throws Exception {
         Query query=new Query(Criteria.where("id").is(adminUserId));
         mongoTemplate.remove(query,AdminUserDO.class);
         return null;
