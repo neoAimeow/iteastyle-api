@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class AdminUserQuery extends BaseQuery {
-    private Long adminUserId;
+    private String adminUserId;
 }

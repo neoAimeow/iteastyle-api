@@ -56,7 +56,7 @@ public class AdminUserDAOImpl implements AdminUserDAO {
     }
 
     @Override
-    public Boolean removeAdminUser(@NonNull Long adminUserId) throws Exception {
+    public Boolean removeAdminUser(@NonNull String adminUserId) throws Exception {
         Query query=new Query(Criteria.where("id").is(adminUserId));
         mongoTemplate.remove(query,AdminUserDO.class);
         return null;

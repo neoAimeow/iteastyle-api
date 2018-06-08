@@ -45,9 +45,9 @@ public class ApplicationTests {
     @Test
     public void testUpdate() throws Exception {
         AdminUserDO adminUserDO = new AdminUserDO();
-        adminUserDO.setId("1");
+        adminUserDO.setId("5b1a7040fbab443799af6f9a");
         adminUserDO.setFullName("Zhaoyi.w");
-        adminUserDO.setIdentifier("admin");
+        adminUserDO.setIdentifier("admin123");
         adminUserDO.setMail("a18814888787@gmail.com");
         adminUserDO.setUserName("aimeow");
         adminUserDO.setUserNick("qq252104960");
@@ -58,7 +58,7 @@ public class ApplicationTests {
     @Test
     public void testQueryById() throws Exception {
         AdminUserQuery query = new AdminUserQuery();
-        query.setAdminUserId(1L);
+        query.setAdminUserId("5b1a7040fbab443799af6f9a");
         System.out.println(adminUserDAO.queryAdminUserById(query));
     }
 
