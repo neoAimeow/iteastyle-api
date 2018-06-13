@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class PostVO {
-    private Long id;
+    private String id;
     private Integer status;
     private String title;
     private Date gmtCreate;

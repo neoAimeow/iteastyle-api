@@ -31,6 +31,7 @@ public class PostManagerImpl implements PostManager {
     @Override public Result<Boolean> createPost(
         @NonNull PostBO postBO) throws Exception {
         Result<Boolean> result = new Result<>();
+        //postDAO.createPost(postBO)
         return result;
     }
 
