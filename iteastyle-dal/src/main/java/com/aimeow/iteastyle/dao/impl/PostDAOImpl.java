@@ -23,8 +23,8 @@ public class PostDAOImpl implements PostDAO {
         @NonNull PostQuery postQuery
     ) throws Exception {
         Query query=new Query(Criteria.where("status").is(postQuery.getStatus()));
-
-        return null;
+        List<PostDO> postDOS =  mongoTemplate.find(query , PostDO.class);
+        return postDOS;
     }
 
     @Override public PostDO queryPostById(
@@ -38,7 +38,7 @@ public class PostDAOImpl implements PostDAO {
     @Override public Integer countPosts(
         @NonNull PostQuery postQuery) throws Exception {
         Query query=new Query(Criteria.where("status").is(postQuery.getStatus()));
-
+        mongoTemplate.count(query, PostDO.class);
         return null;
     }
 
