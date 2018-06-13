@@ -3,16 +3,17 @@ package com.aimeow.iteastyle.manager;
 import java.util.List;
 
 import com.aimeow.iteastyle.domain.PostBO;
+import com.aimeow.iteastyle.domain.Result;
 
 public interface PostManager {
 
-    List<PostBO> getPosts(
+    Result<List<PostBO>> getPosts(
         Integer status , Integer page , Integer pageSize
     ) throws Exception;
 
-    PostBO getPostById(String postId) throws Exception;
+    Result<PostBO> getPostById(String postId) throws Exception;
 
-    Boolean createPost(PostBO postBO) throws Exception;
-    Boolean updatePost(PostBO postBO) throws Exception;
-    Boolean deletePost(String postId) throws Exception;
+    Result<Boolean> createPost(PostBO postBO) throws Exception;
+    Result<Boolean> updatePost(PostBO postBO) throws Exception;
+    Result<Boolean> deletePost(String postId) throws Exception;
 }
