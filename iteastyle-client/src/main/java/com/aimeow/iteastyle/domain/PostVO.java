@@ -5,8 +5,8 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class PostDO {
-    private String id;
+public class PostVO {
+    private Long id;
     private Integer status;
     private String title;
     private Date gmtCreate;
