@@ -12,21 +12,22 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PostDAOImpl implements PostDAO {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    @Override
-    public List<PostDO> queryPosts(
-        @NonNull PostQuery query
+    @Override public List<PostDO> queryPosts(
+        @NonNull PostQuery postQuery
     ) throws Exception {
-        
+        Query query=new Query(Criteria.where("status").is(postQuery.getStatus()));
+
         return null;
     }
 
-    @Override
-    public PostDO queryPostById(
+    @Override public PostDO queryPostById(
         @NonNull PostQuery postQuery
     ) throws Exception {
         Query query=new Query(Criteria.where("id").is(postQuery.getPostId()));
@@ -34,8 +35,14 @@ public class PostDAOImpl implements PostDAO {
         return post;
     }
 
-    @Override
-    public Boolean createPost(
+    @Override public Integer countPosts(
+        @NonNull PostQuery postQuery) throws Exception {
+        Query query=new Query(Criteria.where("status").is(postQuery.getStatus()));
+
+        return null;
+    }
+
+    @Override public Boolean createPost(
         @NonNull PostDO postDO
     ) throws Exception {
         postDO.setGmtCreate(new Date());
@@ -44,8 +51,7 @@ public class PostDAOImpl implements PostDAO {
         return true;
     }
 
-    @Override
-    public Boolean updatePost(
+    @Override public Boolean updatePost(
         @NonNull PostDO postDO
     ) throws Exception {
         postDO.setGmtModified(new Date());
@@ -60,8 +66,8 @@ public class PostDAOImpl implements PostDAO {
         return true;
     }
 
-    @Override
-    public Boolean deletePostById(String postId) throws Exception {
+    @Override public Boolean deletePostById(
+        @NonNull String postId) throws Exception {
         Query query=new Query(Criteria.where("id").is(postId));
         mongoTemplate.remove(query,PostDO.class);
         return true;

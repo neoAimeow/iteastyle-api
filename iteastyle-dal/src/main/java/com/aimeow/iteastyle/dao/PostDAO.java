@@ -10,6 +10,8 @@ public interface PostDAO {
         PostQuery query) throws Exception;
     PostDO queryPostById(
         PostQuery query) throws Exception;
+    Integer countPosts(
+        PostQuery query) throws Exception;
     Boolean createPost(
         PostDO postDO) throws Exception;
     Boolean updatePost(
