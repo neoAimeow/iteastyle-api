@@ -27,19 +27,26 @@ public class AdminUserDAOImpl implements AdminUserDAO {
     }
 
     @Override
-    public List<AdminUserDO> queryAdminUsers(@NonNull AdminUserQuery query) throws Exception {
+    public List<AdminUserDO> queryAdminUsers(
+        @NonNull AdminUserQuery query
+    ) throws Exception {
         return null;
     }
 
     @Override
-    public Boolean createAdminUser(@NonNull AdminUserDO adminUserDO) throws Exception {
+    public Boolean createAdminUser(
+        @NonNull AdminUserDO adminUserDO
+    ) throws Exception {
         mongoTemplate.save(adminUserDO);
         return true;
     }
 
     @Override
-    public Boolean updateAdminUser(@NonNull AdminUserDO adminUserDO) throws Exception {
-        Query query=new Query(Criteria.where("id").is(adminUserDO.getId()));
+    public Boolean updateAdminUser(
+        @NonNull AdminUserDO adminUserDO
+    ) throws Exception {
+        Query query=new Query(Criteria.where(
+            "id").is(adminUserDO.getId()));
 
         Update update= new Update()
             .set("userName", adminUserDO.getUserName())
@@ -49,7 +56,6 @@ public class AdminUserDAOImpl implements AdminUserDAO {
             .set("identifier", adminUserDO.getIdentifier())
             .set("mail", adminUserDO.getMail());
 
-        //更新查询返回结果集的第一条
         mongoTemplate.updateFirst(query,update,AdminUserDO.class);
         return true;
     }
@@ -58,6 +64,6 @@ public class AdminUserDAOImpl implements AdminUserDAO {
     public Boolean removeAdminUser(@NonNull String adminUserId) throws Exception {
         Query query=new Query(Criteria.where("id").is(adminUserId));
         mongoTemplate.remove(query,AdminUserDO.class);
-        return null;
+        return true;
     }
 }
