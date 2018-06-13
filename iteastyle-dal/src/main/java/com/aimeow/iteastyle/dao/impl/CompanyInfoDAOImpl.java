@@ -1,7 +1,10 @@
 package com.aimeow.iteastyle.dao.impl;
 
+import java.util.List;
+
 import com.aimeow.iteastyle.dao.CompanyInfoDAO;
 import com.aimeow.iteastyle.domain.CompanyInfoDO;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -21,8 +24,15 @@ public class CompanyInfoDAOImpl implements CompanyInfoDAO {
     }
 
     @Override
-    public Boolean replaceCompanyInfoData(CompanyInfoDO companyInfoDO) throws Exception {
-        mongoTemplate.findAllAndRemove(new Query(),CompanyInfoDO.class);
+    public Boolean replaceCompanyInfoData(
+        @NonNull CompanyInfoDO companyInfoDO) throws Exception {
+        List<CompanyInfoDO> lists = mongoTemplate.findAll(CompanyInfoDO.class);
+        lists.iterator().forEachRemaining(
+            obj-> {
+                mongoTemplate.remove(obj);
+            }
+        );
+
         mongoTemplate.save(companyInfoDO);
         return true;
     }

@@ -31,7 +31,7 @@ public class CompanyInfoTests {
         companyInfoDO.setPhoneNumber("phoneNumber");
         companyInfoDO.setTelephoneNumber("telephoneNumber");
         companyInfoDO.setMail("mail");
-        companyInfoDO.setWebUrl("weburl");
+        companyInfoDO.setWebUrl("webUrl");
         companyInfoDO.setStory("story");
         companyInfoDO.setVideoUrl("videoUrl");
 
