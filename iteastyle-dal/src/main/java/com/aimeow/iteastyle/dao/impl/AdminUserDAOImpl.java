@@ -19,7 +19,6 @@ public class AdminUserDAOImpl implements AdminUserDAO {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-
     @Override
     public AdminUserDO queryAdminUserById(@NonNull AdminUserQuery queryCondition) throws Exception {
         Query query=new Query(Criteria.where("id").is(queryCondition.getAdminUserId()));

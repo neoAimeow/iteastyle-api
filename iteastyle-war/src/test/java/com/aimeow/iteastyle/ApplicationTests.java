@@ -24,9 +24,6 @@ public class ApplicationTests {
     private AdminUserDAO adminUserDAO;
 
     @Autowired
-    private CompanyInfoDAO companyInfoDAO;
-
-    @Autowired
     private MockMvc mockMvc;
 
     @Test
@@ -69,12 +66,6 @@ public class ApplicationTests {
     public void testQuerys() throws Exception {
         AdminUserQuery query = new AdminUserQuery();
         System.out.println(adminUserDAO.queryAdminUsers(query));
-    }
-
-    @Test public void testCompanyInfo() throws Exception {
-        CompanyInfoDO companyInfoDO = new CompanyInfoDO();
-
-        //companyInfoDO.q
     }
 
 
