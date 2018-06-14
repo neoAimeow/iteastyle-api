@@ -22,24 +22,30 @@ public class PostDAOImpl implements PostDAO {
     @Override public List<PostDO> queryPosts(
         @NonNull PostQuery postQuery
     ) throws Exception {
-        Query query=new Query(Criteria.where("status").is(postQuery.getStatus()));
-        List<PostDO> postDOS =  mongoTemplate.find(query , PostDO.class);
+        Query query=new Query(Criteria.where("status").is(
+                postQuery.getStatus()));
+        List<PostDO> postDOS =  mongoTemplate.find(
+                query , PostDO.class
+        );
         return postDOS;
     }
 
     @Override public PostDO queryPostById(
         @NonNull PostQuery postQuery
     ) throws Exception {
-        Query query=new Query(Criteria.where("id").is(postQuery.getPostId()));
-        PostDO post =  mongoTemplate.findOne(query , PostDO.class);
+        Query query=new Query(Criteria.where("id").is(
+                postQuery.getPostId()));
+        PostDO post =  mongoTemplate.findOne(
+                query , PostDO.class
+        );
         return post;
     }
 
-    @Override public Integer countPosts(
+    @Override public Long countPosts(
         @NonNull PostQuery postQuery) throws Exception {
-        Query query=new Query(Criteria.where("status").is(postQuery.getStatus()));
-        mongoTemplate.count(query, PostDO.class);
-        return null;
+        Query query=new Query(Criteria.where("status").is(
+                postQuery.getStatus()));
+        return mongoTemplate.count(query, PostDO.class);
     }
 
     @Override public Boolean createPost(
