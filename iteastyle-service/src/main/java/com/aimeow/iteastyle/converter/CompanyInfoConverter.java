@@ -13,7 +13,8 @@ public class CompanyInfoConverter {
         companyInfoBO.setCompanyInfo(companyInfoDO.getCompanyInfo());
         companyInfoBO.setPostCode(companyInfoDO.getPostCode());
         companyInfoBO.setPhoneNumber(companyInfoDO.getPhoneNumber());
-        companyInfoBO.setTelephoneNumber(companyInfoDO.getTelephoneNumber());
+        companyInfoBO.setTelephoneNumber(
+                companyInfoDO.getTelephoneNumber());
         companyInfoBO.setMail(companyInfoDO.getMail());
         companyInfoBO.setWebUrl(companyInfoDO.getWebUrl());
         companyInfoBO.setStory(companyInfoDO.getStory());
@@ -28,7 +29,8 @@ public class CompanyInfoConverter {
         companyInfoDO.setCompanyInfo(companyInfoBO.getCompanyInfo());
         companyInfoDO.setPostCode(companyInfoBO.getPostCode());
         companyInfoDO.setPhoneNumber(companyInfoBO.getPhoneNumber());
-        companyInfoDO.setTelephoneNumber(companyInfoBO.getTelephoneNumber());
+        companyInfoDO.setTelephoneNumber(
+                companyInfoBO.getTelephoneNumber());
         companyInfoDO.setMail(companyInfoBO.getMail());
         companyInfoDO.setWebUrl(companyInfoBO.getWebUrl());
         companyInfoDO.setStory(companyInfoBO.getStory());
@@ -43,7 +45,8 @@ public class CompanyInfoConverter {
         companyInfoVO.setCompanyInfo(companyInfoBO.getCompanyInfo());
         companyInfoVO.setPostCode(companyInfoBO.getPostCode());
         companyInfoVO.setPhoneNumber(companyInfoBO.getPhoneNumber());
-        companyInfoVO.setTelephoneNumber(companyInfoBO.getTelephoneNumber());
+        companyInfoVO.setTelephoneNumber(
+                companyInfoBO.getTelephoneNumber());
         companyInfoVO.setMail(companyInfoBO.getMail());
         companyInfoVO.setWebUrl(companyInfoBO.getWebUrl());
         companyInfoVO.setStory(companyInfoBO.getStory());
