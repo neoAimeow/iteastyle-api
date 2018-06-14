@@ -1,11 +1,9 @@
 package com.aimeow.iteastyle.domain;
 
 import lombok.Data;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-@Document
-public class CompanyInfoDO {
+public class CompanyInfoVO {
     private String id;
     private String companyInfo;
     private String postCode;
