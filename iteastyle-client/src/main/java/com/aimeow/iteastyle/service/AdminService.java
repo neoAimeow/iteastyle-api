@@ -2,10 +2,13 @@ package com.aimeow.iteastyle.service;
 
 import com.aimeow.iteastyle.domain.CompanyInfoVO;
 import com.aimeow.iteastyle.domain.Result;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.JSONObject;
+
+@Api(value = "AdminService", description = "管理相关各路接口")
 @RestController
 public interface AdminService {
     @RequestMapping(value = "/admin/updateCompanyInfo", method = RequestMethod.POST, consumes="application/json")
