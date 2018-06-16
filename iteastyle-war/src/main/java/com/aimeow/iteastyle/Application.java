@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootConfiguration
 @EnableAutoConfiguration
 @RestController
-@ComponentScan({"com.aimeow.iteastyle.service","com.aimeow.iteastyle.manager"})
+@ComponentScan({"com.aimeow.iteastyle.service","com.aimeow.iteastyle.manager","com.aimeow.iteastyle.dao"})
 public class Application {
     @RequestMapping("/")
     public String greet() {
