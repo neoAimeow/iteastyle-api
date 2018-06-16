@@ -12,7 +12,9 @@ import com.aimeow.iteastyle.domain.query.PostQuery;
 import com.aimeow.iteastyle.manager.PostManager;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PostManagerImpl implements PostManager {
 
     @Autowired private PostDAO postDAO;

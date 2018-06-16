@@ -7,7 +7,9 @@ import com.aimeow.iteastyle.domain.Result;
 import com.aimeow.iteastyle.manager.CompanyInfoManager;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CompanyInfoManagerImpl
         implements CompanyInfoManager {
     @Autowired private CompanyInfoDAO companyInfoDAO;
