@@ -14,6 +14,7 @@ public interface PostService {
     GetPostsResult getPosts(
         Integer page, Integer pageSize
     );
+
     @RequestMapping("/post/getPostById")
     Result<PostVO> getPostByPostId(
         String postId
