@@ -10,15 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api(value = "Post", description = "茶式动态接口")
+@Api(value = "/post", description = "茶式动态接口")
+@RequestMapping(value = "/post", consumes="application/json")
 @RestController
 public interface PostService {
-    @RequestMapping(value = "/post/getPosts", method = RequestMethod.GET, consumes="application/json")
+    @RequestMapping(value = "/getPosts", method = RequestMethod.GET)
     Result<GetPostsVO> getPosts(
         Integer page, Integer pageSize
     );
 
-    @RequestMapping(value = "/post/getPostById", method = RequestMethod.GET, consumes="application/json")
+    @RequestMapping(value = "/getPostById", method = RequestMethod.GET)
     Result<PostVO> getPostByPostId(
         String postId
     );
