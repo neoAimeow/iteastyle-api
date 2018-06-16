@@ -12,7 +12,6 @@ public interface PostManager {
     ) throws Exception;
 
     Result<PostBO> getPostById(String postId) throws Exception;
-
     Result<Boolean> createPost(PostBO postBO) throws Exception;
     Result<Boolean> updatePost(PostBO postBO) throws Exception;
     Result<Boolean> deletePost(String postId) throws Exception;
