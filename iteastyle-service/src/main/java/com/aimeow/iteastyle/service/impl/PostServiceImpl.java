@@ -12,7 +12,9 @@ import com.aimeow.iteastyle.manager.PostManager;
 import com.aimeow.iteastyle.service.PostService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PostServiceImpl implements PostService {
     @Autowired private PostManager postManager;
 

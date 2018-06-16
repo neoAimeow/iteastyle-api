@@ -6,7 +6,9 @@ import com.aimeow.iteastyle.domain.StaticDataVO;
 import com.aimeow.iteastyle.manager.StaticDataManager;
 import com.aimeow.iteastyle.service.StaticDataService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class StaticDataServiceImpl
         implements StaticDataService {
     @Autowired private StaticDataManager staticDataManager;

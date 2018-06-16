@@ -6,7 +6,9 @@ import com.aimeow.iteastyle.domain.Result;
 import com.aimeow.iteastyle.manager.CompanyInfoManager;
 import com.aimeow.iteastyle.service.CompanyInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CompanyInfoServiceImpl
         implements CompanyInfoService {
     @Autowired private CompanyInfoManager companyInfoManager;
