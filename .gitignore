@@ -6,3 +6,4 @@ iteastyle-api.iws
 target/
 out/
 .project
+Jenkinsfile
