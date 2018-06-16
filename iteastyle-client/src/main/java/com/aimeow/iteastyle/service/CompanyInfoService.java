@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api(value = "/company", description = "公司信息相关接口")
+@Api(value = "/company", tags = {"公司信息"},description = "公司信息相关接口")
 @RequestMapping(value = "/company", consumes="application/json")
 @RestController
 public interface CompanyInfoService {

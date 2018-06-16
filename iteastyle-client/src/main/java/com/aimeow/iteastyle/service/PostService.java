@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api(value = "/post", description = "茶式动态接口")
+@Api(value = "/post",tags = {"茶式动态"}, description = "茶式动态接口")
 @RequestMapping(value = "/post", consumes="application/json")
 @RestController
 public interface PostService {

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.JSONObject;
 
-@Api(value = "/admin", description = "管理相关各路接口")
+@Api(value = "/admin",tags = {"管理接口"}, description = "管理相关各路接口")
 @RequestMapping(value = "/admin")
 @RestController
 public interface AdminService {

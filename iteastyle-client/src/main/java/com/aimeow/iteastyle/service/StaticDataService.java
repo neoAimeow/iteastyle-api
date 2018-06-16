@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api(value = "/staticData", description = "静态数据相关接口，比如说背景图片链接地址")
+@Api(value = "/staticData",tags = {"静态信息"}, description = "静态数据相关接口，比如说背景图片链接地址")
 @RequestMapping(value = "/staticData", consumes="application/json")
 @RestController
 public interface StaticDataService {
