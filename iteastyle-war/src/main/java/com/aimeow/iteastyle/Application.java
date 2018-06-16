@@ -19,11 +19,7 @@ public class Application {
     public String greet() {
         return "Hello world";
     }
-
-    @RequestMapping("/error")
-    public String error() {
-        return "There's somethings error happend,please check your parameters,thank you";
-    }
+    
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Application.class, args);
     }
