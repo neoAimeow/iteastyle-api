@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 @Api(value = "AdminService", description = "管理相关各路接口")
 @RestController
 public interface AdminService {
+
     @RequestMapping(value = "/admin/updateCompanyInfo", method = RequestMethod.POST, consumes="application/json")
     Result<Boolean> updateCompanyInfo(JSONObject param);
 
