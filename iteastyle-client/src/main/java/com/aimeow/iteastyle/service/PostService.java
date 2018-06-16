@@ -6,16 +6,17 @@ import com.aimeow.iteastyle.domain.GetPostsResult;
 import com.aimeow.iteastyle.domain.PostVO;
 import com.aimeow.iteastyle.domain.Result;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public interface PostService {
-    @RequestMapping("/post/getPosts")
+    @RequestMapping(value = "/post/getPosts", method = RequestMethod.GET, consumes="application/json")
     GetPostsResult getPosts(
         Integer page, Integer pageSize
     );
 
-    @RequestMapping("/post/getPostById")
+    @RequestMapping(value = "/post/getPostById", method = RequestMethod.GET, consumes="application/json")
     Result<PostVO> getPostByPostId(
         String postId
     );
