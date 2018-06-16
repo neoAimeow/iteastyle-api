@@ -70,5 +70,5 @@
             <version>${fast.json.version}</version>
         </dependency>
     </dependencies>
-    
+
 </project>
