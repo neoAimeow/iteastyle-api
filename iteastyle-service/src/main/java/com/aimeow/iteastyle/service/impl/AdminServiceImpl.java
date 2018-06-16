@@ -6,6 +6,7 @@ import com.aimeow.iteastyle.manager.PostManager;
 import com.aimeow.iteastyle.manager.StaticDataManager;
 import com.aimeow.iteastyle.service.AdminService;
 import com.alibaba.fastjson.JSONObject;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,27 +17,32 @@ public class AdminServiceImpl implements AdminService {
     @Autowired private PostManager postManager;
 
     @Override
-    public Result<Boolean> updateCompanyInfo(JSONObject param) {
+    public Result<Boolean> updateCompanyInfo(
+            @NonNull JSONObject param) {
         return null;
     }
 
     @Override
-    public Result<Boolean> updateStaticData(JSONObject param) {
+    public Result<Boolean> updateStaticData(
+            @NonNull JSONObject param) {
         return null;
     }
 
     @Override
-    public Result<Boolean> createPost(JSONObject param) {
+    public Result<Boolean> createPost(
+            @NonNull JSONObject param) {
         return null;
     }
 
     @Override
-    public Result<Boolean> updatePost(JSONObject param) {
+    public Result<Boolean> updatePost(
+            @NonNull JSONObject param) {
         return null;
     }
 
     @Override
-    public Result<Boolean> deletePost(String postId) {
+    public Result<Boolean> deletePost(
+            @NonNull String postId) {
         return null;
     }
 }
