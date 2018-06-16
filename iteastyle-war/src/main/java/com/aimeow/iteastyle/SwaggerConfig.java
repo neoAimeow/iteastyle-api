@@ -25,11 +25,11 @@ public class SwaggerConfig {
     }
     private ApiInfo apiInfo() {
         return new ApiInfo(
-                "My REST API",
-                "Some custom description of API.",
+                "Iteastyle API",
+                "iteastyle api for web and admins.",
                 "API TOS",
                 "Terms of service",
-                new Contact("John Doe", "www.example.com", "myeaddress@company.com"),
+                new Contact("John Doe", "www.aimeow.com", "a18814888787@gmail.com"),
                 "License of API", "API license URL", Collections.emptyList());
     }
 
