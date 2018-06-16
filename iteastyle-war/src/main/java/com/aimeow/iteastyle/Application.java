@@ -6,6 +6,7 @@ import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
@@ -17,7 +18,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         ,"com.aimeow.iteastyle.manager"
         ,"com.aimeow.iteastyle.dao"})
 public class Application {
-    @RequestMapping("/")
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public String greet() {
         return "Hello world";
     }
