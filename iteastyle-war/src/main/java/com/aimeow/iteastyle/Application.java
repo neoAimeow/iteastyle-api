@@ -11,14 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootConfiguration
 @EnableAutoConfiguration
 @RestController
-@ComponentScan
+@ComponentScan("com.aimeow.iteastyle.service")
 public class Application {
-
     @RequestMapping("/")
     public String greet() {
         return "Hello world";
     }
-
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Application.class, args);
     }
