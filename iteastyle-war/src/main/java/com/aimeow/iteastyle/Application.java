@@ -19,7 +19,7 @@ public class Application {
     public String greet() {
         return "Hello world";
     }
-    
+
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Application.class, args);
     }
