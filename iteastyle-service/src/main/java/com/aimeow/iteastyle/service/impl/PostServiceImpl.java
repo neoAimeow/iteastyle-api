@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.aimeow.iteastyle.converter.PostConverter;
-import com.aimeow.iteastyle.domain.GetPostsResult;
+import com.aimeow.iteastyle.domain.GetPostsVO;
 import com.aimeow.iteastyle.domain.PostBO;
 import com.aimeow.iteastyle.domain.PostVO;
 import com.aimeow.iteastyle.domain.Result;
@@ -19,9 +19,10 @@ public class PostServiceImpl implements PostService {
     @Autowired private PostManager postManager;
 
     @Override
-    public GetPostsResult getPosts(
+    public Result<GetPostsVO> getPosts(
         Integer page, Integer pageSize) {
-        GetPostsResult result = new GetPostsResult();
+        Result<GetPostsVO> result = new Result<GetPostsVO>();
+        GetPostsVO getPostsVO = new GetPostsVO();
         try {
             List<PostVO> postVos = new ArrayList();
             List<PostBO> postBos = postManager.getPosts(
@@ -31,7 +32,8 @@ public class PostServiceImpl implements PostService {
                         postVos.add(PostConverter.convertBTV(obj));
                     }
             );
-            result.setPosts(postVos);
+            getPostsVO.setPosts(postVos);
+            result.setModel(getPostsVO);
         } catch (Exception e) {
             result.setSuccess(false);
             return result;

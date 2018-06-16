@@ -3,6 +3,7 @@ package com.aimeow.iteastyle.service;
 import java.util.List;
 
 import com.aimeow.iteastyle.domain.GetPostsResult;
+import com.aimeow.iteastyle.domain.GetPostsVO;
 import com.aimeow.iteastyle.domain.PostVO;
 import com.aimeow.iteastyle.domain.Result;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public interface PostService {
     @RequestMapping(value = "/post/getPosts", method = RequestMethod.GET, consumes="application/json")
-    GetPostsResult getPosts(
+    Result<GetPostsVO> getPosts(
         Integer page, Integer pageSize
     );
 
