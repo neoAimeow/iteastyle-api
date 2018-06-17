@@ -36,18 +36,28 @@ public class CaseManagerImpl implements CaseManager {
     @Override
     public Result<Boolean> createCase(
             @NonNull CaseBO caseBO) throws Exception {
-        return null;
+        Result<Boolean> result = new Result<>();
+        result.setModel(caseDAO.createCase(
+                CaseConverter.convertBTD(caseBO))
+        );
+        return result;
     }
 
     @Override
     public Result<Boolean> updateCase(
             @NonNull CaseBO caseBO) throws Exception {
-        return null;
+        Result<Boolean> result = new Result<>();
+        result.setModel(caseDAO.updateCase(
+                CaseConverter.convertBTD(caseBO))
+        );
+        return result;
     }
 
     @Override
     public Result<Boolean> deleteCase(
             @NonNull String caseId) throws Exception {
-        return null;
+        Result<Boolean> result = new Result<>();
+        result.setModel(caseDAO.deleteCaseById(caseId));
+        return result;
     }
 }
