@@ -1,5 +1,4 @@
 package com.aimeow.iteastyle.manager;
 
-public interface AdminUserManager {
-
+public interface ProductShowerManager {
 }
