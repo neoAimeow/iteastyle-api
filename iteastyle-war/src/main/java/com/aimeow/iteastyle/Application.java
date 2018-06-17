@@ -11,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -24,11 +25,19 @@ import java.util.Collections;
 @SpringBootConfiguration
 @EnableAutoConfiguration
 @EnableSwagger2
+@RestController
 @ComponentScan({
         "com.aimeow.iteastyle.service"
         ,"com.aimeow.iteastyle.manager"
         ,"com.aimeow.iteastyle.dao"})
 public class Application {
+
+    @ApiIgnore
+    @RequestMapping("/")
+    public String greeting() {
+        return "hello world";
+    }
+
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
