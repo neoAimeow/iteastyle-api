@@ -9,7 +9,7 @@ import org.springframework.data.annotation.Id;
 @Data
 public class CaseDO {
     @Id
-    private Long id;
+    private String id;
     private String title;
     private List<String> imageArr;
     private Date gmtCreate;
