@@ -4,12 +4,19 @@ import com.aimeow.iteastyle.dao.ProductShowerDAO;
 import com.aimeow.iteastyle.domain.ProductShowerDO;
 import com.aimeow.iteastyle.domain.query.ProductShowerQuery;
 import lombok.NonNull;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 
 @Component
 public class ProductShowerDAOImpl implements ProductShowerDAO {
+    @Autowired private MongoTemplate mongoTemplate;
+
     @Override
     public List<ProductShowerDO> queryProductShowers(
             @NonNull ProductShowerQuery query) {
@@ -18,8 +25,13 @@ public class ProductShowerDAOImpl implements ProductShowerDAO {
 
     @Override
     public ProductShowerDO queryProductShowerById(
-            @NonNull ProductShowerQuery query) {
-        return null;
+            @NonNull ProductShowerQuery showerQuery) {
+        Query query=new Query(Criteria.where("id").is(
+                showerQuery.getProductShowerId()));
+        ProductShowerDO post =  mongoTemplate.findOne(
+                query , ProductShowerDO.class
+        );
+        return post;
     }
 
     @Override
@@ -31,7 +43,10 @@ public class ProductShowerDAOImpl implements ProductShowerDAO {
     @Override
     public Boolean createProductShower(
             @NonNull ProductShowerDO productShowerDO) {
-        return null;
+        productShowerDO.setGmtCreate(new Date());
+        productShowerDO.setGmtModified(new Date());
+        mongoTemplate.save(productShowerDO);
+        return true;
     }
 
     @Override
@@ -43,7 +58,9 @@ public class ProductShowerDAOImpl implements ProductShowerDAO {
     @Override
     public Boolean deleteProductShowerById(
             @NonNull String productShowerId) {
-        return null;
+        Query query=new Query(Criteria.where("id").is(productShowerId));
+        mongoTemplate.remove(query,ProductShowerDO.class);
+        return true;
     }
 
 }
