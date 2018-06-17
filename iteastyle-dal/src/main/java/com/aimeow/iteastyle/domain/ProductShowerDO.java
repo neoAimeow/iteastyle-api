@@ -1,5 +1,5 @@
 package com.aimeow.iteastyle.domain;
 
-public class ProductDO {
+public class ProductShowerDO {
 
 }
