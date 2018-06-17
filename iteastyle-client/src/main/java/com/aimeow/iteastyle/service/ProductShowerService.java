@@ -21,5 +21,4 @@ public interface ProductShowerService {
     @ApiOperation(value = "通过分页参数获得产品展示列表")
     @RequestMapping(value = "/productShowers", method = RequestMethod.GET)
     Result<GetProductShowersVO> getProductShowers(Integer page , Integer pageSize);
-
 }
