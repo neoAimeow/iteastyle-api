@@ -3,6 +3,7 @@ package com.aimeow.iteastyle.manager.impl;
 import com.aimeow.iteastyle.converter.CaseConverter;
 import com.aimeow.iteastyle.dao.CaseDAO;
 import com.aimeow.iteastyle.domain.CaseBO;
+import com.aimeow.iteastyle.domain.CaseDO;
 import com.aimeow.iteastyle.domain.Result;
 import com.aimeow.iteastyle.domain.query.CaseQuery;
 import com.aimeow.iteastyle.manager.CaseManager;
@@ -10,6 +11,7 @@ import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -29,12 +31,24 @@ public class CaseManagerImpl implements CaseManager {
 
     @Override
     public Result<List<CaseBO>> getCases(
-            @NonNull Integer type, @NonNull Integer status,  Integer page, Integer pageSize) throws Exception {
+            @NonNull Integer type, @NonNull Integer status,
+            Integer page, Integer pageSize) throws Exception {
+        Result<List<CaseBO>> result = new Result<>();
+        List<CaseBO> caseBOS = new ArrayList<>();
+
         CaseQuery query = new CaseQuery();
-        query.setPage(page);
-        query.setPageSize(pageSize);
+        query.setPage((page==null || page==0)?1:page);
+        query.setPageSize((pageSize==null || pageSize==0)?10:pageSize);
+        query.setStartRow((page-1) * pageSize);
         query.setType(type);
-        return null;
+        List<CaseDO> caseDOS = caseDAO.queryCases(query);
+        caseDOS.iterator().forEachRemaining(
+                obj-> {
+                    caseBOS.add(CaseConverter.convertDTB(obj));
+                }
+        );
+        result.setModel(caseBOS);
+        return result;
     }
 
     @Override

@@ -21,8 +21,9 @@ public class LogManagerImpl implements LogManager {
         Result<List<LogBO>> result = new Result<>();
         List<LogBO> logBOS = new ArrayList<>();
         LogQuery query = new LogQuery();
-        query.setPage(page);
-        query.setPageSize(pageSize);
+        query.setPage((page==null || page==0)?1:page);
+        query.setPageSize((pageSize==null || pageSize==0)?10:pageSize);
+        query.setStartRow((page-1) * pageSize);
         List<LogDO> logDOS = logDAO.queryLogs(query);
         logDOS.iterator().forEachRemaining(
                 obj-> {
