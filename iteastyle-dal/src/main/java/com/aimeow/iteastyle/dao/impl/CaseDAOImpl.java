@@ -4,6 +4,7 @@ import com.aimeow.iteastyle.dao.CaseDAO;
 import com.aimeow.iteastyle.domain.CaseDO;
 import com.aimeow.iteastyle.domain.query.CaseQuery;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -32,6 +33,7 @@ public class CaseDAOImpl implements CaseDAO {
         Query query=new Query(Criteria.where("type").is(
                 caseQuery.getType()));
         query.skip(caseQuery.getPage() * caseQuery.getPageSize()).limit(caseQuery.getPageSize());
+        query.with(new Sort(new Sort.Order(Sort.Direction.DESC,"gmtModified")));
 
         List<CaseDO> caseDOS =  mongoTemplate.find(
                 query , CaseDO.class
