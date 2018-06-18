@@ -20,7 +20,6 @@ public class CompanyInfoDAOImpl implements CompanyInfoDAO {
     public CompanyInfoDO getCompanyInfo() throws Exception {
         Query query=new Query();
         CompanyInfoDO companyInfoDO =  mongoTemplate.findOne(query , CompanyInfoDO.class);
-        //CompanyInfoDO companyInfoDO = new CompanyInfoDO();
         return companyInfoDO;
     }
 

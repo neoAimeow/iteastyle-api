@@ -28,13 +28,22 @@ public class CaseDAOImpl implements CaseDAO {
     }
 
     @Override
-    public List<CaseDO> queryCases(CaseQuery query) {
-        return null;
+    public List<CaseDO> queryCases(CaseQuery caseQuery) {
+        Query query=new Query(Criteria.where("type").is(
+                caseQuery.getType()));
+        query.skip(caseQuery.getPage() * caseQuery.getPageSize()).limit(caseQuery.getPageSize());
+
+        List<CaseDO> caseDOS =  mongoTemplate.find(
+                query , CaseDO.class
+        );
+        return caseDOS;
     }
 
     @Override
-    public Long countCases(CaseQuery query) {
-        return null;
+    public Long countCases(CaseQuery caseQuery) {
+        Query query=new Query(Criteria.where("type").is(
+                caseQuery.getType()));
+        return mongoTemplate.count(query, CaseDO.class);
     }
 
     @Override

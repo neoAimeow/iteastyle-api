@@ -11,6 +11,7 @@ public class CaseDO {
     @Id
     private String id;
     private String title;
+    private Integer type;
     private List<String> imageArr;
     private Date gmtCreate;
     private Date gmtModified;

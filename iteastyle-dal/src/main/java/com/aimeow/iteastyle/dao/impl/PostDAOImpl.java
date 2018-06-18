@@ -24,6 +24,8 @@ public class PostDAOImpl implements PostDAO {
     ) throws Exception {
         Query query=new Query(Criteria.where("status").is(
                 postQuery.getStatus()));
+        query.skip(postQuery.getPage() * postQuery.getPageSize()).limit(postQuery.getPageSize());
+
         List<PostDO> postDOS =  mongoTemplate.find(
                 query , PostDO.class
         );
