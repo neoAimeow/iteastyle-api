@@ -5,20 +5,28 @@ import com.aimeow.iteastyle.domain.LogDO;
 import com.aimeow.iteastyle.domain.query.LogQuery;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.List;
 
 @Component
 public class LogDAOImpl implements LogDAO {
     @Autowired private MongoTemplate mongoTemplate;
     @Override
-    public LogDO queryLogs(@NonNull LogQuery query) {
-
-        return null;
+    public List<LogDO> queryLogs(
+            @NonNull LogQuery logQuery) {
+        Query query=new Query();
+        query.with(new Sort(Sort.Direction.DESC, "gmtModified"));
+        query.skip(logQuery.getPage() * logQuery.getPageSize()).limit(logQuery.getPageSize());
+        List<LogDO> logDOS =  mongoTemplate.find(
+                query , LogDO.class
+        );
+        return logDOS;
     }
 
     @Override
@@ -42,6 +50,12 @@ public class LogDAOImpl implements LogDAO {
 
     @Override
     public Boolean clearRecord() {
-        return null;
+        List<LogDO> lists = mongoTemplate.findAll(LogDO.class);
+        lists.iterator().forEachRemaining(
+                obj-> {
+                    mongoTemplate.remove(obj);
+                }
+        );
+        return true;
     }
 }

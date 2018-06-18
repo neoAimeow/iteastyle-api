@@ -8,6 +8,7 @@ import com.aimeow.iteastyle.domain.PostDO;
 import com.aimeow.iteastyle.domain.query.PostQuery;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -24,8 +25,8 @@ public class PostDAOImpl implements PostDAO {
     ) throws Exception {
         Query query=new Query(Criteria.where("status").is(
                 postQuery.getStatus()));
+        query.with(new Sort(Sort.Direction.DESC, "gmtModified"));
         query.skip(postQuery.getPage() * postQuery.getPageSize()).limit(postQuery.getPageSize());
-
         List<PostDO> postDOS =  mongoTemplate.find(
                 query , PostDO.class
         );

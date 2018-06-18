@@ -3,8 +3,10 @@ package com.aimeow.iteastyle.dao;
 import com.aimeow.iteastyle.domain.LogDO;
 import com.aimeow.iteastyle.domain.query.LogQuery;
 
+import java.util.List;
+
 public interface LogDAO {
-    LogDO queryLogs(
+    List<LogDO> queryLogs(
             LogQuery query
     ) throws Exception;
     Boolean record(

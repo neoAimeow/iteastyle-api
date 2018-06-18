@@ -1,4 +1,4 @@
 package com.aimeow.iteastyle.domain.query;
 
-public class LogQuery {
+public class LogQuery extends BaseQuery {
 }
