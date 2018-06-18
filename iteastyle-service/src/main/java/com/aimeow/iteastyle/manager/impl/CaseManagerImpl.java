@@ -29,7 +29,11 @@ public class CaseManagerImpl implements CaseManager {
 
     @Override
     public Result<List<CaseBO>> getCases(
-            @NonNull Integer status, Integer page, Integer pageSize) throws Exception {
+            @NonNull Integer type, @NonNull Integer status,  Integer page, Integer pageSize) throws Exception {
+        CaseQuery query = new CaseQuery();
+        query.setPage(page);
+        query.setPageSize(pageSize);
+        query.setType(type);
         return null;
     }
 

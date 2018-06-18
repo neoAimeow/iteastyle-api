@@ -9,6 +9,8 @@ public class CaseConverter {
         CaseBO caseBO = new CaseBO();
         caseBO.setId(caseDO.getId());
         caseBO.setTitle(caseDO.getTitle());
+        caseBO.setType(caseDO.getType());
+        caseBO.setStatus(caseDO.getStatus());
         caseBO.setGmtCreate(caseDO.getGmtCreate());
         caseBO.setGmtModified(caseDO.getGmtModified());
         return caseBO;
@@ -18,6 +20,8 @@ public class CaseConverter {
         CaseDO caseDO = new CaseDO();
         caseDO.setId(caseBO.getId());
         caseDO.setTitle(caseBO.getTitle());
+        caseDO.setType(caseBO.getType());
+        caseDO.setStatus(caseBO.getStatus());
         caseDO.setGmtCreate(caseBO.getGmtCreate());
         caseDO.setGmtModified(caseBO.getGmtModified());
         return caseDO;

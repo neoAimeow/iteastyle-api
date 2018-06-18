@@ -12,6 +12,7 @@ public class CaseDO {
     private String id;
     private String title;
     private Integer type;
+    private Integer status;
     private List<String> imageArr;
     private Date gmtCreate;
     private Date gmtModified;

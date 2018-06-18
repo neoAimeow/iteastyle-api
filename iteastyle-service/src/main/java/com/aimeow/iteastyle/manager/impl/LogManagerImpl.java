@@ -52,5 +52,5 @@ public class LogManagerImpl implements LogManager {
         Result<Boolean> result = new Result<>();
         result.setModel(logDAO.removeRecord(logId));
         return result;
-    }Z
+    }
 }

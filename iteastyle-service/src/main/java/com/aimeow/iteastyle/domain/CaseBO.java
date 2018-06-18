@@ -11,6 +11,8 @@ public class CaseBO {
     @Id
     private String id;
     private String title;
+    private Integer status;
+    private Integer type;
     private List<String> imageArr;
     private Date gmtCreate;
     private Date gmtModified;

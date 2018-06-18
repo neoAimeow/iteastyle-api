@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CaseManager {
     Result<List<CaseBO>> getCases(
-            Integer status , Integer page , Integer pageSize
+            Integer type , Integer status, Integer page , Integer pageSize
     ) throws Exception;
 
     Result<CaseBO> getCaseById(String caseId) throws Exception;
