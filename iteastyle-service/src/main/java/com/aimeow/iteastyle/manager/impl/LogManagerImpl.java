@@ -6,11 +6,14 @@ import com.aimeow.iteastyle.domain.Result;
 import com.aimeow.iteastyle.manager.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public class LogManagerImpl implements LogManager {
     @Autowired private LogDAO logDAO;
 
     @Override
-    public Result<LogBO> queryLogs() {
+    public Result<List<LogBO>> queryLogs() {
+
         return null;
     }
 

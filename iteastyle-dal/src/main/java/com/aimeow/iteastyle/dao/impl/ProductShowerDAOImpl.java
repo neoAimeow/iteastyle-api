@@ -5,6 +5,7 @@ import com.aimeow.iteastyle.domain.ProductShowerDO;
 import com.aimeow.iteastyle.domain.query.ProductShowerQuery;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -19,8 +20,15 @@ public class ProductShowerDAOImpl implements ProductShowerDAO {
 
     @Override
     public List<ProductShowerDO> queryProductShowers(
-            @NonNull ProductShowerQuery query) {
-        return null;
+            @NonNull ProductShowerQuery productShowerQuery) {
+        Query query=new Query();
+        query.with(new Sort(Sort.Direction.DESC, "gmtModified"));
+        query.skip(productShowerQuery.getPage() * productShowerQuery.getPageSize())
+                .limit(productShowerQuery.getPageSize());
+        List<ProductShowerDO> productShowerDOS =  mongoTemplate.find(
+                query , ProductShowerDO.class
+        );
+        return productShowerDOS;
     }
 
     @Override
@@ -36,8 +44,9 @@ public class ProductShowerDAOImpl implements ProductShowerDAO {
 
     @Override
     public Long countProductShower(
-            @NonNull ProductShowerQuery query) {
-        return null;
+            @NonNull ProductShowerQuery productShowerQuery) {
+        Query query=new Query();
+        return mongoTemplate.count(query, ProductShowerDO.class);
     }
 
     @Override

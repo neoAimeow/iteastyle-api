@@ -26,7 +26,8 @@ public class PostDAOImpl implements PostDAO {
         Query query=new Query(Criteria.where("status").is(
                 postQuery.getStatus()));
         query.with(new Sort(Sort.Direction.DESC, "gmtModified"));
-        query.skip(postQuery.getPage() * postQuery.getPageSize()).limit(postQuery.getPageSize());
+        query.skip(postQuery.getPage() * postQuery.getPageSize())
+                .limit(postQuery.getPageSize());
         List<PostDO> postDOS =  mongoTemplate.find(
                 query , PostDO.class
         );

@@ -13,13 +13,13 @@ public class StaticDataConverter {
     }
 
     public static StaticDataDO convertBTD(
-            @NonNull StaticDataBO postBO) {
+            @NonNull StaticDataBO staticDataBO) {
         StaticDataDO staticDataDO = new StaticDataDO();
         return staticDataDO;
     }
 
     public static StaticDataVO convertBTV(
-            @NonNull StaticDataBO postBO) {
+            @NonNull StaticDataBO staticDataBO) {
         StaticDataVO staticDataVO = new StaticDataVO();
         return staticDataVO;
     }
