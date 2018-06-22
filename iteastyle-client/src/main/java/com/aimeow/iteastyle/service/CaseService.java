@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @Api(value = "/case", tags = {"经典案例"},description = "经典案例相关接口")
-@RequestMapping(value = "/case", consumes="application/json")
+@RequestMapping(value = "/case")
 @RestController
 public interface CaseService {
 
     @ApiOperation(value = "通过经典案例ID获取经典案例内容")
-    @RequestMapping(value = "/getCaseById", method = RequestMethod.GET)
+    @RequestMapping(value = "/getCaseById", method = RequestMethod.GET, consumes="application/json")
     Result<CaseVO> getCaseById(String caseId);
 
     @ApiOperation(value = "通过分页参数获得经典案例列表")
-    @RequestMapping(value = "/cases", method = RequestMethod.GET)
+    @RequestMapping(value = "/cases", method = RequestMethod.GET, consumes="application/json")
     Result<GetCasesVO> getCases(Integer page , Integer pageSize);
 }

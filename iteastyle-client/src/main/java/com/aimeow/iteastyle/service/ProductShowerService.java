@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @Api(value = "/productShower", tags = {"产品展示"},description = "产品展示相关接口")
-@RequestMapping(value = "/productShower", consumes="application/json")
+@RequestMapping(value = "/productShower")
 @RestController
 public interface ProductShowerService {
 
     @ApiOperation(value = "通过产品展示ID获取经典案例内容")
-    @RequestMapping(value = "/productShowerById", method = RequestMethod.GET)
+    @RequestMapping(value = "/productShowerById", method = RequestMethod.GET, consumes="application/json")
     Result<ProductShowerVO> getProductShowerById(String productShowerId);
 
     @ApiOperation(value = "通过分页参数获得产品展示列表")
-    @RequestMapping(value = "/productShowers", method = RequestMethod.GET)
+    @RequestMapping(value = "/productShowers", method = RequestMethod.GET, consumes="application/json")
     Result<GetProductShowersVO> getProductShowers(Integer page , Integer pageSize);
 }
