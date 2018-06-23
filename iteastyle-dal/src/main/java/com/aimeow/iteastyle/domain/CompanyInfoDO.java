@@ -4,11 +4,12 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
+
 @Data
 @Document
-public class CompanyInfoDO {
-    @Id
-    private String id;
+public class CompanyInfoDO implements Serializable {
+    private static final long serialVersionUID = 8471287997901469057L;
     private String companyInfo;
     private String postCode;
     private String phoneNumber;
