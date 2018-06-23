@@ -9,7 +9,6 @@ public class CompanyInfoConverter {
     public static CompanyInfoBO convertDTB(
             @NonNull CompanyInfoDO companyInfoDO) {
         CompanyInfoBO companyInfoBO = new CompanyInfoBO();
-        companyInfoBO.setId(companyInfoDO.getId());
         companyInfoBO.setCompanyInfo(companyInfoDO.getCompanyInfo());
         companyInfoBO.setPostCode(companyInfoDO.getPostCode());
         companyInfoBO.setPhoneNumber(companyInfoDO.getPhoneNumber());
@@ -25,7 +24,6 @@ public class CompanyInfoConverter {
     public static CompanyInfoDO convertBTD(
             @NonNull CompanyInfoBO companyInfoBO) {
         CompanyInfoDO companyInfoDO = new CompanyInfoDO();
-        companyInfoDO.setId(companyInfoBO.getId());
         companyInfoDO.setCompanyInfo(companyInfoBO.getCompanyInfo());
         companyInfoDO.setPostCode(companyInfoBO.getPostCode());
         companyInfoDO.setPhoneNumber(companyInfoBO.getPhoneNumber());
