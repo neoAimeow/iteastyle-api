@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/post")
 @RestController
 public interface PostService {
-    @RequestMapping(value = "/getPosts", method = RequestMethod.GET, consumes="application/json")
+    @RequestMapping(value = "/getPosts", method = RequestMethod.GET)
     Result<GetPostsVO> getPosts(
         Integer page, Integer pageSize
     );
 
-    @RequestMapping(value = "/getPostById", method = RequestMethod.GET, consumes="application/json")
+    @RequestMapping(value = "/getPostById", method = RequestMethod.GET)
     Result<PostVO> getPostByPostId(
         String postId
     );

@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public interface StaticDataService {
     @ApiOperation(value = "通过GET请求方式获取静态数据相关信息，不需要传任何参数")
-    @RequestMapping(value = "/getData", method = RequestMethod.GET, consumes="application/json")
+    @RequestMapping(value = "/getData", method = RequestMethod.GET)
     Result<StaticDataVO> getStaticData();
 }

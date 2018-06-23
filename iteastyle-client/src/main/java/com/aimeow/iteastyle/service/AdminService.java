@@ -13,18 +13,18 @@ import com.alibaba.fastjson.JSONObject;
 @RestController
 public interface AdminService {
 
-    @RequestMapping(value = "/updateCompanyInfo", method = RequestMethod.POST, consumes="application/json")
+    @RequestMapping(value = "/updateCompanyInfo", method = RequestMethod.POST)
     Result<Boolean> updateCompanyInfo(JSONObject param);
 
-    @RequestMapping(value = "/updateStaticData", method = RequestMethod.POST, consumes="application/json")
+    @RequestMapping(value = "/updateStaticData", method = RequestMethod.POST)
     Result<Boolean> updateStaticData(JSONObject param);
 
-    @RequestMapping(value = "/createPost", method = RequestMethod.POST, consumes="application/json")
+    @RequestMapping(value = "/createPost", method = RequestMethod.POST)
     Result<Boolean> createPost(JSONObject param);
 
-    @RequestMapping(value = "/updatePost", method = RequestMethod.POST, consumes="application/json")
+    @RequestMapping(value = "/updatePost", method = RequestMethod.POST)
     Result<Boolean> updatePost(JSONObject param);
 
-    @RequestMapping(value = "/deletePost", method = RequestMethod.POST, consumes="application/json")
+    @RequestMapping(value = "/deletePost", method = RequestMethod.POST)
     Result<Boolean> deletePost(String postId);
 }
