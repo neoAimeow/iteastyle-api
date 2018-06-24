@@ -39,7 +39,7 @@ public class CompanyInfoTest {
         companyInfoDO.setMail("iteastyle@126.com");
         companyInfoDO.setWebUrl("https://www.iteastyle.com");
         companyInfoDO.setStory("    杭州执贝科技有限公司旗下品牌【杭式下午茶】是致力于茶歇(Tea Break)一站式的综合服务机构，真正以茶元素为核心，用纯天然的超微茶粉，将茶与饮品、茶与糕点、茶与时尚有机的结合在一起，旨在引领一种健康的生活方式与生活理念！\n" +
-                "    HangZhou Afternoon Tea is a compositive organization which is devoted to Tea Break one-stop service. It really takes tea elements as the core. Using pure natural tea powder mixes tea with drinks , cakes and fashion together . It aims to lead a healthy lifestyle and concept of life.");
+                "\\r\\n\\r\\n    HangZhou Afternoon Tea is a compositive organization which is devoted to Tea Break one-stop service. It really takes tea elements as the core. Using pure natural tea powder mixes tea with drinks , cakes and fashion together . It aims to lead a healthy lifestyle and concept of life.");
         companyInfoDO.setStoryTitle("杭式下午茶");
         companyInfoDO.setVideoUrl("http://pa74otoy6.bkt.clouddn.com/video-test.mov");
         companyInfoDO.setLatitude(30.2312000000);

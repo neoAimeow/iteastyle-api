@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @Api(value = "/service",tags = {"网页端接口"}, description = "网页部分相关数据")
 @RequestMapping(value = "/service")
 @RestController
@@ -40,6 +42,10 @@ public interface WebDataService {
     @ApiOperation(value = "通过GET请求方式获取『茶式动态详情』相关信息，需要传id")
     @RequestMapping(value = "/getPostById", method = RequestMethod.GET)
     Result<PostVO> getPostByPostId(String postId);
+
+    @ApiOperation(value = "通过GET请求方式获取经典案例类型")
+    @RequestMapping(value = "/getCaseTypes", method = RequestMethod.GET)
+    Result<List<CaseTypeVO>> getCaseTypes();
 
     @ApiOperation(value = "通过经典案例ID获取经典案例内容")
     @RequestMapping(value = "/getCaseById", method = RequestMethod.GET)
