@@ -8,10 +8,8 @@ import java.util.List;
 
 @Data
 public class CaseBO {
-    @Id
     private String id;
     private String title;
-    private Integer status;
     private Integer type;
     private List<String> imageArr;
     private Date gmtCreate;

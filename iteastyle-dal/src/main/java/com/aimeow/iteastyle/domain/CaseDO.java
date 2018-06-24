@@ -14,7 +14,6 @@ public class CaseDO implements Serializable {
     private String id;
     private String title;
     private Integer type;
-    private Integer status;
     private List<String> imageArr;
     private Date gmtCreate;
     private Date gmtModified;

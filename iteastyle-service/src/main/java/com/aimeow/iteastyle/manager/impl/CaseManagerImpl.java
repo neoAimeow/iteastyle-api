@@ -31,8 +31,7 @@ public class CaseManagerImpl implements CaseManager {
 
     @Override
     public Result<List<CaseBO>> getCases(
-            @NonNull Integer type, @NonNull Integer status,
-            Integer page, Integer pageSize) throws Exception {
+            @NonNull Integer type,Integer page, Integer pageSize) throws Exception {
         Result<List<CaseBO>> result = new Result<>();
         List<CaseBO> caseBOS = new ArrayList<>();
 
@@ -48,6 +47,15 @@ public class CaseManagerImpl implements CaseManager {
                 }
         );
         result.setModel(caseBOS);
+        return result;
+    }
+
+    @Override
+    public Result<Long> countCases(Integer type) throws Exception {
+        Result<Long> result = new Result<>();
+        CaseQuery query = new CaseQuery();
+        query.setType(type);
+        result.setModel(caseDAO.countCases(query));
         return result;
     }
 

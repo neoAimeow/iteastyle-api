@@ -10,7 +10,6 @@ public class CaseConverter {
         caseBO.setId(caseDO.getId());
         caseBO.setTitle(caseDO.getTitle());
         caseBO.setType(caseDO.getType());
-        caseBO.setStatus(caseDO.getStatus());
         caseBO.setGmtCreate(caseDO.getGmtCreate());
         caseBO.setGmtModified(caseDO.getGmtModified());
         return caseBO;
@@ -21,7 +20,6 @@ public class CaseConverter {
         caseDO.setId(caseBO.getId());
         caseDO.setTitle(caseBO.getTitle());
         caseDO.setType(caseBO.getType());
-        caseDO.setStatus(caseBO.getStatus());
         caseDO.setGmtCreate(caseBO.getGmtCreate());
         caseDO.setGmtModified(caseBO.getGmtModified());
         return caseDO;
@@ -29,6 +27,11 @@ public class CaseConverter {
 
     public static CaseVO convertBTV(CaseBO caseBO) {
         CaseVO caseVO = new CaseVO();
+        caseVO.setId(caseBO.getId());
+        caseVO.setTitle(caseBO.getTitle());
+        caseVO.setType(caseBO.getType());
+        caseVO.setGmtCreate(caseBO.getGmtCreate());
+        caseVO.setGmtModified(caseBO.getGmtModified());
         return caseVO;
     }
 }

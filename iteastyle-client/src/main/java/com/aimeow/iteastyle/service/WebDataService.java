@@ -53,6 +53,6 @@ public interface WebDataService {
 
     @ApiOperation(value = "通过分页参数获得经典案例列表")
     @RequestMapping(value = "/cases", method = RequestMethod.GET)
-    Result<GetCasesVO> getCases(Integer page , Integer pageSize);
+    Result<GetCasesVO> getCases(Integer type , Integer page , Integer pageSize);
 
 }

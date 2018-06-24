@@ -7,10 +7,11 @@ import java.util.List;
 
 public interface CaseManager {
     Result<List<CaseBO>> getCases(
-            Integer type , Integer status, Integer page , Integer pageSize
+            Integer type , Integer page , Integer pageSize
     ) throws Exception;
 
     Result<CaseBO> getCaseById(String caseId) throws Exception;
+    Result<Long> countCases(Integer type) throws Exception;
     Result<Boolean> createCase(CaseBO caseBO) throws Exception;
     Result<Boolean> updateCase(CaseBO caseBO) throws Exception;
     Result<Boolean> deleteCase(String caseId) throws Exception;

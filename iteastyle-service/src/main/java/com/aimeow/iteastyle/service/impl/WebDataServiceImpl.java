@@ -1,5 +1,6 @@
 package com.aimeow.iteastyle.service.impl;
 
+import com.aimeow.iteastyle.converter.CaseConverter;
 import com.aimeow.iteastyle.converter.CaseTypeConverter;
 import com.aimeow.iteastyle.converter.PostConverter;
 import com.aimeow.iteastyle.converter.ProductShowerConverter;
@@ -221,11 +222,23 @@ public class WebDataServiceImpl implements WebDataService {
 
     @Override
     public Result<GetCasesVO> getCases(
-            Integer page, Integer pageSize) {
+            @NonNull Integer type , Integer page, Integer pageSize) {
         Result<GetCasesVO> result = new Result<>();
-
+        GetCasesVO getCasesVO = new GetCasesVO();
         try {
+            getCasesVO.setPage(page);
+            getCasesVO.setPageSize(pageSize);
+            getCasesVO.setTotalCount(caseManager.countCases(type).getModel());
+            List<CaseVO> caseVOS = new ArrayList<>();
 
+            List<CaseBO> caseBOS = caseManager.getCases(type , page , pageSize).getModel();
+            caseBOS.iterator().forEachRemaining(
+                    obj-> {
+                        caseVOS.add(CaseConverter.convertBTV(obj));
+                    }
+            );
+            getCasesVO.setCases(caseVOS);
+            result.setModel(getCasesVO);
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
