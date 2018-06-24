@@ -5,9 +5,10 @@ import com.aimeow.iteastyle.manager.CompanyInfoManager;
 import com.aimeow.iteastyle.manager.StaticDataManager;
 import com.aimeow.iteastyle.service.WebDataService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
+@Component
 public class WebDataServiceImpl implements WebDataService {
     @Autowired private StaticDataManager staticDataManager;
     @Autowired private CompanyInfoManager companyInfoManager;

@@ -8,9 +8,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-@Api(value = "/web",tags = {"网页端接口"}, description = "网页部分相关数据")
-@RequestMapping(value = "/service/web")
+@Api(value = "/service",tags = {"网页端接口"}, description = "网页部分相关数据")
+@RequestMapping(value = "/service")
+@RestController
+
 public interface WebDataService {
 
     @ApiOperation(value = "通过GET请求方式获取『首页』相关信息，不需要传任何参数")
