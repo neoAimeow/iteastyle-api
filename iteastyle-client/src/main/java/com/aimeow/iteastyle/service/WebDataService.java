@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = "https://iteastyle.aimeow.com")
+@CrossOrigin(origins = {"https://iteastyle.aimeow.com" , "http://localhost:8080", "http://localhost:8081", "http://localhost:8082"})
 @Api(value = "/service",tags = {"网页端接口"}, description = "网页部分相关数据")
 @RequestMapping(value = "/service")
 @RestController
