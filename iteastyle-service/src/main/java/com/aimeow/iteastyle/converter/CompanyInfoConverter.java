@@ -16,6 +16,7 @@ public class CompanyInfoConverter {
                 companyInfoDO.getTelephoneNumber());
         companyInfoBO.setMail(companyInfoDO.getMail());
         companyInfoBO.setWebUrl(companyInfoDO.getWebUrl());
+        companyInfoBO.setStoryTitle(companyInfoDO.getStoryTitle());
         companyInfoBO.setStory(companyInfoDO.getStory());
         companyInfoBO.setVideoUrl(companyInfoDO.getVideoUrl());
         return companyInfoBO;
@@ -31,6 +32,7 @@ public class CompanyInfoConverter {
                 companyInfoBO.getTelephoneNumber());
         companyInfoDO.setMail(companyInfoBO.getMail());
         companyInfoDO.setWebUrl(companyInfoBO.getWebUrl());
+        companyInfoDO.setStoryTitle(companyInfoBO.getStoryTitle());
         companyInfoDO.setStory(companyInfoBO.getStory());
         companyInfoDO.setVideoUrl(companyInfoBO.getVideoUrl());
         return companyInfoDO;

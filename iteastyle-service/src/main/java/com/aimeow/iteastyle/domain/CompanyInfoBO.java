@@ -11,6 +11,7 @@ public class CompanyInfoBO {
     private String telephoneNumber;
     private String mail;
     private String webUrl;
+    private String storyTitle;
     private String story;
     private String videoUrl;
 }

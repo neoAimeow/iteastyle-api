@@ -1,9 +1,7 @@
 package com.aimeow.iteastyle.service.impl;
 
-import com.aimeow.iteastyle.domain.CompanyStoryVO;
-import com.aimeow.iteastyle.domain.HomePageVO;
-import com.aimeow.iteastyle.domain.Result;
-import com.aimeow.iteastyle.domain.StaticDataBO;
+import com.aimeow.iteastyle.domain.*;
+import com.aimeow.iteastyle.manager.CompanyInfoManager;
 import com.aimeow.iteastyle.manager.StaticDataManager;
 import com.aimeow.iteastyle.service.WebDataService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class WebDataServiceImpl implements WebDataService {
     @Autowired private StaticDataManager staticDataManager;
+    @Autowired private CompanyInfoManager companyInfoManager;
 
     @Override
     public Result<HomePageVO> getHomePageData() {
@@ -33,7 +32,22 @@ public class WebDataServiceImpl implements WebDataService {
 
     @Override
     public Result<CompanyStoryVO> getCompanyStory() {
-        return null;
+        Result<CompanyStoryVO> result = new Result<>();
+        try {
+            CompanyStoryVO companyStoryVO = new CompanyStoryVO();
+            CompanyInfoBO companyInfoBO = companyInfoManager.getCompanyInfo().getModel();
+            StaticDataBO staticDataBO = staticDataManager.getStaticData().getModel();
+
+            companyStoryVO.setBackgroundImageUrl(staticDataBO.getCompanyStoryBgUrl());
+            companyStoryVO.setVideoUrl(companyInfoBO.getVideoUrl());
+            companyStoryVO.setStoryTitle(companyInfoBO.getStoryTitle());
+            companyStoryVO.setStoryContent(companyInfoBO.getStory());
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+        return result;
     }
 
 }
