@@ -1,9 +1,6 @@
 package com.aimeow.iteastyle.service;
 
-import com.aimeow.iteastyle.domain.CompanyStoryVO;
-import com.aimeow.iteastyle.domain.ContactUsVO;
-import com.aimeow.iteastyle.domain.HomePageVO;
-import com.aimeow.iteastyle.domain.Result;
+import com.aimeow.iteastyle.domain.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,5 +24,14 @@ public interface WebDataService {
     @ApiOperation(value = "通过GET请求方式获取『关于我们』相关信息，不需要传任何参数")
     @RequestMapping(value = "/contactUsData", method = RequestMethod.GET)
     Result<ContactUsVO> getContactUsData();
+
+    @ApiOperation(value = "通过GET请求方式获取『产品展示』相关信息，需要传分页参数")
+    @RequestMapping(value = "/productShower", method = RequestMethod.GET)
+    Result<GetProductShowersVO> getProductShowerList(Integer page , Integer pageSize);
+
+    @ApiOperation(value = "通过GET请求方式获取『产品展示详情』相关信息，需要传id")
+    @RequestMapping(value = "/productShowerDetail", method = RequestMethod.GET)
+    Result<ProductShowerVO> getProductShowerDetail(String productShowerId);
+
 
 }

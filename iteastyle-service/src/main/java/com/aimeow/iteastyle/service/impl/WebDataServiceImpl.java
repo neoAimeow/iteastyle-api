@@ -79,4 +79,14 @@ public class WebDataServiceImpl implements WebDataService {
 
         return result;
     }
+
+    @Override
+    public Result<GetProductShowersVO> getProductShowerList(Integer page, Integer pageSize) {
+        return null;
+    }
+
+    @Override
+    public Result<ProductShowerVO> getProductShowerDetail(String productShowerId) {
+        return null;
+    }
 }
