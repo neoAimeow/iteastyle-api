@@ -10,6 +10,7 @@ public class CaseVO {
     private String id;
     private String title;
     private Integer type;
+    private String typeName;
     private List<String> imageArr;
     private Date gmtCreate;
     private Date gmtModified;
