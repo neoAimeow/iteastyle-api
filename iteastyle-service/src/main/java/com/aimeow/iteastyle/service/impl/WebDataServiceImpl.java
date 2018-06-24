@@ -33,8 +33,9 @@ public class WebDataServiceImpl implements WebDataService {
     @Override
     public Result<CompanyStoryVO> getCompanyStory() {
         Result<CompanyStoryVO> result = new Result<>();
+        CompanyStoryVO companyStoryVO = new CompanyStoryVO();
+        result.setModel(companyStoryVO);
         try {
-            CompanyStoryVO companyStoryVO = new CompanyStoryVO();
             CompanyInfoBO companyInfoBO = companyInfoManager.getCompanyInfo().getModel();
             StaticDataBO staticDataBO = staticDataManager.getStaticData().getModel();
 
@@ -54,7 +55,20 @@ public class WebDataServiceImpl implements WebDataService {
     public Result<ContactUsVO> getContactUsData() {
         Result<ContactUsVO> result = new Result<>();
         ContactUsVO contactUsVO = new ContactUsVO();
+        result.setModel(contactUsVO);
         try {
+            CompanyInfoBO companyInfoBO = companyInfoManager.getCompanyInfo().getModel();
+            StaticDataBO staticDataBO = staticDataManager.getStaticData().getModel();
+            contactUsVO.setCompanyAddress(companyInfoBO.getCompanyAddress());
+            contactUsVO.setCompanyName(companyInfoBO.getCompanyName());
+            contactUsVO.setContactUsBackgroundImage(staticDataBO.getContactUsBgUrl());
+            contactUsVO.setLatitude(companyInfoBO.getLatitude());
+            contactUsVO.setLongitude(companyInfoBO.getLongitude());
+            contactUsVO.setMailAddress(companyInfoBO.getMail());
+            contactUsVO.setPhoneNumber(companyInfoBO.getPhoneNumber());
+            contactUsVO.setTelephoneNumber(companyInfoBO.getTelephoneNumber());
+            contactUsVO.setSiteAddress(companyInfoBO.getWebUrl());
+            contactUsVO.setContactUsTitle(staticDataBO.getContactUsTitle());
 
         } catch (Exception e) {
             result.setSuccess(false);
