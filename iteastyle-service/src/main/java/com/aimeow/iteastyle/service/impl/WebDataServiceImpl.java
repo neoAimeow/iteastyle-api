@@ -1,6 +1,8 @@
 package com.aimeow.iteastyle.service.impl;
 
+import com.aimeow.iteastyle.converter.ProductShowerConverter;
 import com.aimeow.iteastyle.domain.*;
+import com.aimeow.iteastyle.domain.enums.StatusEnum;
 import com.aimeow.iteastyle.manager.CompanyInfoManager;
 import com.aimeow.iteastyle.manager.ProductShowerManager;
 import com.aimeow.iteastyle.manager.StaticDataManager;
@@ -8,6 +10,9 @@ import com.aimeow.iteastyle.service.WebDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class WebDataServiceImpl implements WebDataService {
@@ -86,8 +91,26 @@ public class WebDataServiceImpl implements WebDataService {
     public Result<GetProductShowersVO> getProductShowerList(
             Integer page, Integer pageSize) {
         Result<GetProductShowersVO> result = new Result<>();
+        GetProductShowersVO getProductShowersVO = new GetProductShowersVO();
+        result.setModel(getProductShowersVO);
+        List<ProductShowerVO> productShowerVOS = new ArrayList<>();
         try {
+            StaticDataBO staticDataBO = staticDataManager.getStaticData().getModel();
+            getProductShowersVO.setHeaderImageUrl(staticDataBO.getProductShowerHeaderUrl());
+            getProductShowersVO.setPage(page);
+            getProductShowersVO.setPageSize(pageSize);
+            List<ProductShowerBO> productShowerBOS = productShowerManager.getProductShowerList(
+                    StatusEnum.NORMAL.getStatus(), page , pageSize
+            ).getModel();
 
+            productShowerBOS.iterator().forEachRemaining(
+                    obj-> {
+                        productShowerVOS.add(ProductShowerConverter.convertBTV(obj));
+                    }
+            );
+            getProductShowersVO.setProducts(productShowerVOS);
+
+            
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());

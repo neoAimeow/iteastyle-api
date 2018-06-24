@@ -2,6 +2,8 @@ package com.aimeow.iteastyle.converter;
 
 import com.aimeow.iteastyle.domain.ProductShowerBO;
 import com.aimeow.iteastyle.domain.ProductShowerDO;
+import com.aimeow.iteastyle.domain.ProductShowerVO;
+import lombok.NonNull;
 
 public class ProductShowerConverter {
     public static ProductShowerBO convertDTB(ProductShowerDO productShowerDO) {
@@ -14,5 +16,11 @@ public class ProductShowerConverter {
         ProductShowerDO productShowerDO = new ProductShowerDO();
 
         return productShowerDO;
+    }
+
+    public static ProductShowerVO convertBTV(
+            @NonNull ProductShowerBO productShowerBO) {
+        ProductShowerVO productShowerVO = new ProductShowerVO();
+        return productShowerVO;
     }
 }
