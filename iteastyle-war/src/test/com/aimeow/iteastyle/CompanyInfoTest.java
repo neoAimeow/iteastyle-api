@@ -20,10 +20,6 @@ public class CompanyInfoTest {
     @Autowired
     CompanyInfoDAO companyInfoDAO;
 
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
-
-
     @Test
     public void testQuery() throws Exception {
         System.out.println(companyInfoDAO.getCompanyInfo());
@@ -31,9 +27,7 @@ public class CompanyInfoTest {
 
     @Test
     public void testModified() throws Exception {
-        // 保存字符串
-        stringRedisTemplate.opsForValue().set("aaa", "111");
-        Assert.assertEquals("111", stringRedisTemplate.opsForValue().get("aaa"));
+
 
     }
 }
