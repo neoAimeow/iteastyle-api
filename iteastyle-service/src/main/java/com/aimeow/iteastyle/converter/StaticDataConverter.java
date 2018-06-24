@@ -9,12 +9,31 @@ public class StaticDataConverter {
     public static StaticDataBO convertDTB(
             @NonNull StaticDataDO staticDataDO) {
         StaticDataBO staticDataBO = new StaticDataBO();
+        staticDataBO.setLogoUrl(staticDataDO.getLogoUrl());
+        staticDataBO.setCompanyStoryBgUrl(staticDataDO.getCompanyStoryBgUrl());
+        staticDataBO.setProductShowerHeaderUrl(staticDataDO.getProductShowerHeaderUrl());
+        staticDataBO.setPostBgUrl(staticDataDO.getPostBgUrl());
+        staticDataBO.setContactUsBgUrl(staticDataDO.getContactUsBgUrl());
+        staticDataBO.setHomepageBannerUrls(staticDataDO.getHomepageBannerUrls());
+        staticDataBO.setHomepageServiceImageUrls(staticDataDO.getHomepageServiceImageUrls());
+        staticDataBO.setHomepageShowerImageUrls(staticDataDO.getHomepageShowerImageUrls());
+
         return staticDataBO;
     }
 
     public static StaticDataDO convertBTD(
             @NonNull StaticDataBO staticDataBO) {
+
         StaticDataDO staticDataDO = new StaticDataDO();
+        staticDataDO.setLogoUrl(staticDataBO.getLogoUrl());
+        staticDataDO.setCompanyStoryBgUrl(staticDataBO.getCompanyStoryBgUrl());
+        staticDataDO.setProductShowerHeaderUrl(staticDataBO.getProductShowerHeaderUrl());
+        staticDataDO.setPostBgUrl(staticDataBO.getPostBgUrl());
+        staticDataDO.setContactUsBgUrl(staticDataBO.getContactUsBgUrl());
+        staticDataDO.setHomepageBannerUrls(staticDataBO.getHomepageBannerUrls());
+        staticDataDO.setHomepageServiceImageUrls(staticDataBO.getHomepageServiceImageUrls());
+        staticDataDO.setHomepageShowerImageUrls(staticDataBO.getHomepageShowerImageUrls());
+
         return staticDataDO;
     }
 

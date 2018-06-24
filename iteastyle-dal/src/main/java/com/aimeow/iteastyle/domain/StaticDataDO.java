@@ -3,6 +3,7 @@ package com.aimeow.iteastyle.domain;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 public class StaticDataDO implements Serializable {
@@ -12,5 +13,8 @@ public class StaticDataDO implements Serializable {
     private String productShowerHeaderUrl;
     private String postBgUrl;
     private String contactUsBgUrl;
-    private String bannerUrl;
+
+    private List<String> homepageBannerUrls;
+    private List<String> homepageServiceImageUrls;
+    private List<String> homepageShowerImageUrls;
 }
