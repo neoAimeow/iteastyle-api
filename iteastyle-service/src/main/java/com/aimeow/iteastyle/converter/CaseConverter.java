@@ -10,6 +10,7 @@ public class CaseConverter {
         caseBO.setId(caseDO.getId());
         caseBO.setTitle(caseDO.getTitle());
         caseBO.setType(caseDO.getType());
+        caseBO.setImageArr(caseDO.getImageArr());
         caseBO.setGmtCreate(caseDO.getGmtCreate());
         caseBO.setGmtModified(caseDO.getGmtModified());
         return caseBO;
@@ -20,6 +21,7 @@ public class CaseConverter {
         caseDO.setId(caseBO.getId());
         caseDO.setTitle(caseBO.getTitle());
         caseDO.setType(caseBO.getType());
+        caseDO.setImageArr(caseBO.getImageArr());
         caseDO.setGmtCreate(caseBO.getGmtCreate());
         caseDO.setGmtModified(caseBO.getGmtModified());
         return caseDO;
@@ -30,6 +32,7 @@ public class CaseConverter {
         caseVO.setId(caseBO.getId());
         caseVO.setTitle(caseBO.getTitle());
         caseVO.setType(caseBO.getType());
+        caseVO.setImageArr(caseBO.getImageArr());
         caseVO.setGmtCreate(caseBO.getGmtCreate());
         caseVO.setGmtModified(caseBO.getGmtModified());
         return caseVO;
