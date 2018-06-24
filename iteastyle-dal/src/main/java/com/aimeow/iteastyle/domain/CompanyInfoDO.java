@@ -19,4 +19,6 @@ public class CompanyInfoDO implements Serializable {
     private String storyTitle;
     private String story;
     private String videoUrl;
+    private Double latitude;`
+    private Double longitude;
 }

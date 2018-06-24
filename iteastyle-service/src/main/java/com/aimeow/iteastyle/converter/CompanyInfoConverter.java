@@ -19,6 +19,8 @@ public class CompanyInfoConverter {
         companyInfoBO.setStoryTitle(companyInfoDO.getStoryTitle());
         companyInfoBO.setStory(companyInfoDO.getStory());
         companyInfoBO.setVideoUrl(companyInfoDO.getVideoUrl());
+        companyInfoBO.setLatitude(companyInfoDO.getLatitude());
+        companyInfoBO.setLongitude(companyInfoDO.getLongitude());
         return companyInfoBO;
     }
 
@@ -35,6 +37,8 @@ public class CompanyInfoConverter {
         companyInfoDO.setStoryTitle(companyInfoBO.getStoryTitle());
         companyInfoDO.setStory(companyInfoBO.getStory());
         companyInfoDO.setVideoUrl(companyInfoBO.getVideoUrl());
+        companyInfoDO.setLatitude(companyInfoBO.getLatitude());
+        companyInfoDO.setLongitude(companyInfoBO.getLongitude());
         return companyInfoDO;
     }
 
@@ -51,6 +55,8 @@ public class CompanyInfoConverter {
         companyInfoVO.setWebUrl(companyInfoBO.getWebUrl());
         companyInfoVO.setStory(companyInfoBO.getStory());
         companyInfoVO.setVideoUrl(companyInfoBO.getVideoUrl());
+        companyInfoVO.setLatitude(companyInfoBO.getLatitude());
+        companyInfoVO.setLongitude(companyInfoBO.getLongitude());
         return companyInfoVO;
     }
 }

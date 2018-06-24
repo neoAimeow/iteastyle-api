@@ -14,4 +14,6 @@ public class CompanyInfoBO {
     private String storyTitle;
     private String story;
     private String videoUrl;
+    private Double latitude;
+    private Double longitude;
 }
