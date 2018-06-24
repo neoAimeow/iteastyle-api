@@ -1,3 +1,5 @@
+package com.aimeow.iteastyle;
+
 import com.aimeow.iteastyle.Application;
 import com.aimeow.iteastyle.dao.StaticDataDAO;
 import com.aimeow.iteastyle.domain.StaticDataDO;
@@ -56,6 +58,5 @@ public class StaticDataTest {
         staticDataDO.setProductShowerHeaderUrl("http://pa74otoy6.bkt.clouddn.com/pd-title-background.png");
 
         staticDataDAO.replaceStaticData(staticDataDO);
-
     }
 }

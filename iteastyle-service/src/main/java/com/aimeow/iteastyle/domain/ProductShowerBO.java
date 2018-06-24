@@ -9,6 +9,7 @@ import java.util.List;
 public class ProductShowerBO {
     private String id;
     private List<String> imageArr;
+    private String title;
     private String content;
     private Date gmtCreate;
     private Date gmtModified;

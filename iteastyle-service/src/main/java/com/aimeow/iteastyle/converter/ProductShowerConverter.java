@@ -8,6 +8,7 @@ import lombok.NonNull;
 public class ProductShowerConverter {
     public static ProductShowerBO convertDTB(ProductShowerDO productShowerDO) {
         ProductShowerBO productShowerBO = new ProductShowerBO();
+        productShowerBO.setId(productShowerDO.getId());
         productShowerBO.setContent(productShowerDO.getContent());
         productShowerBO.setImageArr(productShowerDO.getImageArr());
         productShowerBO.setGmtCreate(productShowerDO.getGmtCreate());
@@ -18,6 +19,7 @@ public class ProductShowerConverter {
 
     public static ProductShowerDO convertBTD(ProductShowerBO productShowerBO) {
         ProductShowerDO productShowerDO = new ProductShowerDO();
+        productShowerDO.setId(productShowerBO.getId());
         productShowerDO.setContent(productShowerBO.getContent());
         productShowerDO.setImageArr(productShowerBO.getImageArr());
         productShowerDO.setGmtCreate(productShowerBO.getGmtCreate());
@@ -29,6 +31,7 @@ public class ProductShowerConverter {
     public static ProductShowerVO convertBTV(
             @NonNull ProductShowerBO productShowerBO) {
         ProductShowerVO productShowerVO = new ProductShowerVO();
+        productShowerVO.setId(productShowerBO.getId());
         productShowerVO.setContent(productShowerBO.getContent());
         productShowerVO.setImageArr(productShowerBO.getImageArr());
         productShowerVO.setGmtCreate(productShowerBO.getGmtCreate());

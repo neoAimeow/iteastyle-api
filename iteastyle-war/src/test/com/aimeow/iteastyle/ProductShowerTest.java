@@ -1,3 +1,5 @@
+package com.aimeow.iteastyle;
+
 import com.aimeow.iteastyle.Application;
 import com.aimeow.iteastyle.dao.ProductShowerDAO;
 import com.aimeow.iteastyle.domain.ProductShowerDO;

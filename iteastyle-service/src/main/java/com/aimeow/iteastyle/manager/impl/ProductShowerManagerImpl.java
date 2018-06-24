@@ -39,7 +39,7 @@ public class ProductShowerManagerImpl
 
         ProductShowerQuery query = new ProductShowerQuery();
         query.setPage((page==null || page==0)?1:page);
-        query.setPageSize((pageSize==null || pageSize==0)?10:pageSize);
+        query.setPageSize((pageSize==null || pageSize==0)?6:pageSize);
         query.setStartRow((page-1) * pageSize);
         query.setStatus(status);
         List<ProductShowerDO> productShowerDOS = productShowerDAO.queryProductShowers(query);

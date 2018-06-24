@@ -12,6 +12,7 @@ public class ProductShowerDO implements Serializable {
     private static final long serialVersionUID = 8792227631525047292L;
     @Id
     private String id;
+    private String title;
     private List<String> imageArr;
     private String content;
     private Date gmtCreate;
