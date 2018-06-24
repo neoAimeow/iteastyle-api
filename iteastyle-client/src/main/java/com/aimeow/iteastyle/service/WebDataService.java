@@ -3,10 +3,12 @@ package com.aimeow.iteastyle.service;
 import com.aimeow.iteastyle.domain.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin(origins = "https://iteastyle.aimeow.com")
 @Api(value = "/service",tags = {"网页端接口"}, description = "网页部分相关数据")
 @RequestMapping(value = "/service")
 @RestController
