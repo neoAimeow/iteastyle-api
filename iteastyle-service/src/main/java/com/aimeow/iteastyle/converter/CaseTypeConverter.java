@@ -2,6 +2,7 @@ package com.aimeow.iteastyle.converter;
 
 import com.aimeow.iteastyle.domain.CaseTypeBO;
 import com.aimeow.iteastyle.domain.CaseTypeDO;
+import com.aimeow.iteastyle.domain.CaseTypeVO;
 
 public class CaseTypeConverter {
     public static CaseTypeBO convertDTB(CaseTypeDO caseTypeDO) {
@@ -26,8 +27,13 @@ public class CaseTypeConverter {
         return caseTypeDO;
     }
 
-//    public static CaseVO convertBTV(CaseBO caseBO) {
-//        CaseVO caseVO = new CaseVO();
-//        return caseVO;
-//    }
+    public static CaseTypeVO convertBTV(CaseTypeBO caseTypeBO) {
+        CaseTypeVO caseTypeVO = new CaseTypeVO();
+        caseTypeVO.setType(caseTypeBO.getType());
+        caseTypeVO.setTypeName(caseTypeBO.getTypeName());
+        caseTypeVO.setTypeNameEn(caseTypeBO.getTypeNameEn());
+        caseTypeVO.setTypeImage(caseTypeBO.getTypeImage());
+        caseTypeVO.setTypeIcon(caseTypeBO.getTypeIcon());
+        return caseTypeVO;
+    }
 }

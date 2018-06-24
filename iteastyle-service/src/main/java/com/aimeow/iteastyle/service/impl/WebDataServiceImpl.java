@@ -1,13 +1,11 @@
 package com.aimeow.iteastyle.service.impl;
 
+import com.aimeow.iteastyle.converter.CaseTypeConverter;
 import com.aimeow.iteastyle.converter.PostConverter;
 import com.aimeow.iteastyle.converter.ProductShowerConverter;
 import com.aimeow.iteastyle.domain.*;
 import com.aimeow.iteastyle.domain.enums.StatusEnum;
-import com.aimeow.iteastyle.manager.CompanyInfoManager;
-import com.aimeow.iteastyle.manager.PostManager;
-import com.aimeow.iteastyle.manager.ProductShowerManager;
-import com.aimeow.iteastyle.manager.StaticDataManager;
+import com.aimeow.iteastyle.manager.*;
 import com.aimeow.iteastyle.service.WebDataService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +21,8 @@ public class WebDataServiceImpl implements WebDataService {
     @Autowired private CompanyInfoManager companyInfoManager;
     @Autowired private ProductShowerManager productShowerManager;
     @Autowired private PostManager postManager;
+    @Autowired private CaseTypeManager caseTypeManager;
+    @Autowired private CaseManager caseManager;
 
     @Override
     public Result<HomePageVO> getHomePageData() {
@@ -165,7 +165,7 @@ public class WebDataServiceImpl implements WebDataService {
             result.setModel(getPostsVO);
         } catch (Exception e) {
             result.setSuccess(false);
-            return result;
+            result.setMsgInfo(e.getMessage());
         }
         return result;
     }
@@ -179,7 +179,28 @@ public class WebDataServiceImpl implements WebDataService {
                     postManager.getPostById(postId).getModel()));
         } catch (Exception e) {
             result.setSuccess(false);
-            return result;
+            result.setMsgInfo(e.getMessage());
+        }
+        return result;
+    }
+
+    @Override
+    public Result<List<CaseTypeVO>> getCaseTypes() {
+        Result<List<CaseTypeVO>> result = new Result<>();
+        try {
+            List<CaseTypeVO> caseTypeVOS = new ArrayList<>();
+
+            List<CaseTypeBO> caseTypeBOS = caseTypeManager.getCaseTypes().getModel();
+            caseTypeBOS.iterator().forEachRemaining(
+                    obj-> {
+                        caseTypeVOS.add(CaseTypeConverter.convertBTV(obj));
+                    }
+            );
+            result.setModel(caseTypeVOS);
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
         }
         return result;
     }
@@ -187,12 +208,28 @@ public class WebDataServiceImpl implements WebDataService {
     @Override
     public Result<CaseVO> getCaseById(
             @NonNull String caseId) {
-        return null;
+        Result<CaseVO> result = new Result<>();
+
+        try {
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+        return result;
     }
 
     @Override
     public Result<GetCasesVO> getCases(
             Integer page, Integer pageSize) {
-        return null;
+        Result<GetCasesVO> result = new Result<>();
+
+        try {
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+        return result;
     }
 }
