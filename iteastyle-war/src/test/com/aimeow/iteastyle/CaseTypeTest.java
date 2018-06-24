@@ -24,11 +24,11 @@ public class CaseTypeTest {
 
     @Test public void testCreate() throws Exception {
         CaseTypeDO caseTypeDO = new CaseTypeDO();
-        caseTypeDO.setType(101);
-        caseTypeDO.setTypeName("茶点茶饮");
-        caseTypeDO.setTypeNameEn("TEA DESSERT");
-        caseTypeDO.setTypeImage("TEA DESSERT");
-        caseTypeDO.setTypeIcon("TEA DESSERT");
+        caseTypeDO.setType(105);
+        caseTypeDO.setTypeName("茶艺表演");
+        caseTypeDO.setTypeNameEn("TEA PERFORMANCE");
+        caseTypeDO.setTypeImage("http://pa74otoy6.bkt.clouddn.com/case-performance.png");
+        caseTypeDO.setTypeIcon("http://pa74otoy6.bkt.clouddn.com/opaque-logo.png");
 
         caseTypeDAO.createCaseType(caseTypeDO);
     }
