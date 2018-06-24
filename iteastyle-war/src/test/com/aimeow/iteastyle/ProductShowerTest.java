@@ -23,7 +23,7 @@ public class ProductShowerTest {
     @Test public void testQuery() throws Exception {
         ProductShowerQuery query = new ProductShowerQuery();
         query.setStatus(0);
-        query.setPage(0);
+        query.setPage(1);
         query.setPageSize(10);
         System.out.println(productShowerDAO.queryProductShowers(query));
     }

@@ -2,7 +2,6 @@ package com.aimeow.iteastyle.converter;
 
 import com.aimeow.iteastyle.domain.StaticDataBO;
 import com.aimeow.iteastyle.domain.StaticDataDO;
-import com.aimeow.iteastyle.domain.StaticDataVO;
 import lombok.NonNull;
 
 public class StaticDataConverter {
@@ -39,9 +38,4 @@ public class StaticDataConverter {
         return staticDataDO;
     }
 
-    public static StaticDataVO convertBTV(
-            @NonNull StaticDataBO staticDataBO) {
-        StaticDataVO staticDataVO = new StaticDataVO();
-        return staticDataVO;
-    }
 }

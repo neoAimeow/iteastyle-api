@@ -28,19 +28,32 @@ public class StaticDataTest {
     @Test
     public void testModified () throws Exception {
         StaticDataDO staticDataDO = new StaticDataDO();
-        List<String> arrary = new ArrayList<>();
-        arrary.add("http://test");
-        arrary.add("http://test2");
-        arrary.add("http://test3");
+        List<String> homeHeader = new ArrayList<>();
+        homeHeader.add("http://pa74otoy6.bkt.clouddn.com/AfternoonTea.jpeg");
 
-        staticDataDO.setHomepageBannerUrls(arrary);
-        staticDataDO.setHomepageServiceImageUrls(arrary);
-        staticDataDO.setHomepageShowerImageUrls(arrary);
-        staticDataDO.setLogoUrl("hello world");
-        staticDataDO.setCompanyStoryBgUrl("hello world");
-        staticDataDO.setContactUsBgUrl("hello world");
-        staticDataDO.setPostBgUrl("hello world");
-        staticDataDO.setProductShowerHeaderUrl("hello world");
+
+        List<String> serviceArray = new ArrayList<>();
+        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/index-TeaArt.png");
+        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/index-TeaBreak.png");
+        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/index-TeaCeremony.png");
+
+
+        List<String> showerArray = new ArrayList<>();
+        showerArray.add("http://pa74otoy6.bkt.clouddn.com/index-foot-img1.png");
+        showerArray.add("http://pa74otoy6.bkt.clouddn.com/index-foot-img2.png");
+        showerArray.add("http://pa74otoy6.bkt.clouddn.com/index-foot-img3.png");
+        showerArray.add("http://pa74otoy6.bkt.clouddn.com/index-foot-img4.png");
+
+
+        staticDataDO.setHomepageBannerUrls(homeHeader);
+        staticDataDO.setHomepageServiceImageUrls(serviceArray);
+        staticDataDO.setHomepageShowerImageUrls(showerArray);
+        staticDataDO.setContactUsTitle("杭式下午茶 创意茶歇 健康食尚\n");
+        staticDataDO.setLogoUrl("http://pa74otoy6.bkt.clouddn.com/logo.png");
+        staticDataDO.setCompanyStoryBgUrl("http://pa74otoy6.bkt.clouddn.com/company-background.png");
+        staticDataDO.setContactUsBgUrl("http://pa74otoy6.bkt.clouddn.com/contactus-background.png");
+        staticDataDO.setPostBgUrl("http://pa74otoy6.bkt.clouddn.com/tea-news-background.png");
+        staticDataDO.setProductShowerHeaderUrl("http://pa74otoy6.bkt.clouddn.com/pd-title-background.png");
 
         staticDataDAO.replaceStaticData(staticDataDO);
 

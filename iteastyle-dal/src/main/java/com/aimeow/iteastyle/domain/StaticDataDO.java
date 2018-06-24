@@ -8,6 +8,7 @@ import java.util.List;
 @Data
 public class StaticDataDO implements Serializable {
     private static final long serialVersionUID = 3058517636708388619L;
+    private String id;
     private String contactUsTitle;
     private String logoUrl;
     private String companyStoryBgUrl;
