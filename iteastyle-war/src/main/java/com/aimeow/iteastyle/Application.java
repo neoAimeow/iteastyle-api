@@ -30,6 +30,7 @@ import java.util.Collections;
         "com.aimeow.iteastyle.service"
         ,"com.aimeow.iteastyle.manager"
         ,"com.aimeow.iteastyle.config"
+        ,"com.aimeow.iteastyle"
         ,"com.aimeow.iteastyle.dao"})
 public class Application {
 
