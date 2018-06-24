@@ -46,6 +46,7 @@ public class CompanyInfoTest {
         companyInfoDO.setLongitude(120.2547900000);
 
         companyInfoDAO.replaceCompanyInfoData(companyInfoDO);
-
     }
+
+
 }

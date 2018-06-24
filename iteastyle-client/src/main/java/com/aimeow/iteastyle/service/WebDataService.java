@@ -33,5 +33,20 @@ public interface WebDataService {
     @RequestMapping(value = "/productShowerDetail", method = RequestMethod.GET)
     Result<ProductShowerVO> getProductShowerDetail(String productShowerId);
 
+    @ApiOperation(value = "通过GET请求方式获取『茶式动态』需要传分页参数")
+    @RequestMapping(value = "/getPosts", method = RequestMethod.GET)
+    Result<GetPostsVO> getPosts(Integer page, Integer pageSize);
+
+    @ApiOperation(value = "通过GET请求方式获取『茶式动态详情』相关信息，需要传id")
+    @RequestMapping(value = "/getPostById", method = RequestMethod.GET)
+    Result<PostVO> getPostByPostId(String postId);
+
+    @ApiOperation(value = "通过经典案例ID获取经典案例内容")
+    @RequestMapping(value = "/getCaseById", method = RequestMethod.GET)
+    Result<CaseVO> getCaseById(String caseId);
+
+    @ApiOperation(value = "通过分页参数获得经典案例列表")
+    @RequestMapping(value = "/cases", method = RequestMethod.GET)
+    Result<GetCasesVO> getCases(Integer page , Integer pageSize);
 
 }

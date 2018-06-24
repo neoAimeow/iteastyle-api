@@ -32,14 +32,19 @@ public class ProductShowerTest {
 
     @Test public void testCreate() throws Exception {
         ProductShowerDO productShowerDO = new ProductShowerDO();
-        productShowerDO.setContent("this is just a content,please ignore it");
+
+        productShowerDO.setTitle("抹茶费南雪18");
+        productShowerDO.setContent("抹茶费南雪是一种小糕点\n" +
+                "就爱这一抹绿啊\n" +
+                "高油高糖什么的就是好吃\n" +
+                "抹茶控溺爱的小宠物～");
         List<String> imageUrls = new ArrayList<>();
-        imageUrls.add("http://imageurl.com");
-        imageUrls.add("http://imageur2.com");
-        imageUrls.add("http://imageur3.com");
-        imageUrls.add("http://imageur4.com");
+        imageUrls.add("http://pa74otoy6.bkt.clouddn.com/product-inside-picture1.png");
+        imageUrls.add("http://pa74otoy6.bkt.clouddn.com/product-inside-picture2.png");
         productShowerDO.setImageArr(imageUrls);
         productShowerDAO.createProductShower(productShowerDO);
     }
-
+    @Test public void testRemove() throws Exception {
+        productShowerDAO.deleteProductShowerById("5b2f883d3067c60dda2aa2b7");
+    }
 }

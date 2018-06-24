@@ -1,9 +1,11 @@
 package com.aimeow.iteastyle.service.impl;
 
+import com.aimeow.iteastyle.converter.PostConverter;
 import com.aimeow.iteastyle.converter.ProductShowerConverter;
 import com.aimeow.iteastyle.domain.*;
 import com.aimeow.iteastyle.domain.enums.StatusEnum;
 import com.aimeow.iteastyle.manager.CompanyInfoManager;
+import com.aimeow.iteastyle.manager.PostManager;
 import com.aimeow.iteastyle.manager.ProductShowerManager;
 import com.aimeow.iteastyle.manager.StaticDataManager;
 import com.aimeow.iteastyle.service.WebDataService;
@@ -20,6 +22,7 @@ public class WebDataServiceImpl implements WebDataService {
     @Autowired private StaticDataManager staticDataManager;
     @Autowired private CompanyInfoManager companyInfoManager;
     @Autowired private ProductShowerManager productShowerManager;
+    @Autowired private PostManager postManager;
 
     @Override
     public Result<HomePageVO> getHomePageData() {
@@ -135,5 +138,55 @@ public class WebDataServiceImpl implements WebDataService {
             result.setMsgInfo(e.getMessage());
         }
         return result;
+    }
+
+
+    @Override
+    public Result<GetPostsVO> getPosts(
+            Integer page, Integer pageSize) {
+        Result<GetPostsVO> result = new Result<GetPostsVO>();
+        GetPostsVO getPostsVO = new GetPostsVO();
+        try {
+            List<PostVO> postVos = new ArrayList();
+            List<PostBO> postBos = postManager.getPosts(
+                    0 , page , pageSize).getModel();
+            postBos.iterator().forEachRemaining(
+                    obj-> {
+                        postVos.add(PostConverter.convertBTV(obj));
+                    }
+            );
+            getPostsVO.setPosts(postVos);
+            result.setModel(getPostsVO);
+        } catch (Exception e) {
+            result.setSuccess(false);
+            return result;
+        }
+        return result;
+    }
+
+    @Override
+    public Result<PostVO> getPostByPostId(
+            @NonNull String postId) {
+        Result<PostVO> result = new Result<>();
+        try {
+            result.setModel(PostConverter.convertBTV(
+                    postManager.getPostById(postId).getModel()));
+        } catch (Exception e) {
+            result.setSuccess(false);
+            return result;
+        }
+        return result;
+    }
+
+    @Override
+    public Result<CaseVO> getCaseById(
+            @NonNull String caseId) {
+        return null;
+    }
+
+    @Override
+    public Result<GetCasesVO> getCases(
+            Integer page, Integer pageSize) {
+        return null;
     }
 }
