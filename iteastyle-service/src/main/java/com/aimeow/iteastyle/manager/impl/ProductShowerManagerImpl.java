@@ -51,4 +51,13 @@ public class ProductShowerManagerImpl
         result.setModel(productShowerBOS);
         return result;
     }
+
+    @Override
+    public Result<Long> countProductShower(Integer status) throws Exception{
+        Result<Long> result = new Result<>();
+        ProductShowerQuery query = new ProductShowerQuery();
+        query.setStatus(status);
+        result.setModel(productShowerDAO.countProductShower(query));
+        return result;
+    }
 }

@@ -11,4 +11,6 @@ public interface ProductShowerManager {
     ) throws Exception;
 
     Result<ProductShowerBO> getProductShowerById(String productShowerId) throws Exception;
+
+    Result<Long> countProductShower(Integer status) throws Exception;
 }

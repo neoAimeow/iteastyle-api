@@ -99,6 +99,9 @@ public class WebDataServiceImpl implements WebDataService {
             getProductShowersVO.setHeaderImageUrl(staticDataBO.getProductShowerHeaderUrl());
             getProductShowersVO.setPage(page);
             getProductShowersVO.setPageSize(pageSize);
+            getProductShowersVO.setTotalCount(
+                    productShowerManager.countProductShower(StatusEnum.NORMAL.getStatus()).getModel()
+            );
             List<ProductShowerBO> productShowerBOS = productShowerManager.getProductShowerList(
                     StatusEnum.NORMAL.getStatus(), page , pageSize
             ).getModel();
@@ -110,7 +113,7 @@ public class WebDataServiceImpl implements WebDataService {
             );
             getProductShowersVO.setProducts(productShowerVOS);
 
-            
+
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());

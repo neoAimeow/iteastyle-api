@@ -8,7 +8,7 @@ import java.util.List;
 public class GetProductShowersVO {
     private Integer page;
     private Integer pageSize;
-    private Integer totalCount;
+    private Long totalCount;
     private String headerImageUrl;
     private List<ProductShowerVO> products;
 }
