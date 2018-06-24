@@ -48,7 +48,7 @@ public class StaticDataTest {
         staticDataDO.setHomepageBannerUrls(homeHeader);
         staticDataDO.setHomepageServiceImageUrls(serviceArray);
         staticDataDO.setHomepageShowerImageUrls(showerArray);
-        staticDataDO.setContactUsTitle("杭式下午茶 创意茶歇 健康食尚\n");
+        staticDataDO.setContactUsTitle("杭式下午茶 创意茶歇 健康食尚");
         staticDataDO.setLogoUrl("http://pa74otoy6.bkt.clouddn.com/logo.png");
         staticDataDO.setCompanyStoryBgUrl("http://pa74otoy6.bkt.clouddn.com/company-background.png");
         staticDataDO.setContactUsBgUrl("http://pa74otoy6.bkt.clouddn.com/contactus-background.png");
