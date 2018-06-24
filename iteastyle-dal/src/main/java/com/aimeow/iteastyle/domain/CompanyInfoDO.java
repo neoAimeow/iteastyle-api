@@ -10,7 +10,8 @@ import java.io.Serializable;
 @Document
 public class CompanyInfoDO implements Serializable {
     private static final long serialVersionUID = 8471287997901469057L;
-    private String companyInfo;
+    private String companyName;
+    private String companyAddress;
     private String postCode;
     private String phoneNumber;
     private String telephoneNumber;
@@ -19,6 +20,6 @@ public class CompanyInfoDO implements Serializable {
     private String storyTitle;
     private String story;
     private String videoUrl;
-    private Double latitude;`
+    private Double latitude;
     private Double longitude;
 }

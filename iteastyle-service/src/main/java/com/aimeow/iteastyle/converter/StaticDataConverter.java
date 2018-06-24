@@ -10,6 +10,7 @@ public class StaticDataConverter {
             @NonNull StaticDataDO staticDataDO) {
         StaticDataBO staticDataBO = new StaticDataBO();
         staticDataBO.setLogoUrl(staticDataDO.getLogoUrl());
+        staticDataBO.setContactUsTitle(staticDataDO.getContactUsTitle());
         staticDataBO.setCompanyStoryBgUrl(staticDataDO.getCompanyStoryBgUrl());
         staticDataBO.setProductShowerHeaderUrl(staticDataDO.getProductShowerHeaderUrl());
         staticDataBO.setPostBgUrl(staticDataDO.getPostBgUrl());
@@ -25,6 +26,7 @@ public class StaticDataConverter {
             @NonNull StaticDataBO staticDataBO) {
 
         StaticDataDO staticDataDO = new StaticDataDO();
+        staticDataDO.setContactUsTitle(staticDataBO.getContactUsTitle());
         staticDataDO.setLogoUrl(staticDataBO.getLogoUrl());
         staticDataDO.setCompanyStoryBgUrl(staticDataBO.getCompanyStoryBgUrl());
         staticDataDO.setProductShowerHeaderUrl(staticDataBO.getProductShowerHeaderUrl());

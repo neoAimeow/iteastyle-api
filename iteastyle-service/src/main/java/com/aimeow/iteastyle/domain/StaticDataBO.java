@@ -6,6 +6,7 @@ import java.util.List;
 
 @Data
 public class StaticDataBO {
+    private String contactUsTitle;
     private String logoUrl;
     private String companyStoryBgUrl;
     private String productShowerHeaderUrl;

@@ -4,9 +4,8 @@ import lombok.Data;
 
 @Data
 public class CompanyInfoVO {
-    private String id;
-    private String companyInfo;
-    private String postCode;
+    private String companyName;
+    private String companyAddress;
     private String phoneNumber;
     private String telephoneNumber;
     private String mail;

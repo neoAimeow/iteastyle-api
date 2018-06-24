@@ -9,7 +9,8 @@ public class CompanyInfoConverter {
     public static CompanyInfoBO convertDTB(
             @NonNull CompanyInfoDO companyInfoDO) {
         CompanyInfoBO companyInfoBO = new CompanyInfoBO();
-        companyInfoBO.setCompanyInfo(companyInfoDO.getCompanyInfo());
+        companyInfoBO.setCompanyAddress(companyInfoDO.getCompanyAddress());
+        companyInfoBO.setCompanyName(companyInfoDO.getCompanyName());
         companyInfoBO.setPostCode(companyInfoDO.getPostCode());
         companyInfoBO.setPhoneNumber(companyInfoDO.getPhoneNumber());
         companyInfoBO.setTelephoneNumber(
@@ -27,7 +28,8 @@ public class CompanyInfoConverter {
     public static CompanyInfoDO convertBTD(
             @NonNull CompanyInfoBO companyInfoBO) {
         CompanyInfoDO companyInfoDO = new CompanyInfoDO();
-        companyInfoDO.setCompanyInfo(companyInfoBO.getCompanyInfo());
+        companyInfoDO.setCompanyAddress(companyInfoBO.getCompanyAddress());
+        companyInfoDO.setCompanyName(companyInfoBO.getCompanyName());
         companyInfoDO.setPostCode(companyInfoBO.getPostCode());
         companyInfoDO.setPhoneNumber(companyInfoBO.getPhoneNumber());
         companyInfoDO.setTelephoneNumber(
@@ -45,9 +47,8 @@ public class CompanyInfoConverter {
     public static CompanyInfoVO convertBTV(
             @NonNull CompanyInfoBO companyInfoBO) {
         CompanyInfoVO companyInfoVO = new CompanyInfoVO();
-        companyInfoVO.setId(companyInfoBO.getId());
-        companyInfoVO.setCompanyInfo(companyInfoBO.getCompanyInfo());
-        companyInfoVO.setPostCode(companyInfoBO.getPostCode());
+        companyInfoVO.setCompanyAddress(companyInfoBO.getCompanyAddress());
+        companyInfoVO.setCompanyName(companyInfoBO.getCompanyName());
         companyInfoVO.setPhoneNumber(companyInfoBO.getPhoneNumber());
         companyInfoVO.setTelephoneNumber(
                 companyInfoBO.getTelephoneNumber());
