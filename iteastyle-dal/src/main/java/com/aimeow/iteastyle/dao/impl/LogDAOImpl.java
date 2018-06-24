@@ -22,7 +22,7 @@ public class LogDAOImpl implements LogDAO {
             @NonNull LogQuery logQuery) {
         Query query=new Query();
         query.with(new Sort(Sort.Direction.DESC, "gmtModified"));
-        query.skip(logQuery.getPage() * logQuery.getPageSize()).limit(logQuery.getPageSize());
+        query.skip((logQuery.getPage()-1) * logQuery.getPageSize()).limit(logQuery.getPageSize());
         List<LogDO> logDOS =  mongoTemplate.find(
                 query , LogDO.class
         );

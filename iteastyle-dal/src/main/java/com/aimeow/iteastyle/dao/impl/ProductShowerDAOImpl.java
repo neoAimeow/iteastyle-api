@@ -23,7 +23,7 @@ public class ProductShowerDAOImpl implements ProductShowerDAO {
             @NonNull ProductShowerQuery productShowerQuery) {
         Query query=new Query();
         query.with(new Sort(Sort.Direction.DESC, "gmtModified"));
-        query.skip(productShowerQuery.getPage() * productShowerQuery.getPageSize())
+        query.skip((productShowerQuery.getPage()-1) * productShowerQuery.getPageSize())
                 .limit(productShowerQuery.getPageSize());
         List<ProductShowerDO> productShowerDOS =  mongoTemplate.find(
                 query , ProductShowerDO.class

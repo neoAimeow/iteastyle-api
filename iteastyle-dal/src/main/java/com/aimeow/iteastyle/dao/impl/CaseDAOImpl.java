@@ -33,7 +33,7 @@ public class CaseDAOImpl implements CaseDAO {
         Query query=new Query(Criteria.where("type").is(
                 caseQuery.getType()));
         query.with(new Sort(Sort.Direction.DESC, "gmtModified"));
-        query.skip(caseQuery.getPage() * caseQuery.getPageSize()).limit(caseQuery.getPageSize());
+        query.skip((caseQuery.getPage()-1) * caseQuery.getPageSize()).limit(caseQuery.getPageSize());
         List<CaseDO> caseDOS =  mongoTemplate.find(
                 query , CaseDO.class
         );
