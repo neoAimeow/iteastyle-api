@@ -8,6 +8,7 @@ import lombok.Data;
 public class GetPostsVO {
     private Integer page;
     private Integer pageSize;
-    private Integer totalCount;
+    private Long totalCount;
+    private String postBackgroundImage;
     private List<PostVO> posts;
 }

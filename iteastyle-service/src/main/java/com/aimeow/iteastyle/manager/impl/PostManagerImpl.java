@@ -49,6 +49,15 @@ public class PostManagerImpl implements PostManager {
         return result;
     }
 
+    @Override public Result<Long> countPosts(
+            @NonNull Integer status) throws Exception {
+        Result<Long> result = new Result<>();
+        PostQuery query = new PostQuery();
+        query.setStatus(status);
+        result.setModel(postDAO.countPosts(query));
+        return result;
+    }
+
     @Override public Result<Boolean> createPost(
         @NonNull PostBO postBO) throws Exception {
         Result<Boolean> result = new Result<>();

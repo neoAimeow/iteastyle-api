@@ -147,6 +147,10 @@ public class WebDataServiceImpl implements WebDataService {
         Result<GetPostsVO> result = new Result<GetPostsVO>();
         GetPostsVO getPostsVO = new GetPostsVO();
         try {
+            StaticDataBO staticDataBO = staticDataManager.getStaticData().getModel();
+            getPostsVO.setPostBackgroundImage(staticDataBO.getPostBgUrl());
+            getPostsVO.setPage(page);
+            getPostsVO.setPageSize(pageSize);
             List<PostVO> postVos = new ArrayList();
             List<PostBO> postBos = postManager.getPosts(
                     0 , page , pageSize).getModel();
@@ -155,6 +159,8 @@ public class WebDataServiceImpl implements WebDataService {
                         postVos.add(PostConverter.convertBTV(obj));
                     }
             );
+            getPostsVO.setTotalCount(postManager.countPosts(0).getModel());
+
             getPostsVO.setPosts(postVos);
             result.setModel(getPostsVO);
         } catch (Exception e) {
