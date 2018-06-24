@@ -9,6 +9,7 @@ public class ProductShowerConverter {
     public static ProductShowerBO convertDTB(ProductShowerDO productShowerDO) {
         ProductShowerBO productShowerBO = new ProductShowerBO();
         productShowerBO.setId(productShowerDO.getId());
+        productShowerBO.setTitle(productShowerDO.getTitle());
         productShowerBO.setContent(productShowerDO.getContent());
         productShowerBO.setImageArr(productShowerDO.getImageArr());
         productShowerBO.setGmtCreate(productShowerDO.getGmtCreate());
@@ -20,6 +21,7 @@ public class ProductShowerConverter {
     public static ProductShowerDO convertBTD(ProductShowerBO productShowerBO) {
         ProductShowerDO productShowerDO = new ProductShowerDO();
         productShowerDO.setId(productShowerBO.getId());
+        productShowerDO.setTitle(productShowerBO.getTitle());
         productShowerDO.setContent(productShowerBO.getContent());
         productShowerDO.setImageArr(productShowerBO.getImageArr());
         productShowerDO.setGmtCreate(productShowerBO.getGmtCreate());
@@ -32,6 +34,7 @@ public class ProductShowerConverter {
             @NonNull ProductShowerBO productShowerBO) {
         ProductShowerVO productShowerVO = new ProductShowerVO();
         productShowerVO.setId(productShowerBO.getId());
+        productShowerVO.setTitle(productShowerBO.getTitle());
         productShowerVO.setContent(productShowerBO.getContent());
         productShowerVO.setImageArr(productShowerBO.getImageArr());
         productShowerVO.setGmtCreate(productShowerBO.getGmtCreate());
