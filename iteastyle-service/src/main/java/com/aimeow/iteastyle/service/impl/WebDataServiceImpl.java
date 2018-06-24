@@ -50,4 +50,18 @@ public class WebDataServiceImpl implements WebDataService {
         return result;
     }
 
+    @Override
+    public Result<ContactUsVO> getContactUsData() {
+        Result<ContactUsVO> result = new Result<>();
+        ContactUsVO contactUsVO = new ContactUsVO();
+        try {
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+
+
+        return result;
+    }
 }

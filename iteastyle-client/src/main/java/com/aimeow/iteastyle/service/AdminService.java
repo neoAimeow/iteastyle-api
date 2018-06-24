@@ -1,6 +1,5 @@
 package com.aimeow.iteastyle.service;
 
-import com.aimeow.iteastyle.domain.CompanyInfoVO;
 import com.aimeow.iteastyle.domain.Result;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
