@@ -2,6 +2,7 @@ package com.aimeow.iteastyle.service.impl;
 
 import com.aimeow.iteastyle.domain.*;
 import com.aimeow.iteastyle.manager.CompanyInfoManager;
+import com.aimeow.iteastyle.manager.ProductShowerManager;
 import com.aimeow.iteastyle.manager.StaticDataManager;
 import com.aimeow.iteastyle.service.WebDataService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class WebDataServiceImpl implements WebDataService {
     @Autowired private StaticDataManager staticDataManager;
     @Autowired private CompanyInfoManager companyInfoManager;
+    @Autowired private ProductShowerManager productShowerManager;
 
     @Override
     public Result<HomePageVO> getHomePageData() {
@@ -81,12 +83,28 @@ public class WebDataServiceImpl implements WebDataService {
     }
 
     @Override
-    public Result<GetProductShowersVO> getProductShowerList(Integer page, Integer pageSize) {
-        return null;
+    public Result<GetProductShowersVO> getProductShowerList(
+            Integer page, Integer pageSize) {
+        Result<GetProductShowersVO> result = new Result<>();
+        try {
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+        return result;
     }
 
     @Override
     public Result<ProductShowerVO> getProductShowerDetail(String productShowerId) {
-        return null;
+        Result<ProductShowerVO> result = new Result<>();
+
+        try {
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+        return result;
     }
 }
