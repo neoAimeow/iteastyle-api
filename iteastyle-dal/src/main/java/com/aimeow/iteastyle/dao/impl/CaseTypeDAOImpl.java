@@ -4,14 +4,15 @@ import com.aimeow.iteastyle.dao.CaseTypeDAO;
 import com.aimeow.iteastyle.domain.CaseTypeDO;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class CaseTypeDAOImpl implements CaseTypeDAO {
     @Autowired
     private MongoTemplate mongoTemplate;
