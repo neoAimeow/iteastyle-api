@@ -212,7 +212,8 @@ public class WebDataServiceImpl implements WebDataService {
         Result<CaseVO> result = new Result<>();
 
         try {
-
+            CaseBO caseBO = caseManager.getCaseById(caseId).getModel();
+            result.setModel(CaseConverter.convertBTV(caseBO));
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
