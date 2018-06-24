@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Api(value = "/service",tags = {"网页端接口"}, description = "网页部分相关数据")
 @RequestMapping(value = "/service")
-@CrossOrigin
 @RestController
 public interface WebDataService {
 

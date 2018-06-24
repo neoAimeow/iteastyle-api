@@ -29,6 +29,7 @@ import java.util.Collections;
 @ComponentScan({
         "com.aimeow.iteastyle.service"
         ,"com.aimeow.iteastyle.manager"
+        ,"com.aimeow.iteastyle"
         ,"com.aimeow.iteastyle.dao"})
 public class Application {
 
