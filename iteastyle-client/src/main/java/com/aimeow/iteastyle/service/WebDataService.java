@@ -8,11 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = {"https://iteastyle.aimeow.com" , "http://localhost:8080", "http://localhost:8081", "http://localhost:8082"})
+@CrossOrigin(origins = {"https://iteastyle.aimeow.com" ,
+        "http://localhost:8080",
+        "http://localhost:8081",
+        "http://localhost:8082"},
+        maxAge = 3600)
 @Api(value = "/service",tags = {"网页端接口"}, description = "网页部分相关数据")
 @RequestMapping(value = "/service")
 @RestController
-
 public interface WebDataService {
 
     @ApiOperation(value = "通过GET请求方式获取『首页』相关信息，不需要传任何参数")
