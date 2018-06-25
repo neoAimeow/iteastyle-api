@@ -14,6 +14,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 @Component
 public class PostDAOImpl implements PostDAO {
@@ -55,6 +56,15 @@ public class PostDAOImpl implements PostDAO {
     @Override public Boolean createPost(
         @NonNull PostDO postDO
     ) throws Exception {
+        if (StringUtils.isEmpty(postDO.getContent())) {
+            throw new Exception("content can not be null");
+        }
+        if (StringUtils.isEmpty(postDO.getStatus())) {
+            throw new Exception("status can not be null");
+        }
+        if (StringUtils.isEmpty(postDO.getTitle())) {
+            throw new Exception("title can not be null");
+        }
         postDO.setGmtCreate(new Date());
         postDO.setGmtModified(new Date());
         mongoTemplate.save(postDO);
@@ -64,6 +74,18 @@ public class PostDAOImpl implements PostDAO {
     @Override public Boolean updatePost(
         @NonNull PostDO postDO
     ) throws Exception {
+        if (StringUtils.isEmpty(postDO.getId())) {
+            throw new Exception("id can not be null");
+        }
+        if (StringUtils.isEmpty(postDO.getContent())) {
+            throw new Exception("content can not be null");
+        }
+        if (StringUtils.isEmpty(postDO.getStatus())) {
+            throw new Exception("status can not be null");
+        }
+        if (StringUtils.isEmpty(postDO.getTitle())) {
+            throw new Exception("title can not be null");
+        }
         postDO.setGmtModified(new Date());
         Query query=new Query(Criteria.where(
             "id").is(postDO.getId()));

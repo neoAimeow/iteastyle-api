@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -19,7 +20,7 @@ public class LogDAOImpl implements LogDAO {
     @Autowired private MongoTemplate mongoTemplate;
     @Override
     public List<LogDO> queryLogs(
-            @NonNull LogQuery logQuery) {
+            @NonNull LogQuery logQuery) throws Exception {
         Query query=new Query();
         query.with(new Sort(Sort.Direction.DESC, "gmtModified"));
         query.skip((logQuery.getPage()-1) * logQuery.getPageSize()).limit(logQuery.getPageSize());
@@ -31,7 +32,13 @@ public class LogDAOImpl implements LogDAO {
 
     @Override
     public Boolean record(
-            @NonNull LogDO logDO) {
+            @NonNull LogDO logDO) throws Exception {
+        if (StringUtils.isEmpty(logDO.getContent())) {
+            throw new Exception("content can not be null");
+        }
+        if (StringUtils.isEmpty(logDO.getOperator())) {
+            throw new Exception("operator can not be null");
+        }
         logDO.setGmtCreate(new Date());
         logDO.setGmtModified(new Date());
         mongoTemplate.save(logDO);
@@ -40,7 +47,7 @@ public class LogDAOImpl implements LogDAO {
 
     @Override
     public Boolean removeRecord(
-            @NonNull String logId) {
+            @NonNull String logId) throws Exception {
         Query query=new Query(
                 Criteria.where("id").is(logId));
         mongoTemplate.remove(query,LogDO.class);
