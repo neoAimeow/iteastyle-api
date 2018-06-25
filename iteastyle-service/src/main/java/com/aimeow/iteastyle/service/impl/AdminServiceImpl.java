@@ -3,12 +3,9 @@ package com.aimeow.iteastyle.service.impl;
 import com.aimeow.iteastyle.converter.CompanyInfoConverter;
 import com.aimeow.iteastyle.converter.LogConverter;
 import com.aimeow.iteastyle.converter.StaticDataConverter;
+import com.aimeow.iteastyle.domain.*;
 import com.aimeow.iteastyle.domain.CompanyInfo.CompanyInfoVO;
-import com.aimeow.iteastyle.domain.CompanyInfoBO;
 import com.aimeow.iteastyle.domain.Log.LogVO;
-import com.aimeow.iteastyle.domain.LogBO;
-import com.aimeow.iteastyle.domain.ProductShowerDO;
-import com.aimeow.iteastyle.domain.Result;
 import com.aimeow.iteastyle.domain.StaticData.StaticDataVO;
 import com.aimeow.iteastyle.manager.*;
 import com.aimeow.iteastyle.service.AdminService;
@@ -51,32 +48,8 @@ public class AdminServiceImpl implements AdminService {
         try {
             JSONObject object = JSONObject.parseObject(param);
             CompanyInfoBO companyInfoBO = JSONObject.parseObject(param , CompanyInfoBO.class);
-            System.out.println(companyInfoBO.toString());
-//            String companyName = object.getString("companyName");
-//            String companyAddress = object.getString("companyAddress");
-//            String postCode = object.getString("postCode");
-//            String phoneNumber = object.getString("phoneNumber");
-//            String telephoneNumber = object.getString("telephoneNumber");
-//            String mail = object.getString("mail");
-//            String webUrl = object.getString("webUrl");
-//            String storyTitle = object.getString("storyTitle");
-//            String story = object.getString("story");
-//            String videoUrl = object.getString("videoUrl");
-//            Double latitude = object.getDouble("latitude");
-//            Double longitude = object.getDouble("longitude");
-//            CompanyInfoBO companyInfoBO = new CompanyInfoBO();
-//            companyInfoBO.setCompanyName(companyName);
-//            companyInfoBO.setCompanyAddress(companyAddress);
-//            companyInfoBO.setPostCode(postCode);
-//            companyInfoBO.setPhoneNumber(phoneNumber);
-//            companyInfoBO.setTelephoneNumber(telephoneNumber);
-//            companyInfoBO.setMail(mail);
-//            companyInfoBO.setWebUrl(webUrl);
-//            companyInfoBO.setStoryTitle(storyTitle);
-//            companyInfoBO.setStory(story);
-//            companyInfoBO.setVideoUrl(videoUrl);
-//            companyInfoBO.setLatitude(latitude);
-//            companyInfoBO.setLongitude(longitude);
+            result.setModel(companyInfoManager.updateCompanyInfo(companyInfoBO).getModel());
+
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
@@ -104,6 +77,9 @@ public class AdminServiceImpl implements AdminService {
 
         try {
             JSONObject object = JSONObject.parseObject(param);
+            StaticDataBO staticDataBO = JSONObject.parseObject(param , StaticDataBO.class);
+
+            result.setModel(staticDataManager.updateStaticData(staticDataBO).getModel());
 
         } catch (Exception e) {
             result.setSuccess(false);
@@ -120,7 +96,8 @@ public class AdminServiceImpl implements AdminService {
 
         try {
             JSONObject object = JSONObject.parseObject(param);
-
+            PostBO postBO = JSONObject.parseObject(param , PostBO.class);
+            result.setModel(postManager.createPost(postBO).getModel());
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
@@ -136,7 +113,8 @@ public class AdminServiceImpl implements AdminService {
 
         try {
             JSONObject object = JSONObject.parseObject(param);
-
+            PostBO postBO = JSONObject.parseObject(param , PostBO.class);
+            result.setModel(postManager.updatePost(postBO).getModel());
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
@@ -166,7 +144,8 @@ public class AdminServiceImpl implements AdminService {
 
         try {
             JSONObject object = JSONObject.parseObject(param);
-
+            CaseBO caseBO = JSONObject.parseObject(param , CaseBO.class);
+            result.setModel(caseManager.createCase(caseBO).getModel());
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
@@ -181,7 +160,8 @@ public class AdminServiceImpl implements AdminService {
 
         try {
             JSONObject object = JSONObject.parseObject(param);
-
+            CaseBO caseBO = JSONObject.parseObject(param , CaseBO.class);
+            result.setModel(caseManager.updateCase(caseBO).getModel());
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
@@ -211,7 +191,8 @@ public class AdminServiceImpl implements AdminService {
 
         try {
             JSONObject object = JSONObject.parseObject(param);
-
+            ProductShowerBO productShowerBO = JSONObject.parseObject(param , ProductShowerBO.class);
+            result.setModel(productShowerManager.createProductShower(productShowerBO).getModel());
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
@@ -226,7 +207,8 @@ public class AdminServiceImpl implements AdminService {
 
         try {
             JSONObject object = JSONObject.parseObject(param);
-
+            ProductShowerBO productShowerBO = JSONObject.parseObject(param , ProductShowerBO.class);
+            result.setModel(productShowerManager.updateProductShower(productShowerBO).getModel());
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
