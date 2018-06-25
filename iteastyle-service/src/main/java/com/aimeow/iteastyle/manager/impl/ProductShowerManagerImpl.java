@@ -62,17 +62,23 @@ public class ProductShowerManagerImpl
     }
 
     @Override
-    public Result<Boolean> createProductShower(ProductShowerBO productShowerBO) {
-        return null;
+    public Result<Boolean> createProductShower(ProductShowerBO productShowerBO) throws Exception {
+        Result<Boolean> result = new Result<>();
+        result.setModel(productShowerDAO.createProductShower(ProductShowerConverter.convertBTD(productShowerBO)));
+        return result;
     }
 
     @Override
-    public Result<Boolean> updateProductShower(ProductShowerBO productShowerBO) {
-        return null;
+    public Result<Boolean> updateProductShower(ProductShowerBO productShowerBO) throws Exception {
+        Result<Boolean> result = new Result<>();
+        result.setModel(productShowerDAO.createProductShower(ProductShowerConverter.convertBTD(productShowerBO)));
+        return result;
     }
 
     @Override
-    public Result<Boolean> deleteProductShower(String productShowerId) {
-        return null;
+    public Result<Boolean> deleteProductShower(String productShowerId) throws Exception {
+        Result<Boolean> result = new Result<>();
+        result.setModel(productShowerDAO.deleteProductShowerById(productShowerId));
+        return result;
     }
 }
