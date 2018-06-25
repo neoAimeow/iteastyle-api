@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.JSONObject;
 
+import java.util.List;
+
 @Api(value = "/admin",tags = {"管理接口"}, description = "管理相关各路接口")
 @RequestMapping(value = "/admin")
 @RestController
@@ -52,8 +54,8 @@ public interface AdminService {
     Result<Boolean> updateProductShower(String param);
 
     @RequestMapping(value = "/deleteProductShower", method = RequestMethod.POST)
-    Result<Boolean> deleteProductShower(String caseId);
+    Result<Boolean> deleteProductShower(String productShowerId);
 
     @RequestMapping(value = "/getLogs", method = RequestMethod.GET)
-    Result<LogVO> getLogs();
+    Result<List<LogVO>> getLogs(Integer page , Integer pageSize);
 }

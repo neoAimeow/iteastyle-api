@@ -13,4 +13,8 @@ public interface ProductShowerManager {
     Result<ProductShowerBO> getProductShowerById(String productShowerId) throws Exception;
 
     Result<Long> countProductShower(Integer status) throws Exception;
+
+    Result<Boolean> createProductShower(ProductShowerBO productShowerBO) throws Exception;
+    Result<Boolean> updateProductShower(ProductShowerBO productShowerBO) throws Exception;
+    Result<Boolean> deleteProductShower(String productShowerId) throws Exception;
 }

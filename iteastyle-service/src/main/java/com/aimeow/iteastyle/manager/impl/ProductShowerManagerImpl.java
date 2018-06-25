@@ -60,4 +60,19 @@ public class ProductShowerManagerImpl
         result.setModel(productShowerDAO.countProductShower(query));
         return result;
     }
+
+    @Override
+    public Result<Boolean> createProductShower(ProductShowerBO productShowerBO) {
+        return null;
+    }
+
+    @Override
+    public Result<Boolean> updateProductShower(ProductShowerBO productShowerBO) {
+        return null;
+    }
+
+    @Override
+    public Result<Boolean> deleteProductShower(String productShowerId) {
+        return null;
+    }
 }
