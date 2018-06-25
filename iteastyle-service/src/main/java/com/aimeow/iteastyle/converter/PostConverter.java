@@ -2,7 +2,7 @@ package com.aimeow.iteastyle.converter;
 
 import com.aimeow.iteastyle.domain.PostBO;
 import com.aimeow.iteastyle.domain.PostDO;
-import com.aimeow.iteastyle.domain.PostVO;
+import com.aimeow.iteastyle.domain.Post.PostVO;
 
 public class PostConverter {
     public static PostBO convertDTB(PostDO postDO) {

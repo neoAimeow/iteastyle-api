@@ -8,10 +8,12 @@ import com.aimeow.iteastyle.domain.Result;
 import com.aimeow.iteastyle.domain.query.LogQuery;
 import com.aimeow.iteastyle.manager.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class LogManagerImpl implements LogManager {
     @Autowired private LogDAO logDAO;
 

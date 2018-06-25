@@ -2,7 +2,7 @@ package com.aimeow.iteastyle.converter;
 
 import com.aimeow.iteastyle.domain.CaseBO;
 import com.aimeow.iteastyle.domain.CaseDO;
-import com.aimeow.iteastyle.domain.CaseVO;
+import com.aimeow.iteastyle.domain.Case.CaseVO;
 
 public class CaseConverter {
     public static CaseBO convertDTB(CaseDO caseDO) {

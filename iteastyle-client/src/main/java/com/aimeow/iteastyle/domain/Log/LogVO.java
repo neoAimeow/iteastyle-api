@@ -1,4 +1,4 @@
-package com.aimeow.iteastyle.domain;
+package com.aimeow.iteastyle.domain.Log;
 
 import lombok.Data;
 

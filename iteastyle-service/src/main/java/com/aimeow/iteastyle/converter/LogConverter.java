@@ -2,7 +2,7 @@ package com.aimeow.iteastyle.converter;
 
 import com.aimeow.iteastyle.domain.LogBO;
 import com.aimeow.iteastyle.domain.LogDO;
-import com.aimeow.iteastyle.domain.LogVO;
+import com.aimeow.iteastyle.domain.Log.LogVO;
 import lombok.NonNull;
 
 public class LogConverter {

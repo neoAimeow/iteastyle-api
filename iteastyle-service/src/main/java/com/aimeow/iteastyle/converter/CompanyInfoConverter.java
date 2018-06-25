@@ -1,5 +1,6 @@
 package com.aimeow.iteastyle.converter;
 
+import com.aimeow.iteastyle.domain.CompanyInfo.CompanyInfoVO;
 import com.aimeow.iteastyle.domain.CompanyInfoBO;
 import com.aimeow.iteastyle.domain.CompanyInfoDO;
 import lombok.NonNull;
@@ -43,4 +44,22 @@ public class CompanyInfoConverter {
         return companyInfoDO;
     }
 
+    public static CompanyInfoVO convertBTV(
+            @NonNull CompanyInfoBO companyInfoBO) {
+        CompanyInfoVO companyInfoVO = new CompanyInfoVO();
+        companyInfoVO.setCompanyAddress(companyInfoBO.getCompanyAddress());
+        companyInfoVO.setCompanyName(companyInfoBO.getCompanyName());
+        companyInfoVO.setPostCode(companyInfoBO.getPostCode());
+        companyInfoVO.setPhoneNumber(companyInfoBO.getPhoneNumber());
+        companyInfoVO.setTelephoneNumber(
+                companyInfoBO.getTelephoneNumber());
+        companyInfoVO.setMail(companyInfoBO.getMail());
+        companyInfoVO.setWebUrl(companyInfoBO.getWebUrl());
+        companyInfoVO.setStoryTitle(companyInfoBO.getStoryTitle());
+        companyInfoVO.setStory(companyInfoBO.getStory());
+        companyInfoVO.setVideoUrl(companyInfoBO.getVideoUrl());
+        companyInfoVO.setLatitude(companyInfoBO.getLatitude());
+        companyInfoVO.setLongitude(companyInfoBO.getLongitude());
+        return companyInfoVO;
+    }
 }

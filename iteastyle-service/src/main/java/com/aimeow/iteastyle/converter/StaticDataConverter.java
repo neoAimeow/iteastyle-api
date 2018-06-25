@@ -1,5 +1,6 @@
 package com.aimeow.iteastyle.converter;
 
+import com.aimeow.iteastyle.domain.StaticData.StaticDataVO;
 import com.aimeow.iteastyle.domain.StaticDataBO;
 import com.aimeow.iteastyle.domain.StaticDataDO;
 import lombok.NonNull;
@@ -36,6 +37,23 @@ public class StaticDataConverter {
         staticDataDO.setHomepageShowerImageUrls(staticDataBO.getHomepageShowerImageUrls());
 
         return staticDataDO;
+    }
+
+    public static StaticDataVO convertBTV(
+            @NonNull StaticDataBO staticDataBO) {
+
+        StaticDataVO staticDataVO = new StaticDataVO();
+        staticDataVO.setContactUsTitle(staticDataBO.getContactUsTitle());
+        staticDataVO.setLogoUrl(staticDataBO.getLogoUrl());
+        staticDataVO.setCompanyStoryBgUrl(staticDataBO.getCompanyStoryBgUrl());
+        staticDataVO.setProductShowerHeaderUrl(staticDataBO.getProductShowerHeaderUrl());
+        staticDataVO.setPostBgUrl(staticDataBO.getPostBgUrl());
+        staticDataVO.setContactUsBgUrl(staticDataBO.getContactUsBgUrl());
+        staticDataVO.setHomepageBannerUrls(staticDataBO.getHomepageBannerUrls());
+        staticDataVO.setHomepageServiceImageUrls(staticDataBO.getHomepageServiceImageUrls());
+        staticDataVO.setHomepageShowerImageUrls(staticDataBO.getHomepageShowerImageUrls());
+
+        return staticDataVO;
     }
 
 }

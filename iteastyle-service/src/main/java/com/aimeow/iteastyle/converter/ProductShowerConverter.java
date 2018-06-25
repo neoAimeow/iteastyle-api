@@ -2,7 +2,7 @@ package com.aimeow.iteastyle.converter;
 
 import com.aimeow.iteastyle.domain.ProductShowerBO;
 import com.aimeow.iteastyle.domain.ProductShowerDO;
-import com.aimeow.iteastyle.domain.ProductShowerVO;
+import com.aimeow.iteastyle.domain.ProductShower.ProductShowerVO;
 import lombok.NonNull;
 
 public class ProductShowerConverter {

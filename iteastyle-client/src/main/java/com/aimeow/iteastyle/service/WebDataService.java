@@ -1,9 +1,18 @@
 package com.aimeow.iteastyle.service;
 
 import com.aimeow.iteastyle.domain.*;
+import com.aimeow.iteastyle.domain.Case.CaseTypeVO;
+import com.aimeow.iteastyle.domain.Case.CaseVO;
+import com.aimeow.iteastyle.domain.Case.GetCasesVO;
+import com.aimeow.iteastyle.domain.Post.GetPostsVO;
+import com.aimeow.iteastyle.domain.Post.PostVO;
+import com.aimeow.iteastyle.domain.ProductShower.GetProductShowersVO;
+import com.aimeow.iteastyle.domain.ProductShower.ProductShowerVO;
+import com.aimeow.iteastyle.domain.Web.CompanyStoryVO;
+import com.aimeow.iteastyle.domain.Web.ContactUsVO;
+import com.aimeow.iteastyle.domain.Web.HomePageVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
