@@ -3,6 +3,7 @@ package com.aimeow.iteastyle.dao.impl;
 import com.aimeow.iteastyle.dao.CaseDAO;
 import com.aimeow.iteastyle.domain.CaseDO;
 import com.aimeow.iteastyle.domain.query.CaseQuery;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -10,6 +11,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -19,7 +21,7 @@ public class CaseDAOImpl implements CaseDAO {
     @Autowired private MongoTemplate mongoTemplate;
 
     @Override
-    public CaseDO queryCaseById(CaseQuery caseQuery) {
+    public CaseDO queryCaseById(@NonNull CaseQuery caseQuery) throws Exception {
         Query query=new Query(Criteria.where("id").is(
                 caseQuery.getCaseId()));
         CaseDO post =  mongoTemplate.findOne(
@@ -29,7 +31,7 @@ public class CaseDAOImpl implements CaseDAO {
     }
 
     @Override
-    public List<CaseDO> queryCases(CaseQuery caseQuery) {
+    public List<CaseDO> queryCases(@NonNull CaseQuery caseQuery) throws Exception {
         Query query=new Query(Criteria.where("type").is(
                 caseQuery.getType()));
         query.with(new Sort(Sort.Direction.DESC, "gmtModified"));
@@ -41,14 +43,24 @@ public class CaseDAOImpl implements CaseDAO {
     }
 
     @Override
-    public Long countCases(CaseQuery caseQuery) {
+    public Long countCases(@NonNull CaseQuery caseQuery) throws Exception {
         Query query=new Query(Criteria.where("type").is(
                 caseQuery.getType()));
         return mongoTemplate.count(query, CaseDO.class);
     }
 
     @Override
-    public Boolean createCase(CaseDO caseDO) {
+    public Boolean createCase(@NonNull CaseDO caseDO) throws Exception {
+        if (StringUtils.isEmpty(caseDO.getTitle())) {
+            throw new Exception("title can not be null");
+        }
+        if (StringUtils.isEmpty(caseDO.getType())) {
+            throw new Exception("type can not be null");
+        }
+        if (null == caseDO.getImageArr() || caseDO.getImageArr().size() == 0) {
+            throw new Exception("imageArr can not be null");
+        }
+
         caseDO.setGmtCreate(new Date());
         caseDO.setGmtModified(new Date());
         mongoTemplate.save(caseDO);
@@ -56,13 +68,27 @@ public class CaseDAOImpl implements CaseDAO {
     }
 
     @Override
-    public Boolean updateCase(CaseDO caseDO) {
+    public Boolean updateCase(@NonNull CaseDO caseDO) throws Exception {
+        if (StringUtils.isEmpty(caseDO.getId())) {
+            throw new Exception("id can not be null");
+        }
+        if (StringUtils.isEmpty(caseDO.getTitle())) {
+            throw new Exception("title can not be null");
+        }
+        if (StringUtils.isEmpty(caseDO.getType())) {
+            throw new Exception("type can not be null");
+        }
+        if (null == caseDO.getImageArr() || caseDO.getImageArr().size() == 0) {
+            throw new Exception("imageArr can not be null");
+        }
+
         caseDO.setGmtModified(new Date());
         Query query=new Query(Criteria.where(
                 "id").is(caseDO.getId()));
 
         Update update= new Update()
                 .set("title", caseDO.getTitle())
+                .set("type" , caseDO.getType())
                 .set("imageArr", caseDO.getImageArr());
 
         mongoTemplate.updateFirst(query,update,CaseDO.class);
@@ -70,7 +96,7 @@ public class CaseDAOImpl implements CaseDAO {
     }
 
     @Override
-    public Boolean deleteCaseById(String caseId) {
+    public Boolean deleteCaseById(@NonNull String caseId) throws Exception {
         Query query=new Query(Criteria.where("id").is(caseId));
         mongoTemplate.remove(query,CaseDO.class);
         return true;
