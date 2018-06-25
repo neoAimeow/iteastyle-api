@@ -19,7 +19,7 @@ public interface AdminService {
     Result<CompanyInfoVO> getCompanyInfo();
 
     @RequestMapping(value = "/updateCompanyInfo", method = RequestMethod.POST)
-    Result<Boolean> updateCompanyInfo(JSONObject param);
+    Result<Boolean> updateCompanyInfo(String param);
 
     @RequestMapping(value = "/getStaticData", method = RequestMethod.GET)
     Result<StaticDataVO> getStaticData();
