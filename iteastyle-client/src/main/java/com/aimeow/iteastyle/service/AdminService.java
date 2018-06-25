@@ -25,31 +25,31 @@ public interface AdminService {
     Result<StaticDataVO> getStaticData();
 
     @RequestMapping(value = "/updateStaticData", method = RequestMethod.POST)
-    Result<Boolean> updateStaticData(JSONObject param);
+    Result<Boolean> updateStaticData(String param);
 
     @RequestMapping(value = "/createPost", method = RequestMethod.POST)
-    Result<Boolean> createPost(JSONObject param);
+    Result<Boolean> createPost(String param);
 
     @RequestMapping(value = "/updatePost", method = RequestMethod.POST)
-    Result<Boolean> updatePost(JSONObject param);
+    Result<Boolean> updatePost(String param);
 
     @RequestMapping(value = "/deletePost", method = RequestMethod.POST)
     Result<Boolean> deletePost(String postId);
 
     @RequestMapping(value = "/createCase", method = RequestMethod.POST)
-    Result<Boolean> createCase(JSONObject param);
+    Result<Boolean> createCase(String param);
 
     @RequestMapping(value = "/updateCase", method = RequestMethod.POST)
-    Result<Boolean> updateCase(JSONObject param);
+    Result<Boolean> updateCase(String param);
 
     @RequestMapping(value = "/deleteCase", method = RequestMethod.POST)
     Result<Boolean> deleteCase(String caseId);
 
     @RequestMapping(value = "/createProductShower", method = RequestMethod.POST)
-    Result<Boolean> createProductShower(JSONObject param);
+    Result<Boolean> createProductShower(String param);
 
     @RequestMapping(value = "/updateProductShower", method = RequestMethod.POST)
-    Result<Boolean> updateProductShower(JSONObject param);
+    Result<Boolean> updateProductShower(String param);
 
     @RequestMapping(value = "/deleteProductShower", method = RequestMethod.POST)
     Result<Boolean> deleteProductShower(String caseId);

@@ -39,8 +39,17 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Result<Boolean> updateCompanyInfo(
-            @NonNull JSONObject param) {
-        return null;
+            @NonNull String param) {
+        Result<Boolean> result = new Result<>();
+        System.out.println(param);
+        try {
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+
+        return result;
     }
 
     @Override
@@ -57,60 +66,159 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Result<Boolean> updateStaticData(
-            @NonNull JSONObject param) {
-        return null;
+            @NonNull String param) {
+        Result<Boolean> result = new Result<>();
+
+        try {
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+
+        return result;
     }
 
     @Override
     public Result<Boolean> createPost(
-            @NonNull JSONObject param) {
-        return null;
+            @NonNull String param) {
+        Result<Boolean> result = new Result<>();
+
+        try {
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+
+        return result;
     }
 
     @Override
     public Result<Boolean> updatePost(
-            @NonNull JSONObject param) {
-        return null;
+            @NonNull String param) {
+        Result<Boolean> result = new Result<>();
+
+        try {
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+
+        return result;
     }
 
     @Override
     public Result<Boolean> deletePost(
             @NonNull String postId) {
-        return null;
+        Result<Boolean> result = new Result<>();
+
+        try {
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+
+        return result;
     }
 
     @Override
-    public Result<Boolean> createCase(JSONObject param) {
-        return null;
+    public Result<Boolean> createCase(String param) {
+        Result<Boolean> result = new Result<>();
+
+        try {
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+
+        return result;
     }
 
     @Override
-    public Result<Boolean> updateCase(JSONObject param) {
-        return null;
+    public Result<Boolean> updateCase(String param) {
+        Result<Boolean> result = new Result<>();
+
+        try {
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+
+        return result;
     }
 
     @Override
     public Result<Boolean> deleteCase(String caseId) {
-        return null;
+        Result<Boolean> result = new Result<>();
+
+        try {
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+
+        return result;
     }
 
     @Override
-    public Result<Boolean> createProductShower(JSONObject param) {
-        return null;
+    public Result<Boolean> createProductShower(String param) {
+        Result<Boolean> result = new Result<>();
+
+        try {
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+
+        return result;
     }
 
     @Override
-    public Result<Boolean> updateProductShower(JSONObject param) {
-        return null;
+    public Result<Boolean> updateProductShower(String param) {
+        Result<Boolean> result = new Result<>();
+
+        try {
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+
+        return result;
     }
 
     @Override
     public Result<Boolean> deleteProductShower(String caseId) {
-        return null;
+        Result<Boolean> result = new Result<>();
+
+        try {
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+
+        return result;
     }
 
     @Override
     public Result<LogVO> getLogs() {
-        return null;
+        Result<LogVO> result = new Result<>();
+
+        try {
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+
+        return result;
     }
 }
