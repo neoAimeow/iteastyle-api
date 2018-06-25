@@ -9,7 +9,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -51,7 +53,16 @@ public class ProductShowerDAOImpl implements ProductShowerDAO {
 
     @Override
     public Boolean createProductShower(
-            @NonNull ProductShowerDO productShowerDO) {
+            @NonNull ProductShowerDO productShowerDO) throws Exception {
+        if (StringUtils.isEmpty(productShowerDO.getContent())) {
+            throw new Exception("content can not be null");
+        }
+        if (StringUtils.isEmpty(productShowerDO.getTitle())) {
+            throw new Exception("title can not be null");
+        }
+        if (null == productShowerDO.getImageArr() || productShowerDO.getImageArr().size() == 0) {
+            throw new Exception("imageArr can not be null");
+        }
         productShowerDO.setGmtCreate(new Date());
         productShowerDO.setGmtModified(new Date());
         mongoTemplate.save(productShowerDO);
@@ -60,8 +71,31 @@ public class ProductShowerDAOImpl implements ProductShowerDAO {
 
     @Override
     public Boolean updateProductShower(
-            @NonNull ProductShowerDO productShowerDO) {
-        return null;
+            @NonNull ProductShowerDO productShowerDO) throws Exception {
+        if (StringUtils.isEmpty(productShowerDO.getId())) {
+            throw new Exception("id can not be null");
+        }
+        if (StringUtils.isEmpty(productShowerDO.getContent())) {
+            throw new Exception("content can not be null");
+        }
+        if (StringUtils.isEmpty(productShowerDO.getTitle())) {
+            throw new Exception("title can not be null");
+        }
+        if (null == productShowerDO.getImageArr() || productShowerDO.getImageArr().size() == 0) {
+            throw new Exception("imageArr can not be null");
+        }
+        productShowerDO.setGmtModified(new Date());
+        Query query=new Query(Criteria.where(
+                "id").is(productShowerDO.getId()));
+
+        Update update= new Update()
+                .set("title", productShowerDO.getTitle())
+                .set("imageArr", productShowerDO.getImageArr())
+                .set("content", productShowerDO.getContent());
+
+        mongoTemplate.updateFirst(query,update,ProductShowerDO.class);
+        return true;
+
     }
 
     @Override
