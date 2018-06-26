@@ -1,10 +1,12 @@
 package com.aimeow.iteastyle.service;
 
+import com.aimeow.iteastyle.domain.Case.GetCasesVO;
 import com.aimeow.iteastyle.domain.CompanyInfo.CompanyInfoVO;
 import com.aimeow.iteastyle.domain.Log.LogVO;
 import com.aimeow.iteastyle.domain.Result;
 import com.aimeow.iteastyle.domain.StaticData.StaticDataVO;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,6 +39,10 @@ public interface AdminService {
 
     @RequestMapping(value = "/deletePost", method = RequestMethod.POST)
     Result<Boolean> deletePost(String postId);
+
+
+    @RequestMapping(value = "/cases", method = RequestMethod.GET)
+    Result<GetCasesVO> getCases(Integer page , Integer pageSize);
 
     @RequestMapping(value = "/createCase", method = RequestMethod.POST)
     Result<Boolean> createCase(String param);
