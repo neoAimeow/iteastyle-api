@@ -40,7 +40,6 @@ public interface AdminService {
     @RequestMapping(value = "/deletePost", method = RequestMethod.POST)
     Result<Boolean> deletePost(String postId);
 
-
     @RequestMapping(value = "/cases", method = RequestMethod.GET)
     Result<GetCasesVO> getCases(Integer page , Integer pageSize);
 

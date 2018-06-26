@@ -8,6 +8,7 @@ import com.aimeow.iteastyle.dao.PostDAO;
 import com.aimeow.iteastyle.domain.PostBO;
 import com.aimeow.iteastyle.domain.PostDO;
 import com.aimeow.iteastyle.domain.Result;
+import com.aimeow.iteastyle.domain.enums.StatusEnum;
 import com.aimeow.iteastyle.domain.query.PostQuery;
 import com.aimeow.iteastyle.manager.PostManager;
 import lombok.NonNull;
@@ -61,6 +62,7 @@ public class PostManagerImpl implements PostManager {
     @Override public Result<Boolean> createPost(
         @NonNull PostBO postBO) throws Exception {
         Result<Boolean> result = new Result<>();
+        postBO.setStatus(StatusEnum.NORMAL.getStatus());
         result.setModel(postDAO.createPost(
             PostConverter.convertBTD(postBO)));
         return result;
