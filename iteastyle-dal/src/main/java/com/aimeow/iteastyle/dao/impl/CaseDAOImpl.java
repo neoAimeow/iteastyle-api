@@ -33,7 +33,7 @@ public class CaseDAOImpl implements CaseDAO {
     @Override
     public List<CaseDO> queryCases(@NonNull CaseQuery caseQuery) throws Exception {
         Query query=new Query();
-        if (caseQuery.getType() == null) {
+        if (caseQuery.getType() != null) {
             query.addCriteria(Criteria.where("type").is(
                     caseQuery.getType()));
         }

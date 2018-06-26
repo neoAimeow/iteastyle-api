@@ -25,7 +25,6 @@
         <jedis.version>2.9.0</jedis.version>
         <rxjava2.version>2.1.14</rxjava2.version>
         <qiniu.version>[7.2.0, 7.2.99]</qiniu.version>
-        <commons-text.version>1.4</commons-text.version>
     </properties>
 
     <!-- Inherit defaults from Spring Boot -->
@@ -98,13 +97,7 @@
             <artifactId>qiniu-java-sdk</artifactId>
             <version>${qiniu.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-text</artifactId>
-            <version>${commons-text.version}</version>
-        </dependency>
+
 
     </dependencies>
 
