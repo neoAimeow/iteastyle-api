@@ -3,7 +3,6 @@ package com.aimeow.iteastyle.converter;
 import com.aimeow.iteastyle.domain.PostBO;
 import com.aimeow.iteastyle.domain.PostDO;
 import com.aimeow.iteastyle.domain.Post.PostVO;
-import org.apache.commons.text.StringEscapeUtils;
 
 public class PostConverter {
     public static PostBO convertDTB(PostDO postDO) {
@@ -35,8 +34,7 @@ public class PostConverter {
         postVO.setTitle(postBO.getTitle());
         postVO.setGmtCreate(postBO.getGmtCreate());
         postVO.setGmtModified(postBO.getGmtModified());
-        postVO.setContent(StringEscapeUtils.escapeHtml4(postBO.getContent()));
-
+        postVO.setContent(postBO.getContent());
         return postVO;
     }
 }
