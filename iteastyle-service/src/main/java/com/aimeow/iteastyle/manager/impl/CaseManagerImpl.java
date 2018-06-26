@@ -31,7 +31,7 @@ public class CaseManagerImpl implements CaseManager {
 
     @Override
     public Result<List<CaseBO>> getCases(
-            @NonNull Integer type,Integer page, Integer pageSize) throws Exception {
+            Integer type,Integer page, Integer pageSize) throws Exception {
         Result<List<CaseBO>> result = new Result<>();
         List<CaseBO> caseBOS = new ArrayList<>();
 
