@@ -48,8 +48,11 @@ public class CaseDAOImpl implements CaseDAO {
 
     @Override
     public Long countCases(@NonNull CaseQuery caseQuery) throws Exception {
-        Query query=new Query(Criteria.where("type").is(
-                caseQuery.getType()));
+        Query query=new Query();
+        if (caseQuery.getType() != null) {
+            query.addCriteria(Criteria.where("type").is(
+                    caseQuery.getType()));
+        }
         return mongoTemplate.count(query, CaseDO.class);
     }
 
