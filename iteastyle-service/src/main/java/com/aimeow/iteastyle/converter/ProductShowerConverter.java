@@ -4,6 +4,7 @@ import com.aimeow.iteastyle.domain.ProductShowerBO;
 import com.aimeow.iteastyle.domain.ProductShowerDO;
 import com.aimeow.iteastyle.domain.ProductShower.ProductShowerVO;
 import lombok.NonNull;
+import org.apache.commons.text.StringEscapeUtils;
 
 public class ProductShowerConverter {
     public static ProductShowerBO convertDTB(ProductShowerDO productShowerDO) {
@@ -35,7 +36,7 @@ public class ProductShowerConverter {
         ProductShowerVO productShowerVO = new ProductShowerVO();
         productShowerVO.setId(productShowerBO.getId());
         productShowerVO.setTitle(productShowerBO.getTitle());
-        productShowerVO.setContent(productShowerBO.getContent());
+        productShowerVO.setContent(StringEscapeUtils.escapeHtml4(productShowerBO.getContent()));
         productShowerVO.setImageArr(productShowerBO.getImageArr());
         productShowerVO.setGmtCreate(productShowerBO.getGmtCreate());
         productShowerVO.setGmtModified(productShowerBO.getGmtModified());
