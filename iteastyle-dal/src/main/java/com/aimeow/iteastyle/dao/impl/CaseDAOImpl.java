@@ -32,8 +32,12 @@ public class CaseDAOImpl implements CaseDAO {
 
     @Override
     public List<CaseDO> queryCases(@NonNull CaseQuery caseQuery) throws Exception {
-        Query query=new Query(Criteria.where("type").is(
-                caseQuery.getType()));
+        Query query=new Query();
+        if (caseQuery.getType() == null) {
+            query.addCriteria(Criteria.where("type").is(
+                    caseQuery.getType()));
+        }
+
         query.with(new Sort(Sort.Direction.DESC, "gmtModified"));
         query.skip((caseQuery.getPage()-1) * caseQuery.getPageSize()).limit(caseQuery.getPageSize());
         List<CaseDO> caseDOS =  mongoTemplate.find(
