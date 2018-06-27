@@ -75,15 +75,7 @@ public class ProductShowerDAOImpl implements ProductShowerDAO {
         if (StringUtils.isEmpty(productShowerDO.getId())) {
             throw new Exception("id can not be null");
         }
-        if (StringUtils.isEmpty(productShowerDO.getContent())) {
-            throw new Exception("content can not be null");
-        }
-        if (StringUtils.isEmpty(productShowerDO.getTitle())) {
-            throw new Exception("title can not be null");
-        }
-        if (null == productShowerDO.getImageArr() || productShowerDO.getImageArr().size() == 0) {
-            throw new Exception("imageArr can not be null");
-        }
+
         productShowerDO.setGmtModified(new Date());
         Query query=new Query(Criteria.where(
                 "id").is(productShowerDO.getId()));

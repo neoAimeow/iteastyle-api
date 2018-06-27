@@ -25,6 +25,8 @@ public class CaseTypeTest {
     @Test public void testQueryByCaseCode() throws Exception {
         System.out.println(caseTypeDAO.getCaseTypeByTypeCode(101));
     }
+
+
     @Test public void testCreate() throws Exception {
         CaseTypeDO caseTypeDO = new CaseTypeDO();
         caseTypeDO.setType(105);
@@ -34,5 +36,15 @@ public class CaseTypeTest {
         caseTypeDO.setTypeIcon("http://pa74otoy6.bkt.clouddn.com/opaque-logo.png");
 
         caseTypeDAO.createCaseType(caseTypeDO);
+    }
+
+    @Test public void testModified() throws Exception {
+        CaseTypeDO caseTypeDO = new CaseTypeDO();
+        caseTypeDO.setId("5b2fcb883067c6307f8e5c23");
+        caseTypeDO.setType(104);
+        caseTypeDO.setTypeName("茶歇定制");
+
+
+        caseTypeDAO.updateCaseType(caseTypeDO);
     }
 }

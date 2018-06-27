@@ -77,15 +77,7 @@ public class PostDAOImpl implements PostDAO {
         if (StringUtils.isEmpty(postDO.getId())) {
             throw new Exception("id can not be null");
         }
-        if (StringUtils.isEmpty(postDO.getContent())) {
-            throw new Exception("content can not be null");
-        }
-        if (StringUtils.isEmpty(postDO.getStatus())) {
-            throw new Exception("status can not be null");
-        }
-        if (StringUtils.isEmpty(postDO.getTitle())) {
-            throw new Exception("title can not be null");
-        }
+
         postDO.setGmtModified(new Date());
         Query query=new Query(Criteria.where(
             "id").is(postDO.getId()));

@@ -64,21 +64,6 @@ public class CaseTypeDAOImpl implements CaseTypeDAO {
             throw new Exception("id can not be null");
         }
 
-        if (StringUtils.isEmpty(caseTypeDO.getTypeName())) {
-            throw new Exception("typeName can not be null");
-        }
-        if (StringUtils.isEmpty(caseTypeDO.getTypeNameEn())) {
-            throw new Exception("typeNameEn can not be null");
-        }
-        if (StringUtils.isEmpty(caseTypeDO.getTypeImage())) {
-            throw new Exception("typeImage can not be null");
-        }
-        if (StringUtils.isEmpty(caseTypeDO.getTypeIcon())) {
-            throw new Exception("typeIcon can not be null");
-        }
-        if (StringUtils.isEmpty(caseTypeDO.getType())) {
-            throw new Exception("type can not be null");
-        }
 
         Query query=new Query(Criteria.where(
                 "id").is(caseTypeDO.getId()));

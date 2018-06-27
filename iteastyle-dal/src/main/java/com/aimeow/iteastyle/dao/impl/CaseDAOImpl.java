@@ -79,15 +79,6 @@ public class CaseDAOImpl implements CaseDAO {
         if (StringUtils.isEmpty(caseDO.getId())) {
             throw new Exception("id can not be null");
         }
-        if (StringUtils.isEmpty(caseDO.getTitle())) {
-            throw new Exception("title can not be null");
-        }
-        if (StringUtils.isEmpty(caseDO.getType())) {
-            throw new Exception("type can not be null");
-        }
-        if (null == caseDO.getImageArr() || caseDO.getImageArr().size() == 0) {
-            throw new Exception("imageArr can not be null");
-        }
 
         caseDO.setGmtModified(new Date());
         Query query=new Query(Criteria.where(
