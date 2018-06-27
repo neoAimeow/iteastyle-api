@@ -224,7 +224,7 @@ public class WebDataServiceImpl implements WebDataService {
             CaseBO caseBO = caseManager.getCaseById(caseId).getModel();
             CaseVO caseVO = CaseConverter.convertBTV(caseBO);
             caseVO.setTypeName(caseTypeManager.getCaseTypeByTypeCode(caseBO.getType()).getModel().getTypeName());
-            result.setModel(CaseConverter.convertBTV(caseBO));
+            result.setModel(caseVO);
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());

@@ -22,6 +22,9 @@ public class CaseTypeTest {
         System.out.println(caseTypeDAO.getCaseTypes());
     }
 
+    @Test public void testQueryByCaseCode() throws Exception {
+        System.out.println(caseTypeDAO.getCaseTypeByTypeCode(101));
+    }
     @Test public void testCreate() throws Exception {
         CaseTypeDO caseTypeDO = new CaseTypeDO();
         caseTypeDO.setType(105);
