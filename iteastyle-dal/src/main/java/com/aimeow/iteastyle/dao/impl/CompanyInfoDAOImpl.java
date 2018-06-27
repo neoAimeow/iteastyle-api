@@ -60,9 +60,7 @@ public class CompanyInfoDAOImpl implements CompanyInfoDAO {
         if (StringUtils.isEmpty(companyInfoDO.getStory())) {
             throw new Exception("story can not be null");
         }
-        if (StringUtils.isEmpty(companyInfoDO.getVideoUrl())) {
-            throw new Exception("videoUrl can not be null");
-        }
+
         if (StringUtils.isEmpty(companyInfoDO.getLatitude())) {
             throw new Exception("latitude can not be null");
         }
