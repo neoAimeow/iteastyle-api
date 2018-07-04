@@ -35,9 +35,15 @@ public class StaticDataTest {
 
 
         List<String> serviceArray = new ArrayList<>();
-        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/index-TeaArt.png");
-        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/index-TeaBreak.png");
-        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/index-TeaCeremony.png");
+        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/Tea%20break%20service-web.png");
+        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/Tea%20gift%20service-web.png");
+        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/Tea%20%20art%20%20service-web.png");
+
+
+        List<String> serviceWapArray = new ArrayList<>();
+        serviceWapArray.add("http://pa74otoy6.bkt.clouddn.com/Tea%20break%20service-wap.png");
+        serviceWapArray.add("http://pa74otoy6.bkt.clouddn.com/Tea%20gift%20service-wap.png");
+        serviceWapArray.add("http://pa74otoy6.bkt.clouddn.com/Tea%20%20art%20%20service-wap.png");
 
 
         List<String> showerArray = new ArrayList<>();
@@ -49,6 +55,7 @@ public class StaticDataTest {
 
         staticDataDO.setHomepageBannerUrls(homeHeader);
         staticDataDO.setHomepageServiceImageUrls(serviceArray);
+        staticDataDO.setHomepageServiceWapImageUrls(serviceWapArray);
         staticDataDO.setHomepageShowerImageUrls(showerArray);
         staticDataDO.setContactUsTitle("杭式下午茶 创意茶歇 健康食尚");
         staticDataDO.setLogoUrl("http://pa74otoy6.bkt.clouddn.com/logo.png");

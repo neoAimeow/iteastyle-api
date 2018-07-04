@@ -8,5 +8,6 @@ import java.util.List;
 public class HomePageVO {
     private List<String> headerImages;
     private List<String> serviceImages;
+    private List<String> serviceWapImages;
     private List<String> showerImages;
 }

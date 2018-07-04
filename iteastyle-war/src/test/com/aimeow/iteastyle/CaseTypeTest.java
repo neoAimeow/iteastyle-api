@@ -43,6 +43,9 @@ public class CaseTypeTest {
         caseTypeDO.setId("5b2fcb883067c6307f8e5c23");
         caseTypeDO.setType(104);
         caseTypeDO.setTypeName("茶歇定制");
+        caseTypeDO.setTypeImage("http://pa74otoy6.bkt.clouddn.com/case-customisation.png");
+        caseTypeDO.setTypeNameEn("TEA BREAK CUSTOMISATION");
+        caseTypeDO.setTypeIcon("http://pa74otoy6.bkt.clouddn.com/opaque-logo.png");
 
 
         caseTypeDAO.updateCaseType(caseTypeDO);

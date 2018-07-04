@@ -17,8 +17,8 @@ public class StaticDataConverter {
         staticDataBO.setContactUsBgUrl(staticDataDO.getContactUsBgUrl());
         staticDataBO.setHomepageBannerUrls(staticDataDO.getHomepageBannerUrls());
         staticDataBO.setHomepageServiceImageUrls(staticDataDO.getHomepageServiceImageUrls());
+        staticDataBO.setHomepageServiceWapImageUrls(staticDataDO.getHomepageServiceWapImageUrls());
         staticDataBO.setHomepageShowerImageUrls(staticDataDO.getHomepageShowerImageUrls());
-
         return staticDataBO;
     }
 
@@ -35,6 +35,7 @@ public class StaticDataConverter {
         staticDataDO.setHomepageBannerUrls(staticDataBO.getHomepageBannerUrls());
         staticDataDO.setHomepageServiceImageUrls(staticDataBO.getHomepageServiceImageUrls());
         staticDataDO.setHomepageShowerImageUrls(staticDataBO.getHomepageShowerImageUrls());
+        staticDataDO.setHomepageServiceWapImageUrls(staticDataBO.getHomepageServiceWapImageUrls());
 
         return staticDataDO;
     }
