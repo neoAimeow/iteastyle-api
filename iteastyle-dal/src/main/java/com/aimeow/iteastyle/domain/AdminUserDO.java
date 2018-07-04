@@ -13,6 +13,7 @@ public class AdminUserDO implements Serializable {
     @Id
     private String id;
     private String userName;
+    private String password;
     private String userNick;
     private String fullName;
     private String phone;
