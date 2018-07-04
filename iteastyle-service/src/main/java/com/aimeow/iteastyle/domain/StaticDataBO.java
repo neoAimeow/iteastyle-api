@@ -3,6 +3,7 @@ package com.aimeow.iteastyle.domain;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class StaticDataBO {
@@ -15,6 +16,6 @@ public class StaticDataBO {
 
     private List<String> homepageBannerUrls;
     private List<String> homepageServiceImageUrls;
-    private List<String> homepageServiceWapImageUrls;
+    private List<Map<String , String>> homepageServiceWapInfos;
     private List<String> homepageShowerImageUrls;
 }

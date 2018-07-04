@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class StaticDataDO implements Serializable {
@@ -18,6 +19,6 @@ public class StaticDataDO implements Serializable {
 
     private List<String> homepageBannerUrls;
     private List<String> homepageServiceImageUrls;
-    private List<String> homepageServiceWapImageUrls;
+    private List<Map<String , String>> homepageServiceWapInfos;
     private List<String> homepageShowerImageUrls;
 }

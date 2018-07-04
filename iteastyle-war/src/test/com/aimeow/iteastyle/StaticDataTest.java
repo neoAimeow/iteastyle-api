@@ -12,7 +12,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @WebAppConfiguration
@@ -40,10 +42,21 @@ public class StaticDataTest {
         serviceArray.add("http://pa74otoy6.bkt.clouddn.com/Tea%20%20art%20%20service-web.png");
 
 
-        List<String> serviceWapArray = new ArrayList<>();
-        serviceWapArray.add("http://pa74otoy6.bkt.clouddn.com/Tea%20break%20service-wap.png");
-        serviceWapArray.add("http://pa74otoy6.bkt.clouddn.com/Tea%20gift%20service-wap.png");
-        serviceWapArray.add("http://pa74otoy6.bkt.clouddn.com/Tea%20%20art%20%20service-wap.png");
+        List<Map<String , String>> serviceWapArray = new ArrayList<>();
+        Map<String , String> map1 = new HashMap<>();
+        map1.put("image" , "http://pa74otoy6.bkt.clouddn.com/Tea%20break%20service-wap.png");
+        map1.put("title" , "茶歇服务");
+        map1.put("title_en" , "TEA BREAK SERVICE");
+
+        Map<String , String> map2 = new HashMap<>();
+        map2.put("image" , "http://pa74otoy6.bkt.clouddn.com/Tea%20gift%20service-wap.png");
+        map2.put("title" , "茶礼服务");
+        map2.put("title_en" , "TEA GIFT SERVICE");
+
+        Map<String , String> map3 = new HashMap<>();
+        map3.put("image" , "http://pa74otoy6.bkt.clouddn.com/Tea%20%20art%20%20service-wap.png");
+        map3.put("title" , "茶艺服务");
+        map3.put("title_en" , "TEA ART SERVICE");
 
 
         List<String> showerArray = new ArrayList<>();
@@ -55,7 +68,7 @@ public class StaticDataTest {
 
         staticDataDO.setHomepageBannerUrls(homeHeader);
         staticDataDO.setHomepageServiceImageUrls(serviceArray);
-        staticDataDO.setHomepageServiceWapImageUrls(serviceWapArray);
+        staticDataDO.setHomepageServiceWapInfos(serviceWapArray);
         staticDataDO.setHomepageShowerImageUrls(showerArray);
         staticDataDO.setContactUsTitle("杭式下午茶 创意茶歇 健康食尚");
         staticDataDO.setLogoUrl("http://pa74otoy6.bkt.clouddn.com/logo.png");
