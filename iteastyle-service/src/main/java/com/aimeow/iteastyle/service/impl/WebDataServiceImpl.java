@@ -44,7 +44,7 @@ public class WebDataServiceImpl implements WebDataService {
             homePageVO.setHeaderImages(staticDataBO.getHomepageBannerUrls());
             homePageVO.setShowerImages(staticDataBO.getHomepageShowerImageUrls());
             homePageVO.setServiceImages(staticDataBO.getHomepageServiceImageUrls());
-            homePageVO.setServiceWapImages(staticDataBO.getHomepageServiceWapImageUrls());
+            homePageVO.setServiceWapInfos(staticDataBO.getHomepageServiceWapInfos());
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
