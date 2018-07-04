@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Document
@@ -14,7 +15,7 @@ public class CompanyInfoDO implements Serializable {
     private String companyName;
     private String companyAddress;
     private String postCode;
-    private String phoneNumber;
+    private List<String> phoneNumber;
     private String telephoneNumber;
     private String mail;
     private String webUrl;

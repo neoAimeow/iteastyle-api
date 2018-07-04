@@ -2,6 +2,8 @@ package com.aimeow.iteastyle.domain.Web;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class ContactUsVO {
     private String contactUsTitle;
@@ -9,7 +11,7 @@ public class ContactUsVO {
     private String companyName;
     private String companyAddress;
     private String telephoneNumber;
-    private String phoneNumber;
+    private List<String> phoneNumber;
     private String mailAddress;
     private String siteAddress;
     private Double latitude;

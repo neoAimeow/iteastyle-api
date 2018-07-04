@@ -2,12 +2,14 @@ package com.aimeow.iteastyle.domain;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class CompanyInfoBO {
     private String companyName;
     private String companyAddress;
     private String postCode;
-    private String phoneNumber;
+    private List<String> phoneNumber;
     private String telephoneNumber;
     private String mail;
     private String webUrl;

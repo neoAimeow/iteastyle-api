@@ -15,6 +15,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @WebAppConfiguration
 @SpringBootTest(classes = Application.class)
@@ -34,7 +37,10 @@ public class CompanyInfoTest {
         companyInfoDO.setCompanyName("杭州执贝科技有限公司");
         companyInfoDO.setCompanyAddress("杭州民和路525号三宏国际8楼");
         companyInfoDO.setPostCode("300000");
-        companyInfoDO.setPhoneNumber("159-0663-1121");
+        List<String> phones = new ArrayList<>();
+        phones.add("159-0663-1121");
+        phones.add("188-1486-8787");
+        companyInfoDO.setPhoneNumber(phones);
         companyInfoDO.setTelephoneNumber("(86)0571-83731743");
         companyInfoDO.setMail("iteastyle@126.com");
         companyInfoDO.setWebUrl("https://www.iteastyle.cn");
