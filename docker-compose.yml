@@ -3,9 +3,9 @@ version: '2.4'
 services:
 
    api:
-     image: iteastyle-api
+     image: iteastyle-api-test
      build: .
-     container_name: iteastyle-api
+     container_name: iteastyle-api-test
      restart: always
      expose:
            - "443"
