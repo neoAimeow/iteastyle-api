@@ -3,16 +3,16 @@ version: '2.4'
 services:
 
    api:
-     image: iteastyle-api-test
+     image: test
      build: .
-     container_name: iteastyle-api-test
+     container_name: test
      restart: always
      expose:
            - "15505"
      environment:
-       VIRTUAL_HOST: iteastyle-api-test.aimeow.com
+       VIRTUAL_HOST: test.aimeow.com
        VIRTUAL_PORT: 8080
-       LETSENCRYPT_HOST: iteastyle-api-test.aimeow.com
+       LETSENCRYPT_HOST: test.aimeow.com
        LETSENCRYPT_EMAIL: a18814888787@gmail.com
 
 networks:
