@@ -1,8 +1,12 @@
 package com.aimeow.iteastyle;
 
 import com.aimeow.iteastyle.Application;
+import com.aimeow.iteastyle.base.tools.CommonDAO;
 import com.aimeow.iteastyle.base.tools.CommonData;
 import com.aimeow.iteastyle.domain.DomainObject.CompanyInfoDO;
+import com.aimeow.iteastyle.domain.DomainObject.ProductShowerDO;
+import com.aimeow.iteastyle.domain.enums.StatusEnum;
+import com.aimeow.iteastyle.domain.query.ProductShowerQuery;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +23,15 @@ public class CompanyInfoTest {
     @Autowired
     CommonData commonData;
 
+    @Autowired
+    CommonDAO commonDAO;
     @Test
     public void testQuery() throws Exception {
-        System.out.println(commonData.getData(CompanyInfoDO.class));
+//        System.out.println(commonData.getData(CompanyInfoDO.class));
+        ProductShowerQuery query = new ProductShowerQuery();
+        query.setStatus(StatusEnum.NORMAL.getStatus());
+
+        System.out.println(commonDAO.count(query , ProductShowerDO.class));
     }
 
     @Test

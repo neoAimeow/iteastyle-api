@@ -64,6 +64,7 @@ public class CommonDAOImpl implements CommonDAO{
     public <TD extends BaseEntity,TQ extends BaseQuery> Long count(
             @NonNull TQ query, Class<TD> cls) throws Exception {
         Query q = parseQuery(query);
+        System.out.println(cls);
         return mongoTemplate.count(q, cls);
     }
 
@@ -157,6 +158,9 @@ public class CommonDAOImpl implements CommonDAO{
             Map.Entry entry = (Map.Entry) iterator.next();
             String key = entry.getKey().toString();
             Object val = entry.getValue();
+            System.out.println("key:" + key);
+            System.out.println("val:" + val);
+
             if ("page".equals(key)) {
                 continue;
             }
