@@ -28,9 +28,8 @@ import java.util.Collections;
 @RestController
 @ComponentScan({
         "com.aimeow.iteastyle.service"
-        ,"com.aimeow.iteastyle.tools"
         ,"com.aimeow.iteastyle.config"
-        ,"com.aimeow.iteastyle.dao"})
+        ,"com.aimeow.iteastyle.base.tools"})
 public class Application {
 
     @ApiIgnore

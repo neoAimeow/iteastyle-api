@@ -4,13 +4,14 @@ import com.aimeow.iteastyle.base.domain.BaseEntity;
 import com.aimeow.iteastyle.base.tools.CommonData;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CommonDataImpl implements CommonData {
     @Autowired
-    private RedisTemplate<String,String> redisTemplate;
+    private MongoTemplate mongoTemplate;
 
     @Override
     public <T extends BaseEntity> T getData(Class<T> cls) throws Exception {
