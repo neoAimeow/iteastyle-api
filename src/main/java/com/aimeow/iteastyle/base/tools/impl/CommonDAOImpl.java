@@ -167,7 +167,7 @@ public class CommonDAOImpl implements CommonDAO{
             if ("pageSize".equals(key)) {
                 continue;
             }
-            q.addCriteria(Criteria.where("key").is(val));
+            q.addCriteria(Criteria.where(key).is(val));
         }
         return q;
     }

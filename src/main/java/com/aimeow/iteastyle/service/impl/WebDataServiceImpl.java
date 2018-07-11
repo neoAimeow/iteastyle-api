@@ -114,7 +114,6 @@ public class WebDataServiceImpl implements WebDataService {
             ProductShowerQuery query = new ProductShowerQuery();
             query.setPage(page);
             query.setPageSize(pageSize);
-            query.setStatus(StatusEnum.NORMAL.getStatus());
 
             getProductShowersVO.setTotalCount(
                     commonDAO.count(query , ProductShowerDO.class)

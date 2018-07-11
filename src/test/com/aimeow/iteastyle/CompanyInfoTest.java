@@ -15,6 +15,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RunWith(SpringRunner.class)
 @WebAppConfiguration
 @SpringBootTest(classes = Application.class)
@@ -29,9 +32,11 @@ public class CompanyInfoTest {
     public void testQuery() throws Exception {
 //        System.out.println(commonData.getData(CompanyInfoDO.class));
         ProductShowerQuery query = new ProductShowerQuery();
-        query.setStatus(StatusEnum.NORMAL.getStatus());
-
-        System.out.println(commonDAO.count(query , ProductShowerDO.class));
+        query.setPage(1);
+        query.setPageSize(10);
+        Map<String,String> map = new HashMap<>();
+        map.put("title" , "中式古典");
+        System.out.println(commonDAO.queryList(query , ProductShowerDO.class));
     }
 
     @Test
