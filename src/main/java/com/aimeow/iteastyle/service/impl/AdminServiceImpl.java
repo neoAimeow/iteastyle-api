@@ -96,10 +96,10 @@ public class AdminServiceImpl implements AdminService {
         try {
             if ("companyInfo".equals(type)) {
                 CompanyInfoDO companyInfoDO = JSONObject.parseObject(param , CompanyInfoDO.class);
-                result.setModel(commonData.edit(companyInfoDO));
+                result.setModel(commonData.edit(companyInfoDO, CompanyInfoDO.class));
             } else if ("staticData".equals(type)) {
                 StaticDataDO staticDataDO = JSONObject.parseObject(param , StaticDataDO.class);
-                result.setModel(commonData.edit(staticDataDO));
+                result.setModel(commonData.edit(staticDataDO, StaticDataDO.class));
             }
         } catch (Exception e) {
             result.setMsgInfo(e.getMessage());
