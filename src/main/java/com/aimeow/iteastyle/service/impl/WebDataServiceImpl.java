@@ -35,10 +35,10 @@ public class WebDataServiceImpl implements WebDataService {
             StaticDataDO staticDataDO = commonData.getData(StaticDataDO.class);
             HomePageVO homePageVO = new HomePageVO();
             result.setModel(homePageVO);
-            homePageVO.setHeaderImages(staticDataDO.getHomepageBannerUrls());
-            homePageVO.setShowerImages(staticDataDO.getHomepageShowerImageUrls());
-            homePageVO.setServiceImages(staticDataDO.getHomepageServiceImageUrls());
-            homePageVO.setServiceWapInfos(staticDataDO.getHomepageServiceWapInfos());
+//            homePageVO.setHeaderImages(staticDataDO.getHomepageBannerUrls());
+//            homePageVO.setShowerImages(staticDataDO.getHomepageShowerImageUrls());
+//            homePageVO.setServiceImages(staticDataDO.getHomepageServiceImageUrls());
+//            homePageVO.setServiceWapInfos(staticDataDO.getHomepageServiceWapInfos());
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
