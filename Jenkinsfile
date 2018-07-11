@@ -12,7 +12,7 @@ pipeline {
       steps {
         echo 'Starting build the app.....'
         sh 'mvn package -Dmaven.test.skip=true'
-        sh 'ls'
+        sh 'ls target'
         sh 'sed -i "s/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g" /etc/apk/repositories'
         sh 'apk add --update --no-cache openssh sshpass'
         withCredentials(bindings: [usernamePassword(credentialsId: 'server-118.178.131.105', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
