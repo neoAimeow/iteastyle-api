@@ -1,17 +1,12 @@
 package com.aimeow.iteastyle.service;
 
 import com.aimeow.iteastyle.base.domain.BaseResult;
-import com.aimeow.iteastyle.domain.ViewObject.CompanyInfoVO;
-import com.aimeow.iteastyle.domain.ViewObject.GetCasesVO;
-import com.aimeow.iteastyle.domain.ViewObject.LogVO;
-import com.aimeow.iteastyle.domain.ViewObject.StaticDataVO;
+
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @Api(value = "/admin",tags = {"管理接口"}, description = "管理相关各路接口")
 @RequestMapping(value = "/admin")

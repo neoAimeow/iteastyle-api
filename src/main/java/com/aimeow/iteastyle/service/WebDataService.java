@@ -27,14 +27,6 @@ public interface WebDataService {
     @RequestMapping(value = "/contactUsData", method = RequestMethod.GET)
     BaseResult<ContactUsVO> getContactUsData();
 
-    @ApiOperation(value = "通过GET请求方式获取『产品展示』相关信息，需要传分页参数")
-    @RequestMapping(value = "/productShower", method = RequestMethod.GET)
-    BaseResult<GetProductShowersVO> getProductShowerList(Integer page , Integer pageSize);
-
-    @ApiOperation(value = "通过GET请求方式获取『产品展示详情』相关信息，需要传id")
-    @RequestMapping(value = "/productShowerDetail", method = RequestMethod.GET)
-    BaseResult<ProductShowerVO> getProductShowerDetail(String productShowerId);
-
     @ApiOperation(value = "通过GET请求方式获取『茶式动态』需要传分页参数")
     @RequestMapping(value = "/getPosts", method = RequestMethod.GET)
     BaseResult<GetPostsVO> getPosts(Integer page, Integer pageSize);
@@ -43,16 +35,20 @@ public interface WebDataService {
     @RequestMapping(value = "/getPostById", method = RequestMethod.GET)
     BaseResult<PostVO> getPostByPostId(String postId);
 
-    @ApiOperation(value = "通过GET请求方式获取经典案例类型")
-    @RequestMapping(value = "/getCaseTypes", method = RequestMethod.GET)
-    BaseResult<List<CaseTypeVO>> getCaseTypes();
+    @ApiOperation(value = "通过GET请求方式获取产品展示类型")
+    @RequestMapping(value = "/getProductShowerTypes", method = RequestMethod.GET)
+    BaseResult<List<ProductShowerTypeVO>> getProductShowerTypes();
 
-    @ApiOperation(value = "通过经典案例ID获取经典案例内容")
-    @RequestMapping(value = "/getCaseById", method = RequestMethod.GET)
-    BaseResult<CaseVO> getCaseById(String caseId);
+    @ApiOperation(value = "通过ID获取产品展示内容")
+    @RequestMapping(value = "/getProductShowerById", method = RequestMethod.GET)
+    BaseResult<CaseVO> getProductShowerById(String productShowerId);
 
-    @ApiOperation(value = "通过分页参数获得经典案例列表")
-    @RequestMapping(value = "/cases", method = RequestMethod.GET)
-    BaseResult<GetCasesVO> getCases(Integer type , Integer page , Integer pageSize);
+    @ApiOperation(value = "通过分页参数获得产品展示列表")
+    @RequestMapping(value = "/getProductShowerByType", method = RequestMethod.GET)
+    BaseResult<GetProductShowersVO> getProductShowerByType(Integer type , Integer page , Integer pageSize);
+
+    @ApiOperation(value = "获得产品展示首页列表")
+    @RequestMapping(value = "/getProductShowerHomeData", method = RequestMethod.GET)
+    BaseResult<GetProductShowersVO> getProductShowersHomeData();
 
 }

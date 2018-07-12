@@ -5,7 +5,6 @@ import com.aimeow.iteastyle.base.domain.BaseResult;
 import com.aimeow.iteastyle.base.tools.CommonConverter;
 import com.aimeow.iteastyle.domain.DomainObject.*;
 import com.aimeow.iteastyle.domain.ViewObject.*;
-import com.aimeow.iteastyle.domain.query.PostQuery;
 import com.aimeow.iteastyle.service.AdminService;
 import com.alibaba.fastjson.JSONObject;
 import lombok.NonNull;
@@ -31,13 +30,9 @@ public class AdminServiceImpl implements AdminService {
                 PostDO postDO = JSONObject.parseObject(param , PostDO.class);
                 result.setModel(commonDAO.create(postDO));
             } else if("case".equals(type)) {
-                CaseDO caseDO = JSONObject.parseObject(param , CaseDO.class);
-                result.setModel(commonDAO.create(caseDO));
-            } else if("productShower".equals(type)) {
                 ProductShowerDO productShowerDO = JSONObject.parseObject(param , ProductShowerDO.class);
                 result.setModel(commonDAO.create(productShowerDO));
             }
-
         } catch (Exception e) {
             result.setMsgInfo(e.getMessage());
             result.setSuccess(false);
@@ -56,11 +51,8 @@ public class AdminServiceImpl implements AdminService {
                 PostDO postDO = JSONObject.parseObject(param , PostDO.class);
                 result.setModel(commonDAO.update(postDO , PostDO.class));
             } else if("case".equals(type)) {
-                CaseDO caseDO = JSONObject.parseObject(param , CaseDO.class);
-                result.setModel(commonDAO.update(caseDO , CaseDO.class));
-            } else if("productShower".equals(type)) {
                 ProductShowerDO productShowerDO = JSONObject.parseObject(param , ProductShowerDO.class);
-                result.setModel(commonDAO.update(productShowerDO , ProductShowerDO.class));
+                result.setModel(commonDAO.update(productShowerDO, ProductShowerDO.class));
             }
 
         } catch (Exception e) {
@@ -78,8 +70,6 @@ public class AdminServiceImpl implements AdminService {
             if ("post".equals(type)) {
                 result.setModel(commonDAO.delete(id , PostDO.class));
             } else if("case".equals(type)) {
-                result.setModel(commonDAO.delete(id , CaseDO.class));
-            } else if("productShower".equals(type)) {
                 result.setModel(commonDAO.delete(id , ProductShowerDO.class));
             }
         } catch (Exception e) {
@@ -153,8 +143,6 @@ public class AdminServiceImpl implements AdminService {
                 result.setModel(JSONObject.parseObject(JSONObject.toJSONString(postVOS)));
 
             } else if("case".equals(type)) {
-
-            } else if("productShower".equals(type)) {
 
             }
         } catch (Exception e) {
