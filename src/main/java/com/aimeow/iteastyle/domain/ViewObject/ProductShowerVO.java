@@ -7,9 +7,10 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-public class CaseVO extends BaseEntity {
+public class ProductShowerVO extends BaseEntity {
     private String title;
     private Integer type;
     private String typeName;
     private List<String> imageArr;
+    private String content;
 }

@@ -4,7 +4,6 @@ import com.aimeow.iteastyle.base.domain.BaseQuery;
 import lombok.Data;
 
 @Data
-public class CaseQuery extends BaseQuery {
-    private String caseId;
+public class ProductShowerQuery extends BaseQuery {
     private Integer type;
 }

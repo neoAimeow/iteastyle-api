@@ -41,7 +41,7 @@ public interface WebDataService {
 
     @ApiOperation(value = "通过ID获取产品展示内容")
     @RequestMapping(value = "/getProductShowerById", method = RequestMethod.GET)
-    BaseResult<CaseVO> getProductShowerById(String productShowerId);
+    BaseResult<ProductShowerVO> getProductShowerById(String productShowerId);
 
     @ApiOperation(value = "通过分页参数获得产品展示列表")
     @RequestMapping(value = "/getProductShowerByType", method = RequestMethod.GET)

@@ -9,5 +9,5 @@ public class GetProductShowersVO {
     private Integer page;
     private Integer pageSize;
     private Long totalCount;
-    private List<CaseVO> cases;
+    private List<ProductShowerVO> cases;
 }

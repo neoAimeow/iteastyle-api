@@ -10,7 +10,7 @@ import com.aimeow.iteastyle.base.tools.CommonData;
 import com.aimeow.iteastyle.domain.DomainObject.*;
 import com.aimeow.iteastyle.domain.ViewObject.*;
 import com.aimeow.iteastyle.domain.enums.StatusEnum;
-import com.aimeow.iteastyle.domain.query.CaseQuery;
+import com.aimeow.iteastyle.domain.query.ProductShowerQuery;
 import com.aimeow.iteastyle.domain.query.PostQuery;
 import com.aimeow.iteastyle.service.WebDataService;
 import lombok.NonNull;
@@ -166,21 +166,21 @@ public class WebDataServiceImpl implements WebDataService {
     }
 
     @Override
-    public BaseResult<CaseVO> getProductShowerById(
+    public BaseResult<ProductShowerVO> getProductShowerById(
             @NonNull String productShowerId) {
-        BaseResult<CaseVO> result = new BaseResult<>();
+        BaseResult<ProductShowerVO> result = new BaseResult<>();
 
         try {
             ProductShowerDO productShowerDO = commonDAO.queryById(productShowerId , ProductShowerDO.class);
-            CaseVO caseVO = CommonConverter.convert(productShowerDO, CaseVO.class);
+            ProductShowerVO productShowerVO = CommonConverter.convert(productShowerDO, ProductShowerVO.class);
 
             Map<String, String> map = new HashMap<>();
-            map.put("type" , caseVO.getType().toString());
+            map.put("type" , productShowerVO.getType().toString());
             List<ProductShowerTypeDO> productShowerTypeDOS = commonDAO.queryByParam(map, ProductShowerTypeDO.class);
             if (productShowerTypeDOS.size()>0) {
-                caseVO.setTypeName(productShowerTypeDOS.get(0).getTypeName());
+                productShowerVO.setTypeName(productShowerTypeDOS.get(0).getTypeName());
             }
-            result.setModel(caseVO);
+            result.setModel(productShowerVO);
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
@@ -197,21 +197,21 @@ public class WebDataServiceImpl implements WebDataService {
             getProductShowersVO.setPage(page);
             getProductShowersVO.setPageSize(pageSize);
 
-            CaseQuery caseQuery = new CaseQuery();
-            caseQuery.setType(type);
-            caseQuery.setPage(page);
-            caseQuery.setPageSize(pageSize);
+            ProductShowerQuery productShowerQuery = new ProductShowerQuery();
+            productShowerQuery.setType(type);
+            productShowerQuery.setPage(page);
+            productShowerQuery.setPageSize(pageSize);
 
-            getProductShowersVO.setTotalCount(commonDAO.count(caseQuery , ProductShowerDO.class));
-            List<CaseVO> caseVOS = new ArrayList<>();
+            getProductShowersVO.setTotalCount(commonDAO.count(productShowerQuery, ProductShowerDO.class));
+            List<ProductShowerVO> productShowerVOS = new ArrayList<>();
 
-            List<ProductShowerDO> productShowerDOS = commonDAO.queryList(caseQuery , ProductShowerDO.class);
+            List<ProductShowerDO> productShowerDOS = commonDAO.queryList(productShowerQuery, ProductShowerDO.class);
             productShowerDOS.iterator().forEachRemaining(
                     obj-> {
-                        caseVOS.add(CommonConverter.convert(obj , CaseVO.class));
+                        productShowerVOS.add(CommonConverter.convert(obj , ProductShowerVO.class));
                     }
             );
-            getProductShowersVO.setCases(caseVOS);
+            getProductShowersVO.setCases(productShowerVOS);
             result.setModel(getProductShowersVO);
         } catch (Exception e) {
             result.setSuccess(false);
