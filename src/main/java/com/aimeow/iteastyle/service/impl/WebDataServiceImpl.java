@@ -208,8 +208,6 @@ public class WebDataServiceImpl implements WebDataService {
 
             getProductShowersVO.setTotalCount(commonDAO.count(productShowerQuery, ProductShowerDO.class));
 
-
-
             ProductShowersInTypeVO productShowersInTypeVO = new ProductShowersInTypeVO();
             List<ProductShowerBaseVO> productShowerBaseVOS = new ArrayList<>();
             productShowersInTypeVO.setProductShowers(productShowerBaseVOS);
@@ -240,7 +238,36 @@ public class WebDataServiceImpl implements WebDataService {
 
     @Override
     public BaseResult<List<ProductShowersInTypeVO>> getProductShowersHomeData() {
+        BaseResult<List<ProductShowersInTypeVO>> result = new BaseResult<>();
+        List<ProductShowersInTypeVO> productShowersInTypeVOS = new ArrayList<>();
+        try {
+            List<ProductShowerTypeVO> productShowerTypeVOS = new ArrayList<>();
+            List<ProductShowerBaseVO> productShowerBaseVOS = new ArrayList<>();
+            List<ProductShowerDO> productShowerDOS = commonDAO.queryList(
+                new BaseQuery() , ProductShowerDO.class);
+            List<ProductShowerTypeDO> productShowerTypeDOS = commonDAO.queryList(
+                new BaseQuery() , ProductShowerTypeDO.class);
 
-        return null;
+            productShowerDOS.iterator().forEachRemaining(
+                obj-> {
+                    productShowerBaseVOS.add(CommonConverter.convert(
+                        obj , ProductShowerBaseVO.class));
+                }
+            );
+
+            productShowerTypeDOS.iterator().forEachRemaining(
+                obj-> {
+                    productShowerTypeVOS.add(CommonConverter.convert(
+                        obj , ProductShowerTypeVO.class
+                    ));
+                }
+            );
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+
+        return result;
     }
 }
