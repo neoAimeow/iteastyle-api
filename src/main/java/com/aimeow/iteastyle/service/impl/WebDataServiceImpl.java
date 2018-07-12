@@ -154,7 +154,8 @@ public class WebDataServiceImpl implements WebDataService {
         try {
             List<ProductShowerTypeVO> productShowerTypeVOS = new ArrayList<>();
 
-            List<ProductShowerTypeDO> productShowerTypeDOS = commonDAO.queryList(new BaseQuery(), ProductShowerTypeDO.class);
+            List<ProductShowerTypeDO> productShowerTypeDOS = commonDAO.queryAllList(ProductShowerTypeDO.class);
+            System.out.println(productShowerTypeDOS);
             productShowerTypeDOS.iterator().forEachRemaining(
                     obj-> {
                         productShowerTypeVOS.add(CommonConverter.convert(obj , ProductShowerTypeVO.class));
@@ -178,8 +179,8 @@ public class WebDataServiceImpl implements WebDataService {
             ProductShowerDO productShowerDO = commonDAO.queryById(productShowerId , ProductShowerDO.class);
             ProductShowerBaseVO productShowerBaseVO = CommonConverter.convert(productShowerDO, ProductShowerBaseVO.class);
 
-            Map<String, String> map = new HashMap<>();
-            map.put("type" , productShowerBaseVO.getType().toString());
+            Map<String, Object> map = new HashMap<>();
+            map.put("type" , productShowerBaseVO.getType());
             List<ProductShowerTypeDO> productShowerTypeDOS = commonDAO.queryByParam(map, ProductShowerTypeDO.class);
             if (productShowerTypeDOS.size()>0) {
                 productShowerBaseVO.setTypeName(productShowerTypeDOS.get(0).getTypeName());
@@ -212,9 +213,10 @@ public class WebDataServiceImpl implements WebDataService {
             List<ProductShowerBaseVO> productShowerBaseVOS = new ArrayList<>();
             productShowersInTypeVO.setProductShowers(productShowerBaseVOS);
 
-            Map<String, String> map = new HashMap<>();
-            map.put("type" , type.toString());
+            Map<String, Object> map = new HashMap<>();
+            map.put("type" , type);
             List<ProductShowerTypeDO> productShowerTypeDOS = commonDAO.queryByParam(map, ProductShowerTypeDO.class);
+            System.out.println(productShowerTypeDOS);
             if (productShowerTypeDOS.size()>0) {
                 ProductShowerTypeVO productShowerTypeVO = CommonConverter.convert(productShowerTypeDOS.get(0),ProductShowerTypeVO.class);
                 productShowersInTypeVO.setProductType(productShowerTypeVO);
@@ -223,7 +225,9 @@ public class WebDataServiceImpl implements WebDataService {
             List<ProductShowerDO> productShowerDOS = commonDAO.queryList(productShowerQuery, ProductShowerDO.class);
             productShowerDOS.iterator().forEachRemaining(
                     obj-> {
-                        productShowerBaseVOS.add(CommonConverter.convert(obj , ProductShowerBaseVO.class));
+                        ProductShowerBaseVO productShowerBaseVO = CommonConverter.convert(obj , ProductShowerBaseVO.class);
+                        productShowerBaseVO.setTypeName(productShowersInTypeVO.getProductType().getTypeName());
+                        productShowerBaseVOS.add(productShowerBaseVO);
                     }
             );
 

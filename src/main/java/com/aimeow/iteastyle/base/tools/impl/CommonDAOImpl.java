@@ -34,6 +34,7 @@ public class CommonDAOImpl implements CommonDAO{
 
         q.skip((query.getPage()-1) * query.getPageSize()).limit(query.getPageSize());
         List<TD> dos =  mongoTemplate.find(q , cls);
+        System.out.println(dos);
         return dos;
     }
 
@@ -46,7 +47,7 @@ public class CommonDAOImpl implements CommonDAO{
     }
 
     @Override
-    public <TD extends BaseEntity> List<TD> queryByParam(Map<String, String> param, Class<TD> cls) {
+    public <TD extends BaseEntity> List<TD> queryByParam(Map<String, Object> param, Class<TD> cls) {
         Query query=new Query();
 
         Iterator iterator = param.entrySet().iterator();
@@ -54,10 +55,19 @@ public class CommonDAOImpl implements CommonDAO{
             Map.Entry entry = (Map.Entry) iterator.next();
             String key = entry.getKey().toString();
             Object val = entry.getValue();
+            System.out.println(key+"|"+val);
             query.addCriteria(Criteria.where(key).is(val));
         }
 
         return mongoTemplate.find(query , cls);
+    }
+
+    @Override
+    public <TD extends BaseEntity> List<TD> queryAllList(Class<TD> cls) {
+//        Query q = new Query();
+//        q.with(new Sort(Sort.Direction.DESC, "gmtModified"));
+        List<TD> dos =  mongoTemplate.findAll(cls);
+        return dos;
     }
 
     @Override
@@ -158,8 +168,6 @@ public class CommonDAOImpl implements CommonDAO{
             Map.Entry entry = (Map.Entry) iterator.next();
             String key = entry.getKey().toString();
             Object val = entry.getValue();
-            System.out.println("key:" + key);
-            System.out.println("val:" + val);
 
             if ("page".equals(key)) {
                 continue;

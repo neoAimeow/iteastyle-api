@@ -29,12 +29,12 @@ public class CompanyInfoTest {
     @Test
     public void testQuery() throws Exception {
 //        System.out.println(commonData.getData(CompanyInfoDO.class));
-        ProductShowerQuery query = new ProductShowerQuery();
-        query.setPage(1);
-        query.setPageSize(10);
-        Map<String,String> map = new HashMap<>();
-        map.put("title" , "中式古典");
-        System.out.println(commonDAO.queryList(query , ProductShowerDO.class));
+//        ProductShowerQuery query = new ProductShowerQuery();
+//        query.setPage(1);
+//        query.setPageSize(10);
+//        Map<String,String> map = new HashMap<>();
+//        map.put("title" , "中式古典");
+//        System.out.println(commonDAO.queryList(query , ProductShowerDO.class));
     }
 
     @Test

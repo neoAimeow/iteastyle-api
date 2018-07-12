@@ -10,8 +10,9 @@ import java.util.Map;
 
 public interface CommonDAO {
     <TD extends BaseEntity> TD queryById(String id , Class<TD> cls) throws Exception;
-    <TD extends BaseEntity> List<TD> queryByParam(Map<String , String> param, Class<TD> cls) throws Exception;
+    <TD extends BaseEntity> List<TD> queryByParam(Map<String , Object> param, Class<TD> cls) throws Exception;
     <TD extends BaseEntity,TQ extends BaseQuery> List<TD> queryList(TQ query, Class<TD> cls) throws Exception;
+    <TD extends BaseEntity> List<TD> queryAllList(Class<TD> cls) throws Exception;
     <TD extends BaseEntity,TQ extends BaseQuery> Long count(TQ query, Class<TD> cls) throws Exception;
     <TD extends BaseEntity> Boolean create(TD domain) throws Exception;
     <TD extends BaseEntity> Boolean update(TD domain , Class<TD> cls) throws Exception;
