@@ -34,7 +34,6 @@ public class CommonDAOImpl implements CommonDAO{
 
         q.skip((query.getPage()-1) * query.getPageSize()).limit(query.getPageSize());
         List<TD> dos =  mongoTemplate.find(q , cls);
-        System.out.println(dos);
         return dos;
     }
 
@@ -74,7 +73,6 @@ public class CommonDAOImpl implements CommonDAO{
     public <TD extends BaseEntity,TQ extends BaseQuery> Long count(
             @NonNull TQ query, Class<TD> cls) throws Exception {
         Query q = parseQuery(query);
-        System.out.println(cls);
         return mongoTemplate.count(q, cls);
     }
 

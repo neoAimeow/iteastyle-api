@@ -9,9 +9,8 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 
 @Data
-public class ProductShowerDO extends BaseEntity implements Serializable {
+public class CaseDO extends BaseEntity implements Serializable {
     private static final long serialVersionUID = -1434062932553096110L;
-    @Id
     private String title;
     private Integer type;
     private List<String> imageArr;

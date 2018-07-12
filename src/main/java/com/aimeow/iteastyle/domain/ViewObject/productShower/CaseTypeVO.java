@@ -3,14 +3,11 @@ package com.aimeow.iteastyle.domain.ViewObject.productShower;
 import com.aimeow.iteastyle.base.domain.BaseEntity;
 import lombok.Data;
 
-import java.util.Date;
-import java.util.List;
-
 @Data
-public class ProductShowerBaseVO extends BaseEntity {
-    private String title;
+public class CaseTypeVO extends BaseEntity {
     private Integer type;
     private String typeName;
-    private List<String> imageArr;
-    private String content;
+    private String typeNameEn;
+    private String typeImage;
+    private String typeIcon;
 }

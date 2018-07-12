@@ -9,12 +9,12 @@ import com.aimeow.iteastyle.base.tools.CommonData;
 
 import com.aimeow.iteastyle.domain.DomainObject.*;
 import com.aimeow.iteastyle.domain.ViewObject.*;
-import com.aimeow.iteastyle.domain.ViewObject.productShower.GetProductShowersVO;
-import com.aimeow.iteastyle.domain.ViewObject.productShower.ProductShowerTypeVO;
-import com.aimeow.iteastyle.domain.ViewObject.productShower.ProductShowerBaseVO;
-import com.aimeow.iteastyle.domain.ViewObject.productShower.ProductShowersInTypeVO;
+import com.aimeow.iteastyle.domain.ViewObject.productShower.GetCasesVO;
+import com.aimeow.iteastyle.domain.ViewObject.productShower.CaseTypeVO;
+import com.aimeow.iteastyle.domain.ViewObject.productShower.CaseBaseVO;
+import com.aimeow.iteastyle.domain.ViewObject.productShower.CasesInTypeVO;
 import com.aimeow.iteastyle.domain.enums.StatusEnum;
-import com.aimeow.iteastyle.domain.query.ProductShowerQuery;
+import com.aimeow.iteastyle.domain.query.CaseQuery;
 import com.aimeow.iteastyle.domain.query.PostQuery;
 import com.aimeow.iteastyle.service.WebDataService;
 import lombok.NonNull;
@@ -149,19 +149,18 @@ public class WebDataServiceImpl implements WebDataService {
     }
 
     @Override
-    public BaseResult<List<ProductShowerTypeVO>> getProductShowerTypes() {
-        BaseResult<List<ProductShowerTypeVO>> result = new BaseResult<>();
+    public BaseResult<List<CaseTypeVO>> getCaseTypes() {
+        BaseResult<List<CaseTypeVO>> result = new BaseResult<>();
         try {
-            List<ProductShowerTypeVO> productShowerTypeVOS = new ArrayList<>();
+            List<CaseTypeVO> caseTypeVOS = new ArrayList<>();
 
-            List<ProductShowerTypeDO> productShowerTypeDOS = commonDAO.queryAllList(ProductShowerTypeDO.class);
-            System.out.println(productShowerTypeDOS);
-            productShowerTypeDOS.iterator().forEachRemaining(
+            List<CaseTypeDO> caseTypeDOS = commonDAO.queryAllList(CaseTypeDO.class);
+            caseTypeDOS.iterator().forEachRemaining(
                     obj-> {
-                        productShowerTypeVOS.add(CommonConverter.convert(obj , ProductShowerTypeVO.class));
+                        caseTypeVOS.add(CommonConverter.convert(obj , CaseTypeVO.class));
                     }
             );
-            result.setModel(productShowerTypeVOS);
+            result.setModel(caseTypeVOS);
 
         } catch (Exception e) {
             result.setSuccess(false);
@@ -171,21 +170,21 @@ public class WebDataServiceImpl implements WebDataService {
     }
 
     @Override
-    public BaseResult<ProductShowerBaseVO> getProductShowerById(
+    public BaseResult<CaseBaseVO> getCaseById(
             @NonNull String productShowerId) {
-        BaseResult<ProductShowerBaseVO> result = new BaseResult<>();
+        BaseResult<CaseBaseVO> result = new BaseResult<>();
 
         try {
-            ProductShowerDO productShowerDO = commonDAO.queryById(productShowerId , ProductShowerDO.class);
-            ProductShowerBaseVO productShowerBaseVO = CommonConverter.convert(productShowerDO, ProductShowerBaseVO.class);
+            CaseDO caseDO = commonDAO.queryById(productShowerId , CaseDO.class);
+            CaseBaseVO caseBaseVO = CommonConverter.convert(caseDO, CaseBaseVO.class);
 
             Map<String, Object> map = new HashMap<>();
-            map.put("type" , productShowerBaseVO.getType());
-            List<ProductShowerTypeDO> productShowerTypeDOS = commonDAO.queryByParam(map, ProductShowerTypeDO.class);
-            if (productShowerTypeDOS.size()>0) {
-                productShowerBaseVO.setTypeName(productShowerTypeDOS.get(0).getTypeName());
+            map.put("type" , caseBaseVO.getType());
+            List<CaseTypeDO> caseTypeDOS = commonDAO.queryByParam(map, CaseTypeDO.class);
+            if (caseTypeDOS.size()>0) {
+                caseBaseVO.setTypeName(caseTypeDOS.get(0).getTypeName());
             }
-            result.setModel(productShowerBaseVO);
+            result.setModel(caseBaseVO);
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
@@ -194,45 +193,45 @@ public class WebDataServiceImpl implements WebDataService {
     }
 
     @Override
-    public BaseResult<GetProductShowersVO> getProductShowerByType(
+    public BaseResult<GetCasesVO> getCaseByType(
             @NonNull Integer type , Integer page, Integer pageSize) {
-        BaseResult<GetProductShowersVO> result = new BaseResult<>();
-        GetProductShowersVO getProductShowersVO = new GetProductShowersVO();
+        BaseResult<GetCasesVO> result = new BaseResult<>();
+        GetCasesVO getCasesVO = new GetCasesVO();
         try {
-            getProductShowersVO.setPage(page);
-            getProductShowersVO.setPageSize(pageSize);
+            getCasesVO.setPage(page);
+            getCasesVO.setPageSize(pageSize);
 
-            ProductShowerQuery productShowerQuery = new ProductShowerQuery();
-            productShowerQuery.setType(type);
-            productShowerQuery.setPage(page);
-            productShowerQuery.setPageSize(pageSize);
+            CaseQuery caseQuery = new CaseQuery();
+            caseQuery.setType(type);
+            caseQuery.setPage(page);
+            caseQuery.setPageSize(pageSize);
 
-            getProductShowersVO.setTotalCount(commonDAO.count(productShowerQuery, ProductShowerDO.class));
+            getCasesVO.setTotalCount(commonDAO.count(caseQuery, CaseDO.class));
 
-            ProductShowersInTypeVO productShowersInTypeVO = new ProductShowersInTypeVO();
-            List<ProductShowerBaseVO> productShowerBaseVOS = new ArrayList<>();
-            productShowersInTypeVO.setProductShowers(productShowerBaseVOS);
+            CasesInTypeVO casesInTypeVO = new CasesInTypeVO();
+            List<CaseBaseVO> caseBaseVOS = new ArrayList<>();
+            casesInTypeVO.setCases(caseBaseVOS);
 
             Map<String, Object> map = new HashMap<>();
             map.put("type" , type);
-            List<ProductShowerTypeDO> productShowerTypeDOS = commonDAO.queryByParam(map, ProductShowerTypeDO.class);
-            System.out.println(productShowerTypeDOS);
-            if (productShowerTypeDOS.size()>0) {
-                ProductShowerTypeVO productShowerTypeVO = CommonConverter.convert(productShowerTypeDOS.get(0),ProductShowerTypeVO.class);
-                productShowersInTypeVO.setProductType(productShowerTypeVO);
+            List<CaseTypeDO> caseTypeDOS = commonDAO.queryByParam(map, CaseTypeDO.class);
+            if (caseTypeDOS.size()>0) {
+                CaseTypeVO caseTypeVO = CommonConverter.convert(caseTypeDOS.get(0),CaseTypeVO.class);
+                casesInTypeVO.setCaseType(caseTypeVO);
             }
 
-            List<ProductShowerDO> productShowerDOS = commonDAO.queryList(productShowerQuery, ProductShowerDO.class);
-            productShowerDOS.iterator().forEachRemaining(
+            List<CaseDO> caseDOS = commonDAO.queryList(caseQuery, CaseDO.class);
+            caseDOS.iterator().forEachRemaining(
                     obj-> {
-                        ProductShowerBaseVO productShowerBaseVO = CommonConverter.convert(obj , ProductShowerBaseVO.class);
-                        productShowerBaseVO.setTypeName(productShowersInTypeVO.getProductType().getTypeName());
-                        productShowerBaseVOS.add(productShowerBaseVO);
+                        CaseBaseVO caseBaseVO = CommonConverter.convert(obj , CaseBaseVO.class);
+                        caseBaseVO.setTypeName(casesInTypeVO.getCaseType().getTypeName());
+                        caseBaseVOS.add(caseBaseVO);
                     }
             );
 
-            getProductShowersVO.setProductShowers(productShowersInTypeVO);
-            result.setModel(getProductShowersVO);
+
+            getCasesVO.setModel(casesInTypeVO);
+            result.setModel(getCasesVO);
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
@@ -241,28 +240,28 @@ public class WebDataServiceImpl implements WebDataService {
     }
 
     @Override
-    public BaseResult<List<ProductShowersInTypeVO>> getProductShowersHomeData() {
-        BaseResult<List<ProductShowersInTypeVO>> result = new BaseResult<>();
-        List<ProductShowersInTypeVO> productShowersInTypeVOS = new ArrayList<>();
+    public BaseResult<List<CasesInTypeVO>> getCasesHomeData() {
+        BaseResult<List<CasesInTypeVO>> result = new BaseResult<>();
+        List<CasesInTypeVO> casesInTypeVOS = new ArrayList<>();
         try {
-            List<ProductShowerTypeVO> productShowerTypeVOS = new ArrayList<>();
-            List<ProductShowerBaseVO> productShowerBaseVOS = new ArrayList<>();
-            List<ProductShowerDO> productShowerDOS = commonDAO.queryList(
-                new BaseQuery() , ProductShowerDO.class);
-            List<ProductShowerTypeDO> productShowerTypeDOS = commonDAO.queryList(
-                new BaseQuery() , ProductShowerTypeDO.class);
+            List<CaseTypeVO> caseTypeVOS = new ArrayList<>();
+            List<CaseBaseVO> caseBaseVOS = new ArrayList<>();
+            List<CaseDO> caseDOS = commonDAO.queryList(
+                new BaseQuery() , CaseDO.class);
+            List<CaseTypeDO> caseTypeDOS = commonDAO.queryList(
+                new BaseQuery() , CaseTypeDO.class);
 
-            productShowerDOS.iterator().forEachRemaining(
+            caseDOS.iterator().forEachRemaining(
                 obj-> {
-                    productShowerBaseVOS.add(CommonConverter.convert(
-                        obj , ProductShowerBaseVO.class));
+                    caseBaseVOS.add(CommonConverter.convert(
+                        obj , CaseBaseVO.class));
                 }
             );
 
-            productShowerTypeDOS.iterator().forEachRemaining(
+            caseTypeDOS.iterator().forEachRemaining(
                 obj-> {
-                    productShowerTypeVOS.add(CommonConverter.convert(
-                        obj , ProductShowerTypeVO.class
+                    caseTypeVOS.add(CommonConverter.convert(
+                        obj , CaseTypeVO.class
                     ));
                 }
             );

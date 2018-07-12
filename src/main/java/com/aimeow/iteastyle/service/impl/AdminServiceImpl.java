@@ -30,8 +30,8 @@ public class AdminServiceImpl implements AdminService {
                 PostDO postDO = JSONObject.parseObject(param , PostDO.class);
                 result.setModel(commonDAO.create(postDO));
             } else if("case".equals(type)) {
-                ProductShowerDO productShowerDO = JSONObject.parseObject(param , ProductShowerDO.class);
-                result.setModel(commonDAO.create(productShowerDO));
+                CaseDO caseDO = JSONObject.parseObject(param , CaseDO.class);
+                result.setModel(commonDAO.create(caseDO));
             }
         } catch (Exception e) {
             result.setMsgInfo(e.getMessage());
@@ -51,8 +51,8 @@ public class AdminServiceImpl implements AdminService {
                 PostDO postDO = JSONObject.parseObject(param , PostDO.class);
                 result.setModel(commonDAO.update(postDO , PostDO.class));
             } else if("case".equals(type)) {
-                ProductShowerDO productShowerDO = JSONObject.parseObject(param , ProductShowerDO.class);
-                result.setModel(commonDAO.update(productShowerDO, ProductShowerDO.class));
+                CaseDO caseDO = JSONObject.parseObject(param , CaseDO.class);
+                result.setModel(commonDAO.update(caseDO, CaseDO.class));
             }
 
         } catch (Exception e) {
@@ -70,7 +70,7 @@ public class AdminServiceImpl implements AdminService {
             if ("post".equals(type)) {
                 result.setModel(commonDAO.delete(id , PostDO.class));
             } else if("case".equals(type)) {
-                result.setModel(commonDAO.delete(id , ProductShowerDO.class));
+                result.setModel(commonDAO.delete(id , CaseDO.class));
             }
         } catch (Exception e) {
             result.setMsgInfo(e.getMessage());

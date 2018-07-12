@@ -2,10 +2,10 @@ package com.aimeow.iteastyle.service;
 
 import com.aimeow.iteastyle.base.domain.BaseResult;
 import com.aimeow.iteastyle.domain.ViewObject.*;
-import com.aimeow.iteastyle.domain.ViewObject.productShower.GetProductShowersVO;
-import com.aimeow.iteastyle.domain.ViewObject.productShower.ProductShowerTypeVO;
-import com.aimeow.iteastyle.domain.ViewObject.productShower.ProductShowerBaseVO;
-import com.aimeow.iteastyle.domain.ViewObject.productShower.ProductShowersInTypeVO;
+import com.aimeow.iteastyle.domain.ViewObject.productShower.GetCasesVO;
+import com.aimeow.iteastyle.domain.ViewObject.productShower.CaseTypeVO;
+import com.aimeow.iteastyle.domain.ViewObject.productShower.CaseBaseVO;
+import com.aimeow.iteastyle.domain.ViewObject.productShower.CasesInTypeVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,19 +40,19 @@ public interface WebDataService {
     BaseResult<PostVO> getPostByPostId(String postId);
 
     @ApiOperation(value = "通过GET请求方式获取产品展示类型")
-    @RequestMapping(value = "/getProductShowerTypes", method = RequestMethod.GET)
-    BaseResult<List<ProductShowerTypeVO>> getProductShowerTypes();
+    @RequestMapping(value = "/getCaseTypes", method = RequestMethod.GET)
+    BaseResult<List<CaseTypeVO>> getCaseTypes();
 
     @ApiOperation(value = "通过ID获取产品展示内容")
-    @RequestMapping(value = "/getProductShowerById", method = RequestMethod.GET)
-    BaseResult<ProductShowerBaseVO> getProductShowerById(String productShowerId);
+    @RequestMapping(value = "/getCaseById", method = RequestMethod.GET)
+    BaseResult<CaseBaseVO> getCaseById(String productShowerId);
 
     @ApiOperation(value = "通过分页参数获得产品展示列表")
-    @RequestMapping(value = "/getProductShowerByType", method = RequestMethod.GET)
-    BaseResult<GetProductShowersVO> getProductShowerByType(Integer type , Integer page , Integer pageSize);
+    @RequestMapping(value = "/getCaseByType", method = RequestMethod.GET)
+    BaseResult<GetCasesVO> getCaseByType(Integer type , Integer page , Integer pageSize);
 
     @ApiOperation(value = "获得产品展示首页列表")
-    @RequestMapping(value = "/getProductShowerHomeData", method = RequestMethod.GET)
-    BaseResult<List<ProductShowersInTypeVO>> getProductShowersHomeData();
+    @RequestMapping(value = "/getCaseHomeData", method = RequestMethod.GET)
+    BaseResult<List<CasesInTypeVO>> getCasesHomeData();
 
 }
