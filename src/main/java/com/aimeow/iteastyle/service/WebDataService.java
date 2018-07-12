@@ -2,6 +2,10 @@ package com.aimeow.iteastyle.service;
 
 import com.aimeow.iteastyle.base.domain.BaseResult;
 import com.aimeow.iteastyle.domain.ViewObject.*;
+import com.aimeow.iteastyle.domain.ViewObject.productShower.GetProductShowersVO;
+import com.aimeow.iteastyle.domain.ViewObject.productShower.ProductShowerTypeVO;
+import com.aimeow.iteastyle.domain.ViewObject.productShower.ProductShowerBaseVO;
+import com.aimeow.iteastyle.domain.ViewObject.productShower.ProductShowersInTypeVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,7 +45,7 @@ public interface WebDataService {
 
     @ApiOperation(value = "通过ID获取产品展示内容")
     @RequestMapping(value = "/getProductShowerById", method = RequestMethod.GET)
-    BaseResult<ProductShowerVO> getProductShowerById(String productShowerId);
+    BaseResult<ProductShowerBaseVO> getProductShowerById(String productShowerId);
 
     @ApiOperation(value = "通过分页参数获得产品展示列表")
     @RequestMapping(value = "/getProductShowerByType", method = RequestMethod.GET)
@@ -49,6 +53,6 @@ public interface WebDataService {
 
     @ApiOperation(value = "获得产品展示首页列表")
     @RequestMapping(value = "/getProductShowerHomeData", method = RequestMethod.GET)
-    BaseResult<GetProductShowersVO> getProductShowersHomeData();
+    BaseResult<List<ProductShowersInTypeVO>> getProductShowersHomeData();
 
 }

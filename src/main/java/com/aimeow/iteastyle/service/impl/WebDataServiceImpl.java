@@ -9,6 +9,10 @@ import com.aimeow.iteastyle.base.tools.CommonData;
 
 import com.aimeow.iteastyle.domain.DomainObject.*;
 import com.aimeow.iteastyle.domain.ViewObject.*;
+import com.aimeow.iteastyle.domain.ViewObject.productShower.GetProductShowersVO;
+import com.aimeow.iteastyle.domain.ViewObject.productShower.ProductShowerTypeVO;
+import com.aimeow.iteastyle.domain.ViewObject.productShower.ProductShowerBaseVO;
+import com.aimeow.iteastyle.domain.ViewObject.productShower.ProductShowersInTypeVO;
 import com.aimeow.iteastyle.domain.enums.StatusEnum;
 import com.aimeow.iteastyle.domain.query.ProductShowerQuery;
 import com.aimeow.iteastyle.domain.query.PostQuery;
@@ -166,21 +170,21 @@ public class WebDataServiceImpl implements WebDataService {
     }
 
     @Override
-    public BaseResult<ProductShowerVO> getProductShowerById(
+    public BaseResult<ProductShowerBaseVO> getProductShowerById(
             @NonNull String productShowerId) {
-        BaseResult<ProductShowerVO> result = new BaseResult<>();
+        BaseResult<ProductShowerBaseVO> result = new BaseResult<>();
 
         try {
             ProductShowerDO productShowerDO = commonDAO.queryById(productShowerId , ProductShowerDO.class);
-            ProductShowerVO productShowerVO = CommonConverter.convert(productShowerDO, ProductShowerVO.class);
+            ProductShowerBaseVO productShowerBaseVO = CommonConverter.convert(productShowerDO, ProductShowerBaseVO.class);
 
             Map<String, String> map = new HashMap<>();
-            map.put("type" , productShowerVO.getType().toString());
+            map.put("type" , productShowerBaseVO.getType().toString());
             List<ProductShowerTypeDO> productShowerTypeDOS = commonDAO.queryByParam(map, ProductShowerTypeDO.class);
             if (productShowerTypeDOS.size()>0) {
-                productShowerVO.setTypeName(productShowerTypeDOS.get(0).getTypeName());
+                productShowerBaseVO.setTypeName(productShowerTypeDOS.get(0).getTypeName());
             }
-            result.setModel(productShowerVO);
+            result.setModel(productShowerBaseVO);
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
@@ -203,15 +207,29 @@ public class WebDataServiceImpl implements WebDataService {
             productShowerQuery.setPageSize(pageSize);
 
             getProductShowersVO.setTotalCount(commonDAO.count(productShowerQuery, ProductShowerDO.class));
-            List<ProductShowerVO> productShowerVOS = new ArrayList<>();
+
+
+
+            ProductShowersInTypeVO productShowersInTypeVO = new ProductShowersInTypeVO();
+            List<ProductShowerBaseVO> productShowerBaseVOS = new ArrayList<>();
+            productShowersInTypeVO.setProductShowers(productShowerBaseVOS);
+
+            Map<String, String> map = new HashMap<>();
+            map.put("type" , type.toString());
+            List<ProductShowerTypeDO> productShowerTypeDOS = commonDAO.queryByParam(map, ProductShowerTypeDO.class);
+            if (productShowerTypeDOS.size()>0) {
+                ProductShowerTypeVO productShowerTypeVO = CommonConverter.convert(productShowerTypeDOS.get(0),ProductShowerTypeVO.class);
+                productShowersInTypeVO.setProductType(productShowerTypeVO);
+            }
 
             List<ProductShowerDO> productShowerDOS = commonDAO.queryList(productShowerQuery, ProductShowerDO.class);
             productShowerDOS.iterator().forEachRemaining(
                     obj-> {
-                        productShowerVOS.add(CommonConverter.convert(obj , ProductShowerVO.class));
+                        productShowerBaseVOS.add(CommonConverter.convert(obj , ProductShowerBaseVO.class));
                     }
             );
-            getProductShowersVO.setCases(productShowerVOS);
+
+            getProductShowersVO.setProductShowers(productShowersInTypeVO);
             result.setModel(getProductShowersVO);
         } catch (Exception e) {
             result.setSuccess(false);
@@ -221,7 +239,8 @@ public class WebDataServiceImpl implements WebDataService {
     }
 
     @Override
-    public BaseResult<GetProductShowersVO> getProductShowersHomeData() {
+    public BaseResult<List<ProductShowersInTypeVO>> getProductShowersHomeData() {
+
         return null;
     }
 }

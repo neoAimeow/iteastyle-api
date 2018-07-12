@@ -1,4 +1,4 @@
-package com.aimeow.iteastyle.domain.ViewObject;
+package com.aimeow.iteastyle.domain.ViewObject.productShower;
 
 import com.aimeow.iteastyle.base.domain.BaseEntity;
 import lombok.Data;
@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-public class ProductShowerVO extends BaseEntity {
+public class ProductShowerBaseVO extends BaseEntity {
     private String title;
     private Integer type;
     private String typeName;

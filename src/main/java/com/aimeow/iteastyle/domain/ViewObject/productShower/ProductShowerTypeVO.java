@@ -1,4 +1,4 @@
-package com.aimeow.iteastyle.domain.ViewObject;
+package com.aimeow.iteastyle.domain.ViewObject.productShower;
 
 import com.aimeow.iteastyle.base.domain.BaseEntity;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.aimeow.iteastyle.domain.ViewObject;
+package com.aimeow.iteastyle.domain.ViewObject.productShower;
 
 import lombok.Data;
 
@@ -9,5 +9,5 @@ public class GetProductShowersVO {
     private Integer page;
     private Integer pageSize;
     private Long totalCount;
-    private List<ProductShowerVO> cases;
+    private ProductShowersInTypeVO productShowers;
 }
