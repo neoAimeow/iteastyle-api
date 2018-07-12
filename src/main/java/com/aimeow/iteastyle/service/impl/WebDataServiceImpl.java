@@ -266,6 +266,10 @@ public class WebDataServiceImpl implements WebDataService {
                 }
             );
 
+            for (CaseTypeVO caseType:caseTypeVOS) {
+//                caseType.get
+            }
+
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
