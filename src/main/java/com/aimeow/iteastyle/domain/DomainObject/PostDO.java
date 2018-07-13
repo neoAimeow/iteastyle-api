@@ -13,4 +13,5 @@ public class PostDO extends BaseEntity implements Serializable {
     private Integer status;
     private String title;
     private String content;
+    private String imageUrl;
 }
