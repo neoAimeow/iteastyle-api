@@ -1,6 +1,7 @@
 package com.aimeow.iteastyle.service;
 
 import com.aimeow.iteastyle.base.domain.BaseResult;
+import com.aimeow.iteastyle.base.domain.BaseGetList;
 import com.aimeow.iteastyle.domain.ViewObject.*;
 import com.aimeow.iteastyle.domain.ViewObject.Case.CasesInTypeVO;
 import com.aimeow.iteastyle.domain.entity.CaseEntity;
@@ -35,7 +36,7 @@ public interface WebDataService {
 
     @ApiOperation(value = "通过GET请求方式获取『茶式动态』需要传分页参数")
     @RequestMapping(value = "/getPosts", method = RequestMethod.GET)
-    BaseResult<GetItemsVO> getPosts(Integer page, Integer pageSize);
+    BaseResult<BaseGetList> getPosts(Integer page, Integer pageSize);
 
     @ApiOperation(value = "通过GET请求方式获取『茶式动态详情』相关信息，需要传id")
     @RequestMapping(value = "/getPostById", method = RequestMethod.GET)
@@ -51,7 +52,7 @@ public interface WebDataService {
 
     @ApiOperation(value = "通过分页参数获得产品展示列表")
     @RequestMapping(value = "/getCaseByType", method = RequestMethod.GET)
-    BaseResult<GetItemsVO> getCaseByType(Integer type , Integer page , Integer pageSize);
+    BaseResult<BaseGetList> getCaseByType(Integer type , Integer page , Integer pageSize);
 
     @ApiOperation(value = "获得产品展示首页列表")
     @RequestMapping(value = "/getCasesHomeData", method = RequestMethod.GET)
@@ -64,4 +65,16 @@ public interface WebDataService {
     @ApiOperation(value = "获得茶礼服务内容")
     @RequestMapping(value = "/getTeaGiftService", method = RequestMethod.GET)
     BaseResult<TeaGiftServiceEntity> getTeaGiftService();
+
+    @ApiOperation(value = "获得diy活动内容")
+    @RequestMapping(value = "/getTeaDIYService", method = RequestMethod.GET)
+    BaseResult<BaseGetList> getTeaDIYService(Integer page, Integer pageSize);
+
+    @ApiOperation(value = "获得茶艺表演活动内容")
+    @RequestMapping(value = "/getTeaPerformService", method = RequestMethod.GET)
+    BaseResult<BaseGetList> getTeaPerformService(Integer page, Integer pageSize);
+
+    @ApiOperation(value = "获得茶文化讲座活动内容")
+    @RequestMapping(value = "/getTeaLectureService", method = RequestMethod.GET)
+    BaseResult<BaseGetList> getTeaLectureService(Integer page, Integer pageSize);
 }

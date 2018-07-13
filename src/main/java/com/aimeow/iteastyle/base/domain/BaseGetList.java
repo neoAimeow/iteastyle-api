@@ -1,4 +1,4 @@
-package com.aimeow.iteastyle.domain.ViewObject;
+package com.aimeow.iteastyle.base.domain;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import com.aimeow.iteastyle.domain.entity.PostEntity;
 import lombok.Data;
 
 @Data
-public class GetItemsVO<T> {
+public class BaseGetList<T> {
     private Integer page;
     private Integer pageSize;
     private Long totalCount;

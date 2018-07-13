@@ -1,4 +1,4 @@
-package com.aimeow.iteastyle.domain.entity.service.TeaPerform;
+package com.aimeow.iteastyle.domain.entity.service;
 
 import com.aimeow.iteastyle.base.domain.BaseEntity;
 import lombok.Data;

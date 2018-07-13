@@ -2,6 +2,7 @@ package com.aimeow.iteastyle.service.impl;
 
 import com.aimeow.iteastyle.base.domain.BaseQuery;
 import com.aimeow.iteastyle.base.domain.BaseResult;
+import com.aimeow.iteastyle.base.domain.BaseGetList;
 import com.aimeow.iteastyle.base.tools.CommonConverter;
 import com.aimeow.iteastyle.domain.ViewObject.*;
 import com.aimeow.iteastyle.domain.entity.CaseEntity;
@@ -131,11 +132,11 @@ public class AdminServiceImpl implements AdminService {
             if ("post".equals(type)) {
                 List<PostEntity> postEntities = commonDAO.queryList(baseQuery , PostEntity.class);
 
-                GetItemsVO getItemsVO = new GetItemsVO();
-                getItemsVO.setPage(page);
-                getItemsVO.setPageSize(pageSize);
-                getItemsVO.setTotalCount(commonDAO.count(baseQuery , PostEntity.class));
-                getItemsVO.setItems(postEntities);
+                BaseGetList baseGetList = new BaseGetList();
+                baseGetList.setPage(page);
+                baseGetList.setPageSize(pageSize);
+                baseGetList.setTotalCount(commonDAO.count(baseQuery , PostEntity.class));
+                baseGetList.setItems(postEntities);
                 result.setModel(JSONObject.parseObject(JSONObject.toJSONString(postEntities)));
 
             } else if("case".equals(type)) {

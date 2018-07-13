@@ -2,6 +2,7 @@ package com.aimeow.iteastyle.service.impl;
 
 import com.aimeow.iteastyle.base.domain.BaseQuery;
 import com.aimeow.iteastyle.base.domain.BaseResult;
+import com.aimeow.iteastyle.base.domain.BaseGetList;
 import com.aimeow.iteastyle.base.tools.CommonDAO;
 import com.aimeow.iteastyle.base.tools.CommonData;
 
@@ -10,7 +11,10 @@ import com.aimeow.iteastyle.domain.ViewObject.*;
 import com.aimeow.iteastyle.domain.ViewObject.Case.CasesInTypeVO;
 import com.aimeow.iteastyle.domain.entity.*;
 import com.aimeow.iteastyle.domain.entity.service.TeaBreak.TeaBreakServiceEntity;
+import com.aimeow.iteastyle.domain.entity.service.TeaDIYEntity;
 import com.aimeow.iteastyle.domain.entity.service.TeaGift.TeaGiftServiceEntity;
+import com.aimeow.iteastyle.domain.entity.service.TeaLectureEntity;
+import com.aimeow.iteastyle.domain.entity.service.TeaPerformEntity;
 import com.aimeow.iteastyle.domain.enums.StatusEnum;
 import com.aimeow.iteastyle.domain.query.CaseQuery;
 import com.aimeow.iteastyle.domain.query.PostQuery;
@@ -99,13 +103,13 @@ public class WebDataServiceImpl implements WebDataService {
     }
 
     @Override
-    public BaseResult<GetItemsVO> getPosts(
+    public BaseResult<BaseGetList> getPosts(
             Integer page, Integer pageSize) {
-        BaseResult<GetItemsVO> result = new BaseResult<GetItemsVO>();
-        GetItemsVO getItemsVO = new GetItemsVO();
+        BaseResult<BaseGetList> result = new BaseResult<BaseGetList>();
+        BaseGetList baseGetList = new BaseGetList();
         try {
-            getItemsVO.setPage(page);
-            getItemsVO.setPageSize(pageSize);
+            baseGetList.setPage(page);
+            baseGetList.setPageSize(pageSize);
 
             PostQuery postQuery = new PostQuery();
             postQuery.setPageSize(pageSize);
@@ -113,9 +117,9 @@ public class WebDataServiceImpl implements WebDataService {
             postQuery.setStatus(StatusEnum.NORMAL.getStatus());
 
             List<PostEntity> postEntities = commonDAO.queryList(postQuery , PostEntity.class);
-            getItemsVO.setTotalCount(commonDAO.count(postQuery , PostEntity.class));
-            getItemsVO.setItems(postEntities);
-            result.setModel(getItemsVO);
+            baseGetList.setTotalCount(commonDAO.count(postQuery , PostEntity.class));
+            baseGetList.setItems(postEntities);
+            result.setModel(baseGetList);
 
         } catch (Exception e) {
             result.setSuccess(false);
@@ -174,20 +178,20 @@ public class WebDataServiceImpl implements WebDataService {
     }
 
     @Override
-    public BaseResult<GetItemsVO> getCaseByType(
+    public BaseResult<BaseGetList> getCaseByType(
             @NonNull Integer type , Integer page, Integer pageSize) {
-        BaseResult<GetItemsVO> result = new BaseResult<>();
-        GetItemsVO getItemsVO = new GetItemsVO();
+        BaseResult<BaseGetList> result = new BaseResult<>();
+        BaseGetList baseGetList = new BaseGetList();
         try {
-            getItemsVO.setPage(page);
-            getItemsVO.setPageSize(pageSize);
+            baseGetList.setPage(page);
+            baseGetList.setPageSize(pageSize);
 
             CaseQuery caseQuery = new CaseQuery();
             caseQuery.setType(type);
             caseQuery.setPage(page);
             caseQuery.setPageSize(pageSize);
 
-            getItemsVO.setTotalCount(commonDAO.count(caseQuery, CaseEntity.class));
+            baseGetList.setTotalCount(commonDAO.count(caseQuery, CaseEntity.class));
 
             CasesInTypeVO casesInTypeVO = new CasesInTypeVO();
             List<CaseEntity> caseBaseVOS = new ArrayList<>();
@@ -211,8 +215,8 @@ public class WebDataServiceImpl implements WebDataService {
             );
 
 
-            getItemsVO.setItems(casesInTypeVO);
-            result.setModel(getItemsVO);
+            baseGetList.setItems(casesInTypeVO);
+            result.setModel(baseGetList);
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
@@ -285,6 +289,74 @@ public class WebDataServiceImpl implements WebDataService {
         try {
             TeaGiftServiceEntity teaGiftServiceEntity = commonData.getData(TeaGiftServiceEntity.class);
             result.setModel(teaGiftServiceEntity);
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+        return result;
+    }
+
+    @Override
+    public BaseResult<BaseGetList> getTeaLectureService(Integer page, Integer pageSize) {
+        BaseResult<BaseGetList> result = new BaseResult<>();
+        try {
+            BaseGetList baseGetList = new BaseGetList();
+            baseGetList.setPage(page);
+            baseGetList.setPageSize(pageSize);
+
+            BaseQuery baseQuery = new BaseQuery();
+            baseQuery.setPageSize(pageSize);
+            baseQuery.setPage(page);
+            List<TeaLectureEntity> teaLectureEntities = commonDAO.queryList(baseQuery , TeaLectureEntity.class);
+            baseGetList.setTotalCount(commonDAO.count(new BaseQuery() , TeaLectureEntity.class));
+            baseGetList.setItems(teaLectureEntities);
+
+            TeaGiftServiceEntity teaGiftServiceEntity = commonData.getData(TeaGiftServiceEntity.class);
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+        return result;
+    }
+
+    @Override
+    public BaseResult<BaseGetList> getTeaDIYService(Integer page, Integer pageSize) {
+        BaseResult<BaseGetList> result = new BaseResult<>();
+        try {
+            BaseGetList baseGetList = new BaseGetList();
+            baseGetList.setPage(page);
+            baseGetList.setPageSize(pageSize);
+
+            BaseQuery baseQuery = new BaseQuery();
+            baseQuery.setPageSize(pageSize);
+            baseQuery.setPage(page);
+            List<TeaDIYEntity> teaDIYEntities = commonDAO.queryList(baseQuery , TeaDIYEntity.class);
+            baseGetList.setTotalCount(commonDAO.count(new BaseQuery() , TeaDIYEntity.class));
+            baseGetList.setItems(teaDIYEntities);
+            result.setModel(baseGetList);
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+        return result;
+    }
+
+    @Override
+    public BaseResult<BaseGetList> getTeaPerformService(Integer page, Integer pageSize) {
+        BaseResult<BaseGetList> result = new BaseResult<>();
+        try {
+            BaseGetList baseGetList = new BaseGetList();
+            baseGetList.setPage(page);
+            baseGetList.setPageSize(pageSize);
+
+            BaseQuery baseQuery = new BaseQuery();
+            baseQuery.setPageSize(pageSize);
+            baseQuery.setPage(page);
+            List<TeaPerformEntity> teaPerformEntities = commonDAO.queryList(baseQuery , TeaPerformEntity.class);
+            baseGetList.setTotalCount(commonDAO.count(new BaseQuery() , TeaPerformEntity.class));
+            baseGetList.setItems(teaPerformEntities);
+            result.setModel(baseGetList);
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
