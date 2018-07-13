@@ -11,6 +11,8 @@ import com.aimeow.iteastyle.domain.ViewObject.*;
 import com.aimeow.iteastyle.domain.ViewObject.Case.GetCasesVO;
 import com.aimeow.iteastyle.domain.ViewObject.Case.CasesInTypeVO;
 import com.aimeow.iteastyle.domain.entity.*;
+import com.aimeow.iteastyle.domain.entity.service.TeaBreak.TeaBreakServiceEntity;
+import com.aimeow.iteastyle.domain.entity.service.TeaGift.TeaGiftServiceEntity;
 import com.aimeow.iteastyle.domain.enums.StatusEnum;
 import com.aimeow.iteastyle.domain.query.CaseQuery;
 import com.aimeow.iteastyle.domain.query.PostQuery;
@@ -265,6 +267,32 @@ public class WebDataServiceImpl implements WebDataService {
             result.setMsgInfo(e.getMessage());
         }
 
+        return result;
+    }
+
+    @Override
+    public BaseResult<TeaBreakServiceEntity> getTeaBreakService() {
+        BaseResult<TeaBreakServiceEntity> result = new BaseResult<>();
+        try {
+            TeaBreakServiceEntity teaBreakServiceEntity = commonData.getData(TeaBreakServiceEntity.class);
+            result.setModel(teaBreakServiceEntity);
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+        return result;
+    }
+
+    @Override
+    public BaseResult<TeaGiftServiceEntity> getTeaGiftService() {
+        BaseResult<TeaGiftServiceEntity> result = new BaseResult<>();
+        try {
+            TeaGiftServiceEntity teaGiftServiceEntity = commonData.getData(TeaGiftServiceEntity.class);
+            result.setModel(teaGiftServiceEntity);
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
         return result;
     }
 }

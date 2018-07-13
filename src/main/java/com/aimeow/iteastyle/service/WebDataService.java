@@ -7,6 +7,8 @@ import com.aimeow.iteastyle.domain.ViewObject.Case.CasesInTypeVO;
 import com.aimeow.iteastyle.domain.entity.CaseEntity;
 import com.aimeow.iteastyle.domain.entity.CaseTypeEntity;
 import com.aimeow.iteastyle.domain.entity.PostEntity;
+import com.aimeow.iteastyle.domain.entity.service.TeaBreak.TeaBreakServiceEntity;
+import com.aimeow.iteastyle.domain.entity.service.TeaGift.TeaGiftServiceEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,4 +58,11 @@ public interface WebDataService {
     @RequestMapping(value = "/getCasesHomeData", method = RequestMethod.GET)
     BaseResult<List<CasesInTypeVO>> getCasesHomeData();
 
+    @ApiOperation(value = "获得茶歇服务内容")
+    @RequestMapping(value = "/getTeaBreakService", method = RequestMethod.GET)
+    BaseResult<TeaBreakServiceEntity> getTeaBreakService();
+
+    @ApiOperation(value = "获得茶礼服务内容")
+    @RequestMapping(value = "/getTeaGiftService", method = RequestMethod.GET)
+    BaseResult<TeaGiftServiceEntity> getTeaGiftService();
 }
