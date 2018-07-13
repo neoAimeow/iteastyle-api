@@ -8,6 +8,7 @@ import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,11 +26,13 @@ import java.util.Collections;
 @SpringBootConfiguration
 @EnableAutoConfiguration
 @EnableSwagger2
+@Configuration
 @RestController
 @ComponentScan({
-        "com.aimeow.iteastyle.service"
-        ,"com.aimeow.iteastyle.config"
-        ,"com.aimeow.iteastyle.base.tools"})
+        "com.aimeow.iteastyle",
+        "com.aimeow.iteastyle.service",
+        "com.aimeow.iteastyle.config",
+        "com.aimeow.iteastyle.base.tools"})
 public class Application {
 
     @ApiIgnore

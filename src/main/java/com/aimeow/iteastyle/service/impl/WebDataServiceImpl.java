@@ -7,12 +7,10 @@ import com.aimeow.iteastyle.base.tools.CommonDAO;
 import com.aimeow.iteastyle.base.tools.CommonData;
 
 
-import com.aimeow.iteastyle.domain.DomainObject.*;
 import com.aimeow.iteastyle.domain.ViewObject.*;
 import com.aimeow.iteastyle.domain.ViewObject.Case.GetCasesVO;
-import com.aimeow.iteastyle.domain.ViewObject.Case.CaseTypeVO;
-import com.aimeow.iteastyle.domain.ViewObject.Case.CaseBaseVO;
 import com.aimeow.iteastyle.domain.ViewObject.Case.CasesInTypeVO;
+import com.aimeow.iteastyle.domain.entity.*;
 import com.aimeow.iteastyle.domain.enums.StatusEnum;
 import com.aimeow.iteastyle.domain.query.CaseQuery;
 import com.aimeow.iteastyle.domain.query.PostQuery;
@@ -35,7 +33,7 @@ public class WebDataServiceImpl implements WebDataService {
     public BaseResult<HomePageVO> getHomePageData() {
         BaseResult<HomePageVO> result = new BaseResult<>();
         try {
-            StaticDataDO staticDataDO = commonData.getData(StaticDataDO.class);
+            StaticDataEntity staticDataDO = commonData.getData(StaticDataEntity.class);
             HomePageVO homePageVO = new HomePageVO();
             result.setModel(homePageVO);
             homePageVO.setHeaderImages(staticDataDO.getHomepageBannerUrls());
@@ -56,8 +54,8 @@ public class WebDataServiceImpl implements WebDataService {
         CompanyStoryVO companyStoryVO = new CompanyStoryVO();
         result.setModel(companyStoryVO);
         try {
-            CompanyInfoDO companyInfoDO = commonData.getData(CompanyInfoDO.class);
-            StaticDataDO staticDataDO = commonData.getData(StaticDataDO.class);
+            CompanyInfoEntity companyInfoDO = commonData.getData(CompanyInfoEntity.class);
+            StaticDataEntity staticDataDO = commonData.getData(StaticDataEntity.class);
 
             companyStoryVO.setBackgroundImageUrl(staticDataDO.getCompanyStoryBgUrl());
             companyStoryVO.setVideoUrl(companyInfoDO.getVideoUrl());
@@ -77,8 +75,8 @@ public class WebDataServiceImpl implements WebDataService {
         ContactUsVO contactUsVO = new ContactUsVO();
         result.setModel(contactUsVO);
         try {
-            CompanyInfoDO companyInfoDO = commonData.getData(CompanyInfoDO.class);
-            StaticDataDO staticDataDO = commonData.getData(StaticDataDO.class);
+            CompanyInfoEntity companyInfoDO = commonData.getData(CompanyInfoEntity.class);
+            StaticDataEntity staticDataDO = commonData.getData(StaticDataEntity.class);
 
             contactUsVO.setCompanyAddress(companyInfoDO.getCompanyAddress());
             contactUsVO.setCompanyName(companyInfoDO.getCompanyName());
@@ -106,7 +104,7 @@ public class WebDataServiceImpl implements WebDataService {
         BaseResult<GetPostsVO> result = new BaseResult<GetPostsVO>();
         GetPostsVO getPostsVO = new GetPostsVO();
         try {
-            StaticDataDO staticDataDO = commonData.getData(StaticDataDO.class);
+            StaticDataEntity staticDataDO = commonData.getData(StaticDataEntity.class);
             getPostsVO.setPostBackgroundImage(staticDataDO.getPostBgUrl());
             getPostsVO.setPage(page);
             getPostsVO.setPageSize(pageSize);
@@ -116,18 +114,11 @@ public class WebDataServiceImpl implements WebDataService {
             postQuery.setPage(page);
             postQuery.setStatus(StatusEnum.NORMAL.getStatus());
 
-            List<PostVO> postVos = new ArrayList();
-            List<PostDO> postDOS = commonDAO.queryList(postQuery , PostDO.class);
-
-            postDOS.iterator().forEachRemaining(
-                    obj-> {
-                        postVos.add(CommonConverter.convert(obj , PostVO.class));
-                    }
-            );
-            getPostsVO.setTotalCount(commonDAO.count(postQuery , PostDO.class));
-
-            getPostsVO.setPosts(postVos);
+            List<PostEntity> postEntities = commonDAO.queryList(postQuery , PostEntity.class);
+            getPostsVO.setTotalCount(commonDAO.count(postQuery , PostEntity.class));
+            getPostsVO.setPosts(postEntities);
             result.setModel(getPostsVO);
+
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
@@ -136,11 +127,11 @@ public class WebDataServiceImpl implements WebDataService {
     }
 
     @Override
-    public BaseResult<PostVO> getPostByPostId(
+    public BaseResult<PostEntity> getPostByPostId(
             @NonNull String postId) {
-        BaseResult<PostVO> result = new BaseResult<>();
+        BaseResult<PostEntity> result = new BaseResult<>();
         try {
-            result.setModel(CommonConverter.convert(commonDAO.queryById(postId , PostDO.class) , PostVO.class));
+            result.setModel(commonDAO.queryById(postId , PostEntity.class));
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
@@ -149,19 +140,12 @@ public class WebDataServiceImpl implements WebDataService {
     }
 
     @Override
-    public BaseResult<List<CaseTypeVO>> getCaseTypes() {
-        BaseResult<List<CaseTypeVO>> result = new BaseResult<>();
+    public BaseResult<List<CaseTypeEntity>> getCaseTypes() {
+        BaseResult<List<CaseTypeEntity>> result = new BaseResult<>();
         try {
-            List<CaseTypeVO> caseTypeVOS = new ArrayList<>();
 
-            List<CaseTypeDO> caseTypeDOS = commonDAO.queryAllList(CaseTypeDO.class);
-            caseTypeDOS.iterator().forEachRemaining(
-                    obj-> {
-                        caseTypeVOS.add(CommonConverter.convert(obj , CaseTypeVO.class));
-                    }
-            );
-            result.setModel(caseTypeVOS);
-
+            List<CaseTypeEntity> caseTypeEntities = commonDAO.queryAllList(CaseTypeEntity.class);
+            result.setModel(caseTypeEntities);
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
@@ -170,21 +154,20 @@ public class WebDataServiceImpl implements WebDataService {
     }
 
     @Override
-    public BaseResult<CaseBaseVO> getCaseById(
+    public BaseResult<CaseEntity> getCaseById(
             @NonNull String caseId) {
-        BaseResult<CaseBaseVO> result = new BaseResult<>();
+        BaseResult<CaseEntity> result = new BaseResult<>();
 
         try {
-            CaseDO caseDO = commonDAO.queryById(caseId , CaseDO.class);
-            CaseBaseVO caseBaseVO = CommonConverter.convert(caseDO, CaseBaseVO.class);
+            CaseEntity caseEntity = commonDAO.queryById(caseId , CaseEntity.class);
 
             Map<String, Object> map = new HashMap<>();
-            map.put("type" , caseBaseVO.getType());
-            List<CaseTypeDO> caseTypeDOS = commonDAO.queryByParam(map, CaseTypeDO.class);
-            if (caseTypeDOS.size()>0) {
-                caseBaseVO.setTypeName(caseTypeDOS.get(0).getTypeName());
+            map.put("type" , caseEntity.getType());
+            List<CaseTypeEntity> caseTypeEntities = commonDAO.queryByParam(map, CaseTypeEntity.class);
+            if (caseTypeEntities.size()>0) {
+                caseEntity.setTypeName(caseTypeEntities.get(0).getTypeName());
             }
-            result.setModel(caseBaseVO);
+            result.setModel(caseEntity);
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
@@ -206,24 +189,24 @@ public class WebDataServiceImpl implements WebDataService {
             caseQuery.setPage(page);
             caseQuery.setPageSize(pageSize);
 
-            getCasesVO.setTotalCount(commonDAO.count(caseQuery, CaseDO.class));
+            getCasesVO.setTotalCount(commonDAO.count(caseQuery, CaseEntity.class));
 
             CasesInTypeVO casesInTypeVO = new CasesInTypeVO();
-            List<CaseBaseVO> caseBaseVOS = new ArrayList<>();
+            List<CaseEntity> caseBaseVOS = new ArrayList<>();
             casesInTypeVO.setCases(caseBaseVOS);
 
             Map<String, Object> map = new HashMap<>();
             map.put("type" , type);
-            List<CaseTypeDO> caseTypeDOS = commonDAO.queryByParam(map, CaseTypeDO.class);
-            if (caseTypeDOS.size()>0) {
-                CaseTypeVO caseTypeVO = CommonConverter.convert(caseTypeDOS.get(0),CaseTypeVO.class);
+            List<CaseTypeEntity> caseTypeEntities = commonDAO.queryByParam(map, CaseTypeEntity.class);
+            if (caseTypeEntities.size()>0) {
+                CaseTypeEntity caseTypeVO = caseTypeEntities.get(0);
                 casesInTypeVO.setCaseType(caseTypeVO);
             }
 
-            List<CaseDO> caseDOS = commonDAO.queryList(caseQuery, CaseDO.class);
-            caseDOS.iterator().forEachRemaining(
+            List<CaseEntity> caseEntities = commonDAO.queryList(caseQuery, CaseEntity.class);
+            caseEntities.iterator().forEachRemaining(
                     obj-> {
-                        CaseBaseVO caseBaseVO = CommonConverter.convert(obj , CaseBaseVO.class);
+                        CaseEntity caseBaseVO = obj;
                         caseBaseVO.setTypeName(casesInTypeVO.getCaseType().getTypeName());
                         caseBaseVOS.add(caseBaseVO);
                     }
@@ -244,28 +227,27 @@ public class WebDataServiceImpl implements WebDataService {
         BaseResult<List<CasesInTypeVO>> result = new BaseResult<>();
         List<CasesInTypeVO> casesInTypeVOS = new ArrayList<>();
         try {
-            List<CaseTypeVO> caseTypeVOS = new ArrayList<>();
-            List<CaseBaseVO> caseBaseVOS = new ArrayList<>();
-            List<CaseDO> caseDOS = commonDAO.queryList(
-                new BaseQuery() , CaseDO.class);
-            List<CaseTypeDO> caseTypeDOS = commonDAO.queryList(
-                new BaseQuery() , CaseTypeDO.class);
+            List<CaseTypeEntity> caseTypeVOS = new ArrayList<>();
+            List<CaseEntity> caseBaseVOS = new ArrayList<>();
+            List<CaseEntity> caseEntities = commonDAO.queryList(
+                new BaseQuery() , CaseEntity.class);
+            List<CaseTypeEntity> caseTypeEntities = commonDAO.queryList(
+                new BaseQuery() , CaseTypeEntity.class);
 
-            for (CaseDO caseDO: caseDOS) {
-                caseBaseVOS.add(CommonConverter.convert( caseDO , CaseBaseVO.class));
+            for (CaseEntity caseEntity : caseEntities) {
+                caseBaseVOS.add(caseEntity);
             }
 
-            for (CaseTypeDO caseTypeDO: caseTypeDOS) {
-                CaseTypeVO caseTypeVO = CommonConverter.convert(caseTypeDO , CaseTypeVO.class);
-                caseTypeVOS.add(caseTypeVO);
+            for (CaseTypeEntity caseTypeEntity : caseTypeEntities) {
+                caseTypeVOS.add(caseTypeEntity);
 
                 CasesInTypeVO casesInTypeVO = new CasesInTypeVO();
-                casesInTypeVO.setCaseType(caseTypeVO);
+                casesInTypeVO.setCaseType(caseTypeEntity);
                 casesInTypeVOS.add(casesInTypeVO);
             }
 
             for (CasesInTypeVO casesInTypeVO:casesInTypeVOS) {
-                for (CaseBaseVO caseBaseVO: caseBaseVOS) {
+                for (CaseEntity caseBaseVO: caseBaseVOS) {
                     if (caseBaseVO.getType().equals(casesInTypeVO.getCaseType().getType())) {
                         caseBaseVO.setTypeName(casesInTypeVO.getCaseType().getTypeName());
                         if (casesInTypeVO.getCases() == null) {

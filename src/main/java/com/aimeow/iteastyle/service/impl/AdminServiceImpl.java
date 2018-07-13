@@ -3,8 +3,11 @@ package com.aimeow.iteastyle.service.impl;
 import com.aimeow.iteastyle.base.domain.BaseQuery;
 import com.aimeow.iteastyle.base.domain.BaseResult;
 import com.aimeow.iteastyle.base.tools.CommonConverter;
-import com.aimeow.iteastyle.domain.DomainObject.*;
 import com.aimeow.iteastyle.domain.ViewObject.*;
+import com.aimeow.iteastyle.domain.entity.CaseEntity;
+import com.aimeow.iteastyle.domain.entity.CompanyInfoEntity;
+import com.aimeow.iteastyle.domain.entity.PostEntity;
+import com.aimeow.iteastyle.domain.entity.StaticDataEntity;
 import com.aimeow.iteastyle.service.AdminService;
 import com.alibaba.fastjson.JSONObject;
 import lombok.NonNull;
@@ -13,7 +16,6 @@ import org.springframework.stereotype.Component;
 import com.aimeow.iteastyle.base.tools.CommonDAO;
 import com.aimeow.iteastyle.base.tools.CommonData;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -27,11 +29,11 @@ public class AdminServiceImpl implements AdminService {
         try {
             JSONObject object = JSONObject.parseObject(param);
             if ("post".equals(type)) {
-                PostDO postDO = JSONObject.parseObject(param , PostDO.class);
-                result.setModel(commonDAO.create(postDO));
+                PostEntity postEntity = JSONObject.parseObject(param , PostEntity.class);
+                result.setModel(commonDAO.create(postEntity));
             } else if("case".equals(type)) {
-                CaseDO caseDO = JSONObject.parseObject(param , CaseDO.class);
-                result.setModel(commonDAO.create(caseDO));
+                CaseEntity caseEntity = JSONObject.parseObject(param , CaseEntity.class);
+                result.setModel(commonDAO.create(caseEntity));
             }
         } catch (Exception e) {
             result.setMsgInfo(e.getMessage());
@@ -48,11 +50,11 @@ public class AdminServiceImpl implements AdminService {
             JSONObject object = JSONObject.parseObject(param);
 
             if ("post".equals(type)) {
-                PostDO postDO = JSONObject.parseObject(param , PostDO.class);
-                result.setModel(commonDAO.update(postDO , PostDO.class));
+                PostEntity postEntity = JSONObject.parseObject(param , PostEntity.class);
+                result.setModel(commonDAO.update(postEntity, PostEntity.class));
             } else if("case".equals(type)) {
-                CaseDO caseDO = JSONObject.parseObject(param , CaseDO.class);
-                result.setModel(commonDAO.update(caseDO, CaseDO.class));
+                CaseEntity caseEntity = JSONObject.parseObject(param , CaseEntity.class);
+                result.setModel(commonDAO.update(caseEntity, CaseEntity.class));
             }
 
         } catch (Exception e) {
@@ -68,9 +70,9 @@ public class AdminServiceImpl implements AdminService {
         BaseResult<Boolean> result = new BaseResult<>();
         try {
             if ("post".equals(type)) {
-                result.setModel(commonDAO.delete(id , PostDO.class));
+                result.setModel(commonDAO.delete(id , PostEntity.class));
             } else if("case".equals(type)) {
-                result.setModel(commonDAO.delete(id , CaseDO.class));
+                result.setModel(commonDAO.delete(id , CaseEntity.class));
             }
         } catch (Exception e) {
             result.setMsgInfo(e.getMessage());
@@ -85,11 +87,11 @@ public class AdminServiceImpl implements AdminService {
         BaseResult<Boolean> result = new BaseResult<>();
         try {
             if ("companyInfo".equals(type)) {
-                CompanyInfoDO companyInfoDO = JSONObject.parseObject(param , CompanyInfoDO.class);
-                result.setModel(commonData.edit(companyInfoDO, CompanyInfoDO.class));
+                CompanyInfoEntity companyInfoDO = JSONObject.parseObject(param , CompanyInfoEntity.class);
+                result.setModel(commonData.edit(companyInfoDO, CompanyInfoEntity.class));
             } else if ("staticData".equals(type)) {
-                StaticDataDO staticDataDO = JSONObject.parseObject(param , StaticDataDO.class);
-                result.setModel(commonData.edit(staticDataDO, StaticDataDO.class));
+                StaticDataEntity staticDataDO = JSONObject.parseObject(param , StaticDataEntity.class);
+                result.setModel(commonData.edit(staticDataDO, StaticDataEntity.class));
             }
         } catch (Exception e) {
             result.setMsgInfo(e.getMessage());
@@ -104,11 +106,11 @@ public class AdminServiceImpl implements AdminService {
         try {
             if ("companyInfo".equals(type)) {
                 result.setModel(JSONObject.parseObject(JSONObject.toJSONString(
-                        CommonConverter.convert(commonData.getData(CompanyInfoDO.class) , CompanyInfoVO.class)))
+                        CommonConverter.convert(commonData.getData(CompanyInfoEntity.class) , CompanyInfoVO.class)))
                 );
             } else if ("staticData".equals(type)) {
                 result.setModel(JSONObject.parseObject(JSONObject.toJSONString(
-                        CommonConverter.convert(commonData.getData(StaticDataDO.class) , StaticDataDO.class)))
+                        CommonConverter.convert(commonData.getData(StaticDataEntity.class) , StaticDataEntity.class)))
                 );
             }
 
@@ -127,20 +129,14 @@ public class AdminServiceImpl implements AdminService {
             baseQuery.setPage(page);
             baseQuery.setPageSize(pageSize);
             if ("post".equals(type)) {
-                List<PostVO> postVOS = new ArrayList<>();
-                List<PostDO> postDOS = commonDAO.queryList(baseQuery , PostDO.class);
-                postDOS.iterator().forEachRemaining(
-                        obj-> {
-                            postVOS.add(CommonConverter.convert(obj , PostVO.class));
-                        }
-                );
+                List<PostEntity> postEntities = commonDAO.queryList(baseQuery , PostEntity.class);
 
                 GetPostsVO getPostsVO = new GetPostsVO();
                 getPostsVO.setPage(page);
                 getPostsVO.setPageSize(pageSize);
-                getPostsVO.setTotalCount(commonDAO.count(baseQuery , PostDO.class));
-                getPostsVO.setPosts(postVOS);
-                result.setModel(JSONObject.parseObject(JSONObject.toJSONString(postVOS)));
+                getPostsVO.setTotalCount(commonDAO.count(baseQuery , PostEntity.class));
+                getPostsVO.setPosts(postEntities);
+                result.setModel(JSONObject.parseObject(JSONObject.toJSONString(postEntities)));
 
             } else if("case".equals(type)) {
 

@@ -1,4 +1,4 @@
-package com.aimeow.iteastyle.domain.DomainObject;
+package com.aimeow.iteastyle.domain.entity;
 
 
 import com.aimeow.iteastyle.base.domain.BaseEntity;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @Data
-public class StaticDataDO extends BaseEntity implements Serializable {
+public class StaticDataEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 3058517636708388619L;
     private String contactUsTitle;
     private String logoUrl;

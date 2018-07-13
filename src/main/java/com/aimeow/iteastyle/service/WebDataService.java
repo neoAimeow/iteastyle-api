@@ -3,9 +3,10 @@ package com.aimeow.iteastyle.service;
 import com.aimeow.iteastyle.base.domain.BaseResult;
 import com.aimeow.iteastyle.domain.ViewObject.*;
 import com.aimeow.iteastyle.domain.ViewObject.Case.GetCasesVO;
-import com.aimeow.iteastyle.domain.ViewObject.Case.CaseTypeVO;
-import com.aimeow.iteastyle.domain.ViewObject.Case.CaseBaseVO;
 import com.aimeow.iteastyle.domain.ViewObject.Case.CasesInTypeVO;
+import com.aimeow.iteastyle.domain.entity.CaseEntity;
+import com.aimeow.iteastyle.domain.entity.CaseTypeEntity;
+import com.aimeow.iteastyle.domain.entity.PostEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,15 +38,15 @@ public interface WebDataService {
 
     @ApiOperation(value = "通过GET请求方式获取『茶式动态详情』相关信息，需要传id")
     @RequestMapping(value = "/getPostById", method = RequestMethod.GET)
-    BaseResult<PostVO> getPostByPostId(String postId);
+    BaseResult<PostEntity> getPostByPostId(String postId);
 
     @ApiOperation(value = "通过GET请求方式获取产品展示类型")
     @RequestMapping(value = "/getCaseTypes", method = RequestMethod.GET)
-    BaseResult<List<CaseTypeVO>> getCaseTypes();
+    BaseResult<List<CaseTypeEntity>> getCaseTypes();
 
     @ApiOperation(value = "通过ID获取产品展示内容")
     @RequestMapping(value = "/getCaseById", method = RequestMethod.GET)
-    BaseResult<CaseBaseVO> getCaseById(String caseId);
+    BaseResult<CaseEntity> getCaseById(String caseId);
 
     @ApiOperation(value = "通过分页参数获得产品展示列表")
     @RequestMapping(value = "/getCaseByType", method = RequestMethod.GET)

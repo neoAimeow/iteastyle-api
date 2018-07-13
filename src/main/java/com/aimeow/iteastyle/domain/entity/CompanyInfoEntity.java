@@ -1,4 +1,4 @@
-package com.aimeow.iteastyle.domain.DomainObject;
+package com.aimeow.iteastyle.domain.entity;
 
 import com.aimeow.iteastyle.base.domain.BaseEntity;
 import lombok.Data;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 @Document
-public class CompanyInfoDO extends BaseEntity implements Serializable {
+public class CompanyInfoEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 8471287997901469057L;
     private String companyName;
     private String companyAddress;
