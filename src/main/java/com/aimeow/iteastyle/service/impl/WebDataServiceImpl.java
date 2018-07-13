@@ -9,10 +9,10 @@ import com.aimeow.iteastyle.base.tools.CommonData;
 
 import com.aimeow.iteastyle.domain.DomainObject.*;
 import com.aimeow.iteastyle.domain.ViewObject.*;
-import com.aimeow.iteastyle.domain.ViewObject.productShower.GetCasesVO;
-import com.aimeow.iteastyle.domain.ViewObject.productShower.CaseTypeVO;
-import com.aimeow.iteastyle.domain.ViewObject.productShower.CaseBaseVO;
-import com.aimeow.iteastyle.domain.ViewObject.productShower.CasesInTypeVO;
+import com.aimeow.iteastyle.domain.ViewObject.Case.GetCasesVO;
+import com.aimeow.iteastyle.domain.ViewObject.Case.CaseTypeVO;
+import com.aimeow.iteastyle.domain.ViewObject.Case.CaseBaseVO;
+import com.aimeow.iteastyle.domain.ViewObject.Case.CasesInTypeVO;
 import com.aimeow.iteastyle.domain.enums.StatusEnum;
 import com.aimeow.iteastyle.domain.query.CaseQuery;
 import com.aimeow.iteastyle.domain.query.PostQuery;
@@ -171,11 +171,11 @@ public class WebDataServiceImpl implements WebDataService {
 
     @Override
     public BaseResult<CaseBaseVO> getCaseById(
-            @NonNull String productShowerId) {
+            @NonNull String caseId) {
         BaseResult<CaseBaseVO> result = new BaseResult<>();
 
         try {
-            CaseDO caseDO = commonDAO.queryById(productShowerId , CaseDO.class);
+            CaseDO caseDO = commonDAO.queryById(caseId , CaseDO.class);
             CaseBaseVO caseBaseVO = CommonConverter.convert(caseDO, CaseBaseVO.class);
 
             Map<String, Object> map = new HashMap<>();

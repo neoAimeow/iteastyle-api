@@ -2,10 +2,10 @@ package com.aimeow.iteastyle.service;
 
 import com.aimeow.iteastyle.base.domain.BaseResult;
 import com.aimeow.iteastyle.domain.ViewObject.*;
-import com.aimeow.iteastyle.domain.ViewObject.productShower.GetCasesVO;
-import com.aimeow.iteastyle.domain.ViewObject.productShower.CaseTypeVO;
-import com.aimeow.iteastyle.domain.ViewObject.productShower.CaseBaseVO;
-import com.aimeow.iteastyle.domain.ViewObject.productShower.CasesInTypeVO;
+import com.aimeow.iteastyle.domain.ViewObject.Case.GetCasesVO;
+import com.aimeow.iteastyle.domain.ViewObject.Case.CaseTypeVO;
+import com.aimeow.iteastyle.domain.ViewObject.Case.CaseBaseVO;
+import com.aimeow.iteastyle.domain.ViewObject.Case.CasesInTypeVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,7 +45,7 @@ public interface WebDataService {
 
     @ApiOperation(value = "通过ID获取产品展示内容")
     @RequestMapping(value = "/getCaseById", method = RequestMethod.GET)
-    BaseResult<CaseBaseVO> getCaseById(String productShowerId);
+    BaseResult<CaseBaseVO> getCaseById(String caseId);
 
     @ApiOperation(value = "通过分页参数获得产品展示列表")
     @RequestMapping(value = "/getCaseByType", method = RequestMethod.GET)
