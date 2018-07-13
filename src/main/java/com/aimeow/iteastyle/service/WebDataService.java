@@ -52,7 +52,7 @@ public interface WebDataService {
     BaseResult<GetCasesVO> getCaseByType(Integer type , Integer page , Integer pageSize);
 
     @ApiOperation(value = "获得产品展示首页列表")
-    @RequestMapping(value = "/getCaseHomeData", method = RequestMethod.GET)
+    @RequestMapping(value = "/getCasesHomeData", method = RequestMethod.GET)
     BaseResult<List<CasesInTypeVO>> getCasesHomeData();
 
 }

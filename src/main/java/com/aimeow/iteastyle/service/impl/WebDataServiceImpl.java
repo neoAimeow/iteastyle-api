@@ -251,24 +251,32 @@ public class WebDataServiceImpl implements WebDataService {
             List<CaseTypeDO> caseTypeDOS = commonDAO.queryList(
                 new BaseQuery() , CaseTypeDO.class);
 
-            caseDOS.iterator().forEachRemaining(
-                obj-> {
-                    caseBaseVOS.add(CommonConverter.convert(
-                        obj , CaseBaseVO.class));
-                }
-            );
-
-            caseTypeDOS.iterator().forEachRemaining(
-                obj-> {
-                    caseTypeVOS.add(CommonConverter.convert(
-                        obj , CaseTypeVO.class
-                    ));
-                }
-            );
-
-            for (CaseTypeVO caseType:caseTypeVOS) {
-//                caseType.get
+            for (CaseDO caseDO: caseDOS) {
+                caseBaseVOS.add(CommonConverter.convert( caseDO , CaseBaseVO.class));
             }
+
+            for (CaseTypeDO caseTypeDO: caseTypeDOS) {
+                CaseTypeVO caseTypeVO = CommonConverter.convert(caseTypeDO , CaseTypeVO.class);
+                caseTypeVOS.add(caseTypeVO);
+
+                CasesInTypeVO casesInTypeVO = new CasesInTypeVO();
+                casesInTypeVO.setCaseType(caseTypeVO);
+                casesInTypeVOS.add(casesInTypeVO);
+            }
+
+            for (CasesInTypeVO casesInTypeVO:casesInTypeVOS) {
+                for (CaseBaseVO caseBaseVO: caseBaseVOS) {
+                    if (caseBaseVO.getType().equals(casesInTypeVO.getCaseType().getType())) {
+                        caseBaseVO.setTypeName(casesInTypeVO.getCaseType().getTypeName());
+                        if (casesInTypeVO.getCases() == null) {
+                            casesInTypeVO.setCases(new ArrayList<>());
+                        }
+                        casesInTypeVO.getCases().add(caseBaseVO);
+                    }
+                }
+            }
+
+            result.setModel(casesInTypeVOS);
 
         } catch (Exception e) {
             result.setSuccess(false);
