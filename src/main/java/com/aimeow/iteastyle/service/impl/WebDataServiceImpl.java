@@ -2,13 +2,11 @@ package com.aimeow.iteastyle.service.impl;
 
 import com.aimeow.iteastyle.base.domain.BaseQuery;
 import com.aimeow.iteastyle.base.domain.BaseResult;
-import com.aimeow.iteastyle.base.tools.CommonConverter;
 import com.aimeow.iteastyle.base.tools.CommonDAO;
 import com.aimeow.iteastyle.base.tools.CommonData;
 
 
 import com.aimeow.iteastyle.domain.ViewObject.*;
-import com.aimeow.iteastyle.domain.ViewObject.Case.GetCasesVO;
 import com.aimeow.iteastyle.domain.ViewObject.Case.CasesInTypeVO;
 import com.aimeow.iteastyle.domain.entity.*;
 import com.aimeow.iteastyle.domain.entity.service.TeaBreak.TeaBreakServiceEntity;
@@ -101,15 +99,13 @@ public class WebDataServiceImpl implements WebDataService {
     }
 
     @Override
-    public BaseResult<GetPostsVO> getPosts(
+    public BaseResult<GetItemsVO> getPosts(
             Integer page, Integer pageSize) {
-        BaseResult<GetPostsVO> result = new BaseResult<GetPostsVO>();
-        GetPostsVO getPostsVO = new GetPostsVO();
+        BaseResult<GetItemsVO> result = new BaseResult<GetItemsVO>();
+        GetItemsVO getItemsVO = new GetItemsVO();
         try {
-            StaticDataEntity staticDataDO = commonData.getData(StaticDataEntity.class);
-            getPostsVO.setPostBackgroundImage(staticDataDO.getPostBgUrl());
-            getPostsVO.setPage(page);
-            getPostsVO.setPageSize(pageSize);
+            getItemsVO.setPage(page);
+            getItemsVO.setPageSize(pageSize);
 
             PostQuery postQuery = new PostQuery();
             postQuery.setPageSize(pageSize);
@@ -117,9 +113,9 @@ public class WebDataServiceImpl implements WebDataService {
             postQuery.setStatus(StatusEnum.NORMAL.getStatus());
 
             List<PostEntity> postEntities = commonDAO.queryList(postQuery , PostEntity.class);
-            getPostsVO.setTotalCount(commonDAO.count(postQuery , PostEntity.class));
-            getPostsVO.setPosts(postEntities);
-            result.setModel(getPostsVO);
+            getItemsVO.setTotalCount(commonDAO.count(postQuery , PostEntity.class));
+            getItemsVO.setItems(postEntities);
+            result.setModel(getItemsVO);
 
         } catch (Exception e) {
             result.setSuccess(false);
@@ -178,20 +174,20 @@ public class WebDataServiceImpl implements WebDataService {
     }
 
     @Override
-    public BaseResult<GetCasesVO> getCaseByType(
+    public BaseResult<GetItemsVO> getCaseByType(
             @NonNull Integer type , Integer page, Integer pageSize) {
-        BaseResult<GetCasesVO> result = new BaseResult<>();
-        GetCasesVO getCasesVO = new GetCasesVO();
+        BaseResult<GetItemsVO> result = new BaseResult<>();
+        GetItemsVO getItemsVO = new GetItemsVO();
         try {
-            getCasesVO.setPage(page);
-            getCasesVO.setPageSize(pageSize);
+            getItemsVO.setPage(page);
+            getItemsVO.setPageSize(pageSize);
 
             CaseQuery caseQuery = new CaseQuery();
             caseQuery.setType(type);
             caseQuery.setPage(page);
             caseQuery.setPageSize(pageSize);
 
-            getCasesVO.setTotalCount(commonDAO.count(caseQuery, CaseEntity.class));
+            getItemsVO.setTotalCount(commonDAO.count(caseQuery, CaseEntity.class));
 
             CasesInTypeVO casesInTypeVO = new CasesInTypeVO();
             List<CaseEntity> caseBaseVOS = new ArrayList<>();
@@ -215,8 +211,8 @@ public class WebDataServiceImpl implements WebDataService {
             );
 
 
-            getCasesVO.setModel(casesInTypeVO);
-            result.setModel(getCasesVO);
+            getItemsVO.setItems(casesInTypeVO);
+            result.setModel(getItemsVO);
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());

@@ -131,11 +131,11 @@ public class AdminServiceImpl implements AdminService {
             if ("post".equals(type)) {
                 List<PostEntity> postEntities = commonDAO.queryList(baseQuery , PostEntity.class);
 
-                GetPostsVO getPostsVO = new GetPostsVO();
-                getPostsVO.setPage(page);
-                getPostsVO.setPageSize(pageSize);
-                getPostsVO.setTotalCount(commonDAO.count(baseQuery , PostEntity.class));
-                getPostsVO.setPosts(postEntities);
+                GetItemsVO getItemsVO = new GetItemsVO();
+                getItemsVO.setPage(page);
+                getItemsVO.setPageSize(pageSize);
+                getItemsVO.setTotalCount(commonDAO.count(baseQuery , PostEntity.class));
+                getItemsVO.setItems(postEntities);
                 result.setModel(JSONObject.parseObject(JSONObject.toJSONString(postEntities)));
 
             } else if("case".equals(type)) {
