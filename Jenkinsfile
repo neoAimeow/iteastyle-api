@@ -23,7 +23,7 @@ pipeline {
           sh 'sshpass -p $PASSWORD scp -v -o StrictHostKeyChecking=no -r ./target/* $USERNAME@118.178.131.105:/root/service/iteastyle-api-test/'
 
           sh 'sshpass -p $PASSWORD ssh -v -o StrictHostKeyChecking=no $USERNAME@118.178.131.105 docker-compose -f /root/service/iteastyle-api-test/docker-compose.yml down'
-          sh 'sshpass -p $PASSWORD ssh -v -o StrictHostKeyChecking=no $USERNAME@118.178.131.105 docker build --no-cache -t iteastyle-api /root/service/iteastyle-api-test/.'
+          sh 'sshpass -p $PASSWORD ssh -v -o StrictHostKeyChecking=no $USERNAME@118.178.131.105 docker build --no-cache -t iteastyle-api-test /root/service/iteastyle-api-test/.'
           sh 'sshpass -p $PASSWORD ssh -v -o StrictHostKeyChecking=no $USERNAME@118.178.131.105 docker-compose -f /root/service/iteastyle-api-test/docker-compose.yml up -d'
         }
 
