@@ -13,6 +13,7 @@ import com.aimeow.iteastyle.domain.entity.service.TeaBreak.order.way.TeaBreakOrd
 import com.aimeow.iteastyle.domain.entity.service.TeaBreak.orderMode.TeaBreakOrderModeEntity;
 import com.aimeow.iteastyle.domain.entity.service.TeaBreak.process.TeaBreakProcessEntity;
 import com.aimeow.iteastyle.domain.entity.service.TeaBreak.range.TeaBreakRangeEntity;
+import com.aimeow.iteastyle.domain.entity.service.TeaBreak.range.TeaBreakRangeItemEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,6 +95,74 @@ public class TeaBreakServiceTest {
 
     private TeaBreakRangeEntity mockRangeEntity() throws Exception {
         TeaBreakRangeEntity rangeEntity = new TeaBreakRangeEntity();
+        rangeEntity.setTitle("服务范围");
+        rangeEntity.setTitle_en("SERVICE SCOPE");
+        List<TeaBreakRangeItemEntity> rangeItemEntities = new ArrayList<>();
+        rangeEntity.setRanges(rangeItemEntities);
+        TeaBreakRangeItemEntity itemEntity1 = new TeaBreakRangeItemEntity();
+        TeaBreakRangeItemEntity itemEntity2 = new TeaBreakRangeItemEntity();
+        TeaBreakRangeItemEntity itemEntity3 = new TeaBreakRangeItemEntity();
+        TeaBreakRangeItemEntity itemEntity4 = new TeaBreakRangeItemEntity();
+        TeaBreakRangeItemEntity itemEntity5 = new TeaBreakRangeItemEntity();
+        TeaBreakRangeItemEntity itemEntity6 = new TeaBreakRangeItemEntity();
+        TeaBreakRangeItemEntity itemEntity7 = new TeaBreakRangeItemEntity();
+        TeaBreakRangeItemEntity itemEntity8 = new TeaBreakRangeItemEntity();
+        rangeItemEntities.add(itemEntity1);
+        rangeItemEntities.add(itemEntity2);
+        rangeItemEntities.add(itemEntity3);
+        rangeItemEntities.add(itemEntity4);
+        rangeItemEntities.add(itemEntity5);
+        rangeItemEntities.add(itemEntity6);
+        rangeItemEntities.add(itemEntity7);
+        rangeItemEntities.add(itemEntity8);
+        itemEntity1.setMainTitle("公司");
+        itemEntity1.setSubTitle("下午茶");
+        itemEntity1.setTitle_en("Company Afternoon Tea");
+        itemEntity1.setImageUrl("http://pa74otoy6.bkt.clouddn.com/company%20afternoon%20tea.jpg");
+        itemEntity1.setTitleImageUrl("http://pa74otoy6.bkt.clouddn.com/no-one.png");
+
+        itemEntity2.setMainTitle("员工");
+        itemEntity2.setSubTitle("生日会");
+        itemEntity2.setTitle_en("Staff Birthday Party");
+        itemEntity2.setImageUrl("http://pa74otoy6.bkt.clouddn.com/staff%20birthday%20party.jpg");
+        itemEntity2.setTitleImageUrl("http://pa74otoy6.bkt.clouddn.com/no-two.png");
+
+        itemEntity3.setMainTitle("公司");
+        itemEntity3.setSubTitle("年会");
+        itemEntity3.setTitle_en("Annual Meeting");
+        itemEntity3.setImageUrl("http://pa74otoy6.bkt.clouddn.com/Annual%20Meeting.jpg");
+        itemEntity3.setTitleImageUrl("http://pa74otoy6.bkt.clouddn.com/no-three.png");
+
+        itemEntity4.setMainTitle("节日");
+        itemEntity4.setSubTitle("庆典");
+        itemEntity4.setTitle_en("Festival Celebration");
+        itemEntity4.setImageUrl("http://pa74otoy6.bkt.clouddn.com/Festival%20Celebration.jpg");
+        itemEntity4.setTitleImageUrl("http://pa74otoy6.bkt.clouddn.com/no-four.png");
+
+        itemEntity5.setMainTitle("高端");
+        itemEntity5.setSubTitle("酒会");
+        itemEntity5.setTitle_en("High-end Reception");
+        itemEntity5.setImageUrl("http://pa74otoy6.bkt.clouddn.com/High-end%20Reception.jpg");
+        itemEntity5.setTitleImageUrl("http://pa74otoy6.bkt.clouddn.com/no-five.png");
+
+        itemEntity6.setMainTitle("商务");
+        itemEntity6.setSubTitle("接待会");
+        itemEntity6.setTitle_en("Business Reception");
+        itemEntity6.setImageUrl("http://pa74otoy6.bkt.clouddn.com/Business%20Reception.jpg");
+        itemEntity6.setTitleImageUrl("http://pa74otoy6.bkt.clouddn.com/no-six.png");
+
+        itemEntity7.setMainTitle("产品");
+        itemEntity7.setSubTitle("发布会");
+        itemEntity7.setTitle_en("Product Launch");
+        itemEntity7.setImageUrl("http://pa74otoy6.bkt.clouddn.com/Product%20Launch.jpg");
+        itemEntity7.setTitleImageUrl("http://pa74otoy6.bkt.clouddn.com/no-seven.png");
+
+        itemEntity8.setMainTitle("开业");
+        itemEntity8.setSubTitle("庆典");
+        itemEntity8.setTitle_en("Opening Ceremony");
+        itemEntity8.setImageUrl("http://pa74otoy6.bkt.clouddn.com/Opening%20Ceremony.jpg");
+        itemEntity8.setTitleImageUrl("http://pa74otoy6.bkt.clouddn.com/no-eight.png");
+
         return rangeEntity;
     }
 
