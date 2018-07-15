@@ -266,7 +266,9 @@ public class WebDataServiceImpl implements WebDataService {
                         if (casesInTypeVO.getCases() == null) {
                             casesInTypeVO.setCases(new ArrayList<>());
                         }
-                        casesInTypeVO.getCases().add(caseBaseVO);
+                        if (casesInTypeVO.getCases().size() < 6) {
+                            casesInTypeVO.getCases().add(caseBaseVO);
+                        }
                     }
                 }
             }
