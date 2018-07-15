@@ -25,10 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class WebDataServiceImpl implements WebDataService {
@@ -270,6 +267,14 @@ public class WebDataServiceImpl implements WebDataService {
                             casesInTypeVO.getCases().add(caseBaseVO);
                         }
                     }
+                }
+            }
+
+            Iterator<CasesInTypeVO> it = casesInTypeVOS.iterator();
+            while(it.hasNext()){
+                CasesInTypeVO x = it.next();
+                if(x.getCases() == null){
+                    it.remove();
                 }
             }
 
