@@ -39,7 +39,7 @@ public class MenuTest {
         itemEntities.add(itemEntity1);
         itemEntities.add(itemEntity2);
         itemEntities.add(itemEntity3);
-        itemEntity1.setTitle("点心");
+        itemEntity1.setTitle("点 心");
         itemEntity1.setIcon("&#xe9ea;");
         List<String> desserts = new ArrayList<>();
         desserts.add("特色茶曲奇");
@@ -57,7 +57,7 @@ public class MenuTest {
         desserts2.add("圣女果");
         itemEntity2.setDesserts(desserts2);
 
-        itemEntity3.setTitle("饮料");
+        itemEntity3.setTitle("饮 料");
         itemEntity3.setIcon("&#xe9eb;");
         List<String> desserts3 = new ArrayList<>();
         desserts3.add("抹茶拿铁");
@@ -79,7 +79,7 @@ public class MenuTest {
         itemEntities.add(itemEntity1);
         itemEntities.add(itemEntity2);
         itemEntities.add(itemEntity3);
-        itemEntity1.setTitle("点心");
+        itemEntity1.setTitle("点 心");
         itemEntity1.setIcon("&#xe9ea;");
         List<String> desserts = new ArrayList<>();
         desserts.add("抹茶慕斯");
@@ -100,7 +100,7 @@ public class MenuTest {
         desserts2.add("火龙果");
         itemEntity2.setDesserts(desserts2);
 
-        itemEntity3.setTitle("饮料");
+        itemEntity3.setTitle("饮 料");
         itemEntity3.setIcon("&#xe9eb;");
         List<String> desserts3 = new ArrayList<>();
         desserts3.add("抹茶拿铁");
@@ -123,7 +123,7 @@ public class MenuTest {
         itemEntities.add(itemEntity1);
         itemEntities.add(itemEntity2);
         itemEntities.add(itemEntity3);
-        itemEntity1.setTitle("点心");
+        itemEntity1.setTitle("点 心");
         itemEntity1.setIcon("&#xe9ea;");
         List<String> desserts = new ArrayList<>();
         desserts.add("蓝莓挞");
@@ -149,7 +149,7 @@ public class MenuTest {
         desserts2.add("时令果串");
         itemEntity2.setDesserts(desserts2);
 
-        itemEntity3.setTitle("饮料");
+        itemEntity3.setTitle("饮 料");
         itemEntity3.setIcon("&#xe9eb;");
         List<String> desserts3 = new ArrayList<>();
         desserts3.add("抹茶拿铁");
