@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -30,6 +31,8 @@ public class CommonDataImpl implements CommonData {
             mongoTemplate.remove(item);
         }
 
+        t.setGmtCreate(new Date());
+        t.setGmtModified(new Date());
         mongoTemplate.save(t);
         return true;
     }
