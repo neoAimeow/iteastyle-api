@@ -8,6 +8,5 @@ import java.util.List;
 public class MenuItemEntity {
     private String title;
     private String icon;
-    private String title_en;
     private List<String> desserts;
 }

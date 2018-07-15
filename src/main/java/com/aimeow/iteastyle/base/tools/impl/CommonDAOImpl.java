@@ -12,6 +12,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.Iterator;
@@ -81,7 +82,6 @@ public class CommonDAOImpl implements CommonDAO{
             @NonNull TD domain) throws Exception {
         JSONObject domainObject = JSONObject.parseObject(JSONObject.toJSONString(domain));
         Iterator iterator = domainObject.entrySet().iterator();
-
         while (iterator.hasNext()) {
             Map.Entry entry = (Map.Entry) iterator.next();
             String key = entry.getKey().toString();
@@ -96,7 +96,9 @@ public class CommonDAOImpl implements CommonDAO{
             if ("gmtModified".equals(key)) {
                 continue;
             }
-            throw new Exception(domain.getClass().getName() + " parameter" + key + " cannot be null");
+            if (StringUtils.isEmpty(val)) {
+                throw new Exception(domain.getClass().getName() + " parameter " + key + " cannot be null");
+            }
         }
 
         domain.setGmtCreate(new Date());

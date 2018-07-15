@@ -3,7 +3,6 @@ package com.aimeow.iteastyle;
 import com.aimeow.iteastyle.Application;
 import com.aimeow.iteastyle.base.tools.CommonDAO;
 import com.aimeow.iteastyle.base.tools.CommonData;
-import com.aimeow.iteastyle.domain.DomainObject.CompanyInfoDO;
 import com.aimeow.iteastyle.domain.enums.StatusEnum;
 import org.junit.Test;
 import org.junit.runner.RunWith;
