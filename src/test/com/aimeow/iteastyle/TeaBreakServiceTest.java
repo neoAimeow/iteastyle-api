@@ -118,7 +118,7 @@ public class TeaBreakServiceTest {
         rangeItemEntities.add(itemEntity8);
         itemEntity1.setMainTitle("公司");
         itemEntity1.setSubTitle("下午茶");
-        itemEntity1.setTitle_en("Company Afternoon Tea");
+        itemEntity1.setTitle_en("Afternoon Tea");
         itemEntity1.setImageUrl("http://pa74otoy6.bkt.clouddn.com/company%20afternoon%20tea.jpg");
         itemEntity1.setTitleImageUrl("http://pa74otoy6.bkt.clouddn.com/no-one.png");
 
