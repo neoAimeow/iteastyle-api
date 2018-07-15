@@ -316,8 +316,7 @@ public class WebDataServiceImpl implements WebDataService {
             List<TeaLectureEntity> teaLectureEntities = commonDAO.queryList(baseQuery , TeaLectureEntity.class, null ,null);
             baseGetList.setTotalCount(commonDAO.count(new BaseQuery() , TeaLectureEntity.class));
             baseGetList.setItems(teaLectureEntities);
-
-            TeaGiftServiceEntity teaGiftServiceEntity = commonData.getData(TeaGiftServiceEntity.class);
+            result.setModel(baseGetList);
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
@@ -360,7 +359,7 @@ public class WebDataServiceImpl implements WebDataService {
             baseQuery.setPageSize(pageSize);
             baseQuery.setPage(page);
             List<TeaPerformEntity> teaPerformEntities = commonDAO.queryList(baseQuery , TeaPerformEntity.class , null , null);
-            baseGetList.setTotalCount(commonDAO.count(new BaseQuery() , TeaPerformEntity.class));
+            baseGetList.setTotalCount(commonDAO.count(baseQuery , TeaPerformEntity.class));
             baseGetList.setItems(teaPerformEntities);
             result.setModel(baseGetList);
         } catch (Exception e) {

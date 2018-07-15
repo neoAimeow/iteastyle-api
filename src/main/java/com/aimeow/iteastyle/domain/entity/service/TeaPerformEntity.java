@@ -8,6 +8,5 @@ public class TeaPerformEntity extends BaseEntity {
     private String imageUrl;
     private String title;
     private String title_en;
-    private String subTitle_en;
     private String iconImageUrl;
 }
