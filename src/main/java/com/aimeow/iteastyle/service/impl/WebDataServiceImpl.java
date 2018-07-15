@@ -123,6 +123,10 @@ public class WebDataServiceImpl implements WebDataService {
                 if (StringUtils.isEmpty(postEntity.getImageUrl())) {
                     postEntity.setImageUrl("http://pazp3d0xt.bkt.clouddn.com/if%20no%20img.jpg");
                 }
+
+                if (StringUtils.isEmpty(postEntity.getSummary())) {
+                    postEntity.setSummary("点击查看文章详情..");
+                }
             }
             baseGetList.setTotalCount(commonDAO.count(postQuery , PostEntity.class));
             baseGetList.setItems(postEntities);
