@@ -238,8 +238,8 @@ public class WebDataServiceImpl implements WebDataService {
         try {
             List<CaseTypeEntity> caseTypeVOS = new ArrayList<>();
             List<CaseEntity> caseBaseVOS = new ArrayList<>();
-            List<CaseEntity> caseEntities = commonDAO.queryList(
-                new BaseQuery() , CaseEntity.class, null , null);
+            List<CaseEntity> caseEntities = commonDAO.queryAllList(
+                CaseEntity.class);
             List<CaseTypeEntity> caseTypeEntities = commonDAO.queryList(
                 new BaseQuery() , CaseTypeEntity.class, null , null);
 
@@ -264,9 +264,6 @@ public class WebDataServiceImpl implements WebDataService {
                         }
                         casesInTypeVO.getCases().add(caseBaseVO);
                     }
-                }
-                if (casesInTypeVO.getCases().size() == 0) {
-                    casesInTypeVOS.remove(casesInTypeVO);
                 }
             }
 
