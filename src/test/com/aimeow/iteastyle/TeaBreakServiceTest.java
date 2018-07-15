@@ -56,7 +56,7 @@ public class TeaBreakServiceTest {
 
     private TeaBreakOrderEntity mockOrderEntity() throws Exception {
         TeaBreakOrderEntity orderEntity = new TeaBreakOrderEntity();
-        orderEntity.setTitle("茶歇服务");
+        orderEntity.setTitle("茶歇预定");
         orderEntity.setTitle_en("RESERVATION");
 
         TeaBreakOrderWayEntity wayEntity = new TeaBreakOrderWayEntity();
@@ -68,8 +68,6 @@ public class TeaBreakServiceTest {
         wayEntity.setTitle("&#xe9e7;预定方式");
         menu.setTitle("&#xe9e7;茶歇菜单");
         List<TeaBreakOrderWayItemEntity> itemEntities = new ArrayList<>();
-        List<MenuEntity> menuEntities = commonDAO.queryList(new BaseQuery() , MenuEntity.class);
-        menu.setMenus(menuEntities);
 
         TeaBreakOrderWayItemEntity itemEntity1 = new TeaBreakOrderWayItemEntity();
         TeaBreakOrderWayItemEntity itemEntity2 = new TeaBreakOrderWayItemEntity();

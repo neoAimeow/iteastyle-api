@@ -24,12 +24,13 @@ public class MenuTest {
     CommonDAO commonDAO;
     @Test
     public void testQuery() throws Exception {
-        System.out.println(commonDAO.queryList(new BaseQuery() , MenuEntity.class));
+        System.out.println(commonDAO.queryList(new BaseQuery() , MenuEntity.class, null , null) );
     }
 
     @Test public void testCreateMenu1() throws Exception {
         MenuEntity menuEntity = new MenuEntity();
         menuEntity.setTitle("A款茶歇/48元人均");
+        menuEntity.setSort(0);
         List<MenuItemEntity> itemEntities = new ArrayList<>();
         menuEntity.setItems(itemEntities);
         MenuItemEntity itemEntity1 = new MenuItemEntity();
@@ -69,6 +70,7 @@ public class MenuTest {
     @Test public void testCreateMenu2() throws Exception {
         MenuEntity menuEntity = new MenuEntity();
         menuEntity.setTitle("B款茶歇/68元人均&#xe7a8;");
+        menuEntity.setSort(1);
         List<MenuItemEntity> itemEntities = new ArrayList<>();
         menuEntity.setItems(itemEntities);
         MenuItemEntity itemEntity1 = new MenuItemEntity();
@@ -112,6 +114,7 @@ public class MenuTest {
     @Test public void testCreateMenu3() throws Exception {
         MenuEntity menuEntity = new MenuEntity();
         menuEntity.setTitle("C款茶歇/88元人均");
+        menuEntity.setSort(2);
         List<MenuItemEntity> itemEntities = new ArrayList<>();
         menuEntity.setItems(itemEntities);
         MenuItemEntity itemEntity1 = new MenuItemEntity();

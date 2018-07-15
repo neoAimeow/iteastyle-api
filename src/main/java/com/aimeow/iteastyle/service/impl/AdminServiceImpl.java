@@ -130,7 +130,7 @@ public class AdminServiceImpl implements AdminService {
             baseQuery.setPage(page);
             baseQuery.setPageSize(pageSize);
             if ("post".equals(type)) {
-                List<PostEntity> postEntities = commonDAO.queryList(baseQuery , PostEntity.class);
+                List<PostEntity> postEntities = commonDAO.queryList(baseQuery , PostEntity.class, null , null);
 
                 BaseGetList baseGetList = new BaseGetList();
                 baseGetList.setPage(page);

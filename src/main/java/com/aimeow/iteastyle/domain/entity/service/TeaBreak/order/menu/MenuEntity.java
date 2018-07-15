@@ -7,6 +7,7 @@ import java.util.List;
 
 @Data
 public class MenuEntity extends BaseEntity {
+    private Integer sort;
     private String title;
     private List<MenuItemEntity> items;
 }

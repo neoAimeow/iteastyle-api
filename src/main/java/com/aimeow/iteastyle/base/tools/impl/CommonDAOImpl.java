@@ -4,6 +4,7 @@ import com.aimeow.iteastyle.base.domain.BaseEntity;
 import com.aimeow.iteastyle.base.domain.BaseQuery;
 import com.aimeow.iteastyle.base.tools.CommonDAO;
 import com.alibaba.fastjson.JSONObject;
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -26,9 +27,17 @@ public class CommonDAOImpl implements CommonDAO{
 
     @Override
     public <TD extends BaseEntity,TQ extends BaseQuery> List<TD> queryList(
-                    @NonNull TQ query, Class<TD> cls) throws Exception {
+                    @NonNull TQ query, Class<TD> cls , String orderBy , Boolean isDESC) throws Exception {
         Query q = parseQuery(query);
-        q.with(new Sort(Sort.Direction.DESC, "gmtModified"));
+        if (!StringUtils.isEmpty(orderBy)) {
+            if (isDESC!= null) {
+                q.with(new Sort(isDESC?Sort.Direction.DESC:Sort.Direction.ASC, orderBy));
+            } else {
+                q.with(new Sort(Sort.Direction.DESC, orderBy));
+            }
+        } else {
+            q.with(new Sort(Sort.Direction.DESC, "gmtModified"));
+        }
 
         query.setPage((query.getPage()==null || query.getPage()==0)?1:query.getPage());
         query.setPageSize((query.getPageSize()==null || query.getPageSize()==0)?10:query.getPageSize());
@@ -47,8 +56,18 @@ public class CommonDAOImpl implements CommonDAO{
     }
 
     @Override
-    public <TD extends BaseEntity> List<TD> queryByParam(Map<String, Object> param, Class<TD> cls) {
+    public <TD extends BaseEntity> List<TD> queryByParam(
+            Map<String, Object> param, Class<TD> cls , String orderBy , Boolean isDESC) {
         Query query=new Query();
+        if (!StringUtils.isEmpty(orderBy)) {
+            if (isDESC!= null) {
+                query.with(new Sort(isDESC?Sort.Direction.DESC:Sort.Direction.ASC, orderBy));
+            } else {
+                query.with(new Sort(Sort.Direction.DESC, orderBy));
+            }
+        } else {
+            query.with(new Sort(Sort.Direction.DESC, "gmtModified"));
+        }
 
         Iterator iterator = param.entrySet().iterator();
         while (iterator.hasNext()) {

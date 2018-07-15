@@ -11,6 +11,7 @@ import com.aimeow.iteastyle.domain.ViewObject.*;
 import com.aimeow.iteastyle.domain.ViewObject.Case.CasesInTypeVO;
 import com.aimeow.iteastyle.domain.entity.*;
 import com.aimeow.iteastyle.domain.entity.service.TeaBreak.TeaBreakServiceEntity;
+import com.aimeow.iteastyle.domain.entity.service.TeaBreak.order.menu.MenuEntity;
 import com.aimeow.iteastyle.domain.entity.service.TeaDIYEntity;
 import com.aimeow.iteastyle.domain.entity.service.TeaGift.TeaGiftServiceEntity;
 import com.aimeow.iteastyle.domain.entity.service.TeaLectureEntity;
@@ -116,7 +117,7 @@ public class WebDataServiceImpl implements WebDataService {
             postQuery.setPage(page);
             postQuery.setStatus(StatusEnum.NORMAL.getStatus());
 
-            List<PostEntity> postEntities = commonDAO.queryList(postQuery , PostEntity.class);
+            List<PostEntity> postEntities = commonDAO.queryList(postQuery , PostEntity.class, null , null);
             baseGetList.setTotalCount(commonDAO.count(postQuery , PostEntity.class));
             baseGetList.setItems(postEntities);
             result.setModel(baseGetList);
@@ -165,7 +166,7 @@ public class WebDataServiceImpl implements WebDataService {
 
             Map<String, Object> map = new HashMap<>();
             map.put("type" , caseEntity.getType());
-            List<CaseTypeEntity> caseTypeEntities = commonDAO.queryByParam(map, CaseTypeEntity.class);
+            List<CaseTypeEntity> caseTypeEntities = commonDAO.queryByParam(map, CaseTypeEntity.class, null, null);
             if (caseTypeEntities.size()>0) {
                 caseEntity.setTypeName(caseTypeEntities.get(0).getTypeName());
             }
@@ -199,13 +200,13 @@ public class WebDataServiceImpl implements WebDataService {
 
             Map<String, Object> map = new HashMap<>();
             map.put("type" , type);
-            List<CaseTypeEntity> caseTypeEntities = commonDAO.queryByParam(map, CaseTypeEntity.class);
+            List<CaseTypeEntity> caseTypeEntities = commonDAO.queryByParam(map, CaseTypeEntity.class, null , null);
             if (caseTypeEntities.size()>0) {
                 CaseTypeEntity caseTypeVO = caseTypeEntities.get(0);
                 casesInTypeVO.setCaseType(caseTypeVO);
             }
 
-            List<CaseEntity> caseEntities = commonDAO.queryList(caseQuery, CaseEntity.class);
+            List<CaseEntity> caseEntities = commonDAO.queryList(caseQuery, CaseEntity.class , null , null);
             caseEntities.iterator().forEachRemaining(
                     obj-> {
                         CaseEntity caseBaseVO = obj;
@@ -232,9 +233,9 @@ public class WebDataServiceImpl implements WebDataService {
             List<CaseTypeEntity> caseTypeVOS = new ArrayList<>();
             List<CaseEntity> caseBaseVOS = new ArrayList<>();
             List<CaseEntity> caseEntities = commonDAO.queryList(
-                new BaseQuery() , CaseEntity.class);
+                new BaseQuery() , CaseEntity.class, null , null);
             List<CaseTypeEntity> caseTypeEntities = commonDAO.queryList(
-                new BaseQuery() , CaseTypeEntity.class);
+                new BaseQuery() , CaseTypeEntity.class, null , null);
 
             for (CaseEntity caseEntity : caseEntities) {
                 caseBaseVOS.add(caseEntity);
@@ -276,6 +277,10 @@ public class WebDataServiceImpl implements WebDataService {
         try {
             TeaBreakServiceEntity teaBreakServiceEntity = commonData.getData(TeaBreakServiceEntity.class);
             result.setModel(teaBreakServiceEntity);
+
+            List<MenuEntity> menuEntities = commonDAO.queryList(new BaseQuery() , MenuEntity.class , "sort" , true);
+            teaBreakServiceEntity.getOrder().getMenu().setMenus(menuEntities);
+
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
@@ -307,7 +312,7 @@ public class WebDataServiceImpl implements WebDataService {
             BaseQuery baseQuery = new BaseQuery();
             baseQuery.setPageSize(pageSize);
             baseQuery.setPage(page);
-            List<TeaLectureEntity> teaLectureEntities = commonDAO.queryList(baseQuery , TeaLectureEntity.class);
+            List<TeaLectureEntity> teaLectureEntities = commonDAO.queryList(baseQuery , TeaLectureEntity.class, null ,null);
             baseGetList.setTotalCount(commonDAO.count(new BaseQuery() , TeaLectureEntity.class));
             baseGetList.setItems(teaLectureEntities);
 
@@ -330,7 +335,7 @@ public class WebDataServiceImpl implements WebDataService {
             BaseQuery baseQuery = new BaseQuery();
             baseQuery.setPageSize(pageSize);
             baseQuery.setPage(page);
-            List<TeaDIYEntity> teaDIYEntities = commonDAO.queryList(baseQuery , TeaDIYEntity.class);
+            List<TeaDIYEntity> teaDIYEntities = commonDAO.queryList(baseQuery , TeaDIYEntity.class , null , null);
             baseGetList.setTotalCount(commonDAO.count(new BaseQuery() , TeaDIYEntity.class));
             baseGetList.setItems(teaDIYEntities);
             result.setModel(baseGetList);
@@ -353,7 +358,7 @@ public class WebDataServiceImpl implements WebDataService {
             BaseQuery baseQuery = new BaseQuery();
             baseQuery.setPageSize(pageSize);
             baseQuery.setPage(page);
-            List<TeaPerformEntity> teaPerformEntities = commonDAO.queryList(baseQuery , TeaPerformEntity.class);
+            List<TeaPerformEntity> teaPerformEntities = commonDAO.queryList(baseQuery , TeaPerformEntity.class , null , null);
             baseGetList.setTotalCount(commonDAO.count(new BaseQuery() , TeaPerformEntity.class));
             baseGetList.setItems(teaPerformEntities);
             result.setModel(baseGetList);
