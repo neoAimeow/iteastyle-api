@@ -278,7 +278,8 @@ public class WebDataServiceImpl implements WebDataService {
             TeaBreakServiceEntity teaBreakServiceEntity = commonData.getData(TeaBreakServiceEntity.class);
             result.setModel(teaBreakServiceEntity);
 
-            List<MenuEntity> menuEntities = commonDAO.queryList(new BaseQuery() , MenuEntity.class , "sort" , true);
+            List<MenuEntity> menuEntities = commonDAO.queryList(
+                    new BaseQuery() , MenuEntity.class , "sort" , false);
             teaBreakServiceEntity.getOrder().getMenu().setMenus(menuEntities);
 
         } catch (Exception e) {
