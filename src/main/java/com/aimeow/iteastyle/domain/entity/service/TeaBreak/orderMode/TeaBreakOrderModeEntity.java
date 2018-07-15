@@ -9,7 +9,4 @@ public class TeaBreakOrderModeEntity {
 
     private String qrTitle;
     private String qrImageUrl;
-
-    private String phoneTitle;
-    private String phoneNum;
 }

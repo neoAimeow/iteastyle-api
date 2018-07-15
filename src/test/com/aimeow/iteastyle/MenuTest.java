@@ -69,7 +69,7 @@ public class MenuTest {
 
     @Test public void testCreateMenu2() throws Exception {
         MenuEntity menuEntity = new MenuEntity();
-        menuEntity.setTitle("B款茶歇/68元人均&#xe7a8;");
+        menuEntity.setTitle("B款茶歇/68元人均 <span style='color:red'>&#xe7a8;</span>");
         menuEntity.setSort(1);
         List<MenuItemEntity> itemEntities = new ArrayList<>();
         menuEntity.setItems(itemEntities);
@@ -159,6 +159,10 @@ public class MenuTest {
         itemEntity3.setDesserts(desserts3);
 
         commonDAO.create(menuEntity);
+    }
+
+    @Test public void testClear() throws Exception {
+        commonDAO.clear(MenuEntity.class);
     }
 
 }
