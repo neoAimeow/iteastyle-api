@@ -23,6 +23,7 @@ import com.aimeow.iteastyle.service.WebDataService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -116,8 +117,13 @@ public class WebDataServiceImpl implements WebDataService {
             postQuery.setPageSize(pageSize);
             postQuery.setPage(page);
             postQuery.setStatus(StatusEnum.NORMAL.getStatus());
-
+        
             List<PostEntity> postEntities = commonDAO.queryList(postQuery , PostEntity.class, null , null);
+            for (PostEntity postEntity: postEntities) {
+                if (StringUtils.isEmpty(postEntity.getImageUrl())) {
+                    postEntity.setImageUrl("http://pazp3d0xt.bkt.clouddn.com/if%20no%20img.jpg");
+                }
+            }
             baseGetList.setTotalCount(commonDAO.count(postQuery , PostEntity.class));
             baseGetList.setItems(postEntities);
             result.setModel(baseGetList);
@@ -258,6 +264,9 @@ public class WebDataServiceImpl implements WebDataService {
                         }
                         casesInTypeVO.getCases().add(caseBaseVO);
                     }
+                }
+                if (casesInTypeVO.getCases().size() == 0) {
+                    casesInTypeVOS.remove(casesInTypeVO);
                 }
             }
 
