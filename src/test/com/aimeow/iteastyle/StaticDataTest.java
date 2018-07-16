@@ -51,8 +51,8 @@ public class StaticDataTest {
         staticDataEntity.setHomepageShowerImageUrls(showerArray);
         staticDataEntity.setContactUsTitle("杭式下午茶 创意茶歇 健康食尚");
         staticDataEntity.setLogoUrl("http://pa74otoy6.bkt.clouddn.com/logo.png");
-        staticDataEntity.setCompanyStoryBgUrl("http://pa74otoy6.bkt.clouddn.com/company-background.png");
-        staticDataEntity.setContactUsBgUrl("http://pa74otoy6.bkt.clouddn.com/contactus-background.png");
+        staticDataEntity.setCompanyStoryBgUrl("http://pazp3d0xt.bkt.clouddn.com/company-story-content-bk.jpg");
+        staticDataEntity.setContactUsBgUrl("http://pazp3d0xt.bkt.clouddn.com/contactus-background.jpg");
 
         commonData.edit(staticDataEntity, StaticDataEntity.class);
 //    }

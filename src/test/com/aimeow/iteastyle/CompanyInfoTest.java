@@ -49,6 +49,7 @@ public class CompanyInfoTest {
         entity.setMail("iteastyle@126.com");
         entity.setWebUrl("https://www.iteastyle.cn");
         entity.setStoryTitle("杭式下午茶");
+        entity.setVideoUrl("www.aimeow.com");
         entity.setLatitude(30.2312);
         entity.setLongitude(120.25479);
         entity.setQrCodeImageUrl("http://pa74otoy6.bkt.clouddn.com/contactus-QRcode.png");
