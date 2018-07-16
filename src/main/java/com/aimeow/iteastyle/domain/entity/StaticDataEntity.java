@@ -14,8 +14,6 @@ public class StaticDataEntity extends BaseEntity implements Serializable {
     private String contactUsTitle;
     private String logoUrl;
     private String companyStoryBgUrl;
-    private String productShowerHeaderUrl;
-    private String postBgUrl;
     private String contactUsBgUrl;
 
     private List<String> homepageBannerUrls;
