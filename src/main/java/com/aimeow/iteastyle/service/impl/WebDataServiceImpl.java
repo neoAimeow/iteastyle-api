@@ -92,6 +92,7 @@ public class WebDataServiceImpl implements WebDataService {
             contactUsVO.setSiteAddress(companyInfoDO.getWebUrl());
             contactUsVO.setContactUsTitle(staticDataDO.getContactUsTitle());
             contactUsVO.setQrCodeImageUrl(companyInfoDO.getQrCodeImageUrl());
+            contactUsVO.setCustomerQrCodeImageUrl(companyInfoDO.getCustomerQrCodeImageUrl());
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());

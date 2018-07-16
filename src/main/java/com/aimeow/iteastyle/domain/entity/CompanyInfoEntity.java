@@ -25,4 +25,5 @@ public class CompanyInfoEntity extends BaseEntity implements Serializable {
     private Double latitude;
     private Double longitude;
     private String qrCodeImageUrl;
+    private String customerQrCodeImageUrl;
 }
