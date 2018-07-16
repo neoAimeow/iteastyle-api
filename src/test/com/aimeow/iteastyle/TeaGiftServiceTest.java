@@ -49,7 +49,9 @@ public class TeaGiftServiceTest {
         TeaGiftSouvenirEntity souvenirEntity = new TeaGiftSouvenirEntity();
         souvenirEntity.setTitle("杭州伴手礼");
         souvenirEntity.setTitle_en("TEA SOUVENIR");
-        souvenirEntity.setContent("西湖龙井、九曲红梅、桂花龙井。都是最具杭城特色的茶品。是赠送外地友人的不二选择，也是外来游客的必选物品。");
+        souvenirEntity.setContent("西湖龙井、九曲红梅、桂花龙井。都是最具杭城特色的茶品。是赠送外地友人的不二选择，也是外来游客的必选物品。<br>" +
+                "“研茶园杭州伴手礼”概念是将杭州的地方文化与礼品的概念相结合，以茶叶的呈现形式予以表达，具有典型的地域文化艺术特色。<br>" +
+                "伴手礼是代表着人与人之间情感的联系，只是一份小小的伴手礼却代表送礼者的心意，可谓礼轻情意重。");
         souvenirEntity.setImageUrl("http://pazp3d0xt.bkt.clouddn.com/TEA%20SOUVENIR.png");
         return souvenirEntity;
     }
