@@ -17,4 +17,6 @@ public class ContactUsVO extends BaseEntity {
     private String siteAddress;
     private Double latitude;
     private Double longitude;
+    private String qrCodeImageUrl;
+    private String customerQrCodeImageUrl;
 }

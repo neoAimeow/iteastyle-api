@@ -23,11 +23,9 @@ import com.aimeow.iteastyle.service.WebDataService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class WebDataServiceImpl implements WebDataService {
@@ -93,7 +91,8 @@ public class WebDataServiceImpl implements WebDataService {
             contactUsVO.setTelephoneNumber(companyInfoDO.getTelephoneNumber());
             contactUsVO.setSiteAddress(companyInfoDO.getWebUrl());
             contactUsVO.setContactUsTitle(staticDataDO.getContactUsTitle());
-
+            contactUsVO.setQrCodeImageUrl(companyInfoDO.getQrCodeImageUrl());
+            contactUsVO.setCustomerQrCodeImageUrl(companyInfoDO.getCustomerQrCodeImageUrl());
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
@@ -116,8 +115,17 @@ public class WebDataServiceImpl implements WebDataService {
             postQuery.setPageSize(pageSize);
             postQuery.setPage(page);
             postQuery.setStatus(StatusEnum.NORMAL.getStatus());
-
+        
             List<PostEntity> postEntities = commonDAO.queryList(postQuery , PostEntity.class, null , null);
+            for (PostEntity postEntity: postEntities) {
+                if (StringUtils.isEmpty(postEntity.getImageUrl())) {
+                    postEntity.setImageUrl("http://pazp3d0xt.bkt.clouddn.com/if%20no%20img.jpg");
+                }
+
+                if (StringUtils.isEmpty(postEntity.getSummary())) {
+                    postEntity.setSummary("点击查看文章详情..");
+                }
+            }
             baseGetList.setTotalCount(commonDAO.count(postQuery , PostEntity.class));
             baseGetList.setItems(postEntities);
             result.setModel(baseGetList);
@@ -232,8 +240,8 @@ public class WebDataServiceImpl implements WebDataService {
         try {
             List<CaseTypeEntity> caseTypeVOS = new ArrayList<>();
             List<CaseEntity> caseBaseVOS = new ArrayList<>();
-            List<CaseEntity> caseEntities = commonDAO.queryList(
-                new BaseQuery() , CaseEntity.class, null , null);
+            List<CaseEntity> caseEntities = commonDAO.queryAllList(
+                CaseEntity.class);
             List<CaseTypeEntity> caseTypeEntities = commonDAO.queryList(
                 new BaseQuery() , CaseTypeEntity.class, null , null);
 
@@ -256,8 +264,18 @@ public class WebDataServiceImpl implements WebDataService {
                         if (casesInTypeVO.getCases() == null) {
                             casesInTypeVO.setCases(new ArrayList<>());
                         }
-                        casesInTypeVO.getCases().add(caseBaseVO);
+                        if (casesInTypeVO.getCases().size() < 6) {
+                            casesInTypeVO.getCases().add(caseBaseVO);
+                        }
                     }
+                }
+            }
+
+            Iterator<CasesInTypeVO> it = casesInTypeVOS.iterator();
+            while(it.hasNext()){
+                CasesInTypeVO x = it.next();
+                if(x.getCases() == null){
+                    it.remove();
                 }
             }
 
@@ -316,8 +334,7 @@ public class WebDataServiceImpl implements WebDataService {
             List<TeaLectureEntity> teaLectureEntities = commonDAO.queryList(baseQuery , TeaLectureEntity.class, null ,null);
             baseGetList.setTotalCount(commonDAO.count(new BaseQuery() , TeaLectureEntity.class));
             baseGetList.setItems(teaLectureEntities);
-
-            TeaGiftServiceEntity teaGiftServiceEntity = commonData.getData(TeaGiftServiceEntity.class);
+            result.setModel(baseGetList);
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
@@ -360,7 +377,7 @@ public class WebDataServiceImpl implements WebDataService {
             baseQuery.setPageSize(pageSize);
             baseQuery.setPage(page);
             List<TeaPerformEntity> teaPerformEntities = commonDAO.queryList(baseQuery , TeaPerformEntity.class , null , null);
-            baseGetList.setTotalCount(commonDAO.count(new BaseQuery() , TeaPerformEntity.class));
+            baseGetList.setTotalCount(commonDAO.count(baseQuery , TeaPerformEntity.class));
             baseGetList.setItems(teaPerformEntities);
             result.setModel(baseGetList);
         } catch (Exception e) {

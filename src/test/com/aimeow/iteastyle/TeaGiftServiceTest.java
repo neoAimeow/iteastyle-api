@@ -49,7 +49,9 @@ public class TeaGiftServiceTest {
         TeaGiftSouvenirEntity souvenirEntity = new TeaGiftSouvenirEntity();
         souvenirEntity.setTitle("杭州伴手礼");
         souvenirEntity.setTitle_en("TEA SOUVENIR");
-        souvenirEntity.setContent("西湖龙井、九曲红梅、桂花龙井。都是最具杭城特色的茶品。是赠送外地友人的不二选择，也是外来游客的必选物品。");
+        souvenirEntity.setContent("西湖龙井、九曲红梅、桂花龙井。都是最具杭城特色的茶品。是赠送外地友人的不二选择，也是外来游客的必选物品。<br>" +
+                "“研茶园杭州伴手礼”概念是将杭州的地方文化与礼品的概念相结合，以茶叶的呈现形式予以表达，具有典型的地域文化艺术特色。<br>" +
+                "伴手礼是代表着人与人之间情感的联系，只是一份小小的伴手礼却代表送礼者的心意，可谓礼轻情意重。");
         souvenirEntity.setImageUrl("http://pazp3d0xt.bkt.clouddn.com/TEA%20SOUVENIR.png");
         return souvenirEntity;
     }
@@ -109,11 +111,11 @@ public class TeaGiftServiceTest {
 
         itemEntity2.setItemTitle("九曲红梅简介");
         itemEntity2.setItemContent("九曲红梅，这个富有诗意的茶叶产自人间天堂——杭州，或许是沾染了这座城市的浪漫气息，它因此也成为了中国众多茶叶中少数几个以文化命名的茶。尽管生产九曲红梅的茶因面积和产量占浙江省的份额甚少，但因其品质独特，成为杭州市的十大名茶之一，被誉为“万绿丛中一点红”，早在1915年，就拿过巴拿马万国博览会的金奖。因其茶形虬曲，茶性温和，茶味香甜，茶韵悠绵，有红梅之品格及茶文化等诸原因，故又以红梅称之。这是我国茶名中少有以文化命名的名茶。");
-        itemEntity2.setItemImageUrl("http://pazp3d0xt.bkt.clouddn.com/SOUVENIR-B.png");
+        itemEntity2.setItemImageUrl("http://pazp3d0xt.bkt.clouddn.com/Souvenir-B.png");
 
         itemEntity3.setItemTitle("桂花龙井简介");
         itemEntity3.setItemContent("桂子月中落，天香云外飘。农历八月的杭州，整座城市弥漫着桂花的香甜气息，也勾起很多杭州人旧时的记忆。杭州市花——桂花，与来自春日西湖龙井旁的问候在入秋季节进行跨越时空的交接。以秋季桂香为经，春日龙井为纬，经纬交织间，融合两种最能代表杭州的花草芳香，于雅致中更见一座城市的风情万千。于丹桂飘香之际感觉到春天的问候，于遥远的地方感觉到西湖秋夜明月如同碧水。");
-        itemEntity3.setItemImageUrl("http://pazp3d0xt.bkt.clouddn.com/SOUVENIR-C.png");
+        itemEntity3.setItemImageUrl("http://pazp3d0xt.bkt.clouddn.com/Souvenir-C.png");
 
 
         itemEntity1.setElements(this.getMindItem1());

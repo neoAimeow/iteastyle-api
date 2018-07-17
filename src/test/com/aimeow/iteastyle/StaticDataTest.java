@@ -1,6 +1,8 @@
 package com.aimeow.iteastyle;
 
 import com.aimeow.iteastyle.Application;
+import com.aimeow.iteastyle.base.tools.CommonData;
+import com.aimeow.iteastyle.domain.entity.StaticDataEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,42 +22,39 @@ public class StaticDataTest {
 //    @Autowired
 //    StaticDataDAO staticDataDAO;
 //
-//    @Test
-//    public void testQuery () throws Exception {
-//        System.out.println(staticDataDAO.getStaticData());
+    @Autowired private CommonData commonData;
+    @Test
+    public void testQuery () throws Exception {
+        System.out.println(commonData.getData(StaticDataEntity.class));
+    }
+//
+    @Test
+    public void testModified () throws Exception {
+        StaticDataEntity staticDataEntity = new StaticDataEntity();
+        List<String> homeHeader = new ArrayList<>();
+        homeHeader.add("http://pa74otoy6.bkt.clouddn.com/AfternoonTea.jpeg");
+//
+//
+        List<String> serviceArray = new ArrayList<>();
+        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/index-TeaArt.png");
+        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/index-TeaBreak.png");
+        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/index-TeaCeremony.png");
+
+        List<String> showerArray = new ArrayList<>();
+        showerArray.add("http://pa74otoy6.bkt.clouddn.com/index-foot-img1.png");
+        showerArray.add("http://pa74otoy6.bkt.clouddn.com/index-foot-img2.png");
+        showerArray.add("http://pa74otoy6.bkt.clouddn.com/index-foot-img3.png");
+        showerArray.add("http://pa74otoy6.bkt.clouddn.com/index-foot-img4.png");
+
+        staticDataEntity.setHomepageBannerUrls(homeHeader);
+        staticDataEntity.setHomepageServiceImageUrls(serviceArray);
+        staticDataEntity.setHomepageShowerImageUrls(showerArray);
+        staticDataEntity.setContactUsTitle("杭式下午茶 创意茶歇 健康食尚");
+        staticDataEntity.setLogoUrl("http://pa74otoy6.bkt.clouddn.com/logo.png");
+        staticDataEntity.setCompanyStoryBgUrl("http://pazp3d0xt.bkt.clouddn.com/compamy-bk-1500-1133.jpg");
+        staticDataEntity.setContactUsBgUrl("http://pazp3d0xt.bkt.clouddn.com/ct-us-1700-930.jpg");
+
+        commonData.edit(staticDataEntity, StaticDataEntity.class);
 //    }
-//
-//    @Test
-//    public void testModified () throws Exception {
-//        StaticDataDO staticDataDO = new StaticDataDO();
-//        List<String> homeHeader = new ArrayList<>();
-//        homeHeader.add("http://pa74otoy6.bkt.clouddn.com/AfternoonTea.jpeg");
-//
-//
-//        List<String> serviceArray = new ArrayList<>();
-//        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/index-TeaArt.png");
-//        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/index-TeaBreak.png");
-//        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/index-TeaCeremony.png");
-//
-//
-//        List<String> showerArray = new ArrayList<>();
-//        showerArray.add("http://pa74otoy6.bkt.clouddn.com/index-foot-img1.png");
-//        showerArray.add("http://pa74otoy6.bkt.clouddn.com/index-foot-img2.png");
-//        showerArray.add("http://pa74otoy6.bkt.clouddn.com/index-foot-img3.png");
-//        showerArray.add("http://pa74otoy6.bkt.clouddn.com/index-foot-img4.png");
-//
-//
-//        staticDataDO.setHomepageBannerUrls(homeHeader);
-//        staticDataDO.setHomepageServiceImageUrls(serviceArray);
-//        staticDataDO.setHomepageShowerImageUrls(showerArray);
-//        staticDataDO.setContactUsTitle("杭式下午茶 创意茶歇 健康食尚");
-//        staticDataDO.setLogoUrl("http://pa74otoy6.bkt.clouddn.com/logo.png");
-//        staticDataDO.setCompanyStoryBgUrl("http://pa74otoy6.bkt.clouddn.com/company-background.png");
-//        staticDataDO.setContactUsBgUrl("http://pa74otoy6.bkt.clouddn.com/contactus-background.png");
-//        staticDataDO.setPostBgUrl("http://pa74otoy6.bkt.clouddn.com/tea-news-background.png");
-//        staticDataDO.setProductShowerHeaderUrl("http://pa74otoy6.bkt.clouddn.com/pd-title-background.png");
-//
-//        staticDataDAO.replaceStaticData(staticDataDO);
-//
-//    }
+    }
 }
