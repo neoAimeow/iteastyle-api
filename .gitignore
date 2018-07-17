@@ -6,5 +6,5 @@ iteastyle-api.iws
 target/
 out/
 .project
-./Jenkinsfile
-./docker-compose.yml
+Jenkinsfile
+docker-compose.yml
