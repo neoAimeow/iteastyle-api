@@ -41,8 +41,8 @@ public class StaticDataTest {
         serviceArray.add("http://pa74otoy6.bkt.clouddn.com/index-TeaCeremony.png");
 
         List<String> showerArray = new ArrayList<>();
-        showerArray.add("http://pa74otoy6.bkt.clouddn.com/index-foot-img1.png");
-        showerArray.add("http://pa74otoy6.bkt.clouddn.com/index-foot-img2.png");
+        showerArray.add("http://pazp3d0xt.bkt.clouddn.com/index-foot-img6.jpg");
+        showerArray.add("http://pazp3d0xt.bkt.clouddn.com/index-foot-img5.jpg");
         showerArray.add("http://pa74otoy6.bkt.clouddn.com/index-foot-img3.png");
         showerArray.add("http://pa74otoy6.bkt.clouddn.com/index-foot-img4.png");
 
