@@ -36,9 +36,9 @@ public class StaticDataTest {
 //
 //
         List<String> serviceArray = new ArrayList<>();
-        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/index-TeaArt.png");
-        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/index-TeaBreak.png");
-        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/index-TeaCeremony.png");
+        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/Tea%20break%20service-web.png");
+        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/Tea%20gift%20service-web.png");
+        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/Tea%20%20art%20%20service-web.png");
 
         List<String> showerArray = new ArrayList<>();
         showerArray.add("http://pa74otoy6.bkt.clouddn.com/index-foot-img1.png");

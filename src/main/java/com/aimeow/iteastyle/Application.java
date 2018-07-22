@@ -32,6 +32,7 @@ import java.util.Collections;
         "com.aimeow.iteastyle",
         "com.aimeow.iteastyle.service",
         "com.aimeow.iteastyle.config",
+        "com.aimeow.iteastyle.Authorities",
         "com.aimeow.iteastyle.base.tools"})
 public class Application {
 
