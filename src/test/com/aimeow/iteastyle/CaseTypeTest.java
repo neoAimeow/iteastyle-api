@@ -1,7 +1,7 @@
 package com.aimeow.iteastyle;
 
-import com.aimeow.iteastyle.base.tools.CommonDAO;
-import com.aimeow.iteastyle.base.tools.CommonData;
+import com.aimeow.tools.CommonDAO;
+import com.aimeow.tools.CommonData;
 import com.aimeow.iteastyle.domain.entity.CaseTypeEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;

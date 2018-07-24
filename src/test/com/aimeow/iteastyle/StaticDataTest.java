@@ -1,7 +1,7 @@
 package com.aimeow.iteastyle;
 
 import com.aimeow.iteastyle.Application;
-import com.aimeow.iteastyle.base.tools.CommonData;
+import com.aimeow.tools.CommonData;
 import com.aimeow.iteastyle.domain.entity.StaticDataEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;

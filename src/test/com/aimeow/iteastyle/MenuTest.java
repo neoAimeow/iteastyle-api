@@ -1,7 +1,7 @@
 package com.aimeow.iteastyle;
 
-import com.aimeow.iteastyle.base.domain.BaseQuery;
-import com.aimeow.iteastyle.base.tools.CommonDAO;
+import com.aimeow.domain.BaseQuery;
+import com.aimeow.tools.CommonDAO;
 import com.aimeow.iteastyle.domain.entity.service.TeaBreak.order.menu.MenuEntity;
 import com.aimeow.iteastyle.domain.entity.service.TeaBreak.order.menu.MenuItemEntity;
 import org.junit.Test;

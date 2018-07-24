@@ -1,6 +1,6 @@
 package com.aimeow.iteastyle.domain.entity.service.TeaBreak;
 
-import com.aimeow.iteastyle.base.domain.BaseEntity;
+import com.aimeow.domain.BaseEntity;
 import com.aimeow.iteastyle.domain.entity.service.TeaBreak.note.TeaBreakNoteEntity;
 import com.aimeow.iteastyle.domain.entity.service.TeaBreak.order.TeaBreakOrderEntity;
 import com.aimeow.iteastyle.domain.entity.service.TeaBreak.orderMode.TeaBreakOrderModeEntity;

@@ -1,6 +1,6 @@
 package com.aimeow.iteastyle.domain.entity;
 
-import com.aimeow.iteastyle.base.domain.BaseEntity;
+import com.aimeow.domain.BaseEntity;
 import lombok.Data;
 
 @Data

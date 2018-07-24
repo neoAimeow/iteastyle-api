@@ -1,10 +1,10 @@
 package com.aimeow.iteastyle.service.impl;
 
-import com.aimeow.iteastyle.base.domain.BaseQuery;
-import com.aimeow.iteastyle.base.domain.BaseResult;
-import com.aimeow.iteastyle.base.domain.BaseGetList;
-import com.aimeow.iteastyle.base.tools.CommonDAO;
-import com.aimeow.iteastyle.base.tools.CommonData;
+import com.aimeow.domain.BaseQuery;
+import com.aimeow.domain.BaseResult;
+import com.aimeow.domain.BaseGetList;
+import com.aimeow.tools.CommonDAO;
+import com.aimeow.tools.CommonData;
 
 
 import com.aimeow.iteastyle.domain.ViewObject.*;

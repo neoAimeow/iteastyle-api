@@ -1,8 +1,7 @@
 package com.aimeow.iteastyle.domain.entity;
 
-import com.aimeow.iteastyle.base.domain.BaseEntity;
+import com.aimeow.domain.BaseEntity;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;

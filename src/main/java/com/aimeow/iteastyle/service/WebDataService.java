@@ -1,7 +1,7 @@
 package com.aimeow.iteastyle.service;
 
-import com.aimeow.iteastyle.base.domain.BaseResult;
-import com.aimeow.iteastyle.base.domain.BaseGetList;
+import com.aimeow.domain.BaseResult;
+import com.aimeow.domain.BaseGetList;
 import com.aimeow.iteastyle.domain.ViewObject.*;
 import com.aimeow.iteastyle.domain.ViewObject.Case.CasesInTypeVO;
 import com.aimeow.iteastyle.domain.entity.CaseEntity;

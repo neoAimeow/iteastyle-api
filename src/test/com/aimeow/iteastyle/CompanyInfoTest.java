@@ -1,8 +1,8 @@
 package com.aimeow.iteastyle;
 
 import com.aimeow.iteastyle.Application;
-import com.aimeow.iteastyle.base.tools.CommonDAO;
-import com.aimeow.iteastyle.base.tools.CommonData;
+import com.aimeow.tools.CommonDAO;
+import com.aimeow.tools.CommonData;
 import com.aimeow.iteastyle.domain.entity.CompanyInfoEntity;
 import com.aimeow.iteastyle.domain.enums.StatusEnum;
 import org.junit.Test;
