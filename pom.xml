@@ -116,6 +116,14 @@
     </build>
     <repositories>
         <repository>
+            <id>aliyun maven</id>
+            <name>aliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
             <id>aimeow-release</id>
             <name>aimeow-release</name>
             <url>http://home.aimeow.com:15507/nexus/content/repositories/aimeow-release/</url>
