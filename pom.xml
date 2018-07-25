@@ -114,4 +114,26 @@
 
         </plugins>
     </build>
+    <repositories>
+        <repository>
+            <id>aimeow-release</id>
+            <name>aimeow-release</name>
+            <url>http://home.aimeow.com:15507/nexus/content/repositories/aimeow-release/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>aimeow-snapshots</id>
+            <name>aimeow-snapshots</name>
+            <url>http://home.aimeow.com:15507/nexus/content/repositories/aimeow-snapshots/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <!--snapshots默认是关闭的,需要开启  -->
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>
