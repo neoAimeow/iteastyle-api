@@ -66,7 +66,6 @@ public class CaseTypeTest {
         caseTypeEntity4.setTypeImage("http://pazp3d0xt.bkt.clouddn.com/pd-performance-wap.jpg");
         caseTypeEntity4.setTypeIcon("http://pa74otoy6.bkt.clouddn.com/opaque-logo.png");
         commonDAO.create(caseTypeEntity3);
-
         commonDAO.create(caseTypeEntity4);
         commonDAO.create(caseTypeEntity1);
         commonDAO.create(caseTypeEntity2);
