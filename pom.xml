@@ -20,7 +20,7 @@
         <rxjava2.version>2.1.14</rxjava2.version>
         <qiniu.version>[7.2.0, 7.2.99]</qiniu.version>
         <jsets.shiro.version>1.0.2</jsets.shiro.version>
-        <aimeow-toolkit>0.0.1</aimeow-toolkit>
+        <aimeow-toolkit>0.0.2</aimeow-toolkit>
     </properties>
 
     <!-- Inherit defaults from Spring Boot -->

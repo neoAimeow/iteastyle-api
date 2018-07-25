@@ -155,7 +155,7 @@ public class WebDataServiceImpl implements WebDataService {
         BaseResult<List<CaseTypeEntity>> result = new BaseResult<>();
         try {
 
-            List<CaseTypeEntity> caseTypeEntities = commonDAO.queryAllList(CaseTypeEntity.class);
+            List<CaseTypeEntity> caseTypeEntities = commonDAO.queryAllList(CaseTypeEntity.class,"rank",true);
             result.setModel(caseTypeEntities);
         } catch (Exception e) {
             result.setSuccess(false);
@@ -241,7 +241,7 @@ public class WebDataServiceImpl implements WebDataService {
             List<CaseTypeEntity> caseTypeVOS = new ArrayList<>();
             List<CaseEntity> caseBaseVOS = new ArrayList<>();
             List<CaseEntity> caseEntities = commonDAO.queryAllList(
-                CaseEntity.class);
+                CaseEntity.class,null,null);
             List<CaseTypeEntity> caseTypeEntities = commonDAO.queryList(
                 new BaseQuery() , CaseTypeEntity.class, null , null);
 

@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class CaseTypeEntity extends BaseEntity {
+    private Integer rank;
     private Integer type;
     private String typeName;
     private String typeNameEn;
