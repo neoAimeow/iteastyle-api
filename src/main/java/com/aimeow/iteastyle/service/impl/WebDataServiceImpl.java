@@ -243,7 +243,7 @@ public class WebDataServiceImpl implements WebDataService {
             List<CaseEntity> caseEntities = commonDAO.queryAllList(
                 CaseEntity.class,null,null);
             List<CaseTypeEntity> caseTypeEntities = commonDAO.queryList(
-                new BaseQuery() , CaseTypeEntity.class, null , null);
+                new BaseQuery() , CaseTypeEntity.class, "rank" , false);
 
             for (CaseEntity caseEntity : caseEntities) {
                 caseBaseVOS.add(caseEntity);

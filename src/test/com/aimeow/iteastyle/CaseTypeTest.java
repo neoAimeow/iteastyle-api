@@ -28,7 +28,7 @@ public class CaseTypeTest {
     CommonDAO commonDAO;
 
     @Test public void testQuery () throws Exception {
-        System.out.println(commonDAO.queryAllList(CaseTypeEntity.class,null,null));
+        System.out.println(commonDAO.queryAllList(CaseTypeEntity.class,"rank",false));
     }
 
     @Test public void testModified() throws Exception {
