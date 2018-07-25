@@ -1,6 +1,6 @@
 package com.aimeow.iteastyle.domain.entity.service.TeaGift;
 
-import com.aimeow.iteastyle.base.domain.BaseEntity;
+import com.aimeow.domain.BaseEntity;
 import com.aimeow.iteastyle.domain.entity.service.TeaGift.Souvenir.TeaGiftSouvenirEntity;
 import com.aimeow.iteastyle.domain.entity.service.TeaGift.drinkWay.TeaGiftWayEntity;
 import com.aimeow.iteastyle.domain.entity.service.TeaGift.mind.TeaGiftMindEntity;

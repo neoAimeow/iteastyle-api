@@ -1,8 +1,8 @@
 package com.aimeow.iteastyle;
 
 import com.aimeow.iteastyle.Application;
-import com.aimeow.iteastyle.base.tools.CommonDAO;
-import com.aimeow.iteastyle.base.tools.CommonData;
+import com.aimeow.tools.CommonDAO;
+import com.aimeow.tools.CommonData;
 import com.aimeow.iteastyle.domain.entity.CompanyInfoEntity;
 import com.aimeow.iteastyle.domain.enums.StatusEnum;
 import org.junit.Test;
@@ -54,7 +54,7 @@ public class CompanyInfoTest {
         entity.setLongitude(120.25479);
         entity.setQrCodeImageUrl("http://pa74otoy6.bkt.clouddn.com/contactus-QRcode.png");
         entity.setCustomerQrCodeImageUrl("http://pazp3d0xt.bkt.clouddn.com/Customer%20service-QR%20code.png");
-        entity.setStory("&emsp;&emsp;执贝科技，立足杭州，以吃茶、喝茶为切入点，借助时尚、新颖的主题方式，让更多的年轻人了解茶文化，享受食尚茶歇，从而逐步打造属于我们自己的“杭式下午茶”。目前公司主要以“茶歇服务”为主体业务，茶礼茶具、器皿租赁、糕点供应为辅，提供全方位的特色服务。<br><br>&emsp;&emsp;HangZhou Afternoon Tea is a compositive organization which is devoted to Tea Break one-stop service. It really takes tea elements as the core.  Using pure natural tea powder mixes tea with drinks , cakes  and fashion together . It aims to lead a healthy lifestyle and concept of life.");
+        entity.setStory("&emsp;&emsp;执贝科技，立足杭州，以吃茶、喝茶为切入点，借助时尚、新颖的主题方式，让更多的年轻人了解茶文化，享受食尚茶歇，从而逐步打造属于我们自己的“杭式下午茶”。目前公司主要以“茶歇服务”为主体业务，茶礼茶具、器皿租赁、糕点供应为辅，提供全方位的特色服务。<br><br>&emsp;&emsp;HangZhou Afternoon Tea is a compositive organization which is devoted to Tea Break one-stop service. It really takes tea elements as the core.  Using pure natural tea powder tea with drinks , cakes  and fashion together . It aims to lead a healthy lifestyle and concept of life.");
         List<String> phoneNumbers = new ArrayList<>();
         phoneNumbers.add("15906631121");
         phoneNumbers.add("15858232263");

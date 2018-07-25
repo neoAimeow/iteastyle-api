@@ -1,6 +1,6 @@
 package com.aimeow.iteastyle.service;
 
-import com.aimeow.iteastyle.base.domain.BaseResult;
+import com.aimeow.domain.BaseResult;
 
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;

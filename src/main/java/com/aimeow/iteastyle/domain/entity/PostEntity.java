@@ -1,11 +1,9 @@
 package com.aimeow.iteastyle.domain.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
-import com.aimeow.iteastyle.base.domain.BaseEntity;
+import com.aimeow.domain.BaseEntity;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 
 @Data
 public class PostEntity extends BaseEntity implements Serializable {

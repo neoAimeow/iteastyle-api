@@ -19,8 +19,8 @@
         <jedis.version>2.9.0</jedis.version>
         <rxjava2.version>2.1.14</rxjava2.version>
         <qiniu.version>[7.2.0, 7.2.99]</qiniu.version>
-        <shiro.version>1.3.2</shiro.version>
-        <jwt.version>3.2.0</jwt.version>
+        <jsets.shiro.version>1.0.2</jsets.shiro.version>
+        <aimeow-toolkit>0.0.2</aimeow-toolkit>
     </properties>
 
     <!-- Inherit defaults from Spring Boot -->
@@ -93,17 +93,17 @@
             <artifactId>qiniu-java-sdk</artifactId>
             <version>${qiniu.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.auth0</groupId>
-            <artifactId>java-jwt</artifactId>
-            <version>${jwt.version}</version>
-        </dependency>
 
+        <dependency>
+            <groupId>org.jsets</groupId>
+            <artifactId>jsets-shiro-spring-boot-starter</artifactId>
+            <version>${jsets.shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.aimeow</groupId>
+            <artifactId>aimeow-toolkit</artifactId>
+            <version>${aimeow-toolkit}</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -114,4 +114,34 @@
 
         </plugins>
     </build>
+    <repositories>
+        <repository>
+            <id>aliyun maven</id>
+            <name>aliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>aimeow-release</id>
+            <name>aimeow-release</name>
+            <url>http://home.aimeow.com:15507/nexus/content/repositories/aimeow-release/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>aimeow-snapshots</id>
+            <name>aimeow-snapshots</name>
+            <url>http://home.aimeow.com:15507/nexus/content/repositories/aimeow-snapshots/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <!--snapshots默认是关闭的,需要开启  -->
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>

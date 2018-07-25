@@ -1,8 +1,8 @@
 package com.aimeow.iteastyle;
 
-import com.aimeow.iteastyle.base.domain.BaseQuery;
-import com.aimeow.iteastyle.base.tools.CommonDAO;
-import com.aimeow.iteastyle.base.tools.CommonData;
+import com.aimeow.domain.BaseQuery;
+import com.aimeow.tools.CommonDAO;
+import com.aimeow.tools.CommonData;
 import com.aimeow.iteastyle.domain.entity.service.TeaDIYEntity;
 import com.aimeow.iteastyle.domain.entity.service.TeaLectureEntity;
 import org.junit.Test;

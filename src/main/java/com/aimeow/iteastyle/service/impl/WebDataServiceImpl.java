@@ -1,10 +1,10 @@
 package com.aimeow.iteastyle.service.impl;
 
-import com.aimeow.iteastyle.base.domain.BaseQuery;
-import com.aimeow.iteastyle.base.domain.BaseResult;
-import com.aimeow.iteastyle.base.domain.BaseGetList;
-import com.aimeow.iteastyle.base.tools.CommonDAO;
-import com.aimeow.iteastyle.base.tools.CommonData;
+import com.aimeow.domain.BaseQuery;
+import com.aimeow.domain.BaseResult;
+import com.aimeow.domain.BaseGetList;
+import com.aimeow.tools.CommonDAO;
+import com.aimeow.tools.CommonData;
 
 
 import com.aimeow.iteastyle.domain.ViewObject.*;
@@ -155,7 +155,7 @@ public class WebDataServiceImpl implements WebDataService {
         BaseResult<List<CaseTypeEntity>> result = new BaseResult<>();
         try {
 
-            List<CaseTypeEntity> caseTypeEntities = commonDAO.queryAllList(CaseTypeEntity.class);
+            List<CaseTypeEntity> caseTypeEntities = commonDAO.queryAllList(CaseTypeEntity.class,"rank",true);
             result.setModel(caseTypeEntities);
         } catch (Exception e) {
             result.setSuccess(false);
@@ -241,7 +241,7 @@ public class WebDataServiceImpl implements WebDataService {
             List<CaseTypeEntity> caseTypeVOS = new ArrayList<>();
             List<CaseEntity> caseBaseVOS = new ArrayList<>();
             List<CaseEntity> caseEntities = commonDAO.queryAllList(
-                CaseEntity.class);
+                CaseEntity.class,null,null);
             List<CaseTypeEntity> caseTypeEntities = commonDAO.queryList(
                 new BaseQuery() , CaseTypeEntity.class, null , null);
 

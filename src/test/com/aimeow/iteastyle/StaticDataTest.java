@@ -1,7 +1,7 @@
 package com.aimeow.iteastyle;
 
 import com.aimeow.iteastyle.Application;
-import com.aimeow.iteastyle.base.tools.CommonData;
+import com.aimeow.tools.CommonData;
 import com.aimeow.iteastyle.domain.entity.StaticDataEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,9 +36,9 @@ public class StaticDataTest {
 //
 //
         List<String> serviceArray = new ArrayList<>();
-        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/index-TeaArt.png");
-        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/index-TeaBreak.png");
-        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/index-TeaCeremony.png");
+        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/Tea%20break%20service-web.png");
+        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/Tea%20gift%20service-web.png");
+        serviceArray.add("http://pa74otoy6.bkt.clouddn.com/Tea%20%20art%20%20service-web.png");
 
         List<String> showerArray = new ArrayList<>();
         showerArray.add("http://pazp3d0xt.bkt.clouddn.com/index-foot-img6.jpg");
