@@ -1,4 +1,4 @@
-package com.aimeow.iteastyle.Authentification.service.impl;
+package com.aimeow.iteastyle.Authentification.service;
 
 import java.util.Date;
 import java.util.Iterator;
@@ -8,9 +8,7 @@ import java.util.Map;
 import com.alibaba.fastjson.JSONObject;
 
 import com.aimeow.domain.BaseQuery;
-import com.aimeow.iteastyle.Authentification.entity.AdminUserEntity;
-import com.aimeow.iteastyle.Authentification.service.AdminUserService;
-import org.jsets.shiro.util.ShiroUtils;
+import com.aimeow.iteastyle.Authentification.entity.AccountCredentials;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -18,23 +16,32 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
-import org.springframework.stereotype.Component;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-@Component
-public class AdminUserServiceImpl implements AdminUserService {
+@Service
+public class AdminUserDAO implements UserDetailsService {
     @Autowired
     private MongoTemplate mongoTemplate;
 
     @Override
-    public AdminUserEntity queryById(String id) throws Exception {
-        Query query=new Query(Criteria.where("id").is(id));
-        AdminUserEntity td =  mongoTemplate.findOne(query , AdminUserEntity.class);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Query query=new Query(Criteria.where("userName").is(username));
+        AccountCredentials td =  mongoTemplate.findOne(query , AccountCredentials.class);
         return td;
     }
 
-    @Override
-    public List<AdminUserEntity> queryList(BaseQuery query, String orderBy, Boolean isDESC) throws Exception {
+    public AccountCredentials queryById(String id) throws Exception {
+        Query query=new Query(Criteria.where("id").is(id));
+        AccountCredentials td =  mongoTemplate.findOne(query , AccountCredentials.class);
+        return td;
+    }
+
+    public List<AccountCredentials> queryList(BaseQuery query, String orderBy, Boolean isDESC) throws Exception {
         Query q = new Query();
         if (!StringUtils.isEmpty(orderBy)) {
             if (isDESC != null) {
@@ -49,21 +56,22 @@ public class AdminUserServiceImpl implements AdminUserService {
         query.setPage(query.getPage() != null && query.getPage().intValue() != 0 ? query.getPage().intValue() : 1);
         query.setPageSize(query.getPageSize() != null && query.getPageSize().intValue() != 0 ? query.getPageSize().intValue() : 10);
         q.skip((long)((query.getPage().intValue() - 1) * query.getPageSize().intValue())).limit(query.getPageSize().intValue());
-        List<AdminUserEntity> dos = this.mongoTemplate.find(q, AdminUserEntity.class);
+        List<AccountCredentials> dos = this.mongoTemplate.find(q, AccountCredentials.class);
         return dos;
     }
 
-    @Override
     public Long count(BaseQuery baseQuery) throws Exception {
         Query q = new Query();
-        return mongoTemplate.count(q, AdminUserEntity.class);
+        return mongoTemplate.count(q, AccountCredentials.class);
     }
 
-    @Override
-    public Boolean save(AdminUserEntity userEntity) throws Exception {
+    public Boolean save(AccountCredentials userEntity) throws Exception {
         userEntity.setGmtCreate(new Date());
         userEntity.setGmtModified(new Date());
-        userEntity.setPassword(ShiroUtils.password(userEntity.getPassword()));
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String encode = encoder.encode(userEntity.getPassword());
+        userEntity.setPassword(encode);
+
         if (StringUtils.isEmpty(userEntity.getId())) {
             mongoTemplate.save(userEntity);
         } else {
@@ -91,16 +99,15 @@ public class AdminUserServiceImpl implements AdminUserService {
                 update.set(key , val);
             }
 
-            mongoTemplate.updateFirst(query,update,AdminUserEntity.class);
+            mongoTemplate.updateFirst(query,update,AccountCredentials.class);
 
         }
         return true;
     }
 
-    @Override
     public Boolean delete(String id) throws Exception {
         Query query = new Query(Criteria.where("id").is(id));
-        this.mongoTemplate.remove(query, AdminUserEntity.class);
+        this.mongoTemplate.remove(query, AccountCredentials.class);
         return true;
     }
 }

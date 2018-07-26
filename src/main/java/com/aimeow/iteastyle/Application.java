@@ -25,7 +25,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "com.aimeow.iteastyle",
         "com.aimeow.iteastyle.service",
         "com.aimeow.iteastyle.config",
-        "com.aimeow.iteastyle.Authorities",
+        "com.aimeow.iteastyle.Authentification.service",
+        "com.aimeow.iteastyle.Authentification.config",
         "com.aimeow.tools"})
 public class Application {
 
