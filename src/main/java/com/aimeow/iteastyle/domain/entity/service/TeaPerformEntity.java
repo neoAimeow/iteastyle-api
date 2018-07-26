@@ -6,6 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
+//已经废弃
 public class TeaPerformEntity extends BaseEntity {
     private String iconImageUrl;
     private String title;
