@@ -10,7 +10,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.aimeow.domain.BaseQuery;
 import com.aimeow.iteastyle.Authentification.entity.AdminUserEntity;
 import com.aimeow.iteastyle.Authentification.service.AdminUserService;
-import org.jsets.shiro.util.ShiroUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -63,7 +62,7 @@ public class AdminUserServiceImpl implements AdminUserService {
     public Boolean save(AdminUserEntity userEntity) throws Exception {
         userEntity.setGmtCreate(new Date());
         userEntity.setGmtModified(new Date());
-        userEntity.setPassword(ShiroUtils.password(userEntity.getPassword()));
+        //userEntity.setPassword(ShiroUtils.password(userEntity.getPassword()));
         if (StringUtils.isEmpty(userEntity.getId())) {
             mongoTemplate.save(userEntity);
         } else {

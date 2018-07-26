@@ -93,17 +93,12 @@
             <artifactId>qiniu-java-sdk</artifactId>
             <version>${qiniu.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.jsets</groupId>
-            <artifactId>jsets-shiro-spring-boot-starter</artifactId>
-            <version>${jsets.shiro.version}</version>
-        </dependency>
         <dependency>
             <groupId>com.aimeow</groupId>
             <artifactId>aimeow-toolkit</artifactId>
             <version>${aimeow-toolkit}</version>
         </dependency>
+
     </dependencies>
     <build>
         <plugins>
