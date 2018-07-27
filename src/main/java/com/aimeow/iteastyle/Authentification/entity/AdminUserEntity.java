@@ -19,7 +19,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class AdminUserEntity extends BaseEntity implements UserDetails {
     private String userName;
     private String password;
-    private Short status;
     private List<String> roles;
 
     @Override
