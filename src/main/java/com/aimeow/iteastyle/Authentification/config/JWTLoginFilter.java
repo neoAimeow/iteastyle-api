@@ -8,7 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.aimeow.iteastyle.Authentification.entity.AccountCredentials;
+import com.aimeow.iteastyle.Authentification.entity.AdminUserEntity;
 import com.aimeow.iteastyle.Authentification.service.TokenAuthenticationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,8 +33,8 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
     public Authentication attemptAuthentication(
         HttpServletRequest req, HttpServletResponse res)
         throws AuthenticationException, IOException, ServletException {
-        AccountCredentials creds = new ObjectMapper()
-            .readValue(req.getInputStream(), AccountCredentials.class);
+        AdminUserEntity creds = new ObjectMapper()
+            .readValue(req.getInputStream(), AdminUserEntity.class);
         return getAuthenticationManager().authenticate(
             new UsernamePasswordAuthenticationToken(
                 creds.getUsername(),

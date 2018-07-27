@@ -16,7 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  * @author zhaoyi.w <zhaoyi.w@alibaba-inc.com>
  */
 @Data
-public class AccountCredentials extends BaseEntity implements UserDetails {
+public class AdminUserEntity extends BaseEntity implements UserDetails {
     private String userName;
     private String password;
     private Short status;

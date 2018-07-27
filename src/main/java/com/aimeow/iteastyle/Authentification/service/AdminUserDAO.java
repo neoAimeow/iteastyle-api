@@ -8,7 +8,7 @@ import java.util.Map;
 import com.alibaba.fastjson.JSONObject;
 
 import com.aimeow.domain.BaseQuery;
-import com.aimeow.iteastyle.Authentification.entity.AccountCredentials;
+import com.aimeow.iteastyle.Authentification.entity.AdminUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -31,17 +31,17 @@ public class AdminUserDAO implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Query query=new Query(Criteria.where("userName").is(username));
-        AccountCredentials td =  mongoTemplate.findOne(query , AccountCredentials.class);
+        AdminUserEntity td =  mongoTemplate.findOne(query , AdminUserEntity.class);
         return td;
     }
 
-    public AccountCredentials queryById(String id) throws Exception {
+    public AdminUserEntity queryById(String id) throws Exception {
         Query query=new Query(Criteria.where("id").is(id));
-        AccountCredentials td =  mongoTemplate.findOne(query , AccountCredentials.class);
+        AdminUserEntity td =  mongoTemplate.findOne(query , AdminUserEntity.class);
         return td;
     }
 
-    public List<AccountCredentials> queryList(BaseQuery query, String orderBy, Boolean isDESC) throws Exception {
+    public List<AdminUserEntity> queryList(BaseQuery query, String orderBy, Boolean isDESC) throws Exception {
         Query q = new Query();
         if (!StringUtils.isEmpty(orderBy)) {
             if (isDESC != null) {
@@ -56,16 +56,16 @@ public class AdminUserDAO implements UserDetailsService {
         query.setPage(query.getPage() != null && query.getPage().intValue() != 0 ? query.getPage().intValue() : 1);
         query.setPageSize(query.getPageSize() != null && query.getPageSize().intValue() != 0 ? query.getPageSize().intValue() : 10);
         q.skip((long)((query.getPage().intValue() - 1) * query.getPageSize().intValue())).limit(query.getPageSize().intValue());
-        List<AccountCredentials> dos = this.mongoTemplate.find(q, AccountCredentials.class);
+        List<AdminUserEntity> dos = this.mongoTemplate.find(q, AdminUserEntity.class);
         return dos;
     }
 
     public Long count(BaseQuery baseQuery) throws Exception {
         Query q = new Query();
-        return mongoTemplate.count(q, AccountCredentials.class);
+        return mongoTemplate.count(q, AdminUserEntity.class);
     }
 
-    public Boolean save(AccountCredentials userEntity) throws Exception {
+    public Boolean save(AdminUserEntity userEntity) throws Exception {
         userEntity.setGmtCreate(new Date());
         userEntity.setGmtModified(new Date());
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -99,7 +99,7 @@ public class AdminUserDAO implements UserDetailsService {
                 update.set(key , val);
             }
 
-            mongoTemplate.updateFirst(query,update,AccountCredentials.class);
+            mongoTemplate.updateFirst(query,update,AdminUserEntity.class);
 
         }
         return true;
@@ -107,7 +107,7 @@ public class AdminUserDAO implements UserDetailsService {
 
     public Boolean delete(String id) throws Exception {
         Query query = new Query(Criteria.where("id").is(id));
-        this.mongoTemplate.remove(query, AccountCredentials.class);
+        this.mongoTemplate.remove(query, AdminUserEntity.class);
         return true;
     }
 }
