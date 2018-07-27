@@ -1,14 +1,25 @@
 package com.aimeow.iteastyle.Authentification.service;
 
-import java.util.List;
-import java.util.Map;
-import com.aimeow.domain.BaseQuery;
+import com.aimeow.domain.BaseResult;
 import com.aimeow.iteastyle.Authentification.entity.AdminUserEntity;
+import io.swagger.annotations.Api;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Created on 2018/7/27 11:22 AM
+ *
+ * @author zhaoyi.w <zhaoyi.w@alibaba-inc.com>
+ */
+@Api(value = "/adminUser",tags = {"管理用户管理"}, description = "管理用户管理")
+@RequestMapping(value = "/adminUser")
+@RestController
 public interface AdminUserService {
-    AdminUserEntity queryById(String id) throws Exception;
-    List<AdminUserEntity> queryList(BaseQuery baseQuery, String orderBy, Boolean isDESC) throws Exception;
-    Long count(BaseQuery baseQuery) throws Exception;
-    Boolean save(AdminUserEntity userEntity) throws Exception;
-    Boolean delete(String id) throws Exception;
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    BaseResult<Boolean> login(String userName,String password);
+
+    @RequestMapping(value = "/signUp", method = RequestMethod.POST)
+    BaseResult<Boolean> signUp(AdminUserEntity credentials);
 }
