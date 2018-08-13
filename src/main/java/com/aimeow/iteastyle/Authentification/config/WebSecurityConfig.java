@@ -31,6 +31,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/admin/**").hasRole("ADMIN")
             .antMatchers("/service/**").permitAll()
             .antMatchers("/adminUser/**").permitAll()
+            .antMatchers("/").permitAll()
+            .antMatchers(
+                "/v2/api-docs",
+                "/swagger-resources/**",
+                "/resources/**",
+                "/swagger-ui.html",
+                "/docs.html",
+                "/webjars/**" ,
+             /*Probably not needed*/ "/swagger.json")
+            .permitAll()
             .antMatchers(HttpMethod.POST, "/adminUser/login").permitAll()
             .anyRequest().authenticated()
             .and()
