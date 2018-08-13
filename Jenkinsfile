@@ -7,7 +7,6 @@ pipeline {
           image 'maven:3.5.3-jdk-8-alpine'
           args '-v /root/.m2:/root/.m2'
         }
-
       }
       steps {
         echo 'Starting build the app.....'
