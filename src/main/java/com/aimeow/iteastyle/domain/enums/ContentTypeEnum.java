@@ -7,7 +7,9 @@ package com.aimeow.iteastyle.domain.enums;
  */
 public enum ContentTypeEnum {
     Post("post" , "文章类型"),
-    Case("case" , "经典案例类型")
+    Case("case" , "经典案例类型"),
+    CompanyInfo("companyInfo" , "公司信息"),
+    StaticData("staticData" , "静态信息")
     ;
     private String value;
     private String description;

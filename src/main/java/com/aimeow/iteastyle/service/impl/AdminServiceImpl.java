@@ -3,6 +3,7 @@ package com.aimeow.iteastyle.service.impl;
 import com.aimeow.domain.BaseQuery;
 import com.aimeow.domain.BaseResult;
 import com.aimeow.domain.BaseGetList;
+import com.aimeow.iteastyle.domain.enums.ContentTypeEnum;
 import com.aimeow.tools.CommonConverter;
 import com.aimeow.iteastyle.domain.ViewObject.*;
 import com.aimeow.iteastyle.domain.entity.CaseEntity;
@@ -28,10 +29,10 @@ public class AdminServiceImpl implements AdminService {
     public BaseResult<Boolean> create(@NonNull String param, @NonNull String type) {
         BaseResult<Boolean> result = new BaseResult<>();
         try {
-            if ("post".equals(type)) {
+            if (ContentTypeEnum.Post.getValue().equals(type)) {
                 PostEntity postEntity = JSONObject.parseObject(param , PostEntity.class);
                 result.setModel(commonDAO.create(postEntity));
-            } else if("case".equals(type)) {
+            } else if(ContentTypeEnum.Case.getValue().equals(type)) {
                 CaseEntity caseEntity = JSONObject.parseObject(param , CaseEntity.class);
                 result.setModel(commonDAO.create(caseEntity));
             }
@@ -47,10 +48,10 @@ public class AdminServiceImpl implements AdminService {
     public BaseResult<Boolean> update(@NonNull String param, @NonNull String type) {
         BaseResult<Boolean> result = new BaseResult<>();
         try {
-            if ("post".equals(type)) {
+            if (ContentTypeEnum.Post.getValue().equals(type)) {
                 PostEntity postEntity = JSONObject.parseObject(param , PostEntity.class);
                 result.setModel(commonDAO.update(postEntity, PostEntity.class));
-            } else if("case".equals(type)) {
+            } else if(ContentTypeEnum.Case.getValue().equals(type)) {
                 CaseEntity caseEntity = JSONObject.parseObject(param , CaseEntity.class);
                 result.setModel(commonDAO.update(caseEntity, CaseEntity.class));
             }
@@ -67,9 +68,9 @@ public class AdminServiceImpl implements AdminService {
     public BaseResult<Boolean> delete(@NonNull String id, @NonNull String type) {
         BaseResult<Boolean> result = new BaseResult<>();
         try {
-            if ("post".equals(type)) {
+            if (ContentTypeEnum.Post.getValue().equals(type)) {
                 result.setModel(commonDAO.delete(id , PostEntity.class));
-            } else if("case".equals(type)) {
+            } else if(ContentTypeEnum.Case.getValue().equals(type)) {
                 result.setModel(commonDAO.delete(id , CaseEntity.class));
             }
         } catch (Exception e) {
@@ -84,10 +85,10 @@ public class AdminServiceImpl implements AdminService {
     public BaseResult<Boolean> updateData(String param, String type) {
         BaseResult<Boolean> result = new BaseResult<>();
         try {
-            if ("companyInfo".equals(type)) {
+            if (ContentTypeEnum.CompanyInfo.getValue().equals(type)) {
                 CompanyInfoEntity companyInfoDO = JSONObject.parseObject(param , CompanyInfoEntity.class);
                 result.setModel(commonData.edit(companyInfoDO, CompanyInfoEntity.class));
-            } else if ("staticData".equals(type)) {
+            } else if (ContentTypeEnum.StaticData.getValue().equals(type)) {
                 StaticDataEntity staticDataDO = JSONObject.parseObject(param , StaticDataEntity.class);
                 result.setModel(commonData.edit(staticDataDO, StaticDataEntity.class));
             }
@@ -102,11 +103,11 @@ public class AdminServiceImpl implements AdminService {
     public BaseResult<JSONObject> getInfo(String type) {
         BaseResult<JSONObject> result = new BaseResult<>();
         try {
-            if ("companyInfo".equals(type)) {
+            if (ContentTypeEnum.CompanyInfo.getValue().equals(type)) {
                 result.setModel(JSONObject.parseObject(JSONObject.toJSONString(
                         CommonConverter.convert(commonData.getData(CompanyInfoEntity.class) , CompanyInfoVO.class)))
                 );
-            } else if ("staticData".equals(type)) {
+            } else if (ContentTypeEnum.StaticData.getValue().equals(type)) {
                 result.setModel(JSONObject.parseObject(JSONObject.toJSONString(
                         CommonConverter.convert(commonData.getData(StaticDataEntity.class) , StaticDataEntity.class)))
                 );
@@ -126,7 +127,7 @@ public class AdminServiceImpl implements AdminService {
             BaseQuery baseQuery = new BaseQuery();
             baseQuery.setPage(page);
             baseQuery.setPageSize(pageSize);
-            if ("post".equals(type)) {
+            if (ContentTypeEnum.Post.getValue().equals(type)) {
                 List<PostEntity> postEntities = commonDAO.queryList(baseQuery , PostEntity.class, null , null);
 
                 BaseGetList baseGetList = new BaseGetList();
@@ -136,8 +137,16 @@ public class AdminServiceImpl implements AdminService {
                 baseGetList.setItems(postEntities);
                 result.setModel(JSONObject.parseObject(JSONObject.toJSONString(postEntities)));
 
-            } else if("case".equals(type)) {
+            } else if(ContentTypeEnum.Case.getValue().equals(type)) {
 
+                List<CaseEntity> caseEntities = commonDAO.queryList(baseQuery , CaseEntity.class, null , null);
+
+                BaseGetList baseGetList = new BaseGetList();
+                baseGetList.setPage(page);
+                baseGetList.setPageSize(pageSize);
+                baseGetList.setTotalCount(commonDAO.count(baseQuery , CaseEntity.class));
+                baseGetList.setItems(caseEntities);
+                result.setModel(JSONObject.parseObject(JSONObject.toJSONString(caseEntities)));
             }
         } catch (Exception e) {
             result.setMsgInfo(e.getMessage());
