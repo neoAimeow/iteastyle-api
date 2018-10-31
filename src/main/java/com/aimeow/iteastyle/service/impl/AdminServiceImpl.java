@@ -28,7 +28,6 @@ public class AdminServiceImpl implements AdminService {
     public BaseResult<Boolean> create(@NonNull String param, @NonNull String type) {
         BaseResult<Boolean> result = new BaseResult<>();
         try {
-            JSONObject object = JSONObject.parseObject(param);
             if ("post".equals(type)) {
                 PostEntity postEntity = JSONObject.parseObject(param , PostEntity.class);
                 result.setModel(commonDAO.create(postEntity));
@@ -48,8 +47,6 @@ public class AdminServiceImpl implements AdminService {
     public BaseResult<Boolean> update(@NonNull String param, @NonNull String type) {
         BaseResult<Boolean> result = new BaseResult<>();
         try {
-            JSONObject object = JSONObject.parseObject(param);
-
             if ("post".equals(type)) {
                 PostEntity postEntity = JSONObject.parseObject(param , PostEntity.class);
                 result.setModel(commonDAO.update(postEntity, PostEntity.class));

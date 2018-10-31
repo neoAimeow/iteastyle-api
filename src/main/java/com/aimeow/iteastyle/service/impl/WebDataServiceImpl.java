@@ -293,7 +293,9 @@ public class WebDataServiceImpl implements WebDataService {
     public BaseResult<TeaBreakServiceEntity> getTeaBreakService() {
         BaseResult<TeaBreakServiceEntity> result = new BaseResult<>();
         try {
-            TeaBreakServiceEntity teaBreakServiceEntity = commonData.getData(TeaBreakServiceEntity.class);
+            TeaBreakServiceEntity teaBreakServiceEntity = commonData.getData(
+                    TeaBreakServiceEntity.class
+            );
             result.setModel(teaBreakServiceEntity);
 
             List<MenuEntity> menuEntities = commonDAO.queryList(
@@ -311,7 +313,9 @@ public class WebDataServiceImpl implements WebDataService {
     public BaseResult<TeaGiftServiceEntity> getTeaGiftService() {
         BaseResult<TeaGiftServiceEntity> result = new BaseResult<>();
         try {
-            TeaGiftServiceEntity teaGiftServiceEntity = commonData.getData(TeaGiftServiceEntity.class);
+            TeaGiftServiceEntity teaGiftServiceEntity = commonData.getData(
+                    TeaGiftServiceEntity.class
+            );
             result.setModel(teaGiftServiceEntity);
         } catch (Exception e) {
             result.setSuccess(false);
@@ -331,7 +335,9 @@ public class WebDataServiceImpl implements WebDataService {
             BaseQuery baseQuery = new BaseQuery();
             baseQuery.setPageSize(pageSize);
             baseQuery.setPage(page);
-            List<TeaLectureEntity> teaLectureEntities = commonDAO.queryList(baseQuery , TeaLectureEntity.class, null ,null);
+            List<TeaLectureEntity> teaLectureEntities = commonDAO.queryList(
+                    baseQuery , TeaLectureEntity.class, null ,null
+            );
             baseGetList.setTotalCount(commonDAO.count(new BaseQuery() , TeaLectureEntity.class));
             baseGetList.setItems(teaLectureEntities);
             result.setModel(baseGetList);
@@ -376,7 +382,9 @@ public class WebDataServiceImpl implements WebDataService {
             BaseQuery baseQuery = new BaseQuery();
             baseQuery.setPageSize(pageSize);
             baseQuery.setPage(page);
-            List<TeaPerformEntity> teaPerformEntities = commonDAO.queryList(baseQuery , TeaPerformEntity.class , null , null);
+            List<TeaPerformEntity> teaPerformEntities = commonDAO.queryList(
+                    baseQuery , TeaPerformEntity.class , null , null
+            );
             baseGetList.setTotalCount(commonDAO.count(baseQuery , TeaPerformEntity.class));
             baseGetList.setItems(teaPerformEntities);
             result.setModel(baseGetList);
