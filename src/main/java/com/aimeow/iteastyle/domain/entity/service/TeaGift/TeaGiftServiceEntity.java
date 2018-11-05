@@ -5,8 +5,10 @@ import com.aimeow.iteastyle.domain.entity.service.TeaGift.Souvenir.TeaGiftSouven
 import com.aimeow.iteastyle.domain.entity.service.TeaGift.drinkWay.TeaGiftWayEntity;
 import com.aimeow.iteastyle.domain.entity.service.TeaGift.mind.TeaGiftMindEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper=true)
 public class TeaGiftServiceEntity extends BaseEntity {
     private TeaGiftSouvenirEntity souvenir;
     private TeaGiftWayEntity way;

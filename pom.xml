@@ -23,6 +23,9 @@
         <qiniu.version>[7.2.0, 7.2.99]</qiniu.version>
         <aimeow.toolkit.version>0.0.2</aimeow.toolkit.version>
         <jjwt.version>0.9.1</jjwt.version>
+
+        <weixin.miniapp.version>3.2.0</weixin.miniapp.version>
+
     </properties>
 
     <!-- Inherit defaults from Spring Boot -->
@@ -109,6 +112,11 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>${jjwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-miniapp</artifactId>
+            <version>${weixin.miniapp.version}</version>
         </dependency>
     </dependencies>
     <build>

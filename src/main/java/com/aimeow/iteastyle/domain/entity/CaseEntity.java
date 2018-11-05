@@ -5,8 +5,10 @@ import java.util.List;
 
 import com.aimeow.domain.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper=true)
 public class CaseEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = -1434062932553096110L;
     private String title;

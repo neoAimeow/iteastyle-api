@@ -2,6 +2,7 @@ package com.aimeow.iteastyle.domain.entity;
 
 import com.aimeow.domain.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Data
 @Document
+@EqualsAndHashCode(callSuper=true)
 public class CompanyInfoEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 8471287997901469057L;
     private String companyName;

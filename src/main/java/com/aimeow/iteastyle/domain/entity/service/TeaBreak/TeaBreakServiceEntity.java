@@ -7,8 +7,10 @@ import com.aimeow.iteastyle.domain.entity.service.TeaBreak.orderMode.TeaBreakOrd
 import com.aimeow.iteastyle.domain.entity.service.TeaBreak.process.TeaBreakProcessEntity;
 import com.aimeow.iteastyle.domain.entity.service.TeaBreak.range.TeaBreakRangeEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper=true)
 public class TeaBreakServiceEntity extends BaseEntity {
     private TeaBreakOrderEntity order;
     private TeaBreakRangeEntity range;

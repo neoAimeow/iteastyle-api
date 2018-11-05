@@ -2,10 +2,12 @@ package com.aimeow.iteastyle.domain.ViewObject;
 
 import com.aimeow.domain.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
 @Data
+@EqualsAndHashCode(callSuper=true)
 public class ContactUsVO extends BaseEntity {
     private String contactUsTitle;
     private String contactUsBackgroundImage;

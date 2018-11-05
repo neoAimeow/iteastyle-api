@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.aimeow.domain.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +17,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  * @author zhaoyi.w <zhaoyi.w@alibaba-inc.com>
  */
 @Data
-
+@EqualsAndHashCode(callSuper=true)
 public class AdminUserEntity extends BaseEntity implements UserDetails {
     private String userName;
     private String password;
