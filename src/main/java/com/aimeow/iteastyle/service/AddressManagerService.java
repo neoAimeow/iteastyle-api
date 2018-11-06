@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public interface AddressManagerService {
     @ApiOperation(value = "通过GET请求方式通过userId获取该用户地址")
     @RequestMapping(value = "/getAddressByAddressId", method = RequestMethod.GET)
-    BaseResult<AddressEntity> getAddressByAdressId(String userId, String addressId);
+    BaseResult<AddressEntity> getAddressByAdressId(String addressId);
 
     @ApiOperation(value = "通过GET请求方式通过userId获取该用户地址列表")
     @RequestMapping(value = "/getAddressByUserId", method = RequestMethod.GET)
