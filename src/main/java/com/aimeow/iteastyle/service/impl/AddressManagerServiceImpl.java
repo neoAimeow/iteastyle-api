@@ -15,7 +15,7 @@ import com.aimeow.iteastyle.service.AddressManagerService;
  */
 public class AddressManagerServiceImpl implements AddressManagerService {
     @Override
-    public BaseResult<AddressEntity> getAddressByAdressId(String addressId) {
+    public BaseResult<AddressEntity> getAddressByAdressId(String userId, String addressId) {
         return null;
     }
 
