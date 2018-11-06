@@ -20,6 +20,11 @@ import com.aimeow.tools.CommonData;
 
 import java.util.List;
 
+/**
+ * Created on 2018/11/6 11:52 AM
+ *
+ * @author zhaoyi.w <zhaoyi.w@alibaba-inc.com>
+ */
 @Component
 public class AdminServiceImpl implements AdminService {
     @Autowired private CommonDAO commonDAO;

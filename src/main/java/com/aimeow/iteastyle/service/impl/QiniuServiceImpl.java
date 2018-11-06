@@ -5,6 +5,11 @@ import com.aimeow.iteastyle.service.QiniuService;
 import com.qiniu.util.Auth;
 import org.springframework.stereotype.Component;
 
+/**
+ * Created on 2018/11/6 11:52 AM
+ *
+ * @author zhaoyi.w <zhaoyi.w@alibaba-inc.com>
+ */
 @Component
 public class QiniuServiceImpl implements QiniuService {
     private static String accessKey = "7hKfN1Ymb8704XrZr09Hh1FpVLAHBzDFn7hxel30";

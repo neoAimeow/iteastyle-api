@@ -2,13 +2,9 @@ package com.aimeow.iteastyle.service.impl;
 
 import java.util.List;
 
-import com.aimeow.domain.BaseGetList;
 import com.aimeow.domain.BaseResult;
 import com.aimeow.iteastyle.domain.entity.AddressEntity;
-import com.aimeow.iteastyle.domain.entity.PostEntity;
-import com.aimeow.iteastyle.domain.enums.StatusEnum;
 import com.aimeow.iteastyle.domain.query.AddressQuery;
-import com.aimeow.iteastyle.domain.query.PostQuery;
 import com.aimeow.iteastyle.domain.request.CreateAddressRequest;
 import com.aimeow.iteastyle.domain.request.UpdateAddressRequest;
 import com.aimeow.iteastyle.service.AddressManagerService;
@@ -16,7 +12,6 @@ import com.aimeow.tools.CommonDAO;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 /**
  * Created on 2018/11/6 11:52 AM
