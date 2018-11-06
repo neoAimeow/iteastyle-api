@@ -55,10 +55,10 @@ public class AdminServiceImpl implements AdminService {
         try {
             if (ContentTypeEnum.Post.getValue().equals(type)) {
                 PostEntity postEntity = JSONObject.parseObject(param , PostEntity.class);
-                result.setModel(commonDAO.update(postEntity, PostEntity.class));
+                result.setModel(commonDAO.updateById(postEntity, PostEntity.class));
             } else if(ContentTypeEnum.Case.getValue().equals(type)) {
                 CaseEntity caseEntity = JSONObject.parseObject(param , CaseEntity.class);
-                result.setModel(commonDAO.update(caseEntity, CaseEntity.class));
+                result.setModel(commonDAO.updateById(caseEntity, CaseEntity.class));
             }
 
         } catch (Exception e) {

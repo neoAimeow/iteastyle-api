@@ -12,6 +12,7 @@ import com.aimeow.tools.CommonDAO;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import sun.jvm.hotspot.debugger.Address;
 
 /**
  * Created on 2018/11/6 11:52 AM
@@ -73,6 +74,12 @@ public class AddressManagerServiceImpl implements AddressManagerService {
             addressEntity.setLatitude(request.getLatitude());
             addressEntity.setLongitude(request.getLongitude());
 
+            if (request.getIsDefault()) {
+                AddressEntity updateEntity = new AddressEntity();
+                updateEntity.setIsDefault(false);
+
+                commonDAO.update(updateEntity , AddressEntity.class);
+            }
             result.setModel(commonDAO.create(addressEntity));
 
         } catch (Exception ex) {
@@ -116,7 +123,14 @@ public class AddressManagerServiceImpl implements AddressManagerService {
             entity.setLatitude(request.getLatitude());
             entity.setLongitude(request.getLongitude());
 
-            result.setModel(commonDAO.update(entity , AddressEntity.class));
+            if (request.getIsDefault()) {
+                AddressEntity updateEntity = new AddressEntity();
+                updateEntity.setIsDefault(false);
+
+                commonDAO.update(updateEntity , AddressEntity.class);
+            }
+
+            result.setModel(commonDAO.updateById(entity , AddressEntity.class));
 
         } catch (Exception ex) {
             result.setSuccess(false);
