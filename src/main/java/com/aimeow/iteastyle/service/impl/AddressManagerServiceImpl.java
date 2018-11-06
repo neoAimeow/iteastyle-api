@@ -56,11 +56,72 @@ public class AddressManagerServiceImpl implements AddressManagerService {
 
     @Override
     public BaseResult<Boolean> createAddress(CreateAddressRequest request) {
-        return null;
+        BaseResult<Boolean> result = new BaseResult<Boolean>();
+        try {
+            AddressEntity addressEntity = new AddressEntity();
+            addressEntity.setUserId(request.getUserId());
+            addressEntity.setConsignee(request.getConsignee());
+            addressEntity.setGender(request.getGender());
+            addressEntity.setPhoneNo(request.getPhoneNo());
+            addressEntity.setProvince(request.getProvince());
+            addressEntity.setCity(request.getCity());
+            addressEntity.setDistrict(request.getDistrict());
+            addressEntity.setAddress(request.getAddress());
+            addressEntity.setAddressDetail(request.getAddressDetail());
+            addressEntity.setTag(request.getTag());
+            addressEntity.setIsDefault(request.getIsDefault());
+            addressEntity.setLatitude(request.getLatitude());
+            addressEntity.setLongitude(request.getLongitude());
+
+            result.setModel(commonDAO.create(addressEntity));
+
+        } catch (Exception ex) {
+            result.setSuccess(false);
+            result.setMsgInfo(ex.getMessage());
+        }
+
+        return result;
     }
 
     @Override
     public BaseResult<Boolean> updateAddress(UpdateAddressRequest request) {
-        return null;
+        BaseResult<Boolean> result = new BaseResult<Boolean>();
+        try {
+            AddressEntity entity = commonDAO.queryById(request.getAddressId() , AddressEntity.class);
+            if (entity == null) {
+                result.setModel(false);
+                result.setSuccess(false);
+                result.setMsgInfo("查不到地址");
+                return result;
+            }
+
+            if (!entity.getUserId().equals(request.getUserId())) {
+                result.setModel(false);
+                result.setSuccess(false);
+                result.setMsgInfo("非该用户地址");
+                return result;
+            }
+
+            entity.setUserId(request.getUserId());
+            entity.setConsignee(request.getConsignee());
+            entity.setGender(request.getGender());
+            entity.setPhoneNo(request.getPhoneNo());
+            entity.setProvince(request.getProvince());
+            entity.setCity(request.getCity());
+            entity.setDistrict(request.getDistrict());
+            entity.setAddress(request.getAddress());
+            entity.setAddressDetail(request.getAddressDetail());
+            entity.setTag(request.getTag());
+            entity.setIsDefault(request.getIsDefault());
+            entity.setLatitude(request.getLatitude());
+            entity.setLongitude(request.getLongitude());
+
+            result.setModel(commonDAO.update(entity , AddressEntity.class));
+
+        } catch (Exception ex) {
+            result.setSuccess(false);
+            result.setMsgInfo(ex.getMessage());
+        }
+        return result;
     }
 }

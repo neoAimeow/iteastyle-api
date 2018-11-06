@@ -10,6 +10,14 @@ import lombok.Data;
 @Data
 public class UpdateAddressRequest {
     /**
+     * 用户id
+     */
+    private String userId;
+    /**
+     * 地址id
+     */
+    private String addressId;
+    /**
      * 联系人（收件人）
      */
     private String consignee;
