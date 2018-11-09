@@ -49,7 +49,6 @@ public interface InvoiceService {
     @RequestMapping(value = "/updateInvoiceTitle", method = RequestMethod.POST)
     BaseResult<Boolean> updateInvoiceTitle(UpdateInvoiceTitleRequest request);
 
-
     @ApiOperation(value = "通过GET请求方式通过userId获取该用户发票抬头")
     @RequestMapping(value = "/getDefaultInvoiceTitle", method = RequestMethod.GET)
     BaseResult<InvoiceTitleEntity> getDefaultInvoiceTitle(String userId);

@@ -3,13 +3,10 @@ package com.aimeow.iteastyle.service.impl;
 import com.aimeow.domain.BaseQuery;
 import com.aimeow.domain.BaseResult;
 import com.aimeow.domain.BaseGetList;
+import com.aimeow.iteastyle.domain.entity.*;
 import com.aimeow.iteastyle.domain.enums.ContentTypeEnum;
 import com.aimeow.tools.CommonConverter;
 import com.aimeow.iteastyle.domain.ViewObject.*;
-import com.aimeow.iteastyle.domain.entity.CaseEntity;
-import com.aimeow.iteastyle.domain.entity.CompanyInfoEntity;
-import com.aimeow.iteastyle.domain.entity.PostEntity;
-import com.aimeow.iteastyle.domain.entity.StaticDataEntity;
 import com.aimeow.iteastyle.service.AdminService;
 import com.alibaba.fastjson.JSONObject;
 import lombok.NonNull;
@@ -18,6 +15,7 @@ import org.springframework.stereotype.Component;
 import com.aimeow.tools.CommonDAO;
 import com.aimeow.tools.CommonData;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -40,6 +38,9 @@ public class AdminServiceImpl implements AdminService {
             } else if(ContentTypeEnum.Case.getValue().equals(type)) {
                 CaseEntity caseEntity = JSONObject.parseObject(param , CaseEntity.class);
                 result.setModel(commonDAO.create(caseEntity));
+            } else if (ContentTypeEnum.Event.getValue().equals(type)) {
+                EventEntity eventEntity = JSONObject.parseObject(param , EventEntity.class);
+                result.setModel(commonDAO.create(eventEntity));
             }
         } catch (Exception e) {
             result.setMsgInfo(e.getMessage());
@@ -59,6 +60,9 @@ public class AdminServiceImpl implements AdminService {
             } else if(ContentTypeEnum.Case.getValue().equals(type)) {
                 CaseEntity caseEntity = JSONObject.parseObject(param , CaseEntity.class);
                 result.setModel(commonDAO.updateById(caseEntity, CaseEntity.class));
+            } else if(ContentTypeEnum.Event.getValue().equals(type)) {
+                EventEntity eventEntity = JSONObject.parseObject(param , EventEntity.class);
+                result.setModel(commonDAO.updateById(eventEntity, EventEntity.class));
             }
 
         } catch (Exception e) {
@@ -77,6 +81,8 @@ public class AdminServiceImpl implements AdminService {
                 result.setModel(commonDAO.delete(id , PostEntity.class));
             } else if(ContentTypeEnum.Case.getValue().equals(type)) {
                 result.setModel(commonDAO.delete(id , CaseEntity.class));
+            } else if(ContentTypeEnum.Event.getValue().equals(type)) {
+                result.setModel(commonDAO.delete(id , EventEntity.class));
             }
         } catch (Exception e) {
             result.setMsgInfo(e.getMessage());
@@ -152,6 +158,16 @@ public class AdminServiceImpl implements AdminService {
                 baseGetList.setTotalCount(commonDAO.count(baseQuery , CaseEntity.class));
                 baseGetList.setItems(caseEntities);
                 result.setModel(JSONObject.parseObject(JSONObject.toJSONString(caseEntities)));
+            } else if(ContentTypeEnum.Event.getValue().equals(type)) {
+
+                List<EventEntity> eventEntities = commonDAO.queryList(baseQuery , EventEntity.class, null , null);
+
+                BaseGetList baseGetList = new BaseGetList();
+                baseGetList.setPage(page);
+                baseGetList.setPageSize(pageSize);
+                baseGetList.setTotalCount(commonDAO.count(baseQuery , CaseEntity.class));
+                baseGetList.setItems(eventEntities);
+                result.setModel(JSONObject.parseObject(JSONObject.toJSONString(eventEntities)));
             }
         } catch (Exception e) {
             result.setMsgInfo(e.getMessage());
