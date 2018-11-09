@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Api(value = "/service",tags = {"网页端接口"}, description = "网页部分相关数据")
+@Api(value = "/service",tags = {"通用接口"}, description = "通用的接口数据")
 @RequestMapping(value = "/service")
 @RestController
 public interface WebDataService {

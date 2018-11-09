@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author zhaoyi.w <zhaoyi.w@alibaba-inc.com>
  */
-@Api(value = "/service",tags = {"网页端接口"}, description = "网页部分相关数据")
+@Api(value = "/service",tags = {"通用接口"}, description = "通用的接口数据")
 @RequestMapping(value = "/service")
 @RestController
 public interface AddressManagerService {
@@ -36,4 +36,8 @@ public interface AddressManagerService {
     @ApiOperation(value = "通过POST请求方式修改用户收货地址")
     @RequestMapping(value = "/updateAddress", method = RequestMethod.POST)
     BaseResult<Boolean> updateAddress(UpdateAddressRequest request);
+
+    @ApiOperation(value = "通过GET请求方式通过userId获取该用户默认收货地址")
+    @RequestMapping(value = "/getDefaultAddressByUserId", method = RequestMethod.GET)
+    BaseResult<AddressEntity> getDefaultAddress(String userId);
 }

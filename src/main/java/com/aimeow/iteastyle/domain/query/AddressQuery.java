@@ -11,4 +11,5 @@ import lombok.Data;
 @Data
 public class AddressQuery extends BaseQuery {
     private String userId;
+    private Boolean isDefault;
 }

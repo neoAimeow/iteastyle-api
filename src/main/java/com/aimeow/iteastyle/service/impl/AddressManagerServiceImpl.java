@@ -48,6 +48,8 @@ public class AddressManagerServiceImpl implements AddressManagerService {
                 addressQuery , AddressEntity.class, null , null
             );
 
+            result.setModel(addressEntities);
+
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMsgInfo(e.getMessage());
@@ -135,6 +137,34 @@ public class AddressManagerServiceImpl implements AddressManagerService {
         } catch (Exception ex) {
             result.setSuccess(false);
             result.setMsgInfo(ex.getMessage());
+        }
+        return result;
+    }
+
+    @Override
+    public BaseResult<AddressEntity> getDefaultAddress(String userId) {
+        BaseResult<AddressEntity> result = new BaseResult<AddressEntity>();
+
+        try {
+            AddressQuery addressQuery= new AddressQuery();
+            addressQuery.setUserId(userId);
+            addressQuery.setIsDefault(true);
+
+            List<AddressEntity> addressEntities = commonDAO.queryList(
+                    addressQuery , AddressEntity.class, null , null
+            );
+
+            if (addressEntities != null && !addressEntities.isEmpty()) {
+                result.setModel(addressEntities.get(0));
+            } else {
+                result.setSuccess(false);
+                result.setMsgInfo("没查到默认发票");
+                return result;
+            }
+
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
         }
         return result;
     }
