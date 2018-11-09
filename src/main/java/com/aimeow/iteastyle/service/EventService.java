@@ -1,5 +1,6 @@
 package com.aimeow.iteastyle.service;
 
+import com.aimeow.domain.BaseGetList;
 import com.aimeow.domain.BaseQuery;
 import com.aimeow.domain.BaseResult;
 import com.aimeow.iteastyle.domain.entity.EventEntity;
@@ -18,7 +19,7 @@ import java.util.List;
 public interface EventService {
     @ApiOperation(value = "通过GET请求方式获取活动列表")
     @RequestMapping(value = "/getEvents", method = RequestMethod.GET)
-    BaseResult<List<EventEntity>> getEvents(Integer page, Integer pageSize);
+    BaseResult<BaseGetList<EventEntity>> getEvents(Integer page, Integer pageSize);
 
     @ApiOperation(value = "通过GET请求方式通过活动id获取活动详情")
     @RequestMapping(value = "/getEventByEventId", method = RequestMethod.GET)
