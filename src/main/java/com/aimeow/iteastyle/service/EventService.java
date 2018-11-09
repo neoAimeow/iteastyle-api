@@ -18,7 +18,7 @@ import java.util.List;
 public interface EventService {
     @ApiOperation(value = "通过GET请求方式获取活动列表")
     @RequestMapping(value = "/getEvents", method = RequestMethod.GET)
-    BaseResult<List<EventEntity>> getEvents(BaseQuery query);
+    BaseResult<List<EventEntity>> getEvents(Integer page, Integer pageSize);
 
     @ApiOperation(value = "通过GET请求方式通过活动id获取活动详情")
     @RequestMapping(value = "/getEventByEventId", method = RequestMethod.GET)
