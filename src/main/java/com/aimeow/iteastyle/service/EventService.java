@@ -25,4 +25,7 @@ public interface EventService {
     @RequestMapping(value = "/getEventByEventId", method = RequestMethod.GET)
     BaseResult<EventEntity> getEventByEventId(String eventId);
 
+    @ApiOperation(value = "通过GET请求方式通过活动Title获取活动详情")
+    @RequestMapping(value = "/getEventByEventTitle", method = RequestMethod.GET)
+    BaseResult<List<EventEntity>> getEventByEventTitle(String eventTitle);
 }

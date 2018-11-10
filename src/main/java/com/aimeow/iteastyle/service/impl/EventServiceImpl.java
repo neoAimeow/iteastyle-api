@@ -57,4 +57,22 @@ public class EventServiceImpl implements EventService {
         }
         return result;
     }
+
+    @Override
+    public BaseResult<List<EventEntity>> getEventByEventTitle(String eventTitle) {
+        BaseResult<List<EventEntity>> result = new BaseResult<List<EventEntity>>();
+        try {
+
+            EventQuery eventQuery = new EventQuery();
+            eventQuery.setTitle(eventTitle);
+
+            List<EventEntity> entities = commonDAO.queryList(
+                eventQuery , EventEntity.class, null , null);
+            result.setModel(entities);
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMsgInfo(e.getMessage());
+        }
+        return result;
+    }
 }
