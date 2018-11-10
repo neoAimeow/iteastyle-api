@@ -10,6 +10,7 @@ pipeline {
       }
       steps {
         echo 'Starting build the app.....'
+        sh 'rm -rf ~/.m2/settings.xml'
         sh 'wget -O settings.xml -P ~/.m2 https://aimeow.oss-cn-hangzhou.aliyuncs.com/settings.xml'
         sh 'mvn package -Dmaven.test.skip=true'
         sh 'ls target'
