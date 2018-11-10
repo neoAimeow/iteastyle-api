@@ -7,6 +7,6 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper=true)
 public class InvoiceTitleQuery extends BaseQuery {
-    String userId;
-    Boolean isDefault;
+    private String userId;
+    private Boolean isDefault;
 }
