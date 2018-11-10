@@ -11,7 +11,7 @@ pipeline {
       steps {
         echo 'Starting build the app.....'
         sh 'rm -rf ~/.m2/settings.xml'
-        sh 'wget -O settings.xml -P ~/.m2 https://aimeow.oss-cn-hangzhou.aliyuncs.com/settings.xml'
+        sh 'wget -P ~/.m2 https://aimeow.oss-cn-hangzhou.aliyuncs.com/settings.xml'
         sh 'mvn package -Dmaven.test.skip=true'
         sh 'ls target'
         sh 'sed -i "s/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g" /etc/apk/repositories'
