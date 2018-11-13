@@ -18,7 +18,7 @@ public enum StaticDataEnum {
 
     public static StaticDataEnum getEnumByValue(String value) {
         for (StaticDataEnum staticDataEnum : StaticDataEnum.values()) {
-            if (staticDataEnum.getName() == value) {
+            if (staticDataEnum.getName().equals(value)) {
                 return staticDataEnum;
             }
         }

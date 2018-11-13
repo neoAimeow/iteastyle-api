@@ -15,12 +15,17 @@ public class CommonServiceImpl implements CommonService {
 
     @Override
     public BaseResult<JSONObject> getDataWithTypeInRedis(String key) {
+
         if (key == null) {
             return ResultUtil.getFailureResult("缺少参数");
         }
         try {
             StaticDataEnum staticDataEnum = StaticDataEnum.getEnumByValue(key);
-            JSONObject jsonObject = JSONObject.parseObject(redisUtil.get(staticDataEnum.getKey()));
+            if (staticDataEnum == null) {
+                return ResultUtil.getFailureResult("参数错误");
+            }
+            String jsonStr = redisUtil.get(staticDataEnum.getKey());
+            JSONObject jsonObject = JSONObject.parseObject(jsonStr);
             if (jsonObject == null) {
                 return ResultUtil.getFailureResult("parseObject error");
             }
