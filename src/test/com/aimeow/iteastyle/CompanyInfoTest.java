@@ -1,10 +1,13 @@
 package com.aimeow.iteastyle;
 
 import com.aimeow.iteastyle.Application;
+import com.aimeow.iteastyle.domain.entity.StaticDataEntity;
+import com.aimeow.iteastyle.service.WebDataService;
 import com.aimeow.tools.CommonDAO;
 import com.aimeow.tools.CommonData;
 import com.aimeow.iteastyle.domain.entity.CompanyInfoEntity;
 import com.aimeow.iteastyle.domain.enums.StatusEnum;
+import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,21 +26,24 @@ import java.util.Map;
 @SpringBootTest(classes = Application.class)
 @AutoConfigureMockMvc
 public class CompanyInfoTest {
-    //@Autowired
-    //CommonData commonData;
+    @Autowired
+    CommonData commonData;
+
+    @Autowired
+    WebDataService webDataService;
     //
     //@Autowired
     //CommonDAO commonDAO;
-    //@Test
-    //public void testQuery() throws Exception {
-    //    System.out.println(commonData.getData(CompanyInfoEntity.class));
-    //    ProductShowerQuery query = new ProductShowerQuery();
-    //    query.setPage(1);
-    //    query.setPageSize(10);
-    //    Map<String,String> map = new HashMap<>();
-    //    map.put("title" , "中式古典");
-    //    System.out.println(commonDAO.queryList(query , ProductShowerDO.class));
-    //}
+    @Test
+    public void testQuery() throws Exception {
+        System.out.println(JSONObject.toJSONString(webDataService.getTeaBreakService().getModel()));
+//        ProductShowerQuery query = new ProductShowerQuery();
+//        query.setPage(1);
+//        query.setPageSize(10);
+//        Map<String,String> map = new HashMap<>();
+//        map.put("title" , "中式古典");
+//        System.out.println(commonDAO.queryList(query , ProductShowerDO.class));
+    }
 
     //@Test
     //public void testModified() throws Exception {
