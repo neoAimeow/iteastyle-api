@@ -36,7 +36,8 @@ public class CompanyInfoTest {
     //CommonDAO commonDAO;
     @Test
     public void testQuery() throws Exception {
-        System.out.println(JSONObject.toJSONString(webDataService.getTeaGiftService().getModel()));
+//        System.out.println(JSONObject.toJSONString(webDataService.getTeaGiftService().getModel()));
+        System.out.println(JSONObject.toJSONString(commonData.getData(StaticDataEntity.class)));
 //        ProductShowerQuery query = new ProductShowerQuery();
 //        query.setPage(1);
 //        query.setPageSize(10);
