@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api(value = "/common",tags = {"通用接口"}, description = "通用的接口数据")
-@RequestMapping(value = "/common")
+@Api(value = "/service",tags = {"通用接口"}, description = "通用的接口数据")
+@RequestMapping(value = "/service")
 @RestController
 public interface CommonService {
     @ApiOperation(value = "通过GET请求方式以及type获取数据")
