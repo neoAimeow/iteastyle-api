@@ -7,8 +7,6 @@ import com.aimeow.iteastyle.domain.ViewObject.Case.CasesInTypeVO;
 import com.aimeow.iteastyle.domain.entity.CaseEntity;
 import com.aimeow.iteastyle.domain.entity.CaseTypeEntity;
 import com.aimeow.iteastyle.domain.entity.PostEntity;
-import com.aimeow.iteastyle.domain.entity.service.TeaBreak.TeaBreakServiceEntity;
-import com.aimeow.iteastyle.domain.entity.service.TeaGift.TeaGiftServiceEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,18 +19,6 @@ import java.util.List;
 @RequestMapping(value = "/service")
 @RestController
 public interface WebDataService {
-
-    @ApiOperation(value = "通过GET请求方式获取『首页』相关信息，不需要传任何参数")
-    @RequestMapping(value = "/homepage", method = RequestMethod.GET)
-    BaseResult<HomePageVO> getHomePageData();
-
-    @ApiOperation(value = "通过GET请求方式获取『公司故事』相关信息，不需要传任何参数")
-    @RequestMapping(value = "/companyStory", method = RequestMethod.GET)
-    BaseResult<CompanyStoryVO> getCompanyStory();
-
-    @ApiOperation(value = "通过GET请求方式获取『关于我们』相关信息，不需要传任何参数")
-    @RequestMapping(value = "/contactUsData", method = RequestMethod.GET)
-    BaseResult<ContactUsVO> getContactUsData();
 
     @ApiOperation(value = "通过GET请求方式获取『茶式动态』需要传分页参数")
     @RequestMapping(value = "/getPosts", method = RequestMethod.GET)
@@ -57,14 +43,6 @@ public interface WebDataService {
     @ApiOperation(value = "获得产品展示首页列表")
     @RequestMapping(value = "/getCasesHomeData", method = RequestMethod.GET)
     BaseResult<List<CasesInTypeVO>> getCasesHomeData();
-
-    @ApiOperation(value = "获得茶歇服务内容")
-    @RequestMapping(value = "/getTeaBreakService", method = RequestMethod.GET)
-    BaseResult<TeaBreakServiceEntity> getTeaBreakService();
-
-    @ApiOperation(value = "获得茶礼服务内容")
-    @RequestMapping(value = "/getTeaGiftService", method = RequestMethod.GET)
-    BaseResult<TeaGiftServiceEntity> getTeaGiftService();
 
     @ApiOperation(value = "获得diy活动内容")
     @RequestMapping(value = "/getTeaDIYService", method = RequestMethod.GET)
