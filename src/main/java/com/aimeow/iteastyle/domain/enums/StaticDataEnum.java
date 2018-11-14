@@ -3,7 +3,8 @@ package com.aimeow.iteastyle.domain.enums;
 public enum StaticDataEnum {
     NORMAL("common" , "iteastyle-common-data" , "基础数据"),
     TEA_BREAK_SERVICE("teaBreak" , "iteastyle-tea-break-service" , "茶歇服务内容"),
-    TEA_GIFT_SERVICE("teaGift" , "iteastyle-tea-gift-service" , "杭州伴手礼")
+    TEA_GIFT_SERVICE("teaGift" , "iteastyle-tea-gift-service" , "杭州伴手礼"),
+    CASE_TYPE("caseType" , "iteastyle-case-type" , "经典案例类型"),
             ;
     private String name;
     private String key;

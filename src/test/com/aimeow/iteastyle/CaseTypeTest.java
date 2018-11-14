@@ -1,13 +1,8 @@
 package com.aimeow.iteastyle;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.aimeow.iteastyle.domain.entity.CaseEntity;
 import com.aimeow.tools.CommonDAO;
 import com.aimeow.tools.CommonData;
-import com.aimeow.iteastyle.domain.entity.CaseTypeEntity;
+import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +16,15 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @SpringBootTest(classes = Application.class)
 @AutoConfigureMockMvc
 public class CaseTypeTest {
-    //@Autowired
-    //CommonData commonData;
+    @Autowired
+    CommonData commonData;
     //
-    //@Autowired
-    //CommonDAO commonDAO;
+    @Autowired
+    CommonDAO commonDAO;
     //
-    //@Test public void testQuery () throws Exception {
-    //    System.out.println(commonDAO.queryAllList(CaseTypeEntity.class,"rank",false));
-    //}
+    @Test public void testQuery () throws Exception {
+        System.out.println(JSONObject.toJSONString(commonDAO.queryAllList(CaseTypeEntity.class,"rank",false)));
+    }
     //
     //@Test public void testModified() throws Exception {
     //    CaseTypeEntity caseTypeEntity1 = new CaseTypeEntity();

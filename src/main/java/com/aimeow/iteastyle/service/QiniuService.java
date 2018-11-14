@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/upload")
 @RestController
 public interface QiniuService {
-
     @RequestMapping(value = "/getUploadToken", method = RequestMethod.GET)
     BaseResult<String> getUploadToken();
 }

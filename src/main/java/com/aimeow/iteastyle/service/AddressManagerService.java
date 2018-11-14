@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author zhaoyi.w <zhaoyi.w@alibaba-inc.com>
  */
-@Api(value = "/service",tags = {"通用接口"}, description = "通用的接口数据")
-@RequestMapping(value = "/service")
+@Api(value = "/address",tags = {"通用接口"}, description = "通用的接口数据")
+@RequestMapping(value = "/address")
 @RestController
 public interface AddressManagerService {
     @ApiOperation(value = "通过GET请求方式通过userId获取该用户地址")

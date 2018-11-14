@@ -5,9 +5,11 @@ import com.aimeow.domain.BaseQuery;
 import com.aimeow.domain.BaseResult;
 import com.aimeow.iteastyle.domain.entity.EventEntity;
 import com.aimeow.iteastyle.domain.entity.Invoice.InvoiceEntity;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -16,6 +18,9 @@ import java.util.List;
  *
  * @author zhaoyi.w <zhaoyi.w@alibaba-inc.com>
  */
+@Api(value = "/service",tags = {"通用接口"}, description = "通用的接口数据")
+@RequestMapping(value = "/service")
+@RestController
 public interface EventService {
     @ApiOperation(value = "通过GET请求方式获取活动列表")
     @RequestMapping(value = "/getEvents", method = RequestMethod.GET)

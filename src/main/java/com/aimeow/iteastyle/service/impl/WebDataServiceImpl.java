@@ -3,6 +3,7 @@ package com.aimeow.iteastyle.service.impl;
 import com.aimeow.domain.BaseQuery;
 import com.aimeow.domain.BaseResult;
 import com.aimeow.domain.BaseGetList;
+import com.aimeow.iteastyle.domain.enums.StaticDataEnum;
 import com.aimeow.tools.CommonDAO;
 import com.aimeow.tools.CommonData;
 
@@ -17,6 +18,9 @@ import com.aimeow.iteastyle.domain.enums.StatusEnum;
 import com.aimeow.iteastyle.domain.query.CaseQuery;
 import com.aimeow.iteastyle.domain.query.PostQuery;
 import com.aimeow.iteastyle.service.WebDataService;
+import com.aimeow.tools.RedisUtil;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -33,6 +37,7 @@ import java.util.*;
 public class WebDataServiceImpl implements WebDataService {
     @Autowired private CommonDAO commonDAO;
     @Autowired private CommonData commonData;
+    @Autowired private RedisUtil redisUtil;
 
     @Override
     public BaseResult<BaseGetList> getPosts(
@@ -83,20 +88,6 @@ public class WebDataServiceImpl implements WebDataService {
     }
 
     @Override
-    public BaseResult<List<CaseTypeEntity>> getCaseTypes() {
-        BaseResult<List<CaseTypeEntity>> result = new BaseResult<>();
-        try {
-
-            List<CaseTypeEntity> caseTypeEntities = commonDAO.queryAllList(CaseTypeEntity.class,"rank",false);
-            result.setModel(caseTypeEntities);
-        } catch (Exception e) {
-            result.setSuccess(false);
-            result.setMsgInfo(e.getMessage());
-        }
-        return result;
-    }
-
-    @Override
     public BaseResult<CaseEntity> getCaseById(
             @NonNull String caseId) {
         BaseResult<CaseEntity> result = new BaseResult<>();
@@ -104,11 +95,17 @@ public class WebDataServiceImpl implements WebDataService {
         try {
             CaseEntity caseEntity = commonDAO.queryById(caseId , CaseEntity.class);
 
-            Map<String, Object> map = new HashMap<>();
-            map.put("type" , caseEntity.getType());
-            List<CaseTypeEntity> caseTypeEntities = commonDAO.queryByParam(map, CaseTypeEntity.class, null, null);
-            if (caseTypeEntities.size()>0) {
-                caseEntity.setTypeName(caseTypeEntities.get(0).getTypeName());
+            JSONArray jsonArray = JSONArray.parseArray(redisUtil.get(StaticDataEnum.CASE_TYPE.getKey()));
+            JSONObject targetObject = null;
+            for (Object o : jsonArray) {
+                JSONObject jo = JSONObject.parseObject(JSONObject.toJSONString(o));
+                if (jo.get("type")!= null && jo.get("type").equals(caseEntity.getType())) {
+                    targetObject = jo;
+                    break;
+                }
+            }
+            if (targetObject != null) {
+                caseEntity.setTypeName(targetObject.get("typeName").toString());
             }
             result.setModel(caseEntity);
         } catch (Exception e) {
@@ -138,19 +135,25 @@ public class WebDataServiceImpl implements WebDataService {
             List<CaseEntity> caseBaseVOS = new ArrayList<>();
             casesInTypeVO.setCases(caseBaseVOS);
 
-            Map<String, Object> map = new HashMap<>();
-            map.put("type" , type);
-            List<CaseTypeEntity> caseTypeEntities = commonDAO.queryByParam(map, CaseTypeEntity.class, null , null);
-            if (caseTypeEntities.size()>0) {
-                CaseTypeEntity caseTypeVO = caseTypeEntities.get(0);
-                casesInTypeVO.setCaseType(caseTypeVO);
+
+            JSONArray jsonArray = JSONArray.parseArray(redisUtil.get(StaticDataEnum.CASE_TYPE.getKey()));
+            JSONObject targetObject = null;
+            for (Object o : jsonArray) {
+                JSONObject jo = JSONObject.parseObject(JSONObject.toJSONString(o));
+                if (jo.get("type")!= null && jo.get("type").equals(type)) {
+                    targetObject = jo;
+                    break;
+                }
+            }
+            if (targetObject != null) {
+                casesInTypeVO.setCaseType(targetObject);
             }
 
             List<CaseEntity> caseEntities = commonDAO.queryList(caseQuery, CaseEntity.class , null , null);
             caseEntities.iterator().forEachRemaining(
                     obj-> {
                         CaseEntity caseBaseVO = obj;
-                        caseBaseVO.setTypeName(casesInTypeVO.getCaseType().getTypeName());
+                        caseBaseVO.setTypeName(casesInTypeVO.getCaseType().get("typeName").toString());
                         caseBaseVOS.add(caseBaseVO);
                     }
             );
@@ -170,29 +173,34 @@ public class WebDataServiceImpl implements WebDataService {
         BaseResult<List<CasesInTypeVO>> result = new BaseResult<>();
         List<CasesInTypeVO> casesInTypeVOS = new ArrayList<>();
         try {
-            List<CaseTypeEntity> caseTypeVOS = new ArrayList<>();
+            JSONArray jsonArray = JSONArray.parseArray(redisUtil.get(StaticDataEnum.CASE_TYPE.getKey()));
+
+            List<JSONObject> caseTypeVOS = new ArrayList<>();
             List<CaseEntity> caseBaseVOS = new ArrayList<>();
             List<CaseEntity> caseEntities = commonDAO.queryAllList(
                 CaseEntity.class,null,null);
-            List<CaseTypeEntity> caseTypeEntities = commonDAO.queryList(
-                new BaseQuery() , CaseTypeEntity.class, "rank" , false);
 
             for (CaseEntity caseEntity : caseEntities) {
                 caseBaseVOS.add(caseEntity);
             }
 
-            for (CaseTypeEntity caseTypeEntity : caseTypeEntities) {
-                caseTypeVOS.add(caseTypeEntity);
+            for (Object o : jsonArray) {
+                JSONObject jo = JSONObject.parseObject(JSONObject.toJSONString(o));
 
+            }
+
+            for (Object o : jsonArray) {
+                JSONObject jo = JSONObject.parseObject(JSONObject.toJSONString(o));
+                caseTypeVOS.add(jo);
                 CasesInTypeVO casesInTypeVO = new CasesInTypeVO();
-                casesInTypeVO.setCaseType(caseTypeEntity);
+                casesInTypeVO.setCaseType(jo);
                 casesInTypeVOS.add(casesInTypeVO);
             }
 
             for (CasesInTypeVO casesInTypeVO:casesInTypeVOS) {
                 for (CaseEntity caseBaseVO: caseBaseVOS) {
-                    if (caseBaseVO.getType().equals(casesInTypeVO.getCaseType().getType())) {
-                        caseBaseVO.setTypeName(casesInTypeVO.getCaseType().getTypeName());
+                    if (caseBaseVO.getType().equals(casesInTypeVO.getCaseType().get("type"))) {
+                        caseBaseVO.setTypeName(casesInTypeVO.getCaseType().get("typeName").toString());
                         if (casesInTypeVO.getCases() == null) {
                             casesInTypeVO.setCases(new ArrayList<>());
                         }

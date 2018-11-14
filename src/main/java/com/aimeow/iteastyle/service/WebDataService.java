@@ -2,10 +2,8 @@ package com.aimeow.iteastyle.service;
 
 import com.aimeow.domain.BaseResult;
 import com.aimeow.domain.BaseGetList;
-import com.aimeow.iteastyle.domain.ViewObject.*;
 import com.aimeow.iteastyle.domain.ViewObject.Case.CasesInTypeVO;
 import com.aimeow.iteastyle.domain.entity.CaseEntity;
-import com.aimeow.iteastyle.domain.entity.CaseTypeEntity;
 import com.aimeow.iteastyle.domain.entity.PostEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,10 +25,6 @@ public interface WebDataService {
     @ApiOperation(value = "通过GET请求方式获取『茶式动态详情』相关信息，需要传id")
     @RequestMapping(value = "/getPostById", method = RequestMethod.GET)
     BaseResult<PostEntity> getPostByPostId(String postId);
-
-    @ApiOperation(value = "通过GET请求方式获取产品展示类型")
-    @RequestMapping(value = "/getCaseTypes", method = RequestMethod.GET)
-    BaseResult<List<CaseTypeEntity>> getCaseTypes();
 
     @ApiOperation(value = "通过ID获取产品展示内容")
     @RequestMapping(value = "/getCaseById", method = RequestMethod.GET)
