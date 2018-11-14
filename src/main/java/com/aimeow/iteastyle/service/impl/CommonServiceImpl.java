@@ -14,8 +14,7 @@ public class CommonServiceImpl implements CommonService {
     @Autowired private RedisUtil redisUtil;
 
     @Override
-    public BaseResult<JSONObject> getDataWithTypeInRedis(String key) {
-
+    public BaseResult getDataWithTypeInRedis(String key) {
         if (key == null) {
             return ResultUtil.getFailureResult("缺少参数");
         }
@@ -24,12 +23,7 @@ public class CommonServiceImpl implements CommonService {
             if (staticDataEnum == null) {
                 return ResultUtil.getFailureResult("参数错误");
             }
-            String jsonStr = redisUtil.get(staticDataEnum.getKey());
-            JSONObject jsonObject = JSONObject.parseObject(jsonStr);
-            if (jsonObject == null) {
-                return ResultUtil.getFailureResult("parseObject error");
-            }
-            return ResultUtil.buildSuccessResult(new BaseResult<>() , jsonObject);
+            return ResultUtil.buildSuccessResult(new BaseResult<>() , redisUtil.get(staticDataEnum.getKey()));
         } catch (Exception ex) {
             return ResultUtil.getFailureResult("未知错误，详情请看日志");
         }

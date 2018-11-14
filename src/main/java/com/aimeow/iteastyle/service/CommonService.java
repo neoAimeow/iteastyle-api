@@ -14,5 +14,5 @@ import org.springframework.web.bind.annotation.RestController;
 public interface CommonService {
     @ApiOperation(value = "通过GET请求方式以及type获取数据")
     @RequestMapping(value = "/getData", method = RequestMethod.GET)
-    BaseResult<JSONObject> getDataWithTypeInRedis(String key);
+    BaseResult getDataWithTypeInRedis(String key);
 }

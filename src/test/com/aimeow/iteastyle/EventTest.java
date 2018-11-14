@@ -6,6 +6,7 @@ import com.aimeow.domain.BaseGetList;
 import com.aimeow.iteastyle.domain.entity.EventEntity;
 import com.aimeow.iteastyle.domain.enums.ContentTypeEnum;
 import com.aimeow.iteastyle.service.AdminService;
+import com.aimeow.iteastyle.service.CommonService;
 import com.aimeow.iteastyle.service.EventService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,7 +29,11 @@ import org.springframework.test.context.web.WebAppConfiguration;
 public class EventTest {
     @Autowired private EventService eventService;
     @Autowired private AdminService adminService;
-
+    @Autowired private CommonService commonService;
+    @Test
+    public void testQuery() throws Exception {
+        System.out.println(commonService.getDataWithTypeInRedis("caseType"));
+    }
     @Test
     public void testEvent() throws Exception {
         String param = "{\n"
