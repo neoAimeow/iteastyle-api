@@ -9,6 +9,8 @@ import lombok.EqualsAndHashCode;
 public class InvoiceTitleEntity extends BaseEntity {
     /** InvoiceTitleTypeEnum */
     private Integer type;
+    /** 用户id */
+    private String userId;
     /** 发票抬头标题 */
     private String invoiceTitle;
     /** 纳税人识别号 */
