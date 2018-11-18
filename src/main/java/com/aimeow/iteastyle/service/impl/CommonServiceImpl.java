@@ -5,6 +5,7 @@ import com.aimeow.iteastyle.domain.enums.StaticDataEnum;
 import com.aimeow.iteastyle.service.CommonService;
 import com.aimeow.tools.RedisUtil;
 import com.aimeow.tools.ResultUtil;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,10 +21,16 @@ public class CommonServiceImpl implements CommonService {
         }
         try {
             StaticDataEnum staticDataEnum = StaticDataEnum.getEnumByValue(key);
+
             if (staticDataEnum == null) {
                 return ResultUtil.getFailureResult("参数错误");
             }
-            return ResultUtil.buildSuccessResult(new BaseResult<>() , redisUtil.get(staticDataEnum.getKey()));
+
+            if (staticDataEnum.getName().equals("caseType")) {
+                return ResultUtil.buildSuccessResult(new BaseResult<>() , JSONArray.parseArray(redisUtil.get(staticDataEnum.getKey())));
+            } else {
+                return ResultUtil.buildSuccessResult(new BaseResult<>() , JSONObject.parseObject(redisUtil.get(staticDataEnum.getKey())));
+            }
         } catch (Exception ex) {
             return ResultUtil.getFailureResult("未知错误，详情请看日志");
         }
