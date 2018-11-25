@@ -149,29 +149,21 @@ public class WXAuthServiceImpl implements WXAuthService {
 
     @Override
     public BaseResult register(String body, HttpServletRequest request) {
-        String username = JSONObject.parseObject("username" , String.class);
         String nickname = JSONObject.parseObject("nickname" , String.class);
         String password = JSONObject.parseObject("password" , String.class);
         String mobile = JSONObject.parseObject("mobile" , String.class);
-        String code = JSONObject.parseObject("code" , String.class);
         String wxCode = JSONObject.parseObject("wxCode" , String.class);
 
-        if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password) || StringUtils.isEmpty(mobile)
-                || StringUtils.isEmpty(wxCode) || StringUtils.isEmpty(code)) {
+        if (StringUtils.isEmpty(password) || StringUtils.isEmpty(mobile)
+                || StringUtils.isEmpty(wxCode)) {
             return ResultUtil.getFailureResult(AuthErrorEnum.ParamMissing.getDescription()
                     , AuthErrorEnum.ParamMissing.getErrorCode());
         }
 
         try {
-            List<UserAuthEntity> userNameEntities = commonDAO.queryByParam(
-                    new HashMap<String, Object>(){{put("userName", username);}},
-                    UserAuthEntity.class,
-                    null,
-                    null);
-
-            if (userNameEntities != null && !userNameEntities.isEmpty()) {
-                return ResultUtil.getFailureResult(AuthErrorEnum.UserExist.getDescription()
-                        , AuthErrorEnum.UserExist.getErrorCode());
+            if (!RegexUtil.isMobileExact(mobile)) {
+                return ResultUtil.getFailureResult(AuthErrorEnum.MobileFormatIllegal.getDescription()
+                        , AuthErrorEnum.MobileFormatIllegal.getErrorCode());
             }
 
             List<UserAuthEntity> userMobileEntities = commonDAO.queryByParam(
@@ -183,11 +175,6 @@ public class WXAuthServiceImpl implements WXAuthService {
             if (userMobileEntities != null && !userMobileEntities.isEmpty()) {
                 return ResultUtil.getFailureResult(AuthErrorEnum.MobileExist.getDescription()
                         , AuthErrorEnum.MobileExist.getErrorCode());
-            }
-
-            if (!RegexUtil.isMobileExact(mobile)) {
-                return ResultUtil.getFailureResult(AuthErrorEnum.MobileFormatIllegal.getDescription()
-                        , AuthErrorEnum.MobileFormatIllegal.getErrorCode());
             }
 
             //TODO:验证码校验
@@ -205,20 +192,10 @@ public class WXAuthServiceImpl implements WXAuthService {
                 return ResultUtil.getFailureResult(AuthErrorEnum.OpenIdExist.getDescription()
                         , AuthErrorEnum.OpenIdExist.getErrorCode());
             }
-            if (userEntities.size() == 1) {
-                UserAuthEntity checkUser = userEntities.get(0);
-                String checkUsername = checkUser.getUserName();
-                String checkPassword = checkUser.getPassword();
-                if (!checkUsername.equals(openId) || !checkPassword.equals(openId)) {
-                    return ResultUtil.getFailureResult(AuthErrorEnum.OpenIdExist.getDescription()
-                            , AuthErrorEnum.OpenIdExist.getErrorCode());
-                }
-            }
 
             UserAuthEntity authEntity = new UserAuthEntity();
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             String encodedPassword = encoder.encode(password);
-            authEntity.setUserName(username);
             authEntity.setNickName(nickname);
             authEntity.setPassword(encodedPassword);
             authEntity.setMobile(mobile);
@@ -228,9 +205,10 @@ public class WXAuthServiceImpl implements WXAuthService {
 
             // userInfo
             UserInfoEntity userInfo = new UserInfoEntity();
-            userInfo.setNickName(username);
+            userInfo.setNickName(authEntity.getNickName());
             userInfo.setAvatarUrl(authEntity.getAvatarUrl());
             userInfo.setMobile(authEntity.getMobile());
+            userInfo.setId(authEntity.getId());
 
             // token
             UserToken userToken = UserTokenManager.generateToken(authEntity.getId());

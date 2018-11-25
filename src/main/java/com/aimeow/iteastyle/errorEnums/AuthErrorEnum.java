@@ -9,7 +9,6 @@ public enum AuthErrorEnum {
     MissingCodeAndWXInfo("missing_code_and_wx_info" , "缺失微信用户信息"),
     OpenIdAndSessionKeyMissing("openid_and_session_key_missing" , "微信登录失败"),
 
-    UserExist("user_exist" , "用户已经存在，请换个用户名注册"),
     MobileExist("mobile_exist" , "手机号已经注册过"),
     MobileFormatIllegal("mobile_format_illegal" , "手机号格式错误"),
     OpenIdExist("openid_exist" , "openId已绑定帐号"),
