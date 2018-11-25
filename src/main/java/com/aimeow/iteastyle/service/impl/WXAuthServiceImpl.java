@@ -14,6 +14,7 @@ import com.aimeow.tools.CommonDAO;
 import com.aimeow.tools.RegexUtil;
 import com.aimeow.tools.ResultUtil;
 import com.alibaba.fastjson.JSONObject;
+import com.google.gson.JsonObject;
 import org.apache.tomcat.util.http.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -34,16 +35,16 @@ public class WXAuthServiceImpl implements WXAuthService {
 
     @Override
     public BaseResult login(String body, HttpServletRequest request) {
-        String username = JSONObject.parseObject("username" , String.class);
+        String mobile = JSONObject.parseObject("mobile" , String.class);
         String password = JSONObject.parseObject("password" , String.class);
         try {
-            if (username == null || password == null) {
+            if (mobile == null || password == null) {
                 return ResultUtil.getFailureResult(AuthErrorEnum.ParamMissing.getDescription()
                         , AuthErrorEnum.ParamMissing.getErrorCode());
             }
 
             List<UserAuthEntity> userInfoEntities = commonDAO.queryByParam(
-                    new HashMap<String, Object>(){{put("userName", username);}},
+                    new HashMap<String, Object>(){{put("mobile", mobile);}},
                     UserAuthEntity.class,
                     null,
                     null);
@@ -63,7 +64,7 @@ public class WXAuthServiceImpl implements WXAuthService {
 
             // userInfo
             UserInfoEntity userInfo = new UserInfoEntity();
-            userInfo.setNickName(username);
+            userInfo.setNickName(user.getNickName());
             userInfo.setAvatarUrl(user.getAvatarUrl());
             userInfo.setMobile(user.getMobile());
 
@@ -83,14 +84,18 @@ public class WXAuthServiceImpl implements WXAuthService {
     }
 
     @Override
-    public BaseResult loginByWeixin(WXLoginInfo wxLoginInfo, HttpServletRequest request) {
-        String code = wxLoginInfo.getCode();
-        UserInfoEntity userInfo = wxLoginInfo.getUserInfo();
+    public BaseResult loginByWeixin(JSONObject wxLoginInfo, HttpServletRequest request) {
+        String code = wxLoginInfo.getString("code");
+        JSONObject loginInfo = JSONObject.parseObject("userInfo");
 
-        if (code == null || userInfo == null) {
+        if (code == null || loginInfo == null) {
             return ResultUtil.getFailureResult(AuthErrorEnum.MissingCodeAndWXInfo.getDescription()
                     , AuthErrorEnum.MissingCodeAndWXInfo.getErrorCode());
         }
+        UserInfoEntity userInfoEntity = new UserInfoEntity();
+        userInfoEntity.setNickName(loginInfo.getString("nickName"));
+        userInfoEntity.setAvatarUrl(loginInfo.getString("avatarUrl"));
+
 
         String sessionKey = null;
         String openId = null;
@@ -111,27 +116,28 @@ public class WXAuthServiceImpl implements WXAuthService {
                     UserAuthEntity.class,
                     null,
                     null);
-            UserAuthEntity user;
+            //if user not register, break and guide to register.
             if (userAuthEntities == null || userAuthEntities.isEmpty()) {
-                user = new UserAuthEntity();
-                user.setOpenId(openId);
-                user.setPassword(openId);
-                user.setNickName(userInfo.getNickName());
-                user.setAvatarUrl(userInfo.getAvatarUrl());
-            } else {
-                user = userAuthEntities.get(0);
+                return ResultUtil.getFailureResult(AuthErrorEnum.OpenIdNotExist.getDescription()
+                        , AuthErrorEnum.OpenIdNotExist.getErrorCode());
             }
 
+            UserAuthEntity user = userAuthEntities.get(0);
 
             UserToken userToken = UserTokenManager.generateToken(user.getId());
             userToken.setSessionKey(sessionKey);
 
+            UserInfoEntity infoEntity = new UserInfoEntity();
+            infoEntity.setAvatarUrl(user.getAvatarUrl());
+            infoEntity.setNickName(user.getNickName());
+            infoEntity.setMobile(user.getMobile());
+            infoEntity.setId(user.getId());
+
             Map<Object, Object> response = new HashMap<Object, Object>();
             response.put("token", userToken.getToken());
             response.put("tokenExpire", userToken.getExpireTime().toString());
-            response.put("userInfo", userInfo);
-            return ResultUtil.getFailureResult(AuthErrorEnum.UnknownError.getDescription()
-                    , AuthErrorEnum.UnknownError.getErrorCode());
+            response.put("userInfo", infoEntity);
+            return ResultUtil.buildSuccessResult(new BaseResult<>(), response);
 
         } catch (Exception e) {
             e.printStackTrace();

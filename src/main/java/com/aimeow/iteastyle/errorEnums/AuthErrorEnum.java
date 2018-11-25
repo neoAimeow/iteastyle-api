@@ -13,6 +13,7 @@ public enum AuthErrorEnum {
     MobileExist("mobile_exist" , "手机号已经注册过"),
     MobileFormatIllegal("mobile_format_illegal" , "手机号格式错误"),
     OpenIdExist("openid_exist" , "openId已绑定帐号"),
+    OpenIdNotExist("openid_not_exist" , "openId未绑定帐号,需要注册"),
     ;
     private String errorCode;
     private String description;

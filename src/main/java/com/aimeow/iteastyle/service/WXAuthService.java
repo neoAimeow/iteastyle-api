@@ -2,6 +2,7 @@ package com.aimeow.iteastyle.service;
 
 import com.aimeow.domain.BaseResult;
 import com.aimeow.iteastyle.domain.entity.WXLoginInfo;
+import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,8 +33,8 @@ public interface WXAuthService {
      * @param request     请求对象
      * @return 登录结果
      */
-    @PostMapping("login_by_weixin")
-    BaseResult loginByWeixin(@RequestBody WXLoginInfo wxLoginInfo, HttpServletRequest request);
+    @PostMapping("wxlogin")
+    BaseResult loginByWeixin(@RequestBody JSONObject wxLoginInfo, HttpServletRequest request);
 
     /**
      * 账号注册

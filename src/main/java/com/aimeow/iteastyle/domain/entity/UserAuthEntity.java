@@ -8,7 +8,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=true)
 public class UserAuthEntity extends BaseEntity {
     private String nickName;
-    private String userName;
     private String mobile;
     private String password;
     private String openId;
