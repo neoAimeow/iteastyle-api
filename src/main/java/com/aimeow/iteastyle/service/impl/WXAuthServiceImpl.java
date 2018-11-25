@@ -11,6 +11,7 @@ import com.aimeow.iteastyle.errorEnums.AuthErrorEnum;
 import com.aimeow.iteastyle.manager.UserTokenManager;
 import com.aimeow.iteastyle.service.WXAuthService;
 import com.aimeow.tools.CommonDAO;
+import com.aimeow.tools.MessageSender;
 import com.aimeow.tools.RegexUtil;
 import com.aimeow.tools.ResultUtil;
 import com.alibaba.fastjson.JSONObject;
@@ -31,7 +32,7 @@ import java.util.Map;
 public class WXAuthServiceImpl implements WXAuthService {
     @Autowired private WxMaService wxService;
     @Autowired private CommonDAO commonDAO;
-
+    @Autowired private MessageSender messageSender;
 
     @Override
     public BaseResult login(String body, HttpServletRequest request) {
