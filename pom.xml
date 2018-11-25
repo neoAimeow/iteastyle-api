@@ -23,7 +23,6 @@
         <qiniu.version>[7.2.0, 7.2.99]</qiniu.version>
         <aimeow.toolkit.version>0.0.3</aimeow.toolkit.version>
         <jjwt.version>0.9.1</jjwt.version>
-
         <weixin.miniapp.version>3.2.0</weixin.miniapp.version>
 
     </properties>

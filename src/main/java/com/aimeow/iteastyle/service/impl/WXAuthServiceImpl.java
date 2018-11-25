@@ -224,8 +224,7 @@ public class WXAuthServiceImpl implements WXAuthService {
             return ResultUtil.getFailureResult(AuthErrorEnum.UnknownError.getDescription()
                     , AuthErrorEnum.UnknownError.getErrorCode());
         }
-
-
-
     }
+
+
 }
