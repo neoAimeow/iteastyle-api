@@ -36,8 +36,9 @@ public class WXAuthServiceImpl implements WXAuthService {
 
     @Override
     public BaseResult login(String body, HttpServletRequest request) {
-        String mobile = JSONObject.parseObject("mobile" , String.class);
-        String password = JSONObject.parseObject("password" , String.class);
+        JSONObject object = JSONObject.parseObject(body);
+        String mobile = object.getString("mobile");
+        String password = object.getString("password");
         try {
             if (mobile == null || password == null) {
                 return ResultUtil.getFailureResult(AuthErrorEnum.ParamMissing.getDescription()
@@ -85,8 +86,9 @@ public class WXAuthServiceImpl implements WXAuthService {
     }
 
     @Override
-    public BaseResult loginByWeixin(JSONObject wxLoginInfo, HttpServletRequest request) {
-        String code = wxLoginInfo.getString("code");
+    public BaseResult loginByWeixin(String body, HttpServletRequest request) {
+        JSONObject object = JSONObject.parseObject(body);
+        String code = object.getString("code");
 
         if (code == null) {
             return ResultUtil.getFailureResult(AuthErrorEnum.MissingCode.getDescription()
@@ -146,10 +148,11 @@ public class WXAuthServiceImpl implements WXAuthService {
 
     @Override
     public BaseResult register(String body, HttpServletRequest request) {
-        String nickname = JSONObject.parseObject("nickname" , String.class);
-        String password = JSONObject.parseObject("password" , String.class);
-        String mobile = JSONObject.parseObject("mobile" , String.class);
-        String avatar = JSONObject.parseObject("avatarUrl" , String.class);
+        JSONObject object = JSONObject.parseObject(body);
+        String nickname = object.getString("nickname");
+        String password = object.getString("password");
+        String mobile = object.getString("mobile");
+        String avatar = object.getString("avatar");
 
         if (StringUtils.isEmpty(password) || StringUtils.isEmpty(mobile)) {
             return ResultUtil.getFailureResult(AuthErrorEnum.ParamMissing.getDescription()
@@ -209,10 +212,11 @@ public class WXAuthServiceImpl implements WXAuthService {
 
     @Override
     public BaseResult wxRegister(String body, HttpServletRequest request) {
-        String nickname = JSONObject.parseObject("nickname" , String.class);
-        String mobile = JSONObject.parseObject("mobile" , String.class);
-        String wxCode = JSONObject.parseObject("wxCode" , String.class);
-        String avatar = JSONObject.parseObject("avatarUrl" , String.class);
+        JSONObject object = JSONObject.parseObject(body);
+        String nickname = object.getString("nickname");
+        String wxCode = object.getString("wxCode");
+        String mobile = object.getString("mobile");
+        String avatar = object.getString("avatar");
 
         if (StringUtils.isEmpty(mobile)) {
             return ResultUtil.getFailureResult(AuthErrorEnum.ParamMissing.getDescription()
@@ -279,5 +283,15 @@ public class WXAuthServiceImpl implements WXAuthService {
             return ResultUtil.getFailureResult(AuthErrorEnum.UnknownError.getDescription()
                     , AuthErrorEnum.UnknownError.getErrorCode());
         }
+    }
+
+    @Override
+    public BaseResult resetPassword(String body, HttpServletRequest request) {
+        return null;
+    }
+
+    @Override
+    public BaseResult sendSms(String body, HttpServletRequest request) {
+        return null;
     }
 }

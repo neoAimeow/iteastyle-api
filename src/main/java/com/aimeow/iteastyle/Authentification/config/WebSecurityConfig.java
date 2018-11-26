@@ -27,35 +27,37 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
-            .antMatchers("/admin/**").hasRole("ADMIN")
-            .antMatchers("/service/**").permitAll()
-            .antMatchers("/adminUser/**").permitAll()
-            .antMatchers("/").permitAll()
-            .antMatchers(
-                "/v2/api-docs",
-                "/swagger-resources/**",
-                "/resources/**",
-                "/swagger-ui.html",
-                "/docs.html",
-                "/webjars/**" ,
-             /*Probably not needed*/ "/swagger.json")
-            .permitAll()
-            .antMatchers(HttpMethod.POST, "/adminUser/login").permitAll()
-            .anyRequest().authenticated()
-            .and()
-            // We filter the api/login requests
-            .addFilterBefore(new JWTLoginFilter("/adminUser/login", authenticationManager()),
-                UsernamePasswordAuthenticationFilter.class)
-            // And filter other requests to check the presence of JWT in header
-            .addFilterBefore(new JWTAuthenticationFilter(),
-                UsernamePasswordAuthenticationFilter.class);
+        http.csrf().disable();
+//                .authorizeRequests()
+//                .antMatchers("/admin/**").hasRole("ADMIN")
+//                .antMatchers("/service/**").permitAll()
+//                .antMatchers("/adminUser/**").permitAll()
+//                .antMatchers("/").permitAll()
+//                .antMatchers(
+//                        "/v2/api-docs",
+//                        "/swagger-resources/**",
+//                        "/resources/**",
+//                        "/swagger-ui.html",
+//                        "/docs.html",
+//                        "/webjars/**",
+//                        /*Probably not needed*/ "/swagger.json")
+//                .permitAll()
+//                .antMatchers(HttpMethod.POST, "/adminUser/login").permitAll()
+//                .anyRequest().authenticated()
+//                .and()
+//                // We filter the api/login requests
+//                .addFilterBefore(new JWTLoginFilter("/adminUser/login", authenticationManager()),
+//                        UsernamePasswordAuthenticationFilter.class)
+//                // And filter other requests to check the presence of JWT in header
+//                .addFilterBefore(new JWTAuthenticationFilter(),
+//                        UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(adminUserDAO).passwordEncoder(new BCryptPasswordEncoder());
     }
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
