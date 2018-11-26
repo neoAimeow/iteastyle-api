@@ -6,7 +6,7 @@ public enum AuthErrorEnum {
     ParamMissing("param_is_missing" , "请求缺少必填的参数"),
     UnknownError("unknown_error" , "未知错误"),
 
-    MissingCodeAndWXInfo("missing_code_and_wx_info" , "缺失微信用户信息"),
+    MissingCode("missing_code" , "登录缺少code"),
     OpenIdAndSessionKeyMissing("openid_and_session_key_missing" , "微信登录失败"),
 
     MobileExist("mobile_exist" , "手机号已经注册过"),

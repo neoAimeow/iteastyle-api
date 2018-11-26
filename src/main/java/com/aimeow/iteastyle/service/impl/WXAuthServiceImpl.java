@@ -87,16 +87,11 @@ public class WXAuthServiceImpl implements WXAuthService {
     @Override
     public BaseResult loginByWeixin(JSONObject wxLoginInfo, HttpServletRequest request) {
         String code = wxLoginInfo.getString("code");
-        JSONObject loginInfo = JSONObject.parseObject("userInfo");
 
-        if (code == null || loginInfo == null) {
-            return ResultUtil.getFailureResult(AuthErrorEnum.MissingCodeAndWXInfo.getDescription()
-                    , AuthErrorEnum.MissingCodeAndWXInfo.getErrorCode());
+        if (code == null) {
+            return ResultUtil.getFailureResult(AuthErrorEnum.MissingCode.getDescription()
+                    , AuthErrorEnum.MissingCode.getErrorCode());
         }
-        UserInfoEntity userInfoEntity = new UserInfoEntity();
-        userInfoEntity.setNickName(loginInfo.getString("nickName"));
-        userInfoEntity.setAvatarUrl(loginInfo.getString("avatarUrl"));
-
 
         String sessionKey = null;
         String openId = null;
@@ -117,6 +112,7 @@ public class WXAuthServiceImpl implements WXAuthService {
                     UserAuthEntity.class,
                     null,
                     null);
+
             //if user not register, break and guide to register.
             if (userAuthEntities == null || userAuthEntities.isEmpty()) {
                 return ResultUtil.getFailureResult(AuthErrorEnum.OpenIdNotExist.getDescription()
@@ -153,10 +149,9 @@ public class WXAuthServiceImpl implements WXAuthService {
         String nickname = JSONObject.parseObject("nickname" , String.class);
         String password = JSONObject.parseObject("password" , String.class);
         String mobile = JSONObject.parseObject("mobile" , String.class);
-        String wxCode = JSONObject.parseObject("wxCode" , String.class);
+        String avatar = JSONObject.parseObject("avatarUrl" , String.class);
 
-        if (StringUtils.isEmpty(password) || StringUtils.isEmpty(mobile)
-                || StringUtils.isEmpty(wxCode)) {
+        if (StringUtils.isEmpty(password) || StringUtils.isEmpty(mobile)) {
             return ResultUtil.getFailureResult(AuthErrorEnum.ParamMissing.getDescription()
                     , AuthErrorEnum.ParamMissing.getErrorCode());
         }
@@ -180,28 +175,13 @@ public class WXAuthServiceImpl implements WXAuthService {
 
             //TODO:验证码校验
 
-            WxMaJscode2SessionResult result = this.wxService.getUserService().getSessionInfo(wxCode);
-            String openId = result.getOpenid();
-
-            List<UserAuthEntity> userEntities = commonDAO.queryByParam(
-                    new HashMap<String, Object>(){{put("openId", openId);}},
-                    UserAuthEntity.class,
-                    null,
-                    null);
-
-            if (userEntities != null && !userEntities.isEmpty()) {
-                return ResultUtil.getFailureResult(AuthErrorEnum.OpenIdExist.getDescription()
-                        , AuthErrorEnum.OpenIdExist.getErrorCode());
-            }
-
             UserAuthEntity authEntity = new UserAuthEntity();
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             String encodedPassword = encoder.encode(password);
             authEntity.setNickName(nickname);
             authEntity.setPassword(encodedPassword);
             authEntity.setMobile(mobile);
-            authEntity.setOpenId(openId);
-            authEntity.setAvatarUrl("https://yanxuan.nosdn.127.net/80841d741d7fa3073e0ae27bf487339f.jpg?imageView&quality=90&thumbnail=64x64");
+            authEntity.setAvatarUrl(avatar);
             commonDAO.create(authEntity);
 
             // userInfo
@@ -227,5 +207,77 @@ public class WXAuthServiceImpl implements WXAuthService {
         }
     }
 
+    @Override
+    public BaseResult wxRegister(String body, HttpServletRequest request) {
+        String nickname = JSONObject.parseObject("nickname" , String.class);
+        String mobile = JSONObject.parseObject("mobile" , String.class);
+        String wxCode = JSONObject.parseObject("wxCode" , String.class);
+        String avatar = JSONObject.parseObject("avatarUrl" , String.class);
 
+        if (StringUtils.isEmpty(mobile)) {
+            return ResultUtil.getFailureResult(AuthErrorEnum.ParamMissing.getDescription()
+                    , AuthErrorEnum.ParamMissing.getErrorCode());
+        }
+
+        try {
+            if (!RegexUtil.isMobileExact(mobile)) {
+                return ResultUtil.getFailureResult(AuthErrorEnum.MobileFormatIllegal.getDescription()
+                        , AuthErrorEnum.MobileFormatIllegal.getErrorCode());
+            }
+
+            List<UserAuthEntity> userMobileEntities = commonDAO.queryByParam(
+                    new HashMap<String, Object>(){{put("mobile", mobile);}},
+                    UserAuthEntity.class,
+                    null,
+                    null);
+
+            if (userMobileEntities != null && !userMobileEntities.isEmpty()) {
+                return ResultUtil.getFailureResult(AuthErrorEnum.MobileExist.getDescription()
+                        , AuthErrorEnum.MobileExist.getErrorCode());
+            }
+
+            WxMaJscode2SessionResult result = this.wxService.getUserService().getSessionInfo(wxCode);
+            String openId = result.getOpenid();
+
+            List<UserAuthEntity> userEntities = commonDAO.queryByParam(
+                    new HashMap<String, Object>(){{put("openId", openId);}},
+                    UserAuthEntity.class,
+                    null,
+                    null);
+
+            if (userEntities != null && !userEntities.isEmpty()) {
+                return ResultUtil.getFailureResult(AuthErrorEnum.OpenIdExist.getDescription()
+                        , AuthErrorEnum.OpenIdExist.getErrorCode());
+            }
+
+            UserAuthEntity authEntity = new UserAuthEntity();
+            authEntity.setNickName(nickname);
+            authEntity.setPassword(openId);
+            authEntity.setMobile(mobile);
+            authEntity.setOpenId(openId);
+            authEntity.setAvatarUrl(avatar);
+            commonDAO.create(authEntity);
+
+            // userInfo
+            UserInfoEntity userInfo = new UserInfoEntity();
+            userInfo.setNickName(authEntity.getNickName());
+            userInfo.setAvatarUrl(authEntity.getAvatarUrl());
+            userInfo.setMobile(authEntity.getMobile());
+            userInfo.setId(authEntity.getId());
+
+            // token
+            UserToken userToken = UserTokenManager.generateToken(authEntity.getId());
+
+            Map<Object, Object> response = new HashMap<>();
+            response.put("token", userToken.getToken());
+            response.put("tokenExpire", userToken.getExpireTime().toString());
+            response.put("userInfo", userInfo);
+            return ResultUtil.buildSuccessResult(new BaseResult<>(), response);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return ResultUtil.getFailureResult(AuthErrorEnum.UnknownError.getDescription()
+                    , AuthErrorEnum.UnknownError.getErrorCode());
+        }
+    }
 }

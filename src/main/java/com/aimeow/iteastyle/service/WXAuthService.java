@@ -40,30 +40,16 @@ public interface WXAuthService {
      * 账号注册
      *
      * @param body    请求内容
-     *                {
-     *                username: xxx,
-     *                password: xxx,
-     *                mobile: xxx
-     *                code: xxx
-     *                }
-     *                其中code是手机验证码，目前还不支持手机短信验证码
-     * @param request 请求对象
-     * @return 登录结果
-     * 成功则
-     * {
-     * errno: 0,
-     * errmsg: '成功',
-     * data:
-     * {
-     * token: xxx,
-     * tokenExpire: xxx,
-     * userInfo: xxx
-     * }
-     * }
-     * 失败则 { errno: XXX, errmsg: XXX }
      */
     @PostMapping("register")
     BaseResult register(@RequestBody String body, HttpServletRequest request);
 
+    /**
+     * 账号通过微信注册
+     *
+     * @param
+     */
+    @PostMapping("wxregister")
+    BaseResult wxRegister(@RequestBody String body, HttpServletRequest request);
 
 }
