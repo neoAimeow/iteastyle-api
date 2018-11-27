@@ -3,27 +3,19 @@ package com.aimeow.iteastyle.service.impl;
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import com.aimeow.domain.BaseResult;
+import com.aimeow.domain.UserToken;
 import com.aimeow.iteastyle.domain.entity.UserAuthEntity;
 import com.aimeow.iteastyle.domain.entity.UserInfoEntity;
-import com.aimeow.iteastyle.domain.entity.UserToken;
-import com.aimeow.iteastyle.domain.entity.WXLoginInfo;
 import com.aimeow.iteastyle.errorEnums.AuthErrorEnum;
-import com.aimeow.iteastyle.manager.UserTokenManager;
 import com.aimeow.iteastyle.service.WXAuthService;
-import com.aimeow.tools.CommonDAO;
-import com.aimeow.tools.MessageSender;
-import com.aimeow.tools.RegexUtil;
-import com.aimeow.tools.ResultUtil;
+import com.aimeow.tools.*;
 import com.alibaba.fastjson.JSONObject;
-import com.google.gson.JsonObject;
-import org.apache.tomcat.util.http.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,6 +58,9 @@ public class WXAuthServiceImpl implements WXAuthService {
 
             // userInfo
             UserInfoEntity userInfo = new UserInfoEntity();
+            userInfo.setGmtCreate(user.getGmtCreate());
+            userInfo.setGmtModified(user.getGmtModified());
+            userInfo.setId(user.getId());
             userInfo.setNickName(user.getNickName());
             userInfo.setAvatarUrl(user.getAvatarUrl());
             userInfo.setMobile(user.getMobile());
@@ -127,6 +122,8 @@ public class WXAuthServiceImpl implements WXAuthService {
             userToken.setSessionKey(sessionKey);
 
             UserInfoEntity infoEntity = new UserInfoEntity();
+            infoEntity.setGmtModified(user.getGmtModified());
+            infoEntity.setGmtCreate(user.getGmtCreate());
             infoEntity.setAvatarUrl(user.getAvatarUrl());
             infoEntity.setNickName(user.getNickName());
             infoEntity.setMobile(user.getMobile());
@@ -152,7 +149,7 @@ public class WXAuthServiceImpl implements WXAuthService {
         String nickname = object.getString("nickname");
         String password = object.getString("password");
         String mobile = object.getString("mobile");
-        String avatar = object.getString("avatar");
+        String avatar = object.getString("avatarUrl");
 
         if (StringUtils.isEmpty(password) || StringUtils.isEmpty(mobile)) {
             return ResultUtil.getFailureResult(AuthErrorEnum.ParamMissing.getDescription()
@@ -216,7 +213,7 @@ public class WXAuthServiceImpl implements WXAuthService {
         String nickname = object.getString("nickname");
         String wxCode = object.getString("wxCode");
         String mobile = object.getString("mobile");
-        String avatar = object.getString("avatar");
+        String avatar = object.getString("avatarUrl");
 
         if (StringUtils.isEmpty(mobile)) {
             return ResultUtil.getFailureResult(AuthErrorEnum.ParamMissing.getDescription()
@@ -287,7 +284,40 @@ public class WXAuthServiceImpl implements WXAuthService {
 
     @Override
     public BaseResult resetPassword(String body, HttpServletRequest request) {
-        return null;
+        JSONObject object = JSONObject.parseObject(body);
+        String password = object.getString("password");
+        String mobile = object.getString("mobile");
+
+        try {
+            if (StringUtils.isEmpty(password)) {
+                return ResultUtil.getFailureResult(AuthErrorEnum.ParamMissing.getDescription()
+                        , AuthErrorEnum.ParamMissing.getErrorCode());
+            }
+
+            List<UserAuthEntity> entities = commonDAO.queryByParam(
+                    new HashMap<String, Object>(){{put("mobile", mobile);}},
+                    UserAuthEntity.class,
+                    null,
+                    null);
+
+            if (entities == null || entities.isEmpty()) {
+                return ResultUtil.getFailureResult(AuthErrorEnum.UserNotExist.getDescription()
+                        , AuthErrorEnum.UserNotExist.getErrorCode());
+            }
+
+            UserAuthEntity authEntity = new UserAuthEntity();
+            authEntity.setId(entities.get(0).getId());
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            String encodedPassword = encoder.encode(password);
+            authEntity.setPassword(encodedPassword);
+
+            return ResultUtil.buildSuccessResult(new BaseResult<>(),
+                    commonDAO.update(authEntity, UserAuthEntity.class));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return ResultUtil.getFailureResult(AuthErrorEnum.UnknownError.getDescription()
+                    , AuthErrorEnum.UnknownError.getErrorCode());
+        }
     }
 
     @Override
