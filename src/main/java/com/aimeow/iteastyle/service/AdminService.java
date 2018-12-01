@@ -29,6 +29,6 @@ public interface AdminService {
     BaseResult<Boolean> updateData(String param, String type);
 
     @RequestMapping(value = "/getList", method = RequestMethod.GET)
-    BaseResult<JSONObject> getList(Integer page , Integer pageSize , String type);
+    BaseResult<String> getList(Integer page , Integer pageSize , String type);
 
 }

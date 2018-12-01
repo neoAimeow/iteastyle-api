@@ -132,8 +132,8 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public BaseResult<JSONObject> getList(Integer page, Integer pageSize, String type) {
-        BaseResult<JSONObject> result = new BaseResult<>();
+    public BaseResult<String> getList(Integer page, Integer pageSize, String type) {
+        BaseResult<String> result = new BaseResult<>();
         try {
             BaseQuery baseQuery = new BaseQuery();
             baseQuery.setPage(page);
@@ -146,7 +146,7 @@ public class AdminServiceImpl implements AdminService {
                 baseGetList.setPageSize(pageSize);
                 baseGetList.setTotalCount(commonDAO.count(baseQuery , PostEntity.class));
                 baseGetList.setItems(postEntities);
-                result.setModel(JSONObject.parseObject(JSONObject.toJSONString(postEntities)));
+                result.setModel(JSONObject.toJSONString(postEntities));
 
             } else if(ContentTypeEnum.Case.getValue().equals(type)) {
 
@@ -157,7 +157,7 @@ public class AdminServiceImpl implements AdminService {
                 baseGetList.setPageSize(pageSize);
                 baseGetList.setTotalCount(commonDAO.count(baseQuery , CaseEntity.class));
                 baseGetList.setItems(caseEntities);
-                result.setModel(JSONObject.parseObject(JSONObject.toJSONString(caseEntities)));
+                result.setModel(JSONObject.toJSONString(caseEntities));
             } else if(ContentTypeEnum.Event.getValue().equals(type)) {
 
                 List<EventEntity> eventEntities = commonDAO.queryList(baseQuery , EventEntity.class, null , null);
@@ -167,7 +167,7 @@ public class AdminServiceImpl implements AdminService {
                 baseGetList.setPageSize(pageSize);
                 baseGetList.setTotalCount(commonDAO.count(baseQuery , CaseEntity.class));
                 baseGetList.setItems(eventEntities);
-                result.setModel(JSONObject.parseObject(JSONObject.toJSONString(eventEntities)));
+                result.setModel(JSONObject.toJSONString(eventEntities));
             }
         } catch (Exception e) {
             result.setMsgInfo(e.getMessage());
