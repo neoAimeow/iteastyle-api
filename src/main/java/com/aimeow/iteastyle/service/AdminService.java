@@ -31,4 +31,7 @@ public interface AdminService {
     @RequestMapping(value = "/getList", method = RequestMethod.GET)
     BaseResult getList(Integer page , Integer pageSize , String type);
 
+    @RequestMapping(value = "/getDataById", method = RequestMethod.GET)
+    BaseResult getDataById(String id, String type);
+
 }

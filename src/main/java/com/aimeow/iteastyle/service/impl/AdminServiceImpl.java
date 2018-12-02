@@ -172,4 +172,24 @@ public class AdminServiceImpl implements AdminService {
         return result;
     }
 
+    @Override
+    public BaseResult getDataById(String id, String type) {
+        BaseResult result = new BaseResult<>();
+        try {
+            if (ContentTypeEnum.Post.getValue().equals(type)) {
+                PostEntity postEntity = commonDAO.queryById(id , PostEntity.class);
+                result.setModel(postEntity);
+            } else if(ContentTypeEnum.Case.getValue().equals(type)) {
+                CaseEntity caseEntity = commonDAO.queryById(id , CaseEntity.class);
+                result.setModel(caseEntity);
+            } else if(ContentTypeEnum.Event.getValue().equals(type)) {
+                EventEntity eventEntity = commonDAO.queryById(id , EventEntity.class);
+                result.setModel(eventEntity);
+            }
+        } catch (Exception ex) {
+            result.setMsgInfo(ex.getMessage());
+            result.setSuccess(false);
+        }
+        return result;
+    }
 }
