@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class QiniuServiceImpl implements QiniuService {
     private static String accessKey = "7hKfN1Ymb8704XrZr09Hh1FpVLAHBzDFn7hxel30";
     private static String secretKey = "0w9SrQKJgZZk5zAjAKC1Ec3v2XCEtgv-FBmAPILc";
-    private static String bucket = "iteastyle-test";
+    private static String bucket = "iteastyle-image";
 
     @Override
     public BaseResult<String> getUploadToken() {
