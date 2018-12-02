@@ -7,8 +7,6 @@ import com.aimeow.iteastyle.domain.enums.StaticDataEnum;
 import com.aimeow.tools.CommonDAO;
 import com.aimeow.tools.CommonData;
 
-
-import com.aimeow.iteastyle.domain.ViewObject.*;
 import com.aimeow.iteastyle.domain.ViewObject.Case.CasesInTypeVO;
 import com.aimeow.iteastyle.domain.entity.*;
 import com.aimeow.iteastyle.domain.entity.service.TeaDIYEntity;
@@ -56,7 +54,7 @@ public class WebDataServiceImpl implements WebDataService {
             List<PostEntity> postEntities = commonDAO.queryList(postQuery , PostEntity.class, null , null);
             for (PostEntity postEntity: postEntities) {
                 if (StringUtils.isEmpty(postEntity.getImageUrl())) {
-                    postEntity.setImageUrl("http://pazp3d0xt.bkt.clouddn.com/if%20no%20img.jpg");
+                    postEntity.setImageUrl("http://image.iteastyle.com/if%20no%20img.jpg");
                 }
 
                 if (StringUtils.isEmpty(postEntity.getSummary())) {

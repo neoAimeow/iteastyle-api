@@ -140,18 +140,14 @@ public class AdminServiceImpl implements AdminService {
             baseQuery.setPageSize(pageSize);
             if (ContentTypeEnum.Post.getValue().equals(type)) {
                 List<PostEntity> postEntities = commonDAO.queryList(baseQuery , PostEntity.class, null , null);
-
                 BaseGetList baseGetList = new BaseGetList();
                 baseGetList.setPage(page);
                 baseGetList.setPageSize(pageSize);
                 baseGetList.setTotalCount(commonDAO.count(baseQuery , PostEntity.class));
                 baseGetList.setItems(postEntities);
                 result.setModel(baseGetList);
-
             } else if(ContentTypeEnum.Case.getValue().equals(type)) {
-
                 List<CaseEntity> caseEntities = commonDAO.queryList(baseQuery , CaseEntity.class, null , null);
-
                 BaseGetList baseGetList = new BaseGetList();
                 baseGetList.setPage(page);
                 baseGetList.setPageSize(pageSize);
