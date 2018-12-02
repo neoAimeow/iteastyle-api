@@ -146,7 +146,7 @@ public class AdminServiceImpl implements AdminService {
                 baseGetList.setPageSize(pageSize);
                 baseGetList.setTotalCount(commonDAO.count(baseQuery , PostEntity.class));
                 baseGetList.setItems(postEntities);
-                result.setModel(postEntities);
+                result.setModel(baseGetList);
 
             } else if(ContentTypeEnum.Case.getValue().equals(type)) {
 
@@ -157,7 +157,7 @@ public class AdminServiceImpl implements AdminService {
                 baseGetList.setPageSize(pageSize);
                 baseGetList.setTotalCount(commonDAO.count(baseQuery , CaseEntity.class));
                 baseGetList.setItems(caseEntities);
-                result.setModel(caseEntities);
+                result.setModel(baseGetList);
             } else if(ContentTypeEnum.Event.getValue().equals(type)) {
 
                 List<EventEntity> eventEntities = commonDAO.queryList(baseQuery , EventEntity.class, null , null);
@@ -167,7 +167,7 @@ public class AdminServiceImpl implements AdminService {
                 baseGetList.setPageSize(pageSize);
                 baseGetList.setTotalCount(commonDAO.count(baseQuery , CaseEntity.class));
                 baseGetList.setItems(eventEntities);
-                result.setModel(eventEntities);
+                result.setModel(baseGetList);
             }
         } catch (Exception e) {
             result.setMsgInfo(e.getMessage());
