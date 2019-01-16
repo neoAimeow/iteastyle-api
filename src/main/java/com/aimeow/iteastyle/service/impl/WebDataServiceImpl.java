@@ -49,7 +49,7 @@ public class WebDataServiceImpl implements WebDataService {
             PostQuery postQuery = new PostQuery();
             postQuery.setPageSize(pageSize);
             postQuery.setPage(page);
-            postQuery.setStatus(StatusEnum.NORMAL.getStatus());
+//            postQuery.setStatus(StatusEnum.NORMAL.getStatus());
         
             List<PostEntity> postEntities = commonDAO.queryList(postQuery , PostEntity.class, null , null);
             for (PostEntity postEntity: postEntities) {
