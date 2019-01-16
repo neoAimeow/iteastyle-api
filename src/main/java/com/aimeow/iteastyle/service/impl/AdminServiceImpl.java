@@ -5,9 +5,13 @@ import com.aimeow.domain.BaseResult;
 import com.aimeow.domain.BaseGetList;
 import com.aimeow.iteastyle.domain.entity.*;
 import com.aimeow.iteastyle.domain.enums.ContentTypeEnum;
+import com.aimeow.iteastyle.domain.enums.StaticDataEnum;
+import com.aimeow.iteastyle.service.WebDataService;
 import com.aimeow.tools.CommonConverter;
 import com.aimeow.iteastyle.domain.ViewObject.*;
 import com.aimeow.iteastyle.service.AdminService;
+import com.aimeow.tools.RedisUtil;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +31,7 @@ import java.util.List;
 public class AdminServiceImpl implements AdminService {
     @Autowired private CommonDAO commonDAO;
     @Autowired private CommonData commonData;
+    @Autowired private WebDataService webDataService;
 
     @Override
     public BaseResult<Boolean> create(@NonNull String param, @NonNull String type) {
@@ -180,8 +185,7 @@ public class AdminServiceImpl implements AdminService {
                 PostEntity postEntity = commonDAO.queryById(id , PostEntity.class);
                 result.setModel(postEntity);
             } else if(ContentTypeEnum.Case.getValue().equals(type)) {
-                CaseEntity caseEntity = commonDAO.queryById(id , CaseEntity.class);
-                result.setModel(caseEntity);
+                result.setModel(webDataService.getCaseById(id).getModel());
             } else if(ContentTypeEnum.Event.getValue().equals(type)) {
                 EventEntity eventEntity = commonDAO.queryById(id , EventEntity.class);
                 result.setModel(eventEntity);
