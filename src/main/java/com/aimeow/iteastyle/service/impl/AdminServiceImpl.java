@@ -5,15 +5,20 @@ import com.aimeow.domain.BaseResult;
 import com.aimeow.domain.BaseGetList;
 import com.aimeow.iteastyle.domain.entity.*;
 import com.aimeow.iteastyle.domain.enums.ContentTypeEnum;
+import com.aimeow.iteastyle.domain.enums.StaticDataEnum;
+import com.aimeow.iteastyle.service.WebDataService;
 import com.aimeow.tools.CommonConverter;
 import com.aimeow.iteastyle.domain.ViewObject.*;
 import com.aimeow.iteastyle.service.AdminService;
+import com.aimeow.tools.RedisUtil;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.aimeow.tools.CommonDAO;
 import com.aimeow.tools.CommonData;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.awt.*;
 import java.util.List;
@@ -27,11 +32,21 @@ import java.util.List;
 public class AdminServiceImpl implements AdminService {
     @Autowired private CommonDAO commonDAO;
     @Autowired private CommonData commonData;
+    @Autowired private WebDataService webDataService;
 
     @Override
-    public BaseResult<Boolean> create(@NonNull String param, @NonNull String type) {
+    public BaseResult<Boolean> create(@RequestBody JSONObject jsonObject) {
         BaseResult<Boolean> result = new BaseResult<>();
         try {
+            String param = jsonObject.getString("param");
+            String type = jsonObject.getString("type");
+
+            if (param == null || type == null) {
+                result.setMsgInfo("param is null");
+                result.setSuccess(false);
+                return result;
+            }
+
             if (ContentTypeEnum.Post.getValue().equals(type)) {
                 PostEntity postEntity = JSONObject.parseObject(param , PostEntity.class);
                 result.setModel(commonDAO.create(postEntity));
@@ -51,18 +66,27 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public BaseResult<Boolean> update(@NonNull String param, @NonNull String type) {
+    public BaseResult<Boolean> update(@RequestBody JSONObject jsonObject) {
         BaseResult<Boolean> result = new BaseResult<>();
         try {
+            String type = jsonObject.getString("type");
+            String param = jsonObject.getString("param");
+
+            if (param == null || type == null) {
+                result.setMsgInfo("param is null");
+                result.setSuccess(false);
+                return result;
+            }
+
             if (ContentTypeEnum.Post.getValue().equals(type)) {
                 PostEntity postEntity = JSONObject.parseObject(param , PostEntity.class);
-                result.setModel(commonDAO.updateById(postEntity, PostEntity.class));
+                result.setModel(commonDAO.update(postEntity, PostEntity.class));
             } else if(ContentTypeEnum.Case.getValue().equals(type)) {
                 CaseEntity caseEntity = JSONObject.parseObject(param , CaseEntity.class);
-                result.setModel(commonDAO.updateById(caseEntity, CaseEntity.class));
+                result.setModel(commonDAO.update(caseEntity, CaseEntity.class));
             } else if(ContentTypeEnum.Event.getValue().equals(type)) {
                 EventEntity eventEntity = JSONObject.parseObject(param , EventEntity.class);
-                result.setModel(commonDAO.updateById(eventEntity, EventEntity.class));
+                result.setModel(commonDAO.update(eventEntity, EventEntity.class));
             }
 
         } catch (Exception e) {
@@ -74,9 +98,18 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public BaseResult<Boolean> delete(@NonNull String id, @NonNull String type) {
+    public BaseResult<Boolean> delete(@RequestBody JSONObject jsonObject) {
         BaseResult<Boolean> result = new BaseResult<>();
         try {
+            String type = jsonObject.getString("type");
+            String id = jsonObject.getString("id");
+
+            if (id == null || type == null) {
+                result.setMsgInfo("param is null");
+                result.setSuccess(false);
+                return result;
+            }
+
             if (ContentTypeEnum.Post.getValue().equals(type)) {
                 result.setModel(commonDAO.delete(id , PostEntity.class));
             } else if(ContentTypeEnum.Case.getValue().equals(type)) {
@@ -93,9 +126,18 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public BaseResult<Boolean> updateData(String param, String type) {
+    public BaseResult<Boolean> updateData(@RequestBody JSONObject jsonObject) {
         BaseResult<Boolean> result = new BaseResult<>();
         try {
+            String type = jsonObject.getString("type");
+            String param = jsonObject.getString("param");
+
+            if (param == null || type == null) {
+                result.setSuccess(false);
+                result.setMsgInfo("param is null");
+                return result;
+            }
+
             if (ContentTypeEnum.CompanyInfo.getValue().equals(type)) {
                 CompanyInfoEntity companyInfoDO = JSONObject.parseObject(param , CompanyInfoEntity.class);
                 result.setModel(commonData.edit(companyInfoDO, CompanyInfoEntity.class));
@@ -180,8 +222,7 @@ public class AdminServiceImpl implements AdminService {
                 PostEntity postEntity = commonDAO.queryById(id , PostEntity.class);
                 result.setModel(postEntity);
             } else if(ContentTypeEnum.Case.getValue().equals(type)) {
-                CaseEntity caseEntity = commonDAO.queryById(id , CaseEntity.class);
-                result.setModel(caseEntity);
+                result.setModel(webDataService.getCaseById(id).getModel());
             } else if(ContentTypeEnum.Event.getValue().equals(type)) {
                 EventEntity eventEntity = commonDAO.queryById(id , EventEntity.class);
                 result.setModel(eventEntity);
