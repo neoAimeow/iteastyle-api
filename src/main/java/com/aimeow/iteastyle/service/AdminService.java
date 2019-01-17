@@ -4,6 +4,7 @@ import com.aimeow.domain.BaseResult;
 
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,20 +14,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public interface AdminService {
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
-    BaseResult<Boolean> create(String param, String type);
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    BaseResult<Boolean> create(@RequestBody JSONObject jsonObject);
 
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
-    BaseResult<Boolean> update(String param, String type);
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    BaseResult<Boolean> update(@RequestBody JSONObject jsonObject);
 
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    BaseResult<Boolean> delete(String id, String type);
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    BaseResult<Boolean> delete(@RequestBody JSONObject jsonObject);
 
     @RequestMapping(value = "/getInfo", method = RequestMethod.GET)
     BaseResult<JSONObject> getInfo(String type);
 
     @RequestMapping(value = "/updateData", method = RequestMethod.POST)
-    BaseResult<Boolean> updateData(String param, String type);
+    BaseResult<Boolean> updateData(@RequestBody JSONObject jsonObject);
 
     @RequestMapping(value = "/getList", method = RequestMethod.GET)
     BaseResult getList(Integer page , Integer pageSize , String type);
