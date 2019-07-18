@@ -1,10 +1,10 @@
 package com.aimeow.iteastyle.service.impl;
 
-import com.aimeow.domain.BaseResult;
 import com.aimeow.iteastyle.domain.enums.StaticDataEnum;
 import com.aimeow.iteastyle.service.CommonService;
-import com.aimeow.tools.RedisUtil;
-import com.aimeow.tools.ResultUtil;
+import com.aimeow.iteastyle.tools.domain.BaseResult;
+import com.aimeow.iteastyle.tools.tools.RedisUtil;
+import com.aimeow.iteastyle.tools.tools.ResultUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;

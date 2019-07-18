@@ -1,6 +1,5 @@
 package com.aimeow.iteastyle.service.impl;
 
-import com.aimeow.domain.BaseResult;
 import com.aimeow.iteastyle.domain.entity.Invoice.InvoiceEntity;
 import com.aimeow.iteastyle.domain.entity.Invoice.InvoiceTitleEntity;
 import com.aimeow.iteastyle.domain.enums.InvoiceTitleTypeEnum;
@@ -10,8 +9,9 @@ import com.aimeow.iteastyle.domain.request.CreateInvoiceTitleRequest;
 import com.aimeow.iteastyle.domain.request.UpdateInvoiceRequest;
 import com.aimeow.iteastyle.domain.request.UpdateInvoiceTitleRequest;
 import com.aimeow.iteastyle.service.InvoiceService;
-import com.aimeow.tools.CommonDAO;
-import com.aimeow.tools.ResultUtil;
+import com.aimeow.iteastyle.tools.domain.BaseResult;
+import com.aimeow.iteastyle.tools.tools.CommonDAO;
+import com.aimeow.iteastyle.tools.tools.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

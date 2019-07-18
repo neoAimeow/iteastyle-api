@@ -1,12 +1,12 @@
 package com.aimeow.iteastyle.service;
 
-import com.aimeow.domain.BaseResult;
 import com.aimeow.iteastyle.domain.entity.Invoice.InvoiceEntity;
 import com.aimeow.iteastyle.domain.entity.Invoice.InvoiceTitleEntity;
 import com.aimeow.iteastyle.domain.request.CreateInvoiceRequest;
 import com.aimeow.iteastyle.domain.request.CreateInvoiceTitleRequest;
 import com.aimeow.iteastyle.domain.request.UpdateInvoiceRequest;
 import com.aimeow.iteastyle.domain.request.UpdateInvoiceTitleRequest;
+import com.aimeow.iteastyle.tools.domain.BaseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;

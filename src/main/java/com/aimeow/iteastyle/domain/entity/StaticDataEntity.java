@@ -1,7 +1,7 @@
 package com.aimeow.iteastyle.domain.entity;
 
 
-import com.aimeow.domain.BaseEntity;
+import com.aimeow.iteastyle.tools.domain.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,7 +11,6 @@ import java.util.Map;
 
 @Data
 @EqualsAndHashCode(callSuper=true)
-
 public class StaticDataEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 3058517636708388619L;
     private String contactUsTitle;

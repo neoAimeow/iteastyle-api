@@ -2,7 +2,7 @@ package com.aimeow.iteastyle.domain.entity;
 
 import java.io.Serializable;
 
-import com.aimeow.domain.BaseEntity;
+import com.aimeow.iteastyle.tools.domain.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

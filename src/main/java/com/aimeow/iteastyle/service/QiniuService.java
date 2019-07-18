@@ -1,6 +1,6 @@
 package com.aimeow.iteastyle.service;
 
-import com.aimeow.domain.BaseResult;
+import com.aimeow.iteastyle.tools.domain.BaseResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;

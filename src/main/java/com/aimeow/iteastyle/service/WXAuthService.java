@@ -1,7 +1,7 @@
 package com.aimeow.iteastyle.service;
 
-import com.aimeow.domain.BaseResult;
 import com.aimeow.iteastyle.domain.entity.WXLoginInfo;
+import com.aimeow.iteastyle.tools.domain.BaseResult;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,10 +1,10 @@
 package com.aimeow.iteastyle.service;
 
-import com.aimeow.domain.BaseResult;
-import com.aimeow.domain.BaseGetList;
 import com.aimeow.iteastyle.domain.ViewObject.Case.CasesInTypeVO;
 import com.aimeow.iteastyle.domain.entity.CaseEntity;
 import com.aimeow.iteastyle.domain.entity.PostEntity;
+import com.aimeow.iteastyle.tools.domain.BaseGetList;
+import com.aimeow.iteastyle.tools.domain.BaseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;

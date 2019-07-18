@@ -5,9 +5,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.aimeow.iteastyle.tools.domain.BaseQuery;
 import com.alibaba.fastjson.JSONObject;
 
-import com.aimeow.domain.BaseQuery;
 import com.aimeow.iteastyle.Authentification.entity.AdminUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;

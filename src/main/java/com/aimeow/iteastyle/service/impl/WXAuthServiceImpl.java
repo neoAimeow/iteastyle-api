@@ -2,13 +2,16 @@ package com.aimeow.iteastyle.service.impl;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
-import com.aimeow.domain.BaseResult;
-import com.aimeow.domain.UserToken;
 import com.aimeow.iteastyle.domain.entity.UserAuthEntity;
 import com.aimeow.iteastyle.domain.entity.UserInfoEntity;
 import com.aimeow.iteastyle.errorEnums.AuthErrorEnum;
 import com.aimeow.iteastyle.service.WXAuthService;
-import com.aimeow.tools.*;
+import com.aimeow.iteastyle.tools.domain.BaseResult;
+import com.aimeow.iteastyle.tools.domain.UserToken;
+import com.aimeow.iteastyle.tools.tools.CommonDAO;
+import com.aimeow.iteastyle.tools.tools.RegexUtil;
+import com.aimeow.iteastyle.tools.tools.ResultUtil;
+import com.aimeow.iteastyle.tools.tools.UserTokenManager;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,7 +27,6 @@ import java.util.Map;
 public class WXAuthServiceImpl implements WXAuthService {
     @Autowired private WxMaService wxService;
     @Autowired private CommonDAO commonDAO;
-    @Autowired private MessageSender messageSender;
 
     @Override
     public BaseResult login(String body, HttpServletRequest request) {

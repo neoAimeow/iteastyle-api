@@ -1,6 +1,6 @@
 package com.aimeow.iteastyle.domain.entity.Invoice;
 
-import com.aimeow.domain.BaseEntity;
+import com.aimeow.iteastyle.tools.domain.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

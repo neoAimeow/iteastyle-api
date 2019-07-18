@@ -1,8 +1,8 @@
 package com.aimeow.iteastyle.Authentification.service.impl;
 
-import com.aimeow.domain.BaseResult;
 import com.aimeow.iteastyle.Authentification.entity.AdminUserEntity;
 import com.aimeow.iteastyle.Authentification.service.AdminUserService;
+import com.aimeow.iteastyle.tools.domain.BaseResult;
 import org.springframework.stereotype.Component;
 
 /**

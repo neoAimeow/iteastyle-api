@@ -1,11 +1,11 @@
 package com.aimeow.iteastyle.service.impl;
 
-import com.aimeow.domain.BaseGetList;
-import com.aimeow.domain.BaseResult;
 import com.aimeow.iteastyle.domain.entity.EventEntity;
 import com.aimeow.iteastyle.domain.query.EventQuery;
 import com.aimeow.iteastyle.service.EventService;
-import com.aimeow.tools.CommonDAO;
+import com.aimeow.iteastyle.tools.domain.BaseGetList;
+import com.aimeow.iteastyle.tools.domain.BaseResult;
+import com.aimeow.iteastyle.tools.tools.CommonDAO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

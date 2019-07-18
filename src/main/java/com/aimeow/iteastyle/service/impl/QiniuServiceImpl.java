@@ -1,7 +1,7 @@
 package com.aimeow.iteastyle.service.impl;
 
-import com.aimeow.domain.BaseResult;
 import com.aimeow.iteastyle.service.QiniuService;
+import com.aimeow.iteastyle.tools.domain.BaseResult;
 import com.qiniu.util.Auth;
 import org.springframework.stereotype.Component;
 
