@@ -37,6 +37,41 @@ public class WebDataServiceImpl implements WebDataService {
     @Autowired private CommonData commonData;
     @Autowired private RedisUtil redisUtil;
 
+    private String caseStr = "[\n" +
+            "\t{\n" +
+            "\t\t\"rank\": 1,\n" +
+            "\t\t\"type\": 104,\n" +
+            "\t\t\"typeIcon\": \"/opaque-logo.png\",\n" +
+            "\t\t\"typeImage\": \"/pd-customisation-wap.png\",\n" +
+            "\t\t\"typeName\": \"茶歇定制\",\n" +
+            "\t\t\"typeNameEn\": \"TEA BREAK CUSTOMISATION\"\n" +
+            "\t},\n" +
+            "\t{\n" +
+            "\t\t\"rank\": 2,\n" +
+            "\t\t\"type\": 105,\n" +
+            "\t\t\"typeIcon\": \"/opaque-logo.png\",\n" +
+            "\t\t\"typeImage\": \"/pd-performance-wap.jpg\",\n" +
+            "\t\t\"typeName\": \"杭州伴手礼\",\n" +
+            "\t\t\"typeNameEn\": \"TEA HAND COURTESY\"\n" +
+            "\t},\n" +
+            "\t{\n" +
+            "\t\t\"rank\": 3,\n" +
+            "\t\t\"type\": 102,\n" +
+            "\t\t\"typeIcon\": \"/opaque-logo.png\",\n" +
+            "\t\t\"typeImage\": \"/pt-seminar-wap.png\",\n" +
+            "\t\t\"typeName\": \"茶事活动\",\n" +
+            "\t\t\"typeNameEn\": \"Tea activities\"\n" +
+            "\t},\n" +
+            "\t{\n" +
+            "\t\t\"rank\": 4,\n" +
+            "\t\t\"type\": 103,\n" +
+            "\t\t\"typeIcon\": \"/opaque-logo.png\",\n" +
+            "\t\t\"typeImage\": \"/pd-diy-wap.jpg\",\n" +
+            "\t\t\"typeName\": \"DIY活动\",\n" +
+            "\t\t\"typeNameEn\": \"DIY ACTIVITES\"\n" +
+            "\t}\n" +
+            "]";
+
     @Override
     public BaseResult<BaseGetList> getPosts(
             Integer page, Integer pageSize) {
@@ -92,8 +127,8 @@ public class WebDataServiceImpl implements WebDataService {
 
         try {
             CaseEntity caseEntity = commonDAO.queryById(caseId , CaseEntity.class);
+            JSONArray jsonArray = JSONArray.parseArray(caseStr);
 
-            JSONArray jsonArray = JSONArray.parseArray(redisUtil.get(StaticDataEnum.CASE_TYPE.getKey()));
             JSONObject targetObject = null;
             for (Object o : jsonArray) {
                 JSONObject jo = JSONObject.parseObject(JSONObject.toJSONString(o));
@@ -133,8 +168,8 @@ public class WebDataServiceImpl implements WebDataService {
             List<CaseEntity> caseBaseVOS = new ArrayList<>();
             casesInTypeVO.setCases(caseBaseVOS);
 
+            JSONArray jsonArray = JSONArray.parseArray(caseStr);
 
-            JSONArray jsonArray = JSONArray.parseArray(redisUtil.get(StaticDataEnum.CASE_TYPE.getKey()));
             JSONObject targetObject = null;
             for (Object o : jsonArray) {
                 JSONObject jo = JSONObject.parseObject(JSONObject.toJSONString(o));
@@ -172,40 +207,7 @@ public class WebDataServiceImpl implements WebDataService {
         List<CasesInTypeVO> casesInTypeVOS = new ArrayList<>();
         try {
 
-            String caseStr = "[\n" +
-                    "\t{\n" +
-                    "\t\t\"rank\": 1,\n" +
-                    "\t\t\"type\": 104,\n" +
-                    "\t\t\"typeIcon\": \"/opaque-logo.png\",\n" +
-                    "\t\t\"typeImage\": \"/pd-customisation-wap.png\",\n" +
-                    "\t\t\"typeName\": \"茶歇定制\",\n" +
-                    "\t\t\"typeNameEn\": \"TEA BREAK CUSTOMISATION\"\n" +
-                    "\t},\n" +
-                    "\t{\n" +
-                    "\t\t\"rank\": 2,\n" +
-                    "\t\t\"type\": 105,\n" +
-                    "\t\t\"typeIcon\": \"/opaque-logo.png\",\n" +
-                    "\t\t\"typeImage\": \"/pd-performance-wap.jpg\",\n" +
-                    "\t\t\"typeName\": \"杭州伴手礼\",\n" +
-                    "\t\t\"typeNameEn\": \"TEA HAND COURTESY\"\n" +
-                    "\t},\n" +
-                    "\t{\n" +
-                    "\t\t\"rank\": 3,\n" +
-                    "\t\t\"type\": 102,\n" +
-                    "\t\t\"typeIcon\": \"/opaque-logo.png\",\n" +
-                    "\t\t\"typeImage\": \"/pt-seminar-wap.png\",\n" +
-                    "\t\t\"typeName\": \"茶事活动\",\n" +
-                    "\t\t\"typeNameEn\": \"Tea activities\"\n" +
-                    "\t},\n" +
-                    "\t{\n" +
-                    "\t\t\"rank\": 4,\n" +
-                    "\t\t\"type\": 103,\n" +
-                    "\t\t\"typeIcon\": \"/opaque-logo.png\",\n" +
-                    "\t\t\"typeImage\": \"/pd-diy-wap.jpg\",\n" +
-                    "\t\t\"typeName\": \"DIY活动\",\n" +
-                    "\t\t\"typeNameEn\": \"DIY ACTIVITES\"\n" +
-                    "\t}\n" +
-                    "]";
+
             JSONArray jsonArray = JSONArray.parseArray(caseStr);
 
             List<JSONObject> caseTypeVOS = new ArrayList<>();
