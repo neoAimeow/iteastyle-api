@@ -2,13 +2,11 @@ package com.aimeow.iteastyle.service;
 
 import com.aimeow.iteastyle.tools.domain.BaseResult;
 import com.alibaba.fastjson.JSONObject;
-import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api(value = "/admin",tags = {"管理接口"}, description = "管理相关各路接口")
 @RequestMapping(value = "/admin")
 @RestController
 public interface AdminService {

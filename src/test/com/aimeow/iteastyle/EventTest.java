@@ -6,7 +6,6 @@ import com.aimeow.domain.BaseGetList;
 import com.aimeow.iteastyle.domain.entity.EventEntity;
 import com.aimeow.iteastyle.domain.enums.ContentTypeEnum;
 import com.aimeow.iteastyle.service.AdminService;
-import com.aimeow.iteastyle.service.CommonService;
 import com.aimeow.iteastyle.service.EventService;
 import org.junit.Assert;
 import org.junit.Test;
